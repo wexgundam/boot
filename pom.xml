@@ -5,6 +5,9 @@
     <artifactId>spring.boot</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>template</module>
+    </modules>
     <name>spring.boot learning</name>
     <url>https://github.com/wexgundam/spring.boot</url>
 
