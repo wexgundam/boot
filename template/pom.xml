@@ -79,13 +79,50 @@
         </dependency>
         <!-- End sitemesh -->
 
-        <!-- Begin fileupload -->
+        <!-- Begin commons fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>${fileupload.version}</version>
         </dependency>
-        <!-- End fileupload -->
+        <!-- End commons fileupload -->
+
+        <!-- Begin http client -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <!-- End http client -->
+
+        <!-- Begin apache commons net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${net.version}</version>
+        </dependency>
+        <!-- End apache commons net -->
+
+        <!-- Begin EHCache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
+        <!-- End EHCache -->
+
+        <!-- Begin POI -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <!-- End POI -->
 
         <!-- Begin Test -->
         <dependency>

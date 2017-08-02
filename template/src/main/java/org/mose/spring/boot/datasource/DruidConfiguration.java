@@ -136,6 +136,11 @@ public class DruidConfiguration {
         return new DruidStatInterceptor();
     }
 
+    /**
+     * 监控Spring bean
+     *
+     * @return
+     */
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
