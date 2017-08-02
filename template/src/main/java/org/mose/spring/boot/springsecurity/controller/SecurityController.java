@@ -1,6 +1,6 @@
-package org.mose.spring.boot.security.controller;
+package org.mose.spring.boot.springsecurity.controller;
 
-import org.mose.spring.boot.security.service.SecurityService;
+import org.mose.spring.boot.springsecurity.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;

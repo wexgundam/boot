@@ -1,8 +1,8 @@
-package org.mose.spring.boot.security;
+package org.mose.spring.boot.springsecurity;
 
-import org.mose.spring.boot.security.AuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +25,7 @@ import javax.sql.DataSource;
  * @Author: 靳磊
  * @Date: 2017/7/19 13:47
  */
+@Configuration
 @EnableWebSecurity
 public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired

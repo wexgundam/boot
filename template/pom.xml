@@ -71,6 +71,22 @@
         </dependency>
         <!-- End Database -->
 
+        <!-- Begin sitemesh -->
+        <dependency>
+            <groupId>org.sitemesh</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>${sitemesh.version}</version>
+        </dependency>
+        <!-- End sitemesh -->
+
+        <!-- Begin fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${fileupload.version}</version>
+        </dependency>
+        <!-- End fileupload -->
+
         <!-- Begin Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

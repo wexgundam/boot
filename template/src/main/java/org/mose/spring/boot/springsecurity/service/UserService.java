@@ -1,4 +1,4 @@
-package org.mose.spring.boot.security.service;
+package org.mose.spring.boot.springsecurity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
@@ -7,7 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 

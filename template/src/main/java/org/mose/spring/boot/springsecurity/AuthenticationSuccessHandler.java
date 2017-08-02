@@ -1,7 +1,7 @@
-package org.mose.spring.boot.security;
+package org.mose.spring.boot.springsecurity;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +11,12 @@ import java.io.IOException;
 /**
  * Description: 基于Spring Security的Http Session timeout设置方式
  *
+ * 继承SavedRequestAwareAuthenticationSuccessHandler，认证成功后可以重定向到认证前用户请求的地址
+ *
  * @Author: 靳磊
  * @Date: 2017/8/2 11:33
  */
-public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     /**
      * session失效时间，默认30分钟
      */

@@ -3,6 +3,8 @@ package org.mose.spring.boot;
 import org.mose.spring.boot.servlet.HttpSessionManager;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.util.WebAppRootListener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,11 +22,16 @@ public class ApplicationServletInitializer extends SpringBootServletInitializer 
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
 
-        // Servlet context init parameters
-        servletContext.setInitParameter("webAppRootKey", "template.root");
 
         // http session timeout
-        servletContext.addListener(new HttpSessionManager());
+        servletContext.addListener(HttpSessionManager.class);
+
+        // 通过System.getProperty("template.root")获取项目的路径
+        servletContext.setInitParameter("webAppRootKey", "template.root");
+        servletContext.addListener(WebAppRootListener.class);
+
+        // 建立Spring Bean对request,session,globalsession三种作用域的支持
+        servletContext.addListener(RequestContextListener.class);
     }
 }
 

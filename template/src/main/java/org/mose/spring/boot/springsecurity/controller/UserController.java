@@ -1,6 +1,6 @@
-package org.mose.spring.boot.security.controller;
+package org.mose.spring.boot.springsecurity.controller;
 
-import org.mose.spring.boot.security.service.UserService;
+import org.mose.spring.boot.springsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

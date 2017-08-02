@@ -1,6 +1,6 @@
-package org.mose.spring.boot.security;
+package org.mose.spring.boot.springsecurity;
 
-import org.mose.spring.boot.security.service.UserService;
+import org.mose.spring.boot.springsecurity.service.UserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
