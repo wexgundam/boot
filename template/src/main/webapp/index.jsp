@@ -27,6 +27,9 @@
             <div>
                 <a href="/user/postFilter" target="_blank">Post Filter</a>
             </div>
+            <div>
+                <a href="/activeSessionCount" target="_blank">Active Session Count</a>
+            </div>
         </div>
     </body>
 </html>

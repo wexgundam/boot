@@ -1,4 +1,4 @@
-package org.mose.spring.security;
+package org.mose.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -54,7 +54,6 @@
         </dependency>
         <!-- End AspectJ -->
 
-
         <!-- Begin Database -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -85,7 +84,6 @@
         </dependency>
         <!-- End Test -->
     </dependencies>
-
 
     <build>
         <finalName>spring.boot.template</finalName>

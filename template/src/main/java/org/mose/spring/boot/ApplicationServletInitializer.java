@@ -1,5 +1,6 @@
-package org.mose.spring.security;
+package org.mose.spring.boot;
 
+import org.mose.spring.boot.servlet.HttpSessionManager;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
@@ -21,6 +22,9 @@ public class ApplicationServletInitializer extends SpringBootServletInitializer 
 
         // Servlet context init parameters
         servletContext.setInitParameter("webAppRootKey", "template.root");
+
+        // http session timeout
+        servletContext.addListener(new HttpSessionManager());
     }
 }
 

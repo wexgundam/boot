@@ -1,10 +1,13 @@
-package org.mose.spring.security.controller;
+package org.mose.spring.boot.security.controller;
 
+import org.mose.spring.boot.security.service.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +21,10 @@ import java.io.StringWriter;
  */
 @Controller
 @RequestMapping("/")
-public class LoginLogoutController {
+public class SecurityController {
+    @Autowired
+    private SecurityService securityService;
+
     @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
     public ModelAndView accessDenied(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -29,5 +35,11 @@ public class LoginLogoutController {
         modelAndView.getModelMap().addAttribute("errorTrace", stringWriter.toString());
         modelAndView.setViewName("accessDenied");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/activeSessionCount", method = RequestMethod.GET)
+    @ResponseBody
+    public String activeSessionCount() {
+        return "Current active session count is " + securityService.getActiveSessionCount();
     }
 }

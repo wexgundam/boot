@@ -1,14 +1,11 @@
-package org.mose.spring.security.service;
+package org.mose.spring.boot.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -25,14 +22,6 @@ public class UserService {
     UserDetailsService userDetailsService;
     @Autowired
     MethodSecurityMetadataSource methodSecurityMetadataSource;
-
-    @PostConstruct
-    public void init() {
-        System.out.println("---------------------------");
-        System.out.println(userDetailsService.getClass());
-        System.out.println("---------------------------");
-        System.out.println(methodSecurityMetadataSource.getClass());
-    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String preAuthorizeMethod() {

@@ -1,20 +1,16 @@
-package org.mose.spring.security;
+package org.mose.spring.boot.security;
 
+import org.mose.spring.boot.security.AuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
-import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
-import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
-import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -22,11 +18,6 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Description:Spring Security的java configuration
@@ -35,9 +26,11 @@ import java.util.Map;
  * @Date: 2017/7/19 13:47
  */
 @EnableWebSecurity
-public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAdapter {
+public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
+    @Autowired
+    SessionRegistry sessionRegistry;
 
     /**
      * Description：配置Spring Security
@@ -65,10 +58,15 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
                 .antMatchers("/error").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
+                .successHandler(new AuthenticationSuccessHandler())
                 .and().logout().permitAll()
                 //配置未授权处理地址
                 .and().exceptionHandling().accessDeniedPage("/accessDenied")
                 .and().rememberMe().tokenRepository(persistentTokenRepository())
+                //Spring Security的默认启用防止固化session攻击
+                .and().sessionManagement().sessionFixation().migrateSession()
+                //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面
+                .maximumSessions(1).expiredUrl("/login.jsp").sessionRegistry(sessionRegistry).and()
                 .and().csrf().disable();
     }
 
@@ -139,5 +137,14 @@ public class SecurityAuthenticationConfiguration extends WebSecurityConfigurerAd
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
         tokenRepository.setDataSource(dataSource);
         return tokenRepository;
+    }
+
+    /**
+     * 建立SessionRegistry bean
+     * @return
+     */
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 }

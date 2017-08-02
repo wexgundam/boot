@@ -1,23 +1,12 @@
-package org.mose.spring.security;
+package org.mose.spring.boot.security;
 
-import org.mose.spring.security.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.mose.spring.boot.security.service.UserService;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.SecurityConfig;
-import org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource;
-import org.springframework.security.access.expression.method.ExpressionBasedAnnotationAttributeFactory;
-import org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
-import org.springframework.security.access.prepost.PrePostAnnotationSecurityMetadataSource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
-import org.springframework.security.config.core.GrantedAuthorityDefaults;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description:
@@ -26,7 +15,7 @@ import java.util.List;
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityMethodConfiguration extends GlobalMethodSecurityConfiguration {
+public class MethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
     /**
      * 当前版本主要使用了ProtectPointcutPostProcessor实现Aop AspectJ的表达式方式的权限控制
      * 其原理是Spring没创建一个bean都要通过一组Aop的遍历，如果符合Aop表达式，则将这个bean的方法

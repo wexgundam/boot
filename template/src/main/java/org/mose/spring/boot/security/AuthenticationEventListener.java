@@ -1,7 +1,8 @@
-package org.mose.spring.security.listener;
+package org.mose.spring.boot.security;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
+import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,4 +1,4 @@
-package org.mose.spring.security;
+package org.mose.spring.boot.datasource;
 
 import com.alibaba.druid.filter.logging.LogFilter;
 import com.alibaba.druid.filter.logging.Slf4jLogFilter;
@@ -139,7 +139,7 @@ public class DruidConfiguration {
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
-        String patterns = "com.critc.plat.*.service.*";
+        String patterns = "org.mose.spring.boot.*.service.*";
         druidStatPointcut.setPatterns(patterns);
         return druidStatPointcut;
     }
