@@ -144,7 +144,7 @@ public class DruidConfiguration {
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
-        String patterns = "org.mose.spring.boot.*.service.*";
+        String patterns = "org.mose.spring.boot.*..service.*";
         druidStatPointcut.setPatterns(patterns);
         return druidStatPointcut;
     }
