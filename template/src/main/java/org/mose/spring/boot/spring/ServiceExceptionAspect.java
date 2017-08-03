@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class ServiceExceptionAspect {
     private static Logger logger = LoggerFactory.getLogger("serviceLog");
 
-    @AfterThrowing(value = "execution (* org.mose.spring.boot.*..service..*(..))", throwing = "e")
+    @AfterThrowing(value = "execution (* org.mose.spring.boot.*..service.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         Object target = joinPoint.getTarget();  // 拦截的实体类
         String methodName = joinPoint.getSignature().getName();// 拦截的方法名称

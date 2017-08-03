@@ -25,7 +25,7 @@ import org.springframework.transaction.interceptor.*;
 @Aspect
 @Component
 public class TransactionConfiguration {
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* org.mose.spring.boot.*..service..*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* org.mose.spring.boot.*..service.*.*(..))";
 
     @Autowired
     private PlatformTransactionManager transactionManager;

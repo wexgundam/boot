@@ -23,7 +23,7 @@ public class PerformanceAspect {
     private static Logger logger = LoggerFactory.getLogger("performanceLog");
     private int checkPoint;
 
-    @Around("execution (* org.mose.spring.boot.*..service..*(..))")
+    @Around("execution (* org.mose.spring.boot.*..service.*.*(..))")
     public Object performanceIterceptor(ProceedingJoinPoint joinPoint) throws Throwable {
         Object result = null;
         long l = System.currentTimeMillis();
