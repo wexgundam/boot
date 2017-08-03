@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description:
+ * Description:各种资源服务地址等配置
  *
  * @Author: 靳磊
  * @Date: 2017/8/2:23
@@ -43,7 +43,6 @@ public class ResourceConfiguration {
     public static final String UPLOADED_FILE_SERVER_URL = "uploadedFileServerUrl";
     @Value("${uploaded.file.server.url}")
     private String uploadedFileServerUrl;
-
 
 
     /**

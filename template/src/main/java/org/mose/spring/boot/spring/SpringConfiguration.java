@@ -3,6 +3,7 @@ package org.mose.spring.boot.spring;
 import org.mose.spring.boot.util.spring.SpringContextHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Description:配置Spring Application Context
