@@ -39,7 +39,7 @@ public class SecurityController {
 
     @RequestMapping(value = "/activeSessionCount", method = RequestMethod.GET)
     @ResponseBody
-    public String activeSessionCount() {
+    public String activeSessionCount() throws Exception {
         return "Current active session count is " + securityService.getActiveSessionCount();
     }
 }
