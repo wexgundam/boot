@@ -60,7 +60,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/error").permitAll()
                 .antMatchers("/**").hasRole("USER")
-                .and().formLogin().loginPage("/login.jsp").permitAll().loginProcessingUrl("/login")
+                .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().permitAll()
                 //配置未授权处理地址
@@ -69,7 +69,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
                 //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面
-                .maximumSessions(1).expiredUrl("/login.jsp").sessionRegistry(sessionRegistry).and()
+                .maximumSessions(1).expiredUrl("/login.htm").sessionRegistry(sessionRegistry).and()
                 .and().csrf().disable();
     }
 
@@ -144,6 +144,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
      * 建立SessionRegistry bean
+     *
      * @return
      */
     @Bean

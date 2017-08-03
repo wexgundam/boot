@@ -29,4 +29,14 @@ public class SpringMvcController {
     public void testException() throws Exception {
         throw new Exception("Controller exception.");
     }
+
+    @RequestMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+
+    @RequestMapping("/index")
+    public String indexPage() {
+        return "index";
+    }
 }

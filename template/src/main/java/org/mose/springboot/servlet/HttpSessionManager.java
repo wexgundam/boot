@@ -12,7 +12,7 @@ public class HttpSessionManager implements javax.servlet.http.HttpSessionListene
 
     @Override
     public void sessionCreated(HttpSessionEvent event) {
-        event.getSession().setMaxInactiveInterval(5 * 60);
+        event.getSession().setMaxInactiveInterval(30 * 60);
     }
 
     @Override

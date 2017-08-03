@@ -10,7 +10,7 @@ import javax.servlet.DispatcherType;
 /**
  * sitemesh映射
  */
-//@Configuration
+@Configuration
 public class SitemeshConfiguration {
     /**
      * 设置sitemesh映射
