@@ -64,7 +64,7 @@
     </div>
 
     <!-- BEGIN QUICK NAV -->
-    <%@include file="../common/quick_nav.jspf.jsp" %>
+    <%@include file="../common/quick_nav.jspf" %>
     <!-- END QUICK NAV -->
 
     <!-- BEGIN STYLES -->

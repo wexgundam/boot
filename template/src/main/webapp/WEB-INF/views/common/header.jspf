@@ -10,6 +10,7 @@
             <a href="index.html">
                 <img src="${staticResourceServerUrl}assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
             </a>
+            <!-- sidebar的收缩与展开，正常屏幕时显示并有效 -->
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>
@@ -17,6 +18,7 @@
         <!-- END LOGO -->
 
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <!-- sidebar的展开与隐藏，屏幕尺寸宽度偏小时显示并有效 -->
         <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
             <span></span>
         </a>
@@ -29,6 +31,7 @@
                 <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
                 <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                 <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                <!-- 鼠标点击后弹出下拉列表，背景为白色 -->
                 <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-bell"></i>
@@ -130,6 +133,7 @@
                 <!-- END NOTIFICATION DROPDOWN -->
                 <!-- BEGIN INBOX DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                <!-- 鼠标点击后弹出下拉列表，背景为黑色 -->
                 <li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-envelope-open"></i>
@@ -205,6 +209,7 @@
                 <!-- END INBOX DROPDOWN -->
                 <!-- BEGIN TODO DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                <!-- 鼠标悬浮后弹出下拉列表，背景为黑色 -->
                 <li class="dropdown dropdown-hoverable dropdown-extended dropdown-tasks" id="header_task_bar">
                     <a href="javascript:;" class="dropdown-toggle">
                         <i class="icon-calendar"></i>
