@@ -7,7 +7,7 @@
         <h2>Hello World!</h2>
         <div>
             <h2>注销</h2>
-            <form action="/logout" method="post">
+            <form action="/logout.htm" method="post">
                 <input type="submit" value="Logout">
             </form>
             <sec:authorize url="/admin">

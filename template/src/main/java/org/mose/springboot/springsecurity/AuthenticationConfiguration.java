@@ -62,7 +62,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
-                .and().logout().permitAll()
+                .and().logout().logoutUrl("/logout.htm").permitAll()
                 //配置未授权处理地址
                 .and().exceptionHandling().accessDeniedPage("/accessDenied")
                 .and().rememberMe().tokenRepository(persistentTokenRepository())
