@@ -2,7 +2,9 @@ package org.mose.springboot.springmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +48,10 @@ public class SpringMvcController {
     }
 
     @RequestMapping("/test")
-    public String testPage() {
-        return "test";
+    public ModelAndView tablePage(@RequestParam(required = false) String color) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("color", color);
+        modelAndView.setViewName("test");
+        return modelAndView;
     }
 }
