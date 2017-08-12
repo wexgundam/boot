@@ -1,4 +1,4 @@
-package org.mose.springboot.sidebar.dao.stream;
+package org.mose.springboot.dao.stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

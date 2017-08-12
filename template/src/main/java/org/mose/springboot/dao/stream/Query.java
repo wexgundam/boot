@@ -1,5 +1,6 @@
-package org.mose.springboot.sidebar.dao.stream;
+package org.mose.springboot.dao.stream;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -39,8 +40,8 @@ public class Query<Entity, Id> {
         return this;
     }
 
-    public Query<Entity, Id> parameterBean(Object conditionBean) {
-        this.parameterBean = conditionBean;
+    public Query<Entity, Id> parameterBean(Object parameterBean) {
+        this.parameterBean = parameterBean;
         return this;
     }
 
@@ -62,14 +63,18 @@ public class Query<Entity, Id> {
         Assert.notNull(sql, "The sql of queryOne is null.");
         Assert.notNull(rowMapper, "The rowMapper of queryOne is null.");
 
-        if (parameters != null) {
-            return jdbcTemplate.queryForObject(sql, parameters, rowMapper);
-        } else if (parameterBean != null) {
-            return namedParameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(parameterBean),
-                    rowMapper);
-        }
+        try {
+            if (parameters != null) {
+                return jdbcTemplate.queryForObject(sql, parameters, rowMapper);
+            } else if (parameterBean != null) {
+                Assert.notNull(parameterBean, "The parameterBean of queryOne is null.");
+                return namedParameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(parameterBean), rowMapper);
+            }
 
-        return jdbcTemplate.queryForObject(sql, rowMapper);
+            return jdbcTemplate.queryForObject(sql, rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public List<Entity> queryMany() {
@@ -81,6 +86,7 @@ public class Query<Entity, Id> {
         if (parameters != null) {
             return jdbcTemplate.query(sql, parameters, rowMapper);
         } else if (parameterBean != null) {
+            Assert.notNull(parameterBean, "The parameterBean of queryMany is null.");
             return namedParameterJdbcTemplate.query(sql, new BeanPropertySqlParameterSource(parameterBean), rowMapper);
         }
         return jdbcTemplate.query(sql, rowMapper);
@@ -88,13 +94,12 @@ public class Query<Entity, Id> {
 
     public int queryCount() {
         Assert.notNull(sql, "The sql of queryCount is null.");
-        Assert.notNull(rowMapper, "The rowMapper of queryCount is null.");
 
         if (parameters != null) {
             return jdbcTemplate.queryForObject(sql, parameters, Integer.class);
         } else if (parameterBean != null) {
-            return namedParameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(parameterBean),
-                    Integer.class);
+            Assert.notNull(parameterBean, "The parameterBean of queryCount is null.");
+            return namedParameterJdbcTemplate.queryForObject(sql, new BeanPropertySqlParameterSource(parameterBean), Integer.class);
         }
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }

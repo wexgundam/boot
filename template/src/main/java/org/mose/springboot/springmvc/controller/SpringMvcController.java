@@ -1,5 +1,9 @@
 package org.mose.springboot.springmvc.controller;
 
+import org.mose.springboot.sidebar.dao.AbcRepository;
+import org.mose.springboot.sidebar.dao.AbcStreamRepository;
+import org.mose.springboot.sidebar.modal.Abc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,8 +52,17 @@ public class SpringMvcController {
         return "index";
     }
 
+    @Autowired
+    AbcStreamRepository abcStreamRepository;
+    @Autowired
+    AbcRepository abcRepository;
+
     @RequestMapping("/test")
     public ModelAndView tablePage(@RequestParam(required = false) String color) {
+        Abc abc = abcStreamRepository.queryOneById("1");
+        Abc abc2 = abcRepository.queryOneById("1");
+        List<Abc> list = abcRepository.queryManyByName("test");
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("color", color);
         modelAndView.setViewName("test");
