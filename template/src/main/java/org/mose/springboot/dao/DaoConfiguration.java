@@ -20,7 +20,7 @@ public class DaoConfiguration {
 
     @Profile("prod")
     @Bean
-    public IPaging oracleSPging() {
+    public IPaging oraclePaging() {
         return new OraclePaging();
     }
 }

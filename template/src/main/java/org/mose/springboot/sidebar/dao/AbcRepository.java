@@ -23,4 +23,19 @@ public class AbcRepository extends AbstractRepository<Abc, String> {
         String sql = new String("select id, name from resource where name=?");
         return queryManyByParametersAndPaging(sql, 1, 2, name);
     }
+
+    public int insertOne(Abc abc) {
+        String sql = "insert into resource set id=:id, name=:name";
+        return insertOne(sql, abc);
+    }
+
+    public int deleteOne(Abc abc) {
+        String sql = "delete from resource where id=:id";
+        return deleteAnyByParameterBean(sql, abc);
+    }
+
+    public int updateOne(Abc abc) {
+        String sql = "update resource set name=:name where id=:id";
+        return updateAnyByParameterBean(sql, abc);
+    }
 }

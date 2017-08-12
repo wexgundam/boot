@@ -1,5 +1,6 @@
 package org.mose.springboot.dao.stream;
 
+import org.mose.springboot.dao.IPaging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,8 @@ public class AbstractStreamRepository<Entity, Id> {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    @Autowired
+    private IPaging paging;
 
     public Class<Entity> getEntityClass() {
         return ((Class<Entity>) ((ParameterizedType) getClass()
@@ -30,7 +33,7 @@ public class AbstractStreamRepository<Entity, Id> {
     }
 
     public Query<Entity, Id> query() {
-        return new Query<>(jdbcTemplate, namedParameterJdbcTemplate, new BeanPropertyRowMapper<>(getEntityClass()));
+        return new Query<>(jdbcTemplate, namedParameterJdbcTemplate, new BeanPropertyRowMapper<>(getEntityClass()), paging);
     }
 
     public Insert<Entity, Id> insert() {

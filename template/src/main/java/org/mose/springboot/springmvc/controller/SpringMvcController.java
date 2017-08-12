@@ -63,6 +63,9 @@ public class SpringMvcController {
         Abc abc2 = abcRepository.queryOneById("1");
         List<Abc> list = abcRepository.queryManyByName("test");
 
+        abc.setName("1In");
+        abcRepository.updateOne(abc);
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("color", color);
         modelAndView.setViewName("test");

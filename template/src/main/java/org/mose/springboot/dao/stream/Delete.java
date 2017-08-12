@@ -28,40 +28,20 @@ public class Delete<Entity, Id> {
         return this;
     }
 
-    public Delete<Entity, Id> parameters(Object... conditions) {
-        this.parameters = conditions;
+    public Delete<Entity, Id> parameters(Object... parameters) {
+        this.parameters = parameters;
+        this.parameterBean = null;
         return this;
     }
 
-    public Delete<Entity, Id> parameterBean(Object conditionBean) {
-        this.parameterBean = conditionBean;
+    public Delete<Entity, Id> parameterBean(Object parameterBean) {
+        this.parameterBean = parameterBean;
+        this.parameters = null;
         return this;
     }
 
-    public Delete<Entity, Id> entity(Entity entity) {
-        this.parameterBean = entity;
-        return this;
-    }
-
-    public Delete<Entity, Id> id(Id id) {
-        this.parameters = new Object[]{id};
-        return this;
-    }
-
-    public int deleteOne() {
-        Assert.notNull(sql, "The sql of deleteOne is null.");
-
-        if (parameters != null) {
-            return jdbcTemplate.update(sql, parameters);
-        } else if (parameterBean != null) {
-            return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(parameterBean));
-        }
-
-        return jdbcTemplate.update(sql);
-    }
-
-    public int deleteMany() {
-        Assert.notNull(sql, "The sql of deleteMany is null.");
+    public int deleteAny() {
+        Assert.notNull(sql, "The sql of deleteAny is null.");
 
         if (parameters != null) {
             return jdbcTemplate.update(sql, parameters);

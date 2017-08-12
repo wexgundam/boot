@@ -29,30 +29,20 @@ public class Update<Entity, Id> {
         return this;
     }
 
-    public Update<Entity, Id> parameters(Object... conditions) {
-        this.parameters = conditions;
+    public Update<Entity, Id> parameters(Object... parameters) {
+        this.parameters = parameters;
+        this.parameterBean = null;
         return this;
     }
 
-    public Update<Entity, Id> parameterBean(Object conditionBean) {
-        this.parameterBean = conditionBean;
+    public Update<Entity, Id> parameterBean(Object parameterBean) {
+        this.parameterBean = parameterBean;
+        this.parameters = null;
         return this;
     }
 
-    public Update<Entity, Id> entity(Entity entity) {
-        this.parameterBean = entity;
-        return this;
-    }
-
-    public int updateOne() {
-        Assert.notNull(sql, "The sql of updateOne is null.");
-        Assert.notNull(parameterBean, "The entity of updateOne is null.");
-
-        return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource(parameterBean));
-    }
-
-    public int updateMany() {
-        Assert.notNull(sql, "The sql of updateMany is null.");
+    public int updateAny() {
+        Assert.notNull(sql, "The sql of updateAny is null.");
 
         if (parameters != null) {
             return jdbcTemplate.update(sql, parameters);
