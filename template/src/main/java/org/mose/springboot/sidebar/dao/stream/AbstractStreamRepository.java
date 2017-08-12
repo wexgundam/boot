@@ -13,7 +13,7 @@ import java.lang.reflect.ParameterizedType;
  * @Author: 靳磊
  * @Date: 2017/8/11:21
  */
-public class StreamRepository<Entity, Id> {
+public class AbstractStreamRepository<Entity, Id> {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Autowired
