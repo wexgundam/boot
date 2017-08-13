@@ -24,7 +24,7 @@ public class AbcRepository extends AbstractRepository<Abc, String> {
         return queryManyByParametersAndPaging(sql, 1, 2, name);
     }
 
-    public int insertOne(Abc abc) {
+    public boolean insertOne(Abc abc) {
         String sql = "insert into resource set id=:id, name=:name";
         return insertOne(sql, abc);
     }
