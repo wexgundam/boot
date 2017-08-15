@@ -1,17 +1,19 @@
 package org.mose.springboot.springmvc.controller;
 
+import org.apache.http.HttpRequest;
 import org.mose.springboot.sidebar.dao.AbcRepository;
 import org.mose.springboot.sidebar.dao.AbcStreamRepository;
-import org.mose.springboot.sidebar.modal.Abc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,18 +59,36 @@ public class SpringMvcController {
     @Autowired
     AbcRepository abcRepository;
 
+    @ModelAttribute
+    public String name(HttpServletRequest request) {
+        return request.getRequestURL().toString();
+    }
+
     @RequestMapping("/test")
-    public ModelAndView tablePage(@RequestParam(required = false) String color) {
-        Abc abc = abcStreamRepository.queryOneById("1");
-        Abc abc2 = abcRepository.queryOneById("1");
-        List<Abc> list = abcRepository.queryManyByName("test");
+    public String tablePage(Model model, @RequestParam(required = false) String color) {
+        model.addAttribute("targetPage", "test");
+        model.addAttribute("color", color);
+        return "forward:/step1.htm?page=test";
+    }
+//    public ModelAndView tablePage(@RequestParam(required = false) String color) {
+//        Abc abc = abcStreamRepository.queryOneById("1");
+//        Abc abc2 = abcRepository.queryOneById("1");
+//        List<Abc> list = abcRepository.queryManyByName("test");
+//
+//        abc.setName("1In");
+//        abcRepository.updateOne(abc);
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("color", color);
+//        modelAndView.setViewName("test");
+//        return modelAndView;
+//    }
 
-        abc.setName("1In");
-        abcRepository.updateOne(abc);
-
+    @RequestMapping("/step1")
+    public ModelAndView step1(@RequestParam String page) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("color", color);
-        modelAndView.setViewName("test");
+        modelAndView.addObject("step1", "step1");
+        modelAndView.setViewName(page);
         return modelAndView;
     }
 }
