@@ -33,13 +33,13 @@ public class SpringConfiguration {
         return new SpringContextHolder();
     }
 
-    @Profile("dev")
+    @Profile("mysql")
     @Bean
     public IPaging mysqlPaging() {
         return new MysqlPaging();
     }
 
-    @Profile("prod")
+    @Profile("oracle")
     @Bean
     public IPaging oraclePaging() {
         return new OraclePaging();
