@@ -3,6 +3,8 @@ package org.mose.springboot.springmvc.controller;
 import org.mose.springboot.sidebar.dao.AbcRepository;
 import org.mose.springboot.sidebar.dao.AbcStreamRepository;
 import org.mose.springboot.sidebar.modal.Abc;
+import org.mose.springboot.system.modal.Module;
+import org.mose.springboot.system.service.SidebarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,17 +59,23 @@ public class SpringMvcController {
     @Autowired
     AbcRepository abcRepository;
 
+    @Autowired
+    public SidebarService sidebarService;
+
     @RequestMapping("/test")
     public ModelAndView tablePage(@RequestParam(required = false) String color) {
-        Abc abc = abcStreamRepository.queryOneById("1");
-        Abc abc2 = abcRepository.queryOneById("1");
-        List<Abc> list = abcRepository.queryManyByName("test");
+//        Abc abc = abcStreamRepository.queryOneById("1");
+//        Abc abc2 = abcRepository.queryOneById("1");
+//        List<Abc> list = abcRepository.queryManyByName("test");
+//
+//        abc.setName("1In");
+//        abcRepository.updateOne(abc);
 
-        abc.setName("1In");
-        abcRepository.updateOne(abc);
+        List<Module> sidebarItems = sidebarService.getSidebarItems();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("color", color);
+        modelAndView.addObject("sidebarItems", sidebarItems);
         modelAndView.setViewName("test");
         return modelAndView;
     }

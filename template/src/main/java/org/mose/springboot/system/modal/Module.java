@@ -1,5 +1,7 @@
 package org.mose.springboot.system.modal;
 
+import java.util.List;
+
 /**
  * Description:系统模块
  *
@@ -35,6 +37,14 @@ public class Module {
      * 在父模块中的显示顺序
      */
     private int displayOrder = 0;
+
+    /**
+     * 包含的子模块
+     *
+     * @param o
+     * @return
+     */
+    private List<Module> children;
 
     @Override
     public boolean equals(Object o) {
@@ -132,5 +142,13 @@ public class Module {
 
     public void setScenarioId(Integer scenarioId) {
         this.scenarioId = scenarioId;
+    }
+
+    public List<Module> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Module> children) {
+        this.children = children;
     }
 }
