@@ -2,6 +2,7 @@ package org.mose.springboot.springmvc.controller;
 
 import org.mose.springboot.sidebar.dao.AbcRepository;
 import org.mose.springboot.sidebar.dao.AbcStreamRepository;
+import org.mose.springboot.system.service.SidebarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,16 +60,13 @@ public class SpringMvcController {
     @Autowired
     AbcRepository abcRepository;
 
-    @ModelAttribute
-    public String name(HttpServletRequest request) {
-        return request.getRequestURL().toString();
-    }
+    @Autowired
+    private SidebarService sidebarService;
 
     @RequestMapping("/test")
     public String tablePage(Model model, @RequestParam(required = false) String color) {
-        model.addAttribute("targetPage", "test");
         model.addAttribute("color", color);
-        return "forward:/step1.htm?page=test";
+        return "forward:/sidebar.htm?currentPage=test";
     }
 //    public ModelAndView tablePage(@RequestParam(required = false) String color) {
 //        Abc abc = abcStreamRepository.queryOneById("1");
@@ -84,11 +82,11 @@ public class SpringMvcController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping("/step1")
-    public ModelAndView step1(@RequestParam String page) {
+    @RequestMapping("/sidebar")
+    public ModelAndView step1(@RequestParam String currentPage) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("step1", "step1");
-        modelAndView.setViewName(page);
+        modelAndView.addObject("sidebarItems", sidebarService.getSidebarItems());
+        modelAndView.setViewName(currentPage);
         return modelAndView;
     }
 }

@@ -8,12 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Administrator on 2017/8/15.
  */
 @Controller
-@RequestMapping("/system/modules")
+@RequestMapping("/system/module")
 public class ModuleController {
     @RequestMapping("/index")
     public ModelAndView indexPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/module/index");
+        modelAndView.setViewName("forward:/sidebar.htm?currentPage=/system/module/index");
         return modelAndView;
     }
 }

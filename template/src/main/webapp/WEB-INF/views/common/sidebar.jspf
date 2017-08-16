@@ -112,7 +112,7 @@
                             <ul class="sub-menu">
                                 <c:forEach items="${item.children}" var="childItem">
                                     <li class="nav-item  ">
-                                        <a href="${dynamicResourceServerUrl}system/modules/index.htm" class="nav-link ">
+                                        <a href="${dynamicResourceServerUrl}system/module/index.htm" class="nav-link ">
                                             <i class=" ${childItem.icon}"></i>
                                             <span class="title">${childItem.name}</span>
                                         </a>
