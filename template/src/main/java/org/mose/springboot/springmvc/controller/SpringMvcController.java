@@ -5,16 +5,12 @@ import org.mose.springboot.sidebar.dao.AbcStreamRepository;
 import org.mose.springboot.system.service.SidebarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,29 +60,10 @@ public class SpringMvcController {
     private SidebarService sidebarService;
 
     @RequestMapping("/test")
-    public String tablePage(Model model, @RequestParam(required = false) String color) {
-        model.addAttribute("color", color);
-        return "forward:/decorate.htm?viewName=test";
-    }
-//    public ModelAndView tablePage(@RequestParam(required = false) String color) {
-//        Abc abc = abcStreamRepository.queryOneById("1");
-//        Abc abc2 = abcRepository.queryOneById("1");
-//        List<Abc> list = abcRepository.queryManyByName("test");
-//
-//        abc.setName("1In");
-//        abcRepository.updateOne(abc);
-//
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("color", color);
-//        modelAndView.setViewName("test");
-//        return modelAndView;
-//    }
-
-    @RequestMapping("/decorate")
-    public ModelAndView decorate(@RequestParam String viewName) {
+    public ModelAndView tablePage(@RequestParam(required = false) String color) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarItems", sidebarService.getSidebarItems());
-        modelAndView.setViewName(viewName);
+        modelAndView.addObject("color", color);
+        ViewController.setViewDecoratorUrl(modelAndView, "test");
         return modelAndView;
     }
 }
