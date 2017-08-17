@@ -66,7 +66,7 @@ public class SpringMvcController {
     @RequestMapping("/test")
     public String tablePage(Model model, @RequestParam(required = false) String color) {
         model.addAttribute("color", color);
-        return "forward:/sidebar.htm?currentPage=test";
+        return "forward:/decorate.htm?viewName=test";
     }
 //    public ModelAndView tablePage(@RequestParam(required = false) String color) {
 //        Abc abc = abcStreamRepository.queryOneById("1");
@@ -82,11 +82,11 @@ public class SpringMvcController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping("/sidebar")
-    public ModelAndView step1(@RequestParam String currentPage) {
+    @RequestMapping("/decorate")
+    public ModelAndView decorate(@RequestParam String viewName) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sidebarItems", sidebarService.getSidebarItems());
-        modelAndView.setViewName(currentPage);
+        modelAndView.setViewName(viewName);
         return modelAndView;
     }
 }
