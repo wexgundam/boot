@@ -10,6 +10,10 @@
         <decorator>/WEB-INF/views/sitemesh/decorator.jsp</decorator>
         <!-- 装饰脚本，将各分片脚本复制到页面的指定位置 -->
         <decorator>/WEB-INF/views/sitemesh/decoratorCustomCssScript.jsp</decorator>
+
+        <!--<decorator>/WEB-INF/views/sitemesh/decorator2.jsp</decorator>-->
+        <!--<decorator>/WEB-INF/views/sitemesh/decorator3.jsp</decorator>-->
+        <!--<decorator>/WEB-INF/views/sitemesh/decorator4.jsp</decorator>-->
     </mapping>
 
     <!-- 指明满足path的页面，将被排除，不被装饰 -->
@@ -21,7 +25,6 @@
 
     <!-- 自定义标签 -->
     <content-processor>
-        <tag-rule-bundle class="org.mose.springboot.sitemesh.ScriptTagRuleBundle"/>
-        <tag-rule-bundle class="org.mose.springboot.sitemesh.CssTagRuleBundle"/>
+        <tag-rule-bundle class="org.mose.springboot.sitemesh.CssScriptTagRuleBundle"/>
     </content-processor>
 </sitemesh>

@@ -31,28 +31,28 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta content="Preview page of Metronic Admin Theme #1 for " name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="${staticResourceServerUrl}/assets/google/google.css" rel="stylesheet" type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/google/google.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
           type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"
           type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="${staticResourceServerUrl}/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="${staticResourceServerUrl}/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="${staticResourceServerUrl}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="${staticResourceServerUrl}/assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+    <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="${staticResourceServerUrl}/assets/favicon.ico" />
+    <link rel="shortcut icon" href="${staticResourceServerUrl}/assets/metronic_v4.7.5/favicon.ico" />
 </head>
 <!-- END HEAD -->
 
@@ -60,7 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN LOGO -->
     <div class="logo">
         <a href="index.html">
-            <img src="${staticResourceServerUrl}/assets/pages/img/logo-big.png" alt="" /> </a>
+            <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/pages/img/logo-big.png" alt="" /> </a>
     </div>
     <!-- END LOGO -->
     <!-- BEGIN LOGIN -->
@@ -482,30 +482,30 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END COPYRIGHT -->
 
     <!--[if lt IE 9]>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/respond.min.js"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/excanvas.min.js"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/ie8.fix.min.js"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/respond.min.js"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/excanvas.min.js"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/ie8.fix.min.js"></script>
     <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
-    <script src="${staticResourceServerUrl}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="${staticResourceServerUrl}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/jquery-validation/js/additional-methods.min.js"
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/additional-methods.min.js"
             type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-    <script src="${staticResourceServerUrl}/assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="${staticResourceServerUrl}/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/scripts/app.min.js" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="${staticResourceServerUrl}/assets/pages/scripts/login-4.min.js" type="text/javascript"></script>
+    <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/pages/scripts/login-4.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
     <!-- END THEME LAYOUT SCRIPTS -->

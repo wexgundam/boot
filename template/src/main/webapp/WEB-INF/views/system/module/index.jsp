@@ -1,8 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Test</title>
+    <title>模块管理</title>
+    <content-css>
+        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css"/>
+    </content-css>
 </head>
 <body>
     <!-- BEGIN PAGE HEADER-->
@@ -81,26 +85,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${list }" var="resource" varStatus="st">
-                        <tr id="${resource.id}" pId="${resource.parentId}">
-                            <td>${resource.name}</td>
-                            <td>${resource.code}</td>
-                            <td style="word-break: break-all;">${resource.url}</td>
-                            <td>${resource.target}</td>
+                    <c:forEach items="${modules}" var="module" varStatus="st">
+                        <tr id="${module.id}" pId="${module.parentId}">
+                            <td>${module.name}</td>
+                            <td></td>
+                            <td style="word-break: break-all;"></td>
+                            <td></td>
                             <td>
                                 <div>
-                                    <i class="fa ${resource.iconImg}"></i>
+                                    <i class="fa ${module.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${resource.displayOrder}</td>
+                            <td style="text-align: center;">${module.displayOrder}</td>
                             <td>
-                                <%--<c:if test="${critc:isP('SysResourceAdd')}">--%>
-                                    <%--<a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}"> 修改</i>--%>
-                                    <%--</a>--%>
-                                <%--</c:if> <c:if test="${critc:isP('SysResourceDelete')}">--%>
-                                <%--<a href="javascript:delModule(${resource.id });"> 删除 </a>--%>
-                            <%--</c:if>--%>
-                                <%--<a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>--%>
+                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
+                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
+                                        修改</i>
+                                    </a>
+                                    <a href="javascript:delModule(${resource.id });"> 删除 </a>
+                                    <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
+                                </security:authorize>
                             </td>
                         </tr>
                     </c:forEach>
@@ -148,5 +152,43 @@
             <!-- END PAGINATION PORTLET-->
         </div>
     </div>
+
+    <content-script>
+        <script src="${staticResourceServerUrl}/assets/treetable/jquery.treeTable.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(function () {
+//                $("#btnSearch").bind('click', searchModule);
+//                $("#btnAdd").bind('click', addUser);
+//                $("#btnClear").bind('click', clearCache);
+
+                $("#treeTable").treeTable({
+                    expandLevel: 2
+                });
+            })
+
+            <%--// 查询方法--%>
+            <%--var searchModule = function () {--%>
+            <%--var url = "index.htm?";--%>
+            <%--window.location = encodeURI(url);--%>
+            <%--}--%>
+            <%--// 删除--%>
+            <%--var delModule = function (id) {--%>
+            <%--bootbox.confirm("你确定要删除该模块吗？", function (result) {--%>
+            <%--if (result) {--%>
+            <%--window.location = "delete.htm?id=" + id + "&backUrl=${backUrl}";--%>
+            <%--}--%>
+            <%--})--%>
+            <%--}--%>
+            <%--//新增--%>
+            <%--var addUser = function (id) {--%>
+            <%--window.location = 'toAdd.htm?backUrl=${backUrl }';--%>
+            <%--}--%>
+            <%--//清空缓存--%>
+            <%--var clearCache = function () {--%>
+            <%--window.location = 'clearCache.htm?backUrl=${backUrl }';--%>
+            <%--}--%>
+        </script>
+    </content-script>
 </body>
 </html>

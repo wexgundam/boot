@@ -27,7 +27,7 @@ public class ModuleController {
     @RequestMapping("/index")
     public ModelAndView indexPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("modules", moduleService.getModules2());
+        modelAndView.addObject("modules", moduleService.getModuleList());
         ViewController.setViewDecoratorUrl(modelAndView, "/system/module/index");
         return modelAndView;
     }

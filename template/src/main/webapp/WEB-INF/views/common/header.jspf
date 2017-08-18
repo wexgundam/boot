@@ -9,7 +9,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="index.html">
-                <img src="${staticResourceServerUrl}assets/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
+                <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
             </a>
             <!-- sidebar的收缩与展开，正常屏幕时显示并有效 -->
             <div class="menu-toggler sidebar-toggler">
@@ -151,7 +151,7 @@
                                 <li>
                                     <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">Just Now </span>
@@ -162,7 +162,7 @@
                                 <li>
                                     <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">16 mins </span>
@@ -173,7 +173,7 @@
                                 <li>
                                     <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                         <span class="from"> Bob Nilson </span>
                                                         <span class="time">2 hrs </span>
@@ -184,7 +184,7 @@
                                 <li>
                                     <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">40 mins </span>
@@ -195,7 +195,7 @@
                                 <li>
                                     <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">46 mins </span>
@@ -324,7 +324,7 @@
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img alt="" class="img-circle" src="${staticResourceServerUrl}assets/layouts/layout/img/avatar3_small.jpg"/>
+                        <img alt="" class="img-circle" src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout/img/avatar3_small.jpg"/>
                         <span class="username username-hide-on-mobile">
                             <security:authentication property="principal.username"/>
                         </span>

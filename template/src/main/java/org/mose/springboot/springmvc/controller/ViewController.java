@@ -58,7 +58,7 @@ public class ViewController {
     @RequestMapping("/view")
     public ModelAndView decorate(@RequestParam String targetViewName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarItems", moduleService.getModules());
+        modelAndView.addObject("sidebarItems", moduleService.getModuleTree());
         modelAndView.addObject("viewName", targetViewName);
         modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(moduleService.createSidebarItems()));
         modelAndView.setViewName(targetViewName);

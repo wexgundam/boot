@@ -102,9 +102,10 @@
             <!-- END PAGINATION PORTLET-->
         </div>
     </div>
+
     <custom-script>
         <script type="application/javascript">
-            var a = 0;
+            var b = 0;
         </script>
     </custom-script>
 </body>

@@ -1,32 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-
-<!--[if IE 8]>
-<html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]>
-<html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
-
 <head>
-    <meta charset="utf-8" />
-    <title><sitemesh:write property='title' /> - ${webTitle}</title>
+    <meta charset="utf-8"/>
+    <title><sitemesh:write property='title'/> - ${webTitle}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- BEGIN STYLES -->
     <%@include file="../common/styles.jspf" %>
     <!-- END STYLES -->
 
-    <sitemesh:write property='head' />
+    <sitemesh:write property='head'/>
 </head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body>
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
         <%@include file="../common/header.jspf" %>
@@ -46,7 +33,13 @@
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    <sitemesh:write property='body' />
+                    <content-css>
+                        <sitemesh:write property='content-css'/>
+                    </content-css>
+                    <sitemesh:write property='body'/>
+                    <content-script>
+                        <sitemesh:write property='content-script'/>
+                    </content-script>
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -71,5 +64,3 @@
     <%@include file="../common/scripts.jspf" %>
     <!-- END SCRIPTS -->
 </body>
-
-</html>

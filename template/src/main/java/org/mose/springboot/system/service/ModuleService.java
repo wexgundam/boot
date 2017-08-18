@@ -33,8 +33,23 @@ public class ModuleService {
      *
      * @return
      */
-    public List<Module> getModules2() {
-        return moduleRepository.queryAll();
+    public List<Module> getModuleList() {
+        List<Module> modules = new ArrayList<>();
+        for (Module module : getModuleTree()) {
+            modules.addAll(toList(module));
+        }
+        return modules;
+    }
+
+    private List<Module> toList(Module module) {
+        List<Module> modules = new ArrayList<>();
+        modules.add(module);
+        if (module.getChildren() != null && !module.getChildren().isEmpty()) {
+            for (Module child : module.getChildren()) {
+                modules.addAll(toList(child));
+            }
+        }
+        return modules;
     }
 
     /**
@@ -42,7 +57,7 @@ public class ModuleService {
      *
      * @return
      */
-    public List<Module> getModules() {
+    public List<Module> getModuleTree() {
         List<Module> modules = new ArrayList<>();
         List<Module> allModules = moduleRepository.queryAll();
         for (Module module : allModules) {
@@ -80,7 +95,7 @@ public class ModuleService {
      */
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
-        for (Module module : getModules()) {
+        for (Module module : getModuleTree()) {
             sidebarItems.add(createSidebarItem(null, module));
         }
         return sidebarItems;

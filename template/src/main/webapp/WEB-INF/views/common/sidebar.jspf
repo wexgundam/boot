@@ -99,8 +99,7 @@
     <!-- END SIDEBAR -->
 </div>
 <!-- END SIDEBAR -->
-
-<custom-script>
+<sidebar-script>
     <script type="application/javascript">
         $(function () {
             // 根据viewName查找对应的菜单项，展开高亮显示
@@ -109,4 +108,5 @@
             $("a > span.arrow", parents).addClass("open");
         });
     </script>
-</custom-script>
+</sidebar-script>
+

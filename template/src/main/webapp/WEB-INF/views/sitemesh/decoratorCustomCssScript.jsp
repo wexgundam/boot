@@ -12,16 +12,22 @@
 <!-- BEGIN HEAD -->
 
 <head>
-    <sitemesh:write property='head' />
+    <title><sitemesh:write property='title'/></title>
+
+    <sitemesh:write property='head'/>
+
     <!-- BEGIN CUSTOM CSS -->
-    <sitemesh:write property="custom-css" />
+    <sitemesh:write property="sidebar-css"/>
+    <sitemesh:write property="content-css"/>
     <!-- END CUSTOM CSS -->
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-    <sitemesh:write property="body" />
+    <sitemesh:write property="body"/>
+
     <!-- BEGIN CUSTOM SCRIPT -->
-    <sitemesh:write property="custom-script" />
+    <sitemesh:write property="sidebar-script"/>
+    <sitemesh:write property="content-script"/>
     <!-- END CUSTOM SCRIPTS -->
 </body>
 
