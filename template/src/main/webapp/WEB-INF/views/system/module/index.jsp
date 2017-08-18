@@ -11,11 +11,11 @@
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
-                <a href="/index.htm">Home</a>
+                <a href="/index.htm">首页</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="#">系统配置</a>
+                <span>系统配置</span>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -48,8 +48,8 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> Blank Page Layout
-        <small>blank page layout</small>
+    <h1 class="page-title"> 模块管理
+        <small>模块查询、浏览与更新</small>
     </h1>
     <!-- END PAGE TITLE-->
 
@@ -64,6 +64,52 @@
             </c:if>
         </div>
     </div>
+
+    <!-- Begin 模块表格 -->
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="treeTable" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th width=180>模块名称</th>
+                        <th width=120>模块代码</th>
+                        <th>模块链接</th>
+                        <th width=100>链接目标</th>
+                        <th width=80>图标</th>
+                        <th style="text-align: center;" width=80>排序</th>
+                        <th width="241">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${list }" var="resource" varStatus="st">
+                        <tr id="${resource.id}" pId="${resource.parentId}">
+                            <td>${resource.name}</td>
+                            <td>${resource.code}</td>
+                            <td style="word-break: break-all;">${resource.url}</td>
+                            <td>${resource.target}</td>
+                            <td>
+                                <div>
+                                    <i class="fa ${resource.iconImg}"></i>
+                                </div>
+                            </td>
+                            <td style="text-align: center;">${resource.displayOrder}</td>
+                            <td>
+                                <%--<c:if test="${critc:isP('SysResourceAdd')}">--%>
+                                    <%--<a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}"> 修改</i>--%>
+                                    <%--</a>--%>
+                                <%--</c:if> <c:if test="${critc:isP('SysResourceDelete')}">--%>
+                                <%--<a href="javascript:delModule(${resource.id });"> 删除 </a>--%>
+                            <%--</c:if>--%>
+                                <%--<a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>--%>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- End 模块表格 -->
+
     <div class="row">
         <div class="col-xs-12">
             <!-- BEGIN PAGINATION PORTLET-->

@@ -33,6 +33,15 @@ public class ModuleService {
      *
      * @return
      */
+    public List<Module> getModules2() {
+        return moduleRepository.queryAll();
+    }
+
+    /**
+     * 获取所有模块并按照树形组织排序
+     *
+     * @return
+     */
     public List<Module> getModules() {
         List<Module> modules = new ArrayList<>();
         List<Module> allModules = moduleRepository.queryAll();
