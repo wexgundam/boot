@@ -34,7 +34,7 @@ public class Module {
      */
     private String icon;
     /**
-     * 在父模块中的显示顺序
+     * 在父模块中的顺序
      */
     private int displayOrder = 0;
 

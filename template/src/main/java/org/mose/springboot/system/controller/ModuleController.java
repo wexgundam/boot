@@ -6,11 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by Administrator on 2017/8/15.
+ * Description: 模块控制器
+ *
+ * @Author: 靳磊
+ * @Date: 2017/8/18 14:52
  */
 @Controller
 @RequestMapping("/system/module")
 public class ModuleController {
+    /**
+     * 展示模块index视图
+     *
+     * @return
+     */
     @RequestMapping("/index")
     public ModelAndView indexPage() {
         ModelAndView modelAndView = new ModelAndView();

@@ -1,9 +1,5 @@
 package org.mose.springboot.springmvc.controller;
 
-import org.mose.springboot.metronic.sidebar.dao.AbcRepository;
-import org.mose.springboot.metronic.sidebar.dao.AbcStreamRepository;
-import org.mose.springboot.system.service.SidebarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,14 +46,6 @@ public class SpringMvcController {
     public String indexPage() {
         return "index";
     }
-
-    @Autowired
-    AbcStreamRepository abcStreamRepository;
-    @Autowired
-    AbcRepository abcRepository;
-
-    @Autowired
-    private SidebarService sidebarService;
 
     @RequestMapping("/test")
     public ModelAndView tablePage(@RequestParam(required = false) String color) {

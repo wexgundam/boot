@@ -91,40 +91,8 @@
                 </ul>
             </li>
             <sec:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <li class="heading">
-                    <h3 class="uppercase">系统管理</h3>
-                </li>
-                <c:forEach var="item" items="${sidebarItems}">
-                    <c:if test="${empty item.children}">
-                        <li class="nav-item  ">
-                            <a href="layout_blank_page.jsp" class="nav-link ">
-                                <i class=" ${item.icon}"></i>
-                                <span class="title">${item.name}</span>
-                            </a>
-                        </li>
-                    </c:if>
-                    <c:if test="${not empty item.children}">
-                        <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
-                                <i class="${item.icon}"></i>
-                                <span class="title">${item.name}</span>
-                                <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <c:forEach items="${item.children}" var="childItem">
-                                    <li class="nav-item  ">
-                                        <a href="${dynamicResourceServerUrl}/system/module/index.htm" class="nav-link ">
-                                            <i class=" ${childItem.icon}"></i>
-                                            <span class="title">${childItem.name}</span>
-                                        </a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </li>
-                    </c:if>
-                </c:forEach>
+                ${sidebarHtml}
             </sec:authorize>
-            ${sidebarHtml}
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

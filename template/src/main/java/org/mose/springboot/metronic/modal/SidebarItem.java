@@ -1,29 +1,14 @@
-package org.mose.springboot.metronic.sidebar.modal;
+package org.mose.springboot.metronic.modal;
 
 import java.util.List;
 
 /**
- * Description:侧边菜单项Sidebar Item
- *
- * 包括两类，heading和nav-item
- *
- * heading显示为标题，不含任何子菜单项
- *
- * nav-item显示为菜单，可作为父菜单包含若干菜单子项
+ * Description:侧边菜单项
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */
 public class SidebarItem {
-    /**
-     * 菜单项类型：标题
-     */
-    public static final String TYPE_HEADING = "heading";
-    /**
-     * 菜单项类型：菜单
-     */
-    public static final String TYPE_NAV_ITEM = "nav-item";
-
     /**
      * 主键
      */
@@ -33,9 +18,13 @@ public class SidebarItem {
      */
     private String name;
     /**
-     * 类型
+     * 链接地址
      */
-    private String type = TYPE_NAV_ITEM;
+    private String url;
+    /**
+     * 父模块
+     */
+    private SidebarItem parent;
     /**
      * icon
      */
@@ -44,11 +33,6 @@ public class SidebarItem {
      * 在父模块中的显示顺序
      */
     private int order = 0;
-
-    /**
-     * 父模块
-     */
-    private SidebarItem parent;
     /**
      * 包含的子模块
      *
@@ -58,21 +42,11 @@ public class SidebarItem {
     private List<SidebarItem> children;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SidebarItem module = (SidebarItem) o;
-
-        return getId() == module.getId();
-    }
-
-    @Override
     public String toString() {
         return "SidebarItem{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
                 ", parent=" + parent +
                 ", icon='" + icon + '\'' +
                 ", order=" + order +
@@ -81,10 +55,20 @@ public class SidebarItem {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SidebarItem module = (SidebarItem) o;
+
+        return getId() == module.getId();
+
+    }
+
+    @Override
     public int hashCode() {
         return getId();
     }
-
 
     public int getId() {
         return id;
@@ -102,13 +86,6 @@ public class SidebarItem {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public SidebarItem getParent() {
         return parent;
@@ -140,5 +117,13 @@ public class SidebarItem {
 
     public void setChildren(List<SidebarItem> children) {
         this.children = children;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
