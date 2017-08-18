@@ -1,4 +1,4 @@
-package org.mose.springboot.sidebar.modal;
+package org.mose.springboot.metronic.sidebar.modal;
 
 /**
  * Description:

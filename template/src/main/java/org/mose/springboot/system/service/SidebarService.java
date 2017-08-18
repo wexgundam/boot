@@ -6,10 +6,7 @@ import org.mose.springboot.system.modal.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/8/15.
@@ -24,8 +21,23 @@ public class SidebarService {
 
     public String getSidebarHtml() {
         StringBuffer stringBuffer = new StringBuffer();
-        for (Module module : getSidebarItems()) {
-            stringBuffer.append(createNodeHtml(module));
+        for (Module module : getModules()) {
+            if (module.getParent() == null) {
+                stringBuffer.append(createHeadingHtml(module));
+            }
+        }
+        return stringBuffer.substring(0);
+    }
+
+    private String createHeadingHtml(Module module) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("<li class=\"heading\">");
+        stringBuffer.append("<h3 class=\"uppercase\">" + module.getName() + "</h3>");
+        stringBuffer.append("</li>");
+        if (module.getChildren() != null && !module.getChildren().isEmpty()) {
+            for (Module child : module.getChildren()) {
+                stringBuffer.append(createNodeHtml(child));
+            }
         }
         return stringBuffer.substring(0);
     }
@@ -36,6 +48,17 @@ public class SidebarService {
         } else {
             return createBranchNodeHtml(module);
         }
+    }
+
+    private String createLeafNodeHtml(Module module) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("<li class=\"nav-item\">");
+        stringBuffer.append(" <a href=\"" + resourceConfiguration.getDynamicResourceServerUrl() + "/system/module/index.htm\" class=\"nav-link \">");
+        stringBuffer.append("<i class=\"" + module.getIcon() + "\"></i>");
+        stringBuffer.append("<span class=\"title\">" + module.getName() + "</span>");
+        stringBuffer.append("</a>");
+        stringBuffer.append("</li>");
+        return stringBuffer.substring(0);
     }
 
     private String createBranchNodeHtml(Module module) {
@@ -56,27 +79,17 @@ public class SidebarService {
         return stringBuffer.substring(0);
     }
 
-    private String createLeafNodeHtml(Module module) {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("<li class=\"nav-item\">");
-        stringBuffer.append(" <a href=\"" + resourceConfiguration.getDynamicResourceServerUrl() + "/system/module/index.htm\" class=\"nav-link \">");
-        stringBuffer.append("<i class=\"" + module.getIcon() + "\"></i>");
-        stringBuffer.append("<span class=\"title\">" + module.getName() + "</span>");
-        stringBuffer.append("</a>");
-        stringBuffer.append("</li>");
-        return stringBuffer.substring(0);
-    }
-
-    public List<Module> getSidebarItems() {
-        List<Module> sidebar = new ArrayList<>();
-        List<Module> modules = moduleRepository.queryAll();
-        for (Module module : modules) {
+    public List<Module> getModules() {
+        List<Module> modules = new ArrayList<>();
+        List<Module> allModules = moduleRepository.queryAll();
+        for (Module module : allModules) {
             if (module.getParent() == null) {
-                findChildren(modules, module);
-                sidebar.add(module);
+                findChildren(allModules, module);
+                modules.add(module);
             }
         }
-        return sidebar;
+        Collections.sort(modules, Comparator.comparingInt(Module::getDisplayOrder));
+        return modules;
     }
 
     private void findChildren(List<Module> modules, Module module) {
@@ -87,6 +100,7 @@ public class SidebarService {
                 children.add(child);
             }
         }
+        Collections.sort(children, Comparator.comparingInt(Module::getDisplayOrder));
         module.setChildren(children.isEmpty() ? null : children);
     }
 }

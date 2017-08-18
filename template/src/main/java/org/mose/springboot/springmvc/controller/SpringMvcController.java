@@ -1,7 +1,7 @@
 package org.mose.springboot.springmvc.controller;
 
-import org.mose.springboot.sidebar.dao.AbcRepository;
-import org.mose.springboot.sidebar.dao.AbcStreamRepository;
+import org.mose.springboot.metronic.sidebar.dao.AbcRepository;
+import org.mose.springboot.metronic.sidebar.dao.AbcStreamRepository;
 import org.mose.springboot.system.service.SidebarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

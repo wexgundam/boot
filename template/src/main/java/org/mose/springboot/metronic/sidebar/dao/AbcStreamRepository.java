@@ -1,10 +1,8 @@
-package org.mose.springboot.sidebar.dao;
+package org.mose.springboot.metronic.sidebar.dao;
 
-import org.mose.springboot.sidebar.modal.Abc;
+import org.mose.springboot.metronic.sidebar.modal.Abc;
 import org.mose.springboot.dao.stream.AbstractStreamRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * Description:
