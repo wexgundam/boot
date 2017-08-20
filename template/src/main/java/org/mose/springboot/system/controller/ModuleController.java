@@ -1,5 +1,6 @@
 package org.mose.springboot.system.controller;
 
+import org.mose.springboot.metronic.modal.Pagination;
 import org.mose.springboot.springmvc.controller.ViewController;
 import org.mose.springboot.system.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,13 @@ public class ModuleController {
      */
     @RequestMapping("/index")
     public ModelAndView indexPage() {
+        Pagination pagination = new Pagination();
+        pagination.setRowCount(100);
+        pagination.setPageRowCount(20);
+        pagination.setPageNumber(3);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("modules", moduleService.getModuleList());
+        modelAndView.addObject("pagination", pagination.createHtml());
         ViewController.setViewDecoratorUrl(modelAndView, "/system/module/index");
         return modelAndView;
     }
