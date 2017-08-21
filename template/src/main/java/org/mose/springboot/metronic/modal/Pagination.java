@@ -2,6 +2,8 @@ package org.mose.springboot.metronic.modal;
 
 import org.mose.springboot.dao.AbstractPagination;
 
+import java.util.Map;
+
 /**
  * Description: 基于Metronic的分页模型
  *
@@ -22,6 +24,11 @@ public class Pagination extends AbstractPagination {
         int endPageNumber = getEndPageNumber(pageCount);// 可选择页码，结束页码
         stringBuffer.append("<div class=\"row\">");
         stringBuffer.append("<div class=\"col-xs-12\">");
+        stringBuffer.append("<div class=\"m-grid\">");
+        stringBuffer.append("<div class=\"m-grid-row\">");
+
+        stringBuffer.append("<div class=\"m-grid-col m-grid-col-middle m-grid-col-right m-grid-col-xs-11\">");
+
         stringBuffer.append("<ul class=\"pagination\">");
 
         // 第一页
@@ -80,6 +87,19 @@ public class Pagination extends AbstractPagination {
         stringBuffer.append("</a >");
         stringBuffer.append("</li >");
 
+        stringBuffer.append("</ul>");// End UL
+
+        stringBuffer.append("</div>");// End div m-grid-col-xs-11
+
+        stringBuffer.append("<div class=\"m-grid-col m-grid-col-middle m-grid-col-center m-grid-col-xs-1\">");
+        stringBuffer.append("共有<strong>").append(rowCount).append("</strong>条");
+        stringBuffer.append("<strong>").append(pageCount).append("</strong>页数据");
+        stringBuffer.append("</div>");// End div m-grid-col-xs-3
+
+        stringBuffer.append("</div>");// End div m-grid-row
+        stringBuffer.append("</div>");// End div m-grid
+        stringBuffer.append("</div>");// End div col-xs-12
+        stringBuffer.append("</div>");// End div row
 
         return stringBuffer.toString();
     }

@@ -5,7 +5,7 @@
 <head>
     <title>模块管理</title>
     <content-css>
-        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css"/>
+        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css" />
     </content-css>
 </head>
 <body>
@@ -159,53 +159,10 @@
     </div>
 
     <!-- Begin 分页控件 -->
-    <div class="row">
-        <div class="col-xs-12" id="insertDiv">
-            <c:if test="${color == null}">
-                <div class="color-view bg-white bg-font-white bold uppercase"> white</div>
-            </c:if>
-            <c:if test="${color != null}">
-                <div class="color-view bg-${color} bg-font-${color} bold uppercase"> ${color}</div>
-            </c:if>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <ul class="pagination">
-                <li class="disabled">
-                    <a href="javascript:;">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="${dynamicResourceServerUrl}/test.htm?color=blue"> 1 </a>
-                </li>
-                <li>
-                    <a href="${dynamicResourceServerUrl}/test.htm?color=red"> 2 </a>
-                </li>
-                <li class="active">
-                    <a href="javascript:;"> 3 </a>
-                </li>
-                <li>
-                    <a href="javascript:;"> 4 </a>
-                </li>
-                <li>
-                    <a href="javascript:;"> 5 </a>
-                </li>
-                <li>
-                    <a href="javascript:;"> 6 </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- End 分页控件 -->
-    <!-- End 分页表格 -->
     ${pagination}
+    <!-- End 分页控件 -->
+
+    <!-- End 分页表格 -->
 
     <!-- Begin Javascript -->
     <content-script>
