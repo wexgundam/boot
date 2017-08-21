@@ -1,14 +1,17 @@
 package org.mose.springboot.system.service;
 
-import org.mose.springboot.dao.stream.Query;
 import org.mose.springboot.metronic.modal.SidebarItem;
 import org.mose.springboot.spring.ResourceConfiguration;
 import org.mose.springboot.system.dao.IModuleRepository;
 import org.mose.springboot.system.modal.Module;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Description: 模块服务
@@ -34,6 +37,7 @@ public class ModuleService {
      *
      * @return
      */
+    @Cacheable(value = "sysCache", key = "'moduleList'")
     public List<Module> getModuleList() {
         List<Module> modules = new ArrayList<>();
         for (Module module : getModuleTree()) {
@@ -64,6 +68,7 @@ public class ModuleService {
      *
      * @return
      */
+    @Cacheable(value = "sysCache", key = "'moduleTree'")
     public List<Module> getModuleTree() {
         List<Module> modules = new ArrayList<>();
         List<Module> allModules = moduleRepository.queryAll();
@@ -100,6 +105,7 @@ public class ModuleService {
      *
      * @return
      */
+    @Cacheable(value = "sysCache")
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
         for (Module module : getModuleTree()) {
