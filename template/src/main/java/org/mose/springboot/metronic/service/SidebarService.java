@@ -9,10 +9,19 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/15.
+ * Description: 基于Metronic侧边栏服务
+ *
+ * @Author: 靳磊
+ * @Date: 2017/8/21 15:22
  */
 @Service
 public class SidebarService {
+    /**
+     * 给定侧边栏集合，生成基于Metronic的侧边栏Html
+     *
+     * @param sidebarItems
+     * @return
+     */
     public String creatHtml(List<SidebarItem> sidebarItems) {
         StringBuffer stringBuffer = new StringBuffer();
         Collections.sort(sidebarItems, Comparator.comparingInt(SidebarItem::getOrder));
@@ -22,6 +31,12 @@ public class SidebarService {
         return stringBuffer.substring(0);
     }
 
+    /**
+     * 构建侧边栏中的Heading控件
+     *
+     * @param sidebarItem
+     * @return
+     */
     private String createHeadingHtml(SidebarItem sidebarItem) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("<li class=\"heading\">");
@@ -36,6 +51,12 @@ public class SidebarService {
         return stringBuffer.substring(0);
     }
 
+    /**
+     * 构建侧边栏菜单项
+     *
+     * @param sidebarItem
+     * @return
+     */
     private String createNodeHtml(SidebarItem sidebarItem) {
         if (sidebarItem.getChildren() == null || sidebarItem.getChildren().isEmpty()) {
             return createLeafNodeHtml(sidebarItem);
@@ -44,6 +65,12 @@ public class SidebarService {
         }
     }
 
+    /**
+     * 构建菜单栏叶子菜单项
+     *
+     * @param sidebarItem
+     * @return
+     */
     private String createLeafNodeHtml(SidebarItem sidebarItem) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("<li class=\"nav-item\">");
@@ -55,6 +82,12 @@ public class SidebarService {
         return stringBuffer.substring(0);
     }
 
+    /**
+     * 构建菜单栏分支菜单项
+     *
+     * @param sidebarItem
+     * @return
+     */
     private String createBranchNodeHtml(SidebarItem sidebarItem) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("<li class=\"nav-item\">");

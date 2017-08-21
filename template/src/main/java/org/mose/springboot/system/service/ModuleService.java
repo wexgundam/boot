@@ -1,5 +1,6 @@
 package org.mose.springboot.system.service;
 
+import org.mose.springboot.dao.stream.Query;
 import org.mose.springboot.metronic.modal.SidebarItem;
 import org.mose.springboot.spring.ResourceConfiguration;
 import org.mose.springboot.system.dao.IModuleRepository;
@@ -41,6 +42,12 @@ public class ModuleService {
         return modules;
     }
 
+    /**
+     * 递归方法，遍历module的zimodule，将其均加入到list，最后返回所有list形式的集合
+     *
+     * @param module
+     * @return
+     */
     private List<Module> toList(Module module) {
         List<Module> modules = new ArrayList<>();
         modules.add(module);
