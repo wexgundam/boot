@@ -37,7 +37,7 @@ public class ModuleService {
      *
      * @return
      */
-    @Cacheable(value = "sysCache", key = "'moduleList'")
+    @Cacheable(value = "sysCache", key = "'moduleTree/moduleList'")
     public List<Module> getModuleList() {
         List<Module> modules = new ArrayList<>();
         for (Module module : getModuleTree()) {
@@ -105,7 +105,7 @@ public class ModuleService {
      *
      * @return
      */
-    @Cacheable(value = "sysCache")
+    @Cacheable(value = "sysCache", key = "'moduleTree/sidebarItems'")
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
         for (Module module : getModuleTree()) {

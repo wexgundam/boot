@@ -90,9 +90,9 @@
                     </li>
                 </ul>
             </li>
-            <sec:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+            <%--<sec:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">--%>
                 ${sidebarHtml}
-            </sec:authorize>
+            <%--</sec:authorize>--%>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

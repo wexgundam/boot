@@ -6,6 +6,12 @@
     <title>模块管理</title>
     <content-css>
         <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            #moduleControlTable {
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+        </style>
     </content-css>
 </head>
 <body>
@@ -58,13 +64,26 @@
     <!-- END PAGE TITLE-->
 
     <!-- END PAGE HEADER-->
-
-    <!-- Begin 模块树形表格 -->
     <div class="row">
         <div class="col-xs-12">
-            <div class="alert alert-success">树形表格</div>
+            <table id="moduleControlTable">
+                <tr>
+                    <td>
+                        <button class="btn btn-primary" id="btnSearch">
+                            <i class="fa fa-search"></i> 刷新
+                        </button>
+                        <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+                            <button type="button" class="btn btn-success" id="btnAdd">
+                                <i class=" fa fa-plus bigger-110"></i> 新增
+                            </button>
+                        </security:authorize>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
+
+    <!-- Begin 模块树形表格 -->
     <div class="row">
         <div class="col-xs-12">
             <table id="treeTable" class="table table-striped table-bordered table-hover">
@@ -94,9 +113,7 @@
                             <td style="text-align: center;">${module.displayOrder}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
-                                        修改</i>
-                                    </a>
+                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}"> 修改 </a>
                                     <a href="javascript:delModule(${resource.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
@@ -144,9 +161,7 @@
                             <td style="text-align: center;">${module.displayOrder}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
-                                        修改</i>
-                                    </a>
+                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}"> 修改 </a>
                                     <a href="javascript:delModule(${resource.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
@@ -175,7 +190,7 @@
 //                $("#btnClear").bind('click', clearCache);
 
                 $("#treeTable").treeTable({
-                    expandLevel: 2
+                    expandLevel: 3
                 });
             })
 
