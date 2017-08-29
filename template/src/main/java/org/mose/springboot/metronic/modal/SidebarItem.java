@@ -22,6 +22,10 @@ public class SidebarItem {
      */
     private String url;
     /**
+     * 链接目标
+     */
+    private String urlTarget;
+    /**
      * 父模块
      */
     private SidebarItem parent;
@@ -47,6 +51,7 @@ public class SidebarItem {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
+                ", urlTarget='" + urlTarget + '\'' +
                 ", parent=" + parent +
                 ", icon='" + icon + '\'' +
                 ", order=" + order +
@@ -125,5 +130,13 @@ public class SidebarItem {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getUrlTarget() {
+        return urlTarget;
+    }
+
+    public void setUrlTarget(String urlTarget) {
+        this.urlTarget = urlTarget;
     }
 }

@@ -37,7 +37,7 @@ public class ScenarioService {
      *
      * @return
      */
-    @Cacheable(value = "sysCache", key = "'scenarioList'")
+//    @Cacheable(value = "sysCache", key = "'scenarioList'")
     public List<Scenario> getScenarioList() {
         List<Scenario> scenarios = new ArrayList<>();
         for (Scenario scenario : getScenarioTree()) {
@@ -68,7 +68,7 @@ public class ScenarioService {
      *
      * @return
      */
-    @Cacheable(value = "sysCache", key = "'scenarioTree'")
+//    @Cacheable(value = "sysCache", key = "'scenarioTree'")
     public List<Scenario> getScenarioTree() {
         List<Scenario> scenarios = new ArrayList<>();
         List<Scenario> allScenarios = scenarioRepository.queryAll();
@@ -105,7 +105,7 @@ public class ScenarioService {
      *
      * @return
      */
-//    @Cacheable(value = "sysCache")
+//    @Cacheable(value = "sysCache", key = "'sidebarItems'")
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
         for (Scenario scenario : getScenarioTree()) {
@@ -126,6 +126,7 @@ public class ScenarioService {
         sidebarItem.setId(scenario.getId());
         sidebarItem.setName(scenario.getName());
         sidebarItem.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + (scenario.getUrl() == null ? "/index.htm" : scenario.getUrl()));
+        sidebarItem.setUrlTarget(scenario.getUrlTarget());
         sidebarItem.setIcon(scenario.getIcon());
         sidebarItem.setOrder(scenario.getDisplayOrder());
         sidebarItem.setParent(scenario.getParent() == null ? null : parentSidebarItem);

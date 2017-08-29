@@ -35,6 +35,7 @@ public class TestScenarioMysqlRepository {
         scenario.setDescription("description");
         scenario.setParentId(1);
         scenario.setUrl("2");
+        scenario.setUrlTarget("3");
         scenario.setIcon("icon");
         scenario.setDisplayOrder(1);
         scenario.setId(repository.insertOne(scenario).intValue());
@@ -49,6 +50,7 @@ public class TestScenarioMysqlRepository {
         Assert.assertEquals(queryOne.getParentId(), this.scenario.getParentId());
         Assert.assertNotNull(queryOne.getParent());
         Assert.assertEquals(queryOne.getUrl(), this.scenario.getUrl());
+        Assert.assertEquals(queryOne.getUrlTarget(), this.scenario.getUrlTarget());
         Assert.assertEquals(queryOne.getIcon(), this.scenario.getIcon());
         Assert.assertEquals(queryOne.getDisplayOrder(), this.scenario.getDisplayOrder());
     }
@@ -67,6 +69,7 @@ public class TestScenarioMysqlRepository {
         scenario.setDescription("description2");
         scenario.setParentId(12);
         scenario.setUrl("22");
+        scenario.setUrlTarget("33");
         scenario.setIcon("icon2");
         scenario.setDisplayOrder(12);
 
@@ -79,6 +82,7 @@ public class TestScenarioMysqlRepository {
         Assert.assertEquals(queriedOne.getParentId(), scenario.getParentId());
         Assert.assertNotNull(queriedOne.getParent());
         Assert.assertEquals(queriedOne.getUrl(), scenario.getUrl());
+        Assert.assertEquals(queriedOne.getUrlTarget(), scenario.getUrlTarget());
         Assert.assertEquals(queriedOne.getIcon(), scenario.getIcon());
         Assert.assertEquals(queriedOne.getDisplayOrder(), scenario.getDisplayOrder());
     }

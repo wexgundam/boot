@@ -5,7 +5,13 @@
 <head>
     <title>场景管理</title>
     <content-css>
-        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css" />
+        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            #scenarioTable {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
     </content-css>
 </head>
 <body>
@@ -53,18 +59,34 @@
 
     <!-- BEGIN PAGE TITLE-->
     <h1 class="page-title"> 场景管理
-        <small>场景查询、浏览与更新</small>
+        <small>场景浏览与编辑</small>
     </h1>
     <!-- END PAGE TITLE-->
 
     <!-- END PAGE HEADER-->
 
-    <!-- Begin 场景树形表格 -->
+    <!-- Begin 场景编辑面板 -->
     <div class="row">
         <div class="col-xs-12">
-            <div class="alert alert-success">树形表格</div>
+            <table id="scenarioTable">
+                <tr>
+                    <td>
+                        <button class="btn btn-primary" id="btnRefresh">
+                            <i class="fa fa-refresh"></i> 刷新
+                        </button>
+                        <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+                            <button type="button" class="btn btn-success" id="btnAdd">
+                                <i class=" fa fa-plus"></i> 新增
+                            </button>
+                        </security:authorize>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
+    <!-- End 场景编辑面板 -->
+
+    <!-- Begin 场景树形表格 -->
     <div class="row">
         <div class="col-xs-12">
             <table id="treeTable" class="table table-striped table-bordered table-hover">
@@ -84,8 +106,9 @@
                         <tr id="${scenario.id}" pId="${scenario.parentId}">
                             <td>${scenario.name}</td>
                             <td></td>
-                            <td style="word-break: break-all;"></td>
-                            <td></td>
+                            <!-- style="word-break: break-all;" 在恰当的断字点进行换行 -->
+                            <td style="word-break: break-all;">${scenario.url}</td>
+                            <td>${scenario.urlTarget}</td>
                             <td>
                                 <div>
                                     <i class="fa ${scenario.icon}"></i>
@@ -175,7 +198,7 @@
 //                $("#btnClear").bind('click', clearCache);
 
                 $("#treeTable").treeTable({
-                    expandLevel: 2
+                    expandLevel: 3
                 });
             })
 

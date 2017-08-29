@@ -74,7 +74,7 @@ public class SidebarService {
     private String createLeafNodeHtml(SidebarItem sidebarItem) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("<li class=\"nav-item\">");
-        stringBuffer.append(" <a href=\"" + sidebarItem.getUrl() + "\" class=\"nav-link \">");
+        stringBuffer.append(" <a href=\"" + sidebarItem.getUrl() + "\" target=" + sidebarItem.getUrlTarget() + " class=\"nav-link \">");
         stringBuffer.append("<i class=\"" + sidebarItem.getIcon() + "\"></i>");
         stringBuffer.append("<span class=\"title\">" + sidebarItem.getName() + "</span>");
         stringBuffer.append("</a>");

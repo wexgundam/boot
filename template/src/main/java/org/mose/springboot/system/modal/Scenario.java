@@ -30,6 +30,10 @@ public class Scenario {
      */
     private String url;
     /**
+     * 链接打开目标
+     */
+    private String urlTarget;
+    /**
      * icon
      */
     private String icon;
@@ -64,6 +68,7 @@ public class Scenario {
                 ", description='" + description + '\'' +
                 ", parent=" + parent +
                 ", url='" + url + '\'' +
+                ", urlTarget='" + urlTarget + '\'' +
                 ", icon='" + icon + '\'' +
                 ", displayOrder=" + displayOrder +
                 ", children=" + children +
@@ -152,5 +157,13 @@ public class Scenario {
 
     public void setChildren(List<Scenario> children) {
         this.children = children;
+    }
+
+    public String getUrlTarget() {
+        return urlTarget;
+    }
+
+    public void setUrlTarget(String urlTarget) {
+        this.urlTarget = urlTarget;
     }
 }
