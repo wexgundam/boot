@@ -71,13 +71,13 @@
             <table id="scenarioTable">
                 <tr>
                     <td>
-                        <button class="btn btn-primary" id="btnRefresh">
+                        <a class="btn btn-primary" id="btnRefresh" href="">
                             <i class="fa fa-refresh"></i> 刷新
-                        </button>
+                        </a>
                         <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                            <button type="button" class="btn btn-success" id="btnAdd">
+                            <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/scenario/add.htm">
                                 <i class=" fa fa-plus"></i> 新增
-                            </button>
+                            </a>
                         </security:authorize>
                     </td>
                 </tr>

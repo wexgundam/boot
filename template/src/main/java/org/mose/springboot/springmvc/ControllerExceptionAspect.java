@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description:监听Controller抛出的所有Exception，Controll无须配置@Exception处理方法
+ * Description:监听Controller抛出的所有Exception，Controller无须配置@Exception处理方法
  *
  * @Author: 靳磊
  * @Date: 2017/6/22:20
@@ -26,7 +26,6 @@ public class ControllerExceptionAspect {
 
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(HttpServletRequest request, HttpServletResponse response, Exception ex) {
-        ex.printStackTrace();
         logger.error(ex.getMessage());
         //判断是否是Ajax请求
         boolean isAjaxRequest = StringUtil.checkAjaxRequest(request);// this.isAjaxRequest(request);
