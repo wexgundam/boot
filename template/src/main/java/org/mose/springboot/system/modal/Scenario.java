@@ -3,12 +3,12 @@ package org.mose.springboot.system.modal;
 import java.util.List;
 
 /**
- * Description:系统模块
+ * Description:场景
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */
-public class Module {
+public class Scenario {
     /**
      * 主键
      */
@@ -22,49 +22,51 @@ public class Module {
      */
     private String description;
     /**
-     * 父模块
+     * 父场景
      */
-    private Module parent;
+    private Scenario parent;
     /**
-     * 场景
+     * 场景连接地址
      */
-    private Integer scenarioId;
+    private String url;
     /**
      * icon
      */
     private String icon;
     /**
-     * 在父模块中的顺序
+     * 在父场景中的顺序
      */
     private int displayOrder = 0;
 
     /**
-     * 包含的子模块
+     * 包含的子场景
      *
      * @param o
      * @return
      */
-    private List<Module> children;
+    private List<Scenario> children;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Module module = (Module) o;
+        Scenario scenario = (Scenario) o;
 
-        return getId() == module.getId();
+        return getId() == scenario.getId();
     }
 
     @Override
     public String toString() {
-        return "Module{" +
+        return "Scenario{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", parent=" + parent +
+                ", url='" + url + '\'' +
                 ", icon='" + icon + '\'' +
                 ", displayOrder=" + displayOrder +
+                ", children=" + children +
                 '}';
     }
 
@@ -79,7 +81,7 @@ public class Module {
             parent = null;
             return;
         } else {
-            parent = new Module();
+            parent = new Scenario();
             parent.setId(parentId);
         }
     }
@@ -112,11 +114,11 @@ public class Module {
         this.description = description;
     }
 
-    public Module getParent() {
+    public Scenario getParent() {
         return parent;
     }
 
-    public void setParent(Module parent) {
+    public void setParent(Scenario parent) {
         this.parent = parent;
     }
 
@@ -136,19 +138,19 @@ public class Module {
         this.displayOrder = displayOrder;
     }
 
-    public Integer getScenarioId() {
-        return scenarioId;
+    public String getUrl() {
+        return url;
     }
 
-    public void setScenarioId(Integer scenarioId) {
-        this.scenarioId = scenarioId;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public List<Module> getChildren() {
+    public List<Scenario> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Module> children) {
+    public void setChildren(List<Scenario> children) {
         this.children = children;
     }
 }

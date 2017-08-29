@@ -1,7 +1,7 @@
 package org.mose.springboot.springmvc.controller;
 
 import org.mose.springboot.metronic.service.SidebarService;
-import org.mose.springboot.system.service.ModuleService;
+import org.mose.springboot.system.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class ViewController {
      * 模块服务，用于生成侧边菜单
      */
     @Autowired
-    private ModuleService moduleService;
+    private ScenarioService scenarioService;
     /**
      * 侧边菜单服务，生成侧边菜单Html
      */
@@ -58,9 +58,9 @@ public class ViewController {
     @RequestMapping("/view")
     public ModelAndView decorate(@RequestParam String targetViewName) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarItems", moduleService.getModuleTree());
+        modelAndView.addObject("sidebarItems", scenarioService.getScenarioTree());
         modelAndView.addObject("viewName", targetViewName);
-        modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(moduleService.createSidebarItems()));
+        modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(scenarioService.createSidebarItems()));
         modelAndView.setViewName(targetViewName);
         return modelAndView;
     }

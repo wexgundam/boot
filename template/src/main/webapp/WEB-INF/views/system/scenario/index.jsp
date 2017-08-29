@@ -3,7 +3,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>模块管理</title>
+    <title>场景管理</title>
     <content-css>
         <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css" />
     </content-css>
@@ -23,7 +23,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>模块管理</span>
+                <span>场景管理</span>
             </li>
         </ul>
         <div class="page-toolbar">
@@ -52,14 +52,14 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 模块管理
-        <small>模块查询、浏览与更新</small>
+    <h1 class="page-title"> 场景管理
+        <small>场景查询、浏览与更新</small>
     </h1>
     <!-- END PAGE TITLE-->
 
     <!-- END PAGE HEADER-->
 
-    <!-- Begin 模块树形表格 -->
+    <!-- Begin 场景树形表格 -->
     <div class="row">
         <div class="col-xs-12">
             <div class="alert alert-success">树形表格</div>
@@ -70,9 +70,9 @@
             <table id="treeTable" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th width=180>模块名称</th>
-                        <th width=120>模块代码</th>
-                        <th>模块链接</th>
+                        <th width=180>场景名称</th>
+                        <th width=120>场景代码</th>
+                        <th>场景链接</th>
                         <th width=100>链接目标</th>
                         <th width=80>图标</th>
                         <th style="text-align: center;" width=80>排序</th>
@@ -80,18 +80,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${modules}" var="module" varStatus="st">
-                        <tr id="${module.id}" pId="${module.parentId}">
-                            <td>${module.name}</td>
+                    <c:forEach items="${scenarios}" var="scenario" varStatus="st">
+                        <tr id="${scenario.id}" pId="${scenario.parentId}">
+                            <td>${scenario.name}</td>
                             <td></td>
                             <td style="word-break: break-all;"></td>
                             <td></td>
                             <td>
                                 <div>
-                                    <i class="fa ${module.icon}"></i>
+                                    <i class="fa ${scenario.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${module.displayOrder}</td>
+                            <td style="text-align: center;">${scenario.displayOrder}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
@@ -107,7 +107,7 @@
             </table>
         </div>
     </div>
-    <!-- End 模块树形表格 -->
+    <!-- End 场景树形表格 -->
 
     <!-- Begin 分页表格 -->
     <div class="row">
@@ -120,9 +120,9 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th width=180>模块名称</th>
-                        <th width=120>模块代码</th>
-                        <th>模块链接</th>
+                        <th width=180>场景名称</th>
+                        <th width=120>场景代码</th>
+                        <th>场景链接</th>
                         <th width=100>链接目标</th>
                         <th width=80>图标</th>
                         <th style="text-align: center;" width=80>排序</th>
@@ -130,18 +130,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${modules}" var="module" varStatus="st">
-                        <tr id="${module.id}" pId="${module.parentId}">
-                            <td>${module.name}</td>
+                    <c:forEach items="${scenarios}" var="scenario" varStatus="st">
+                        <tr id="${scenario.id}" pId="${scenario.parentId}">
+                            <td>${scenario.name}</td>
                             <td></td>
                             <td style="word-break: break-all;"></td>
                             <td></td>
                             <td>
                                 <div>
-                                    <i class="fa ${module.icon}"></i>
+                                    <i class="fa ${scenario.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${module.displayOrder}</td>
+                            <td style="text-align: center;">${scenario.displayOrder}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
@@ -186,7 +186,7 @@
             <%--}--%>
             <%--// 删除--%>
             <%--var delModule = function (id) {--%>
-            <%--bootbox.confirm("你确定要删除该模块吗？", function (result) {--%>
+            <%--bootbox.confirm("你确定要删除该场景吗？", function (result) {--%>
             <%--if (result) {--%>
             <%--window.location = "delete.htm?id=" + id + "&backUrl=${backUrl}";--%>
             <%--}--%>
