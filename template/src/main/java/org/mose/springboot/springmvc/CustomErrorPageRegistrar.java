@@ -11,7 +11,7 @@ public class CustomErrorPageRegistrar implements ErrorPageRegistrar {
 
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
-        registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
+        registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/error/404.htm"));
     }
 
 }
