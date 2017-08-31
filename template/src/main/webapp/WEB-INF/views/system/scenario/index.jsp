@@ -25,6 +25,10 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
+                <span>系统管理</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
                 <span>系统配置</span>
                 <i class="fa fa-circle"></i>
             </li>
@@ -133,6 +137,7 @@
     <!-- End 场景树形表格 -->
 
     <!-- Begin 分页表格 -->
+    <div></div>
     <div class="row">
         <div class="col-xs-12">
             <div class="alert alert-info">分页表格</div>

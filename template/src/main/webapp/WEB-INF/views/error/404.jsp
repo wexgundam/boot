@@ -41,21 +41,29 @@
                 <h3>哎呀！ 非常抱歉.</h3>
                 <p> 我们找不到您请求的页面！
                     <br />
-                    返回 <a href="index.html"> 首页 </a> 或者 <a href="index.html"> 首页 </a>
-                <form action="#">
+                    返回 <a href="/index.html"> 首页 </a> 或者 <a href="javascript:;" onclick="doC()"> 上一页 </a>
+                <form action="#" class="hide">
                     <div class="input-group input-medium">
                         <input type="text" class="form-control" placeholder="keyword...">
                         <span class="input-group-btn">
-                                                <button type="submit" class="btn green">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </span>
+                            <button type="submit" class="btn green">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
                     </div>
                     <!-- /input-group -->
                 </form>
             </div>
         </div>
     </div>
+
+    <custom-script>
+        <script>
+            function doC() {
+                window.history.go(-1);
+            }
+        </script>
+    </custom-script>
 </body>
 
 </html>
