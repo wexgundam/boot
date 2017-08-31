@@ -36,7 +36,7 @@ public class ViewController {
      * @param targetViewName
      * @param activeSidebarItemUrl 激活的SidebarItem Url
      */
-    public static void setViewDecoratorUrl(ModelAndView modelAndView, String targetViewName, String activeSidebarItemUrl) {
+    public static void decoratePage(ModelAndView modelAndView, String targetViewName, String activeSidebarItemUrl) {
         modelAndView.setViewName(getViewDecoratorUrl(targetViewName, activeSidebarItemUrl));
     }
 
@@ -48,14 +48,26 @@ public class ViewController {
      * @param modelAndView
      * @param targetViewName
      */
-    public static void setViewDecoratorUrl(ModelAndView modelAndView, String targetViewName) {
-        setViewDecoratorUrl(modelAndView, targetViewName, targetViewName);
+    public static void decoratePage(ModelAndView modelAndView, String targetViewName) {
+        decoratePage(modelAndView, targetViewName, targetViewName);
+    }
+
+    /**
+     * 跳转到错误页面
+     *
+     * @param modelAndView
+     * @param message              失败描述信息
+     * @param activeSidebarItemUrl
+     */
+    public static void decorateErrorPage(ModelAndView modelAndView, String message, String activeSidebarItemUrl) {
+        modelAndView.addObject("message", message);
+        decoratePage(modelAndView, "/common/result/error", activeSidebarItemUrl);
     }
 
     /**
      * 获得转发视图控制器的地址
      *
-     * @param targetViewName        跳转目标视图名
+     * @param targetViewName       跳转目标视图名
      * @param activeSidebarItemUrl 激活的SidebarItem Url
      * @return
      */
@@ -73,7 +85,7 @@ public class ViewController {
      * @return
      */
     @RequestMapping("/view")
-    public ModelAndView decorate(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
+    public ModelAndView decoratePage(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sidebarItems", scenarioService.getScenarioTree());
         modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);

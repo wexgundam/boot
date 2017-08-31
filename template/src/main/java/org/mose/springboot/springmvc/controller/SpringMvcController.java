@@ -51,7 +51,7 @@ public class SpringMvcController {
     public ModelAndView tablePage(@RequestParam(required = false) String color) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("color", color);
-        ViewController.setViewDecoratorUrl(modelAndView, "test");
+        ViewController.decoratePage(modelAndView, "test");
         return modelAndView;
     }
 }

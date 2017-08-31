@@ -31,15 +31,17 @@
 
     <!-- BEGIN PAGE TITLE-->
     <h1 class="page-title"> 操作失败
-        <small>提交请求操作失败</small>
+        <small>本次操作失败</small>
     </h1>
     <!-- END PAGE TITLE-->
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12 page-404">
             <div class="alert alert-danger">
-                <strong>操作失败!</strong> ${message}
-                <a href="javascript:;" onclick="history.go(-1);">返回</a>
+                <h3>
+                    <div><i class="fa fa-exclamation-circle"></i><strong>操作失败!</strong></div>
+                </h3>
+                ${message} <a href="javascript:;" onclick="history.go(-1);">返回</a>
             </div>
         </div>
     </div>

@@ -42,14 +42,14 @@ public class ScenarioController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pagination", pagination.createHtml());
         modelAndView.addObject("scenarios", scenarioService.getScenarioList());
-        ViewController.setViewDecoratorUrl(modelAndView, indexPageUrl);
+        ViewController.decoratePage(modelAndView, indexPageUrl);
         return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
         ModelAndView modelAndView = new ModelAndView();
-        ViewController.setViewDecoratorUrl(modelAndView, "/system/scenario/add", indexPageUrl);
+        ViewController.decoratePage(modelAndView, "/system/scenario/add", indexPageUrl);
         return modelAndView;
     }
 
@@ -63,7 +63,7 @@ public class ScenarioController {
 //            return "forward:/success.htm?resultCode=" + GlobalCode.SAVE_SUCCESS;//msg=" + StringUtil.encodeUrl("资源新增成功");
 //        return "redirect:/system/scenario/index.htm";
         ModelAndView modelAndView = new ModelAndView();
-        ViewController.setViewDecoratorUrl(modelAndView, "/error/error", indexPageUrl);
+        ViewController.decorateErrorPage(modelAndView, "新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
         return modelAndView;
     }
 }
