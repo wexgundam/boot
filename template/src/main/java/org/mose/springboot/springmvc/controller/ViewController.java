@@ -34,32 +34,49 @@ public class ViewController {
      *
      * @param modelAndView
      * @param targetViewName
+     * @param activeSidebarItemUrl 激活的SidebarItem Url
+     */
+    public static void setViewDecoratorUrl(ModelAndView modelAndView, String targetViewName, String activeSidebarItemUrl) {
+        modelAndView.setViewName(getViewDecoratorUrl(targetViewName, activeSidebarItemUrl));
+    }
+
+    /**
+     * 设置给定的ModelAndView，将其viewName设为视图控制器地址，用于附加视图公共数据
+     *
+     * 给定的viewName是目标展示视图名称
+     *
+     * @param modelAndView
+     * @param targetViewName
      */
     public static void setViewDecoratorUrl(ModelAndView modelAndView, String targetViewName) {
-        modelAndView.setViewName(getViewDecoratorUrl(targetViewName));
+        setViewDecoratorUrl(modelAndView, targetViewName, targetViewName);
     }
 
     /**
      * 获得转发视图控制器的地址
      *
-     * @param targetViewName
+     * @param targetViewName        跳转目标视图名
+     * @param activeSidebarItemUrl 激活的SidebarItem Url
      * @return
      */
-    public static String getViewDecoratorUrl(String targetViewName) {
-        return "forward:/view?targetViewName=" + targetViewName;
+    public static String getViewDecoratorUrl(String targetViewName, String activeSidebarItemUrl) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("forward:/view?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
+        return stringBuffer.substring(0);
     }
 
     /**
      * 附加视图公共数据，并最终转发到目标视图
      *
      * @param targetViewName
+     * @param activeSidebarItemUrl 激活的SidebarItem Url
      * @return
      */
     @RequestMapping("/view")
-    public ModelAndView decorate(@RequestParam String targetViewName) {
+    public ModelAndView decorate(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sidebarItems", scenarioService.getScenarioTree());
-        modelAndView.addObject("viewName", targetViewName);
+        modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);
         modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(scenarioService.createSidebarItems()));
         modelAndView.setViewName(targetViewName);
         return modelAndView;

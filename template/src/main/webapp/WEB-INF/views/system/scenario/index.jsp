@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>场景管理</title>
     <content-css>
-        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css"/>
+        <link href="${staticResourceServerUrl}/assets/treetable/treeTable.min.css?version=${resourceVersion}" rel="stylesheet" type="text/css" />
         <style type="text/css">
             #scenarioTable {
                 margin-top: 10px;
@@ -80,7 +81,7 @@
                         </a>
                         <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
                             <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/scenario/add.htm">
-                                <i class=" fa fa-plus"></i> 新增
+                                <i class=" fa fa-plus"></i> 新建
                             </a>
                         </security:authorize>
                     </td>
