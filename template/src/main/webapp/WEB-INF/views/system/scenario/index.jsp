@@ -22,7 +22,7 @@
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
-                <a href="/index.htm">首页</a>
+                <a href="${dynamicResourceServerUrl}/index.htm">首页</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>

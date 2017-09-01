@@ -2,280 +2,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>新建场景</title>
 </head>
 <body>
-    <form class="form-horizontal" role="form" action="/system/scenario/add.htm" method="post">
-        <div class="form-body">
-            <div class="form-group">
-                <label class="col-md-3 control-label">Block Help</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="Enter text">
-                    <span class="help-block"> A block of help text. </span>
-                </div>
+
+
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a href="${dynamicResourceServerUrl}/index.htm">首页</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>系统管理</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>系统配置</span>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <a href="${dynamicResourceServerUrl}/system/scenario/index.htm">场景管理</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>新建场景</span>
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown">
+                    Actions <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li>
+                        <a href="#"> <i class="icon-bell"></i> Action</a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="icon-shield"></i> Another action</a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="icon-user"></i> Something else here</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#"> <i class="icon-bag"></i> Separated link</a>
+                    </li>
+                </ul>
             </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Inline Help</label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control input-inline input-medium" placeholder="Enter text">
-                    <span class="help-inline"> Inline help. </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Input Group</label>
-                <div class="col-md-9">
-                    <div class="input-inline input-medium">
-                        <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fa fa-user"></i>
-                                                                </span>
-                            <input type="email" class="form-control" placeholder="Email Address"></div>
-                    </div>
-                    <span class="help-inline"> Inline help. </span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Email Address</label>
-                <div class="col-md-9">
-                    <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-envelope"></i>
-                                                            </span>
-                        <input type="email" class="form-control" placeholder="Email Address"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Password</label>
-                <div class="col-md-9">
-                    <div class="input-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <span class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Left Icon</label>
-                <div class="col-md-9">
-                    <div class="input-icon">
-                        <i class="fa fa-bell-o"></i>
-                        <input type="text" class="form-control" placeholder="Left icon"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Right Icon</label>
-                <div class="col-md-9">
-                    <div class="input-icon right">
-                        <i class="fa fa-microphone"></i>
-                        <input type="text" class="form-control" placeholder="Right icon"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Icon Input in Group Input</label>
-                <div class="col-md-9">
-                    <div class="input-group">
-                        <div class="input-icon">
-                            <i class="fa fa-lock fa-fw"></i>
-                            <input id="newpassword" class="form-control" type="text" name="password" placeholder="password">
+        </div>
+    </div>
+    <!-- END PAGE BAR -->
+
+    <!-- BEGIN PAGE TITLE-->
+    <h1 class="page-title"> 新建场景
+        <small>新建场景，设置场景的基本属性以及场景间的关系</small>
+    </h1>
+    <!-- END PAGE TITLE-->
+
+    <!-- END PAGE HEADER-->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/scenario/add.htm" method="post">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">场景名称</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称">
+                            <span class="help-block"></span>
                         </div>
-                        <span class="input-group-btn">
-                                                                <button id="genpassword" class="btn btn-success" type="button">
-                                                                    <i class="fa fa-arrow-left fa-fw"></i> Random</button>
-                                                            </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">链接地址</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">链接目标</label>
+                        <div class="col-md-9">
+                            <div class="mt-radio-inline">
+                                <label class="mt-radio">
+                                    <input type="radio" name="urlTarget" value="_self" checked>
+                                    _self
+                                    <span></span>
+                                </label>
+                                <label class="mt-radio">
+                                    <input type="radio" name="urlTarget" value="_blank">
+                                    _blank
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">图标</label>
+                        <div class="col-md-9">
+                            <div class="input-group input-xlarge">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon-tag"></i>
+                                    </span>
+                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" disabled>
+                                    <span class="input-group-btn input-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="icon-magnifier"></i> 图标
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">父场景</label>
+                        <div class="col-md-9">
+                            <div class="input-group input-xlarge">
+                                <div class="input-group">
+                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="" disabled>
+                                    <span class="input-group-btn input-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="icon-magnifier"></i> 父场景
+                                        </button>
+                                     </span>
+                                </div>
+                                <span class="help-inline">选择所属的子场景</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">场景排序</label>
+                        <div class="col-md-9">
+                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="">
+                            <span class="help-inline">在父场景中的排序</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">描述</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control input-xlarge" rows="3" name="description"></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Input With Spinner</label>
-                <div class="col-md-9">
-                    <input type="password" class="form-control spinner" placeholder="Password"></div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Static Control</label>
-                <div class="col-md-9">
-                    <p class="form-control-static"> email@example.com </p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Disabled</label>
-                <div class="col-md-9">
-                    <input type="password" class="form-control" placeholder="Disabled" disabled=""></div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Readonly</label>
-                <div class="col-md-9">
-                    <input type="password" class="form-control" placeholder="Readonly" readonly=""></div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Dropdown</label>
-                <div class="col-md-9">
-                    <select class="form-control">
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                        <option>Option 5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Multiple Select</label>
-                <div class="col-md-9">
-                    <select multiple="" class="form-control">
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                        <option>Option 5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Textarea</label>
-                <div class="col-md-9">
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputFile" class="col-md-3 control-label">File input</label>
-                <div class="col-md-9">
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block"> some help text here. </p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Checkboxes</label>
-                <div class="col-md-9">
-                    <div class="mt-checkbox-list">
-                        <label class="mt-checkbox">
-                            <input type="checkbox"> Checkbox 1
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox">
-                            <input type="checkbox"> Checkbox 1
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox mt-checkbox-disabled">
-                            <input type="checkbox" disabled=""> Disabled
-                            <span></span>
-                        </label>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn green">保存</button>
+                            <button type="button" class="btn default">取消</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Outline Checkboxes</label>
-                <div class="col-md-9">
-                    <div class="mt-checkbox-list">
-                        <label class="mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox"> Checkbox 1
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox"> Checkbox 1
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox mt-checkbox-outline mt-checkbox-disabled">
-                            <input type="checkbox" disabled=""> Disabled
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Inline Checkboxes</label>
-                <div class="col-md-9">
-                    <div class="mt-checkbox-inline">
-                        <label class="mt-checkbox">
-                            <input type="checkbox" id="inlineCheckbox21" value="option1"> Checkbox 1
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox">
-                            <input type="checkbox" id="inlineCheckbox22" value="option2"> Checkbox 2
-                            <span></span>
-                        </label>
-                        <label class="mt-checkbox mt-checkbox-disabled">
-                            <input type="checkbox" id="inlineCheckbox23" value="option3" disabled=""> Disabled
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Radios</label>
-                <div class="col-md-9">
-                    <div class="mt-radio-list">
-                        <label class="mt-radio">
-                            <input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked="">
-                            Option 1
-                            <span></span>
-                        </label>
-                        <label class="mt-radio">
-                            <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked="">
-                            Option 2
-                            <span></span>
-                        </label>
-                        <label class="mt-radio mt-radio-disabled">
-                            <input type="radio" name="optionsRadios" id="optionsRadios24" value="option2" disabled="">
-                            Disabled
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Outline Radios</label>
-                <div class="col-md-9">
-                    <div class="mt-radio-list">
-                        <label class="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked="">
-                            Option 1
-                            <span></span>
-                        </label>
-                        <label class="mt-radio mt-radio-outline">
-                            <input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked="">
-                            Option 2
-                            <span></span>
-                        </label>
-                        <label class="mt-radio mt-radio-outline mt-radio-disabled">
-                            <input type="radio" name="optionsRadios" id="optionsRadios24" value="option2" disabled="">
-                            Disabled
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-3 control-label">Inline Radio</label>
-                <div class="col-md-9">
-                    <div class="mt-radio-inline">
-                        <label class="mt-radio">
-                            <input type="radio" name="optionsRadios" id="optionsRadios25" value="option1" checked="">
-                            Option 1
-                            <span></span>
-                        </label>
-                        <label class="mt-radio">
-                            <input type="radio" name="optionsRadios" id="optionsRadios26" value="option2" checked="">
-                            Option 2
-                            <span></span>
-                        </label>
-                        <label class="mt-radio mt-radio-disabled">
-                            <input type="radio" name="optionsRadios" id="optionsRadios27" value="option3" disabled="">
-                            Disabled
-                            <span></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
-        <div class="form-actions">
-            <div class="row">
-                <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn green">Submit</button>
-                    <button type="button" class="btn default">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>
 </body>
 </html>
