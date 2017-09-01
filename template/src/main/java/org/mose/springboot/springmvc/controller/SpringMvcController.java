@@ -1,5 +1,7 @@
 package org.mose.springboot.springmvc.controller;
 
+import org.mose.springboot.springmvc.service.ViewService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,9 @@ import java.util.Map;
  */
 @Controller
 public class SpringMvcController {
+    @Autowired
+    private ViewService viewService;
+
     /**
      * 利用MappingJackson2HttpMessageConverter实现Json转换
      *
@@ -51,7 +56,7 @@ public class SpringMvcController {
     public ModelAndView tablePage(@RequestParam(required = false) String color) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("color", color);
-        ViewController.decoratePage(modelAndView, "test");
+        viewService.forwardDecoratePage(modelAndView, "test");
         return modelAndView;
     }
 }

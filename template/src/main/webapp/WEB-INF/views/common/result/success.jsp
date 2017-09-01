@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>操作失败</title>
+    <title>操作成功</title>
     <custom-css>
         <!-- BEGIN ERROR PAGE STYLE -->
         <link href="${staticResourceServerUrl}/assets/metronic_v4.7.5/pages/css/error.min.css" rel="stylesheet" type="text/css" />
@@ -23,28 +23,41 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>操作失败</span>
+                <span>操作结果</span>
             </li>
         </ul>
     </div>
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 操作失败
-        <small>本次操作失败</small>
+    <h1 class="page-title"> 操作结果
+        <small>本次操作结果</small>
     </h1>
     <!-- END PAGE TITLE-->
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12 page-404">
-            <div class="alert alert-danger">
+            <div class="alert alert-success">
                 <h3>
-                    <div><i class="fa fa-exclamation-circle"></i><strong>操作失败!</strong></div>
+                    <i class="fa fa-check-circle"></i><strong>操作成功!</strong>
+                    <small>${message}</small>
                 </h3>
-                ${message} <a href="javascript:;" onclick="history.go(-1);">返回</a>
+                <a href="${redirectUrl}">如果你的浏览器没有自动跳转，请点击此链接</a>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+        </div>
+    </div>
+
+    <custom-script>
+        <script type="text/javascript">
+            setTimeout(function () {
+                location.href = "${redirectUrl}";
+            }, 3000);
+        </script>
+    </custom-script>
 </body>
 
 </html>

@@ -3,6 +3,7 @@ package org.mose.springboot.system.controller;
 import org.mose.springboot.metronic.modal.Pagination;
 import org.mose.springboot.spring.ResourceConfiguration;
 import org.mose.springboot.springmvc.controller.ViewController;
+import org.mose.springboot.springmvc.service.ViewService;
 import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.system.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class ScenarioController {
     private ResourceConfiguration resourceConfiguration;
     @Autowired
     private ScenarioService scenarioService;
+    @Autowired
+    private ViewService viewService;
 
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
@@ -42,14 +45,14 @@ public class ScenarioController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("pagination", pagination.createHtml());
         modelAndView.addObject("scenarios", scenarioService.getScenarioList());
-        ViewController.decoratePage(modelAndView, indexPageUrl);
+        viewService.forwardDecoratePage(modelAndView, indexPageUrl);
         return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
         ModelAndView modelAndView = new ModelAndView();
-        ViewController.decoratePage(modelAndView, "/system/scenario/add", indexPageUrl);
+        viewService.forwardDecoratePage(modelAndView, "/system/scenario/add", indexPageUrl);
         return modelAndView;
     }
 
@@ -62,8 +65,11 @@ public class ScenarioController {
 //        else
 //            return "forward:/success.htm?resultCode=" + GlobalCode.SAVE_SUCCESS;//msg=" + StringUtil.encodeUrl("资源新增成功");
 //        return "redirect:/system/scenario/index.htm";
+
+//        ModelAndView modelAndView = new ModelAndView();
+//        viewService.forwardFailPage(modelAndView, "新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
         ModelAndView modelAndView = new ModelAndView();
-        ViewController.decorateErrorPage(modelAndView, "新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
+        viewService.forwardSuccessPage(modelAndView, "新建场景已保存！", indexPageUrl, indexPageUrl);
         return modelAndView;
     }
 }
