@@ -3,6 +3,9 @@ package org.mose.springboot.springmvc.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Description: 视图服务
  *
@@ -13,56 +16,76 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Service
 public class ViewService {
-
     /**
-     * 设置给定的ModelAndView，将其viewName设为视图控制器地址，用于附加视图公共数据
+     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
      *
-     * 给定的viewName是目标展示视图名称
-     *
-     * @param modelAndView
-     * @param targetViewName
-     * @param activeSidebarItemUrl 激活的SidebarItem Url
+     * @param targetViewName       目标视图名
+     * @param activeSidebarItemUrl 需要激活的SidebarItem Url
+     * @param parameter            参数
      */
-    public void forwardDecoratePage(ModelAndView modelAndView, String targetViewName, String activeSidebarItemUrl) {
-        modelAndView.setViewName(createViewDecoratorUrl(targetViewName, activeSidebarItemUrl));
+    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl, Map<String, Object> parameter) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addAllObjects(parameter);
+        modelAndView.setViewName(createDecoratorViewName(targetViewName, activeSidebarItemUrl));
+        return modelAndView;
     }
 
     /**
-     * 设置给定的ModelAndView，将其viewName设为视图控制器地址，用于附加视图公共数据
+     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
      *
-     * 给定的viewName是目标展示视图名称
-     *
-     * @param modelAndView
-     * @param targetViewName
+     * @param targetViewName 目标视图名
+     * @param parameter      参数
      */
-    public void forwardDecoratePage(ModelAndView modelAndView, String targetViewName) {
-        forwardDecoratePage(modelAndView, targetViewName, targetViewName);
+    public ModelAndView forwardDecoratePage(String targetViewName, Map<String, Object> parameter) {
+        return forwardDecoratePage(targetViewName, targetViewName, parameter);
+    }
+
+    /**
+     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
+     *
+     * @param targetViewName       目标视图名
+     * @param activeSidebarItemUrl 需要激活的SidebarItem Url
+     */
+    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl) {
+        return forwardDecoratePage(targetViewName, activeSidebarItemUrl, null);
+    }
+
+
+    /**
+     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
+     *
+     * @param targetViewName 目标视图名和需要激活的SidebarItem Url
+     */
+    public ModelAndView forwardDecoratePage(String targetViewName) {
+        return forwardDecoratePage(targetViewName, targetViewName);
     }
 
     /**
      * 跳转到错误页面
      *
-     * @param modelAndView
      * @param message              失败描述信息
      * @param activeSidebarItemUrl
      */
-    public void forwardFailPage(ModelAndView modelAndView, String message, String activeSidebarItemUrl) {
-        modelAndView.addObject("message", message);
-        forwardDecoratePage(modelAndView, "/common/result/fail", activeSidebarItemUrl);
+    public ModelAndView forwardFailPage(String message, String activeSidebarItemUrl) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("message", message);
+        ModelAndView modelAndView = forwardDecoratePage("/common/result/fail", activeSidebarItemUrl, parameters);
+        return modelAndView;
     }
 
     /**
      * 跳转到成功页面
      *
-     * @param modelAndView
      * @param message              成功描述信息
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
      * @param redirectUrl          重定向页面地址
      */
-    public void forwardSuccessPage(ModelAndView modelAndView, String message, String activeSidebarItemUrl, String redirectUrl) {
-        modelAndView.addObject("message", message);
-        modelAndView.addObject("redirectUrl", redirectUrl);
-        forwardDecoratePage(modelAndView, "/common/result/success", activeSidebarItemUrl);
+    public ModelAndView forwardSuccessPage(String message, String activeSidebarItemUrl, String redirectUrl) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("message", message);
+        parameters.put("redirectUrl", redirectUrl);
+        ModelAndView modelAndView = forwardDecoratePage("/common/result/success", activeSidebarItemUrl, parameters);
+        return modelAndView;
     }
 
 
@@ -73,7 +96,7 @@ public class ViewService {
      * @param activeSidebarItemUrl 激活的SidebarItem Url
      * @return
      */
-    public String createViewDecoratorUrl(String targetViewName, String activeSidebarItemUrl) {
+    private String createDecoratorViewName(String targetViewName, String activeSidebarItemUrl) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("forward:/view?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
         return stringBuffer.substring(0);

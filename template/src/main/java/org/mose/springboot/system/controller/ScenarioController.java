@@ -2,7 +2,6 @@ package org.mose.springboot.system.controller;
 
 import org.mose.springboot.metronic.modal.Pagination;
 import org.mose.springboot.spring.ResourceConfiguration;
-import org.mose.springboot.springmvc.controller.ViewController;
 import org.mose.springboot.springmvc.service.ViewService;
 import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.system.service.ScenarioService;
@@ -11,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Description: 场景控制器
@@ -42,17 +44,17 @@ public class ScenarioController {
     public ModelAndView indexPage(Pagination pagination) {
         pagination.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + indexPageUrl);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("pagination", pagination.createHtml());
-        modelAndView.addObject("scenarios", scenarioService.getScenarioList());
-        viewService.forwardDecoratePage(modelAndView, indexPageUrl);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("pagination", pagination.createHtml());
+        parameters.put("scenarios", scenarioService.getScenarioList());
+
+        ModelAndView modelAndView = viewService.forwardDecoratePage(indexPageUrl, parameters);
         return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        viewService.forwardDecoratePage(modelAndView, "/system/scenario/add", indexPageUrl);
+        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/add", indexPageUrl);
         return modelAndView;
     }
 
@@ -66,10 +68,8 @@ public class ScenarioController {
 //            return "forward:/success.htm?resultCode=" + GlobalCode.SAVE_SUCCESS;//msg=" + StringUtil.encodeUrl("资源新增成功");
 //        return "redirect:/system/scenario/index.htm";
 
-//        ModelAndView modelAndView = new ModelAndView();
-//        viewService.forwardFailPage(modelAndView, "新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
-        ModelAndView modelAndView = new ModelAndView();
-        viewService.forwardSuccessPage(modelAndView, "新建场景已保存！", indexPageUrl, indexPageUrl);
+//        ModelAndView modelAndView = viewService.forwardFailPage("新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
+        ModelAndView modelAndView = viewService.forwardSuccessPage("新建场景已保存！", indexPageUrl, indexPageUrl);
         return modelAndView;
     }
 }

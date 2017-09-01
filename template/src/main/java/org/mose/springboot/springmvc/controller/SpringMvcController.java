@@ -54,9 +54,9 @@ public class SpringMvcController {
 
     @RequestMapping("/test")
     public ModelAndView tablePage(@RequestParam(required = false) String color) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("color", color);
-        viewService.forwardDecoratePage(modelAndView, "test");
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("color", color);
+        ModelAndView modelAndView = viewService.forwardDecoratePage("test", parameters);
         return modelAndView;
     }
 }
