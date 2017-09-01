@@ -86,7 +86,7 @@
                         <div class="col-md-9">
                             <div class="mt-radio-inline">
                                 <label class="mt-radio">
-                                    <input type="radio" name="urlTarget" value="_self" checked>
+                                    <input type="radio" name="urlTarget" value="_self">
                                     _self
                                     <span></span>
                                 </label>
@@ -124,7 +124,7 @@
                                     <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="" disabled>
                                     <span class="input-group-btn input-append">
                                         <button class="btn btn-primary" type="button">
-                                            <i class="icon-magnifier"></i> 父场景
+                                            <i class="icon-magnifier"></i> 场景
                                         </button>
                                      </span>
                                 </div>
