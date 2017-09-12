@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">链接地址</label>
                         <div class="col-md-9">
-                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址">
+                            <input name="url" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址">
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="col-md-9">
                             <div class="mt-radio-inline">
                                 <label class="mt-radio">
-                                    <input type="radio" name="urlTarget" value="_self">
+                                    <input type="radio" name="urlTarget" value="_self" checked>
                                     _self
                                     <span></span>
                                 </label>
@@ -128,15 +128,14 @@
                                         </button>
                                      </span>
                                 </div>
-                                <span class="help-inline">选择所属的子场景</span>
+                                <span class="help-inline">选择所属的父场景</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景排序</label>
                         <div class="col-md-9">
-                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="">
-                            <span class="help-inline">在父场景中的排序</span>
+                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="1">
                         </div>
                     </div>
                     <div class="form-group">

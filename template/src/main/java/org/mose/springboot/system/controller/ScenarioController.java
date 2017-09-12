@@ -69,6 +69,7 @@ public class ScenarioController {
 //        return "redirect:/system/scenario/index.htm";
 
 //        ModelAndView modelAndView = viewService.forwardFailPage("新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
+        scenarioService.addScenario(scenario);
         ModelAndView modelAndView = viewService.forwardSuccessPage("新建场景已保存！", indexPageUrl, indexPageUrl);
         return modelAndView;
     }

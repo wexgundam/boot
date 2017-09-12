@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
  * @Date: 2017/8/30 8:53
  */
 @Controller
-@RequestMapping("/error")
-public class ErrorPageController {
+@RequestMapping("/common/result")
+public class ResultPageController {
     @RequestMapping("/404")
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
-        return "/error/404";
+        return "/common/result/404";
     }
 }

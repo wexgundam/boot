@@ -40,7 +40,7 @@ public class Scenario {
     /**
      * 在父场景中的顺序
      */
-    private int displayOrder = 0;
+    private Integer displayOrder = 0;
 
     /**
      * 包含的子场景

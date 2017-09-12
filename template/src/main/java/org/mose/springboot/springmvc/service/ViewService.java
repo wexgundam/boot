@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Description: 视图服务
- *
+ * <p>
  * 提供装饰视图侧边菜单、修改请求路由等功能
  *
  * @Author: 靳磊
@@ -23,7 +23,8 @@ public class ViewService {
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
      * @param parameter            参数
      */
-    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl, Map<String, Object> parameter) {
+    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl,
+                                            Map<String, Object> parameter) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addAllObjects(parameter);
         modelAndView.setViewName(createDecoratorViewName(targetViewName, activeSidebarItemUrl));
@@ -60,6 +61,20 @@ public class ViewService {
         return forwardDecoratePage(targetViewName, targetViewName);
     }
 
+
+    /**
+     * 获得转发视图控制器的地址
+     *
+     * @param targetViewName       跳转目标视图名
+     * @param activeSidebarItemUrl 激活的SidebarItem Url
+     * @return
+     */
+    private String createDecoratorViewName(String targetViewName, String activeSidebarItemUrl) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("forward:/view?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
+        return stringBuffer.substring(0);
+    }
+
     /**
      * 跳转到错误页面
      *
@@ -88,17 +103,18 @@ public class ViewService {
         return modelAndView;
     }
 
-
     /**
-     * 获得转发视图控制器的地址
+     * 跳转到异常页面
      *
-     * @param targetViewName       跳转目标视图名
-     * @param activeSidebarItemUrl 激活的SidebarItem Url
-     * @return
+     * @param message              描述信息
+     * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
+     * @param redirectUrl          重定向页面地址
      */
-    private String createDecoratorViewName(String targetViewName, String activeSidebarItemUrl) {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("forward:/view?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
-        return stringBuffer.substring(0);
+    public ModelAndView forwardExceptionPage(String message, String activeSidebarItemUrl, String redirectUrl) {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("message", message);
+        parameters.put("redirectUrl", redirectUrl);
+        ModelAndView modelAndView = forwardDecoratePage("/common/result/exception", activeSidebarItemUrl, parameters);
+        return modelAndView;
     }
 }

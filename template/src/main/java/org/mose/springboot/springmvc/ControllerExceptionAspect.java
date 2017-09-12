@@ -1,10 +1,12 @@
 package org.mose.springboot.springmvc;
 
+import org.mose.springboot.springmvc.service.ViewService;
 import org.mose.springboot.util.json.JsonUtil;
 import org.mose.springboot.util.string.StringUtil;
 import org.mose.springboot.util.web.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +25,8 @@ import java.util.Map;
 @ControllerAdvice
 public class ControllerExceptionAspect {
     private static Logger logger = LoggerFactory.getLogger("controllerLog");
+    @Autowired
+    private ViewService viewService;
 
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(HttpServletRequest request, HttpServletResponse response, Exception ex) {
@@ -35,12 +39,8 @@ public class ControllerExceptionAspect {
             WebUtil.out(response, JsonUtil.toStr(msg));
             return null;
         } else {
-            //URL请求处理
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("message", ex.getMessage());
-            map.put("isError", true);
-            map.put("exceptionName", ex.getMessage());
-            return new ModelAndView("exception", map);
+            ModelAndView modelAndView = viewService.forwardExceptionPage(ex.getMessage(), null, null);
+            return modelAndView;
         }
     }
 }

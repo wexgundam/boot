@@ -18,7 +18,7 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 public class MethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
     /**
      * 当前版本主要使用了ProtectPointcutPostProcessor实现Aop AspectJ的表达式方式的权限控制
-     * 其原理是Spring没创建一个bean都要通过一组Aop的遍历，如果符合Aop表达式，则将这个bean的方法
+     * 其原理是Spring每创建一个bean都要通过一组Aop的遍历，如果符合Aop表达式，则将这个bean的方法
      * 注册到MethodSecurityMetadataSource中。当调用某bean的方法时，则检查该方法是否已经在注册
      * 列表中，如果存在则检查是否具有对应权限。
      *
