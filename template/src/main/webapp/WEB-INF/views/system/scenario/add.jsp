@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>新建场景</title>
+    <content-css>
+        <link href="${staticResourceServerUrl}/assets/zTree3.5/css/zTreeStyle/metro.css" rel="stylesheet" type="text/css"/>
+    </content-css>
 </head>
 <body>
 
@@ -121,11 +124,29 @@
                         <div class="col-md-9">
                             <div class="input-group input-xlarge">
                                 <div class="input-group">
-                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="" disabled>
+                                    <input id="parentId" type="hidden" name="parentId">
+                                    <input id="parentName" name="parentName" type="text" class="form-control" placeholder="" disabled>
                                     <span class="input-group-btn input-append">
-                                        <button class="btn btn-primary" type="button">
+                                         <a class="btn btn-primary" data-toggle="modal" href="#parentScenarioSelectModal">
                                             <i class="icon-magnifier"></i> 场景
-                                        </button>
+                                         </a>
+                                        <div class="modal fade" id="parentScenarioSelectModal" tabindex="-1" role="basic" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                        <h4 class="modal-title">选择父场景</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                         <ul id="scenarioZTree" class="ztree"></ul>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary" onclick="javascript:parentScenarioSelected();">确认</button>
+                                                        <button type="button" class="btn " data-dismiss="modal">取消</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                      </span>
                                 </div>
                                 <span class="help-inline">选择所属的父场景</span>
@@ -156,5 +177,41 @@
             </form>
         </div>
     </div>
+
+    <content-script>
+        <script src="${staticResourceServerUrl}/assets/zTree3.5/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>
+
+        <script language="JavaScript">
+            var zTreeObj;
+            // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+            var setting = {
+                data: {
+                    simpleData: {
+                        enable: true,
+                        idKey: "id",
+                        pIdKey: "pId",
+                        rootPId: ""
+                    }
+                }
+            };
+            // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+            var zNodes = ${scenarioZTreeJson};
+            $(document).ready(function () {
+                zTreeObj = $.fn.zTree.init($("#scenarioZTree"), setting, zNodes);
+            });
+
+            function parentScenarioSelected() {
+                var zTreeObj = $.fn.zTree.getZTreeObj("scenarioZTree");
+                var nodes = zTreeObj.getSelectedNodes();
+                if (nodes.length > 0) {
+                    $("#parentId").val(nodes[0].id);
+                    $("#parentName").val(nodes[0].name);
+                    $('#parentScenarioSelectModal').modal('hide');
+                }
+                else return;
+
+            }
+        </script>
+    </content-script>
 </body>
 </html>

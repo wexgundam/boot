@@ -55,8 +55,11 @@ public class ScenarioController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
         ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/add", indexPageUrl);
+        String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
+        modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
     }
+
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addScenario(Scenario scenario) {
