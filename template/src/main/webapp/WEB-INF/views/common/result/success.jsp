@@ -15,7 +15,7 @@
 
 <body>
     <!-- BEGIN PAGE HEADER-->
-    <!-- BEGIN PAGE BAR -->
+    <!-- BEGIN PAGE BAR -->z
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>

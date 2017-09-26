@@ -109,7 +109,7 @@
                                     <span class="input-group-addon">
                                         <i class="icon-tag"></i>
                                     </span>
-                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" disabled>
+                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" readonly>
                                     <span class="input-group-btn input-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="icon-magnifier"></i> 图标
@@ -125,7 +125,7 @@
                             <div class="input-group input-xlarge">
                                 <div class="input-group">
                                     <input id="parentId" type="hidden" name="parentId">
-                                    <input id="parentName" name="parentName" type="text" class="form-control" placeholder="" disabled>
+                                    <input id="parentName" name="parentName" type="text" class="form-control" placeholder="" readonly>
                                     <span class="input-group-btn input-append">
                                          <a class="btn btn-primary" data-toggle="modal" href="#parentScenarioSelectModal">
                                             <i class="icon-magnifier"></i> 场景

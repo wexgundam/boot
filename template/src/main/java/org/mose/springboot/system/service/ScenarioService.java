@@ -9,7 +9,9 @@ import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.util.log.LogUtil;
 import org.mose.springboot.util.ztree.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +44,7 @@ public class ScenarioService {
      *
      * @return
      */
-//    @Cacheable(value = "sysCache", key = "'scenarioList'")
+    @Cacheable(value = "sysCache", key = "'scenarioList'")
     public List<Scenario> getScenarioList() {
         List<Scenario> scenarios = new ArrayList<>();
         for (Scenario scenario : getScenarioTree()) {
@@ -73,7 +75,7 @@ public class ScenarioService {
      *
      * @return
      */
-//    @Cacheable(value = "sysCache", key = "'scenarioTree'")
+    @Cacheable(value = "sysCache", key = "'scenarioTree'")
     public List<Scenario> getScenarioTree() {
         List<Scenario> scenarios = new ArrayList<>();
         List<Scenario> allScenarios = scenarioRepository.queryAll();
@@ -110,7 +112,7 @@ public class ScenarioService {
      *
      * @return
      */
-//    @Cacheable(value = "sysCache", key = "'sidebarItems'")
+    @Cacheable(value = "sysCache", key = "'sidebarItems'")
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
         for (Scenario scenario : getScenarioTree()) {
@@ -147,6 +149,13 @@ public class ScenarioService {
 
 
     @Transactional
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "sysCache", key = "'scenarioList'"),
+                    @CacheEvict(value = "sysCache", key = "'scenarioTree'"),
+                    @CacheEvict(value = "sysCache", key = "'sidebarItems'")
+            }
+    )
     public void addScenario(Scenario scenario) {
         scenarioRepository.insertOne(scenario);
     }

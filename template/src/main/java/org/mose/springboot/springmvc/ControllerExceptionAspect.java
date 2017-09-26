@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Description:监听Controller抛出的所有Exception，Controller无须配置@Exception处理方法
@@ -39,7 +37,7 @@ public class ControllerExceptionAspect {
             WebUtil.out(response, JsonUtil.toStr(msg));
             return null;
         } else {
-            ModelAndView modelAndView = viewService.forwardExceptionPage(ex.getMessage(), null, null);
+            ModelAndView modelAndView = viewService.forwardExceptionView(ex.getMessage(), null, null);
             return modelAndView;
         }
     }

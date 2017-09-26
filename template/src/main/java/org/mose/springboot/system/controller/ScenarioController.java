@@ -48,13 +48,13 @@ public class ScenarioController {
         parameters.put("pagination", pagination.createHtml());
         parameters.put("scenarios", scenarioService.getScenarioList());
 
-        ModelAndView modelAndView = viewService.forwardDecoratePage(indexPageUrl, parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(indexPageUrl, parameters);
         return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
-        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/add", indexPageUrl);
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", indexPageUrl);
         String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
@@ -71,9 +71,9 @@ public class ScenarioController {
 //            return "forward:/success.htm?resultCode=" + GlobalCode.SAVE_SUCCESS;//msg=" + StringUtil.encodeUrl("资源新增成功");
 //        return "redirect:/system/scenario/index.htm";
 
-//        ModelAndView modelAndView = viewService.forwardFailPage("新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
+//        ModelAndView modelAndView = viewService.forwardFailView("新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
         scenarioService.addScenario(scenario);
-        ModelAndView modelAndView = viewService.forwardSuccessPage("新建场景已保存！", indexPageUrl, indexPageUrl);
+        ModelAndView modelAndView = viewService.forwardSuccessView("新建场景已保存！", indexPageUrl, indexPageUrl);
         return modelAndView;
     }
 }

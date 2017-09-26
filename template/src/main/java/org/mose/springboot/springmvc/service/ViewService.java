@@ -23,7 +23,7 @@ public class ViewService {
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
      * @param parameter            参数
      */
-    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl,
+    public ModelAndView forwardDecorateView(String targetViewName, String activeSidebarItemUrl,
                                             Map<String, Object> parameter) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addAllObjects(parameter);
@@ -37,8 +37,8 @@ public class ViewService {
      * @param targetViewName 目标视图名
      * @param parameter      参数
      */
-    public ModelAndView forwardDecoratePage(String targetViewName, Map<String, Object> parameter) {
-        return forwardDecoratePage(targetViewName, targetViewName, parameter);
+    public ModelAndView forwardDecorateView(String targetViewName, Map<String, Object> parameter) {
+        return forwardDecorateView(targetViewName, targetViewName, parameter);
     }
 
     /**
@@ -47,8 +47,8 @@ public class ViewService {
      * @param targetViewName       目标视图名
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
      */
-    public ModelAndView forwardDecoratePage(String targetViewName, String activeSidebarItemUrl) {
-        return forwardDecoratePage(targetViewName, activeSidebarItemUrl, null);
+    public ModelAndView forwardDecorateView(String targetViewName, String activeSidebarItemUrl) {
+        return forwardDecorateView(targetViewName, activeSidebarItemUrl, null);
     }
 
 
@@ -57,8 +57,8 @@ public class ViewService {
      *
      * @param targetViewName 目标视图名和需要激活的SidebarItem Url
      */
-    public ModelAndView forwardDecoratePage(String targetViewName) {
-        return forwardDecoratePage(targetViewName, targetViewName);
+    public ModelAndView forwardDecorateView(String targetViewName) {
+        return forwardDecorateView(targetViewName, targetViewName);
     }
 
 
@@ -81,10 +81,10 @@ public class ViewService {
      * @param message              失败描述信息
      * @param activeSidebarItemUrl
      */
-    public ModelAndView forwardFailPage(String message, String activeSidebarItemUrl) {
+    public ModelAndView forwardFailView(String message, String activeSidebarItemUrl) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("message", message);
-        ModelAndView modelAndView = forwardDecoratePage("/common/result/fail", activeSidebarItemUrl, parameters);
+        ModelAndView modelAndView = forwardDecorateView("/common/result/fail", activeSidebarItemUrl, parameters);
         return modelAndView;
     }
 
@@ -95,11 +95,11 @@ public class ViewService {
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
      * @param redirectUrl          重定向页面地址
      */
-    public ModelAndView forwardSuccessPage(String message, String activeSidebarItemUrl, String redirectUrl) {
+    public ModelAndView forwardSuccessView(String message, String activeSidebarItemUrl, String redirectUrl) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("message", message);
         parameters.put("redirectUrl", redirectUrl);
-        ModelAndView modelAndView = forwardDecoratePage("/common/result/success", activeSidebarItemUrl, parameters);
+        ModelAndView modelAndView = forwardDecorateView("/common/result/success", activeSidebarItemUrl, parameters);
         return modelAndView;
     }
 
@@ -110,11 +110,11 @@ public class ViewService {
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
      * @param redirectUrl          重定向页面地址
      */
-    public ModelAndView forwardExceptionPage(String message, String activeSidebarItemUrl, String redirectUrl) {
+    public ModelAndView forwardExceptionView(String message, String activeSidebarItemUrl, String redirectUrl) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("message", message);
         parameters.put("redirectUrl", redirectUrl);
-        ModelAndView modelAndView = forwardDecoratePage("/common/result/exception", activeSidebarItemUrl, parameters);
+        ModelAndView modelAndView = forwardDecorateView("/common/result/exception", activeSidebarItemUrl, parameters);
         return modelAndView;
     }
 }
