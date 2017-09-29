@@ -1,9 +1,13 @@
 package org.mose.springboot.system.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mose.springboot.metronic.modal.SidebarItem;
 import org.mose.springboot.spring.ResourceConfiguration;
 import org.mose.springboot.system.dao.IScenarioRepository;
 import org.mose.springboot.system.modal.Scenario;
+import org.mose.springboot.util.log.LogUtil;
+import org.mose.springboot.util.ztree.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -145,5 +149,38 @@ public class ScenarioService {
     @Transactional
     public void addScenario(Scenario scenario) {
         scenarioRepository.insertOne(scenario);
+    }
+
+    public String getScenarioZTreeJson() {
+        try {
+            List<Scenario> scenarioTree = getScenarioTree();
+            List<TreeNode> treeNodes = new ArrayList<>();
+            for (Scenario scenario : scenarioTree) {
+                TreeNode treeNode = createTreeNode(scenario);
+                treeNodes.add(treeNode);
+            }
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writeValueAsString(treeNodes);
+        } catch (JsonProcessingException e) {
+            LogUtil.error(e);
+        }
+        return null;
+    }
+
+    private TreeNode createTreeNode(Scenario scenario) {
+        TreeNode treeNode = new TreeNode();
+        treeNode.setId(Integer.toString(scenario.getId()));
+        treeNode.setPId(scenario.getParentId() == null ? null : scenario.getParentId().toString());
+        treeNode.setName(scenario.getName());
+        treeNode.setOpen(true);
+        if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
+            List<TreeNode> children = new ArrayList<>();
+            for (Scenario childScenario : scenario.getChildren()) {
+                TreeNode child = createTreeNode(childScenario);
+                children.add(child);
+            }
+            treeNode.setChildren(children);
+        }
+        return treeNode;
     }
 }
