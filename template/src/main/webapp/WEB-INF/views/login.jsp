@@ -52,7 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END PAGE LEVEL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="${staticResourceServerUrl}/assets/metronic_v4.7.5/favicon.ico" />
+    <link rel="shortcut icon" href="${staticResourceServerUrl}/assets/common/images/web-site-icon.ico" />
 </head>
 <!-- END HEAD -->
 
