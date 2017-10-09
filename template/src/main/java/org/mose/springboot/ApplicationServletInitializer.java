@@ -3,6 +3,7 @@ package org.mose.springboot;
 import org.mose.springboot.servlet.HttpSessionManager;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.util.WebAppRootListener;
 
@@ -22,6 +23,8 @@ public class ApplicationServletInitializer extends SpringBootServletInitializer 
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
 
+        // 监控在线用户
+        servletContext.addListener(new HttpSessionEventPublisher());
 
         // http session timeout
         servletContext.addListener(HttpSessionManager.class);

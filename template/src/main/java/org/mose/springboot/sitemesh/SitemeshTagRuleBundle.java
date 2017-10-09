@@ -9,7 +9,7 @@ import org.sitemesh.tagprocessor.State;
 /**
  *
  */
-public class CssScriptTagRuleBundle implements TagRuleBundle {
+public class SitemeshTagRuleBundle implements TagRuleBundle {
     @Override
     public void install(State defaultState, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {
         defaultState.addRule("content-css", new ExportTagToContentRule(siteMeshContext, contentProperty.getChild("content-css"), false));

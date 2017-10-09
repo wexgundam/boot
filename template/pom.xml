@@ -83,6 +83,20 @@
         </dependency>
         <!-- End Database -->
 
+        <!-- Begin redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- End redis -->
+
+        <!-- Begin redis -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+        </dependency>
+        <!-- End redis -->
+
         <!-- Begin sitemesh -->
         <dependency>
             <groupId>org.sitemesh</groupId>

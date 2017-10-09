@@ -25,6 +25,6 @@
 
     <!-- 自定义标签 -->
     <content-processor>
-        <tag-rule-bundle class="org.mose.springboot.sitemesh.CssScriptTagRuleBundle"/>
+        <tag-rule-bundle class="org.mose.springboot.sitemesh.SitemeshTagRuleBundle"/>
     </content-processor>
 </sitemesh>
