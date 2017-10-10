@@ -62,9 +62,11 @@ public class SecurityController {
 //        return "Current active session count is " + securityService.getActiveSessionCount();
         for (String key : springSessionRedisService.getAllKeys()) {
             for (Session session : springSessionRedisService.getSessionsByKey(key)) {
-                String sessionId = session.getId();
-                User user = (User) sessionRegistry.getSessionInformation(sessionId).getPrincipal();
-                System.out.println(user.getUsername());
+                if (session != null) {
+                    String sessionId = session.getId();
+                    User user = (User) sessionRegistry.getSessionInformation(sessionId).getPrincipal();
+                    System.out.println(user.getUsername());
+                }
             }
         }
         return "Current active session count is " + springSessionRedisService.getAllKeys().size();
