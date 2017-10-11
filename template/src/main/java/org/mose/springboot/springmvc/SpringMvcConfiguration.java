@@ -2,11 +2,14 @@ package org.mose.springboot.springmvc;
 
 import org.mose.springboot.spring.ResourceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * SpringMvc 配置
@@ -15,7 +18,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * 1. MappingJackson2HttpMessageConverter设置Controller注解，及json格式解析器
  * 2. RequestMappingHandlerAdapter处理请求头、获取handlerMethod等
  * 3. InternalResourceViewResolver设置Jsp视图解析器
- * 4. ......
+ * 4. 提供了Multipart File Uploads功能
+ * 5. ......
  */
 @Configuration
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
@@ -32,15 +36,5 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     public void configureViewResolver(InternalResourceViewResolver viewResolver) {
         viewResolver.getAttributesMap().putAll(resourceConfiguration.toMap());
-    }
-
-    /**
-     * 设置支持上传文件
-     *
-     * @return
-     */
-    @Bean
-    public CommonsMultipartResolver multipartResolver() {
-        return new CommonsMultipartResolver();
     }
 }
