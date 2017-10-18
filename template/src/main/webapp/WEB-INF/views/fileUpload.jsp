@@ -42,6 +42,7 @@
 
                     var form = $("#fileUploadForm")[0];
                     var formData = new FormData(form);
+                    formData.append("fileName", "test");
 
                     // Ajax call for file uploaling
                     var ajaxReq = $.ajax({

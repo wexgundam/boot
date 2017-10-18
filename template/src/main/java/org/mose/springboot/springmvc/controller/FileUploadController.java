@@ -22,7 +22,7 @@ public class FileUploadController {
 
     // Handling file upload request
     @PostMapping("/fileUpload")
-    public ResponseEntity<Object> fileUpload(@RequestParam("file") MultipartFile file)
+    public ResponseEntity<Object> fileUpload(@RequestParam("file") MultipartFile file, String fileName)
             throws IOException {
 
         // Save file on system
