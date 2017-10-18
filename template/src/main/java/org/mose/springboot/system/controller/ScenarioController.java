@@ -54,6 +54,11 @@ public class ScenarioController {
         return modelAndView;
     }
 
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addPage() {
         ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/add", indexPageUrl);
@@ -62,7 +67,12 @@ public class ScenarioController {
         return modelAndView;
     }
 
-
+    /**
+     * 执行新增操作
+     *
+     * @param scenario
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addScenario(Scenario scenario) {
 //        if (flag == 0)
@@ -83,6 +93,12 @@ public class ScenarioController {
         }
     }
 
+    /**
+     * 执行删除操作
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/delete")
     public ModelAndView deleteScenario(int id) {
         int returnCode = scenarioService.deleteScenario(id);
@@ -94,4 +110,14 @@ public class ScenarioController {
             return modelAndView;
         }
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public ModelAndView updatePage(int id) {
+        Scenario scenario = scenarioService.getScenario(id);
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("scenario", scenario);
+        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/update", indexPageUrl, parameters);
+        return modelAndView;
+    }
+
 }

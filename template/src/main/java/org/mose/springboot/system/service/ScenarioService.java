@@ -221,4 +221,14 @@ public class ScenarioService {
     public int deleteScenario(int id) {
         return scenarioRepository.deleteOne(id);
     }
+
+    /**
+     * 根据给定的id查询
+     *
+     * @param id
+     * @return
+     */
+    public Scenario getScenario(int id) {
+        return scenarioRepository.queryOne(id);
+    }
 }

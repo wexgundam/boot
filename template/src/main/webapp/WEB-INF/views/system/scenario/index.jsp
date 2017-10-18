@@ -122,8 +122,8 @@
                             <td style="text-align: center;">${scenario.displayOrder}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
-                                        修改</i>
+                                    <a href="${dynamicServer }/system/scenario/update.htm?id=${scenario.id}">
+                                        修改</li>
                                     </a>
                                     <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
