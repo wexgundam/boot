@@ -1,5 +1,6 @@
 package org.mose.springboot.springsession;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
@@ -11,5 +12,6 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @Date: 2017/9/30 10:04
  */
 @EnableRedisHttpSession
+@PropertySource("classpath:/config/application-springsession.properties")
 public class SpringSessionConfiguration {
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -22,6 +23,7 @@ import javax.servlet.MultipartConfigElement;
  * 5. ......
  */
 @Configuration
+@PropertySource("classpath:/config/application-springmvc.properties")
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     ResourceConfiguration resourceConfiguration;

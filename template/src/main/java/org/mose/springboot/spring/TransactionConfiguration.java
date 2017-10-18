@@ -6,6 +6,7 @@ import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.AnnotationTransactionAttributeSource;
@@ -24,6 +25,7 @@ import org.springframework.transaction.interceptor.*;
 @EnableTransactionManagement
 @Aspect
 @Component
+@PropertySource("classpath:/config/application-transaction.properties")
 public class TransactionConfiguration {
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* org.mose.springboot.*..service.*.*(..))";
 
