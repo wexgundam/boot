@@ -14,6 +14,6 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @EnableCaching
-@PropertySource("classpath:/config/application-ehcache.properties")
+@PropertySource("classpath:/config/application-cache.properties")
 public class CacheConfiguration {
 }
