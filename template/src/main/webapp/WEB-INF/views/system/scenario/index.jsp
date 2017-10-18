@@ -125,7 +125,7 @@
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
                                         修改</i>
                                     </a>
-                                    <a href="javascript:delModule(${resource.id });"> 删除 </a>
+                                    <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
                             </td>
@@ -176,7 +176,7 @@
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
                                         修改</i>
                                     </a>
-                                    <a href="javascript:delModule(${resource.id });"> 删除 </a>
+                                    <a href="javascript:deleteScenario(${resource.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
                             </td>
@@ -213,14 +213,14 @@
             <%--var url = "index.htm?";--%>
             <%--window.location = encodeURI(url);--%>
             <%--}--%>
-            <%--// 删除--%>
-            <%--var delModule = function (id) {--%>
-            <%--bootbox.confirm("你确定要删除该场景吗？", function (result) {--%>
-            <%--if (result) {--%>
-            <%--window.location = "delete.htm?id=" + id + "&backUrl=${backUrl}";--%>
-            <%--}--%>
-            <%--})--%>
-            <%--}--%>
+            // 删除
+            var deleteScenario = function (id) {
+                bootbox.confirm("你确定要删除该场景吗？", function (result) {
+                    if (result) {
+                        window.location = "delete.htm?id=" + id;
+                    }
+                })
+            }
             <%--//新增--%>
             <%--var addUser = function (id) {--%>
             <%--window.location = 'toAdd.htm?backUrl=${backUrl }';--%>

@@ -38,7 +38,7 @@ public class TestScenarioMysqlRepository {
         scenario.setUrlTarget("3");
         scenario.setIcon("icon");
         scenario.setDisplayOrder(1);
-        scenario.setId(repository.insertOne(scenario).intValue());
+        repository.insertOne(scenario);
     }
 
     @Test

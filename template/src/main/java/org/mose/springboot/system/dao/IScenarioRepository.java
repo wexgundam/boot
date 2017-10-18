@@ -29,7 +29,7 @@ public interface IScenarioRepository {
      *
      * @param scenario
      */
-    Integer insertOne(Scenario scenario);
+    int insertOne(Scenario scenario);
 
     /**
      * 更新一条记录
@@ -44,4 +44,23 @@ public interface IScenarioRepository {
      * @param scenario
      */
     int deleteOne(Scenario scenario);
+
+    /**
+     * 根据Id删除记录
+     *
+     * @param id
+     * @return
+     */
+    int deleteOne(int id);
+
+    /**
+     * Description:查询给定id的场景的直接孩子总数
+     *
+     * @param id
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:26
+     */
+    int queryChildrenCount(int id);
 }

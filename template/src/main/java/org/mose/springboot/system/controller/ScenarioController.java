@@ -5,6 +5,8 @@ import org.mose.springboot.spring.ResourceConfiguration;
 import org.mose.springboot.springmvc.service.ViewService;
 import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.system.service.ScenarioService;
+import org.mose.springboot.util.code.ReturnCodeUtil;
+import org.mose.springboot.util.global.GlobalConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,9 +73,25 @@ public class ScenarioController {
 //            return "forward:/success.htm?resultCode=" + GlobalCode.SAVE_SUCCESS;//msg=" + StringUtil.encodeUrl("资源新增成功");
 //        return "redirect:/system/scenario/index.htm";
 
-//        ModelAndView modelAndView = viewService.forwardFailPage("新建场景操作失败，请检查提交的信息是否正确！", indexPageUrl);
-        scenarioService.addScenario(scenario);
-        ModelAndView modelAndView = viewService.forwardSuccessPage("新建场景已保存！", indexPageUrl, indexPageUrl);
-        return modelAndView;
+        int returnCode = scenarioService.addScenario(scenario);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = viewService.forwardSuccessPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl, indexPageUrl);
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping(value = "/delete")
+    public ModelAndView deleteScenario(int id) {
+        int returnCode = scenarioService.deleteScenario(id);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = viewService.forwardSuccessPage("场景删除成功！", indexPageUrl, indexPageUrl);
+            return modelAndView;
+        }
     }
 }

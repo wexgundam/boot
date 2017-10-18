@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -146,11 +147,28 @@ public class ScenarioService {
     }
 
 
+    /**
+     * Description:删除记录
+     *
+     * @param scenario
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:19
+     */
     @Transactional
-    public void addScenario(Scenario scenario) {
-        scenarioRepository.insertOne(scenario);
+    public int addScenario(Scenario scenario) {
+        return scenarioRepository.insertOne(scenario);
     }
 
+    /**
+     * Description: 获得所有场景基于ZTree的Json结构
+     *
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:20
+     */
     public String getScenarioZTreeJson() {
         try {
             List<Scenario> scenarioTree = getScenarioTree();
@@ -167,6 +185,15 @@ public class ScenarioService {
         return null;
     }
 
+    /**
+     * Description: 获得给定场景对应的TreeNode
+     *
+     * @param scenario
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:20
+     */
     private TreeNode createTreeNode(Scenario scenario) {
         TreeNode treeNode = new TreeNode();
         treeNode.setId(Integer.toString(scenario.getId()));
@@ -182,5 +209,16 @@ public class ScenarioService {
             treeNode.setChildren(children);
         }
         return treeNode;
+    }
+
+    /**
+     * 删除给定id对应的记录
+     *
+     * @param id
+     * @return
+     */
+    @Transactional
+    public int deleteScenario(int id) {
+        return scenarioRepository.deleteOne(id);
     }
 }
