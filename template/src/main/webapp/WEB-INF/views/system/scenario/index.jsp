@@ -176,7 +176,7 @@
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
                                         修改</i>
                                     </a>
-                                    <a href="javascript:deleteScenario(${resource.id });"> 删除 </a>
+                                    <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
                                     <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
                             </td>
