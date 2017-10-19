@@ -2,7 +2,6 @@ package org.mose.springboot.cache;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * Description: 缓存配置
@@ -14,6 +13,5 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @EnableCaching
-@PropertySource("classpath:/config/application-cache.properties")
 public class CacheConfiguration {
 }

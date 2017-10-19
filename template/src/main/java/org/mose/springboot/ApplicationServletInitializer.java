@@ -1,6 +1,5 @@
 package org.mose.springboot;
 
-import org.mose.springboot.servlet.HttpSessionManager;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
@@ -25,9 +24,6 @@ public class ApplicationServletInitializer extends SpringBootServletInitializer 
 
         // 监控在线用户
         servletContext.addListener(new HttpSessionEventPublisher());
-
-        // http session timeout
-        servletContext.addListener(HttpSessionManager.class);
 
         // 通过System.getProperty("template.root")获取项目的路径
         servletContext.setInitParameter("webAppRootKey", "template.root");
