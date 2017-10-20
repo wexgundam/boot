@@ -109,7 +109,7 @@
                                     <span class="input-group-addon">
                                         <i class="icon-tag"></i>
                                     </span>
-                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" disabled>
+                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" readonly>
                                     <span class="input-group-btn input-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="icon-magnifier"></i> 图标
@@ -170,7 +170,7 @@
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
                             <button type="submit" class="btn green">保存</button>
-                            <button type="button" class="btn default">取消</button>
+                            <button type="button" class="btn default" onclick="history.back(-1)">取消</button>
                         </div>
                     </div>
                 </div>

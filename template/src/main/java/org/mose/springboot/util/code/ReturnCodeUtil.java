@@ -39,6 +39,12 @@ public class ReturnCodeUtil {
      * 删除失败：包含下级节点
      */
     public static final int FAIL__DELETE_HAVE_CHILDREN = 20002;
+    /**
+     * 没有数据可更新
+     *
+     * @return
+     */
+    public static final int FAIL__UPDATE_NULL = 20003;
 
     //初始化map
     private static Map<Integer, String> createMap() {
@@ -48,6 +54,7 @@ public class ReturnCodeUtil {
         map.put(SUCCESS__DELETE, "删除成功");
         map.put(FAIL__SAVE, "保存失败");
         map.put(FAIL__DELETE_HAVE_CHILDREN, "包含下级节点");
+        map.put(FAIL__UPDATE_NULL, "没有数据可更新");
 
         return map;
     }

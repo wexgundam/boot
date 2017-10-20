@@ -3,9 +3,9 @@ package org.mose.springboot.system.dao;
 import org.mose.springboot.dao.stream.AbstractStreamRepository;
 import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.util.code.ReturnCodeUtil;
-import org.mose.springboot.util.global.GlobalConst;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class ScenarioMysqlRepository extends AbstractStreamRepository<Scenario, Integer> implements IScenarioRepository {
     @Override
     public Scenario queryOne(int id) {
-        String sql = "select id, name, description, parent_id, url, url_target, icon, display_order from T_SCENARIO where id=?";
+        String sql = "select id, name, description, parent_id, url, url_target, icon, display_order, (select name from t_scenario where id=t.parent_id) parent_name from T_SCENARIO t where id=?";
         return query().sql(sql).parameters(id).queryOne();
     }
 
@@ -50,7 +50,12 @@ public class ScenarioMysqlRepository extends AbstractStreamRepository<Scenario, 
         StringBuffer sql = new StringBuffer();
         sql.append("update T_SCENARIO set name=:name, description=:description, parent_id=:parentId, url=:url, url_target=:urlTarget, icon=:icon, display_order=:displayOrder");
         sql.append(" where id=:id");
-        return update().sql(sql.substring(0)).parameterBean(scenario).updateAny();
+        int rowCount = update().sql(sql.substring(0)).parameterBean(scenario).updateAny();
+        if (rowCount > 0) {
+            return ReturnCodeUtil.SUCCESS__UPDATE;
+        } else {
+            return ReturnCodeUtil.FAIL__UPDATE_NULL;
+        }
     }
 
     @Override

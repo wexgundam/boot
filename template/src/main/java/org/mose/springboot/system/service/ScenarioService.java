@@ -9,11 +9,9 @@ import org.mose.springboot.system.modal.Scenario;
 import org.mose.springboot.util.log.LogUtil;
 import org.mose.springboot.util.ztree.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -197,7 +195,7 @@ public class ScenarioService {
     private TreeNode createTreeNode(Scenario scenario) {
         TreeNode treeNode = new TreeNode();
         treeNode.setId(Integer.toString(scenario.getId()));
-        treeNode.setPId(scenario.getParentId() == null ? null : scenario.getParentId().toString());
+        treeNode.setPId(scenario.getParent() == null ? null : Integer.toString(scenario.getParent().getId()));
         treeNode.setName(scenario.getName());
         treeNode.setOpen(true);
         if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
@@ -230,5 +228,15 @@ public class ScenarioService {
      */
     public Scenario getScenario(int id) {
         return scenarioRepository.queryOne(id);
+    }
+
+    /**
+     * 更新
+     *
+     * @param scenario
+     */
+    @Transactional
+    public int updateScenario(Scenario scenario) {
+        return scenarioRepository.updateOne(scenario);
     }
 }

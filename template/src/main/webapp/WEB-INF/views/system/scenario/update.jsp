@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新建场景</title>
+    <title>修改场景</title>
     <content-css>
-        <link href="${staticResourceServerUrl}/assets/zTree3.5/css/zTreeStyle/metro.css" rel="stylesheet" type="text/css"/>
+        <link href="${staticResourceServerUrl}/assets/zTree3.5/css/zTreeStyle/metro.css" rel="stylesheet" type="text/css" />
     </content-css>
 </head>
 <body>
@@ -30,7 +31,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>新建场景</span>
+                <span>修改场景</span>
             </li>
         </ul>
         <div class="page-toolbar">
@@ -59,8 +60,8 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 新建场景
-        <small>新建场景，设置场景的基本属性以及场景间的关系</small>
+    <h1 class="page-title"> 修改场景
+        <small>修改场景，设置场景的基本属性以及场景间的关系</small>
     </h1>
     <!-- END PAGE TITLE-->
 
@@ -68,19 +69,19 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <form class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/scenario/add.htm" method="post">
+            <form class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/scenario/update.htm?id=${scenario.id }" method="post">
                 <div class="form-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景名称</label>
                         <div class="col-md-9">
-                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称">
+                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称" value="${scenario.name}">
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">链接地址</label>
                         <div class="col-md-9">
-                            <input name="url" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址">
+                            <input name="url" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址" value="${scenario.url}">
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                         <div class="col-md-9">
                             <div class="mt-radio-inline">
                                 <label class="mt-radio">
-                                    <input type="radio" name="urlTarget" value="_self" checked>
+                                    <input type="radio" name="urlTarget" value="_self">
                                     _self
                                     <span></span>
                                 </label>
@@ -107,9 +108,9 @@
                             <div class="input-group input-xlarge">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="icon-tag"></i>
+                                        <i class="${scenario.icon}"></i>
                                     </span>
-                                    <input name="icon" value="icon-tag" type="text" class="form-control" placeholder="icon-tag" disabled>
+                                    <input name="icon" value="${scenario.icon}" type="text" class="form-control" placeholder="icon-tag" readonly>
                                     <span class="input-group-btn input-append">
                                         <button class="btn btn-primary" type="button">
                                             <i class="icon-magnifier"></i> 图标
@@ -124,8 +125,8 @@
                         <div class="col-md-9">
                             <div class="input-group input-xlarge">
                                 <div class="input-group">
-                                    <input id="parentId" type="hidden" name="parentId">
-                                    <input id="parentName" name="parentName" type="text" class="form-control" placeholder="" disabled>
+                                    <input id="parentId" type="hidden" name="parentId" value="${scenario.parent.id}">
+                                    <input id="parentName" name="parentName" type="text" class="form-control" placeholder="" disabled value="${scenario.parent.name}">
                                     <span class="input-group-btn input-append">
                                          <a class="btn btn-primary" data-toggle="modal" href="#parentScenarioSelectModal">
                                             <i class="icon-magnifier"></i> 场景
@@ -156,13 +157,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景排序</label>
                         <div class="col-md-9">
-                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="1">
+                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="${scenario.displayOrder}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">描述</label>
                         <div class="col-md-9">
-                            <textarea class="form-control input-xlarge" rows="3" name="description"></textarea>
+                            <textarea class="form-control input-xlarge" rows="3" name="description" value="${scenario.description}"></textarea>
                         </div>
                     </div>
                 </div>
@@ -170,7 +171,7 @@
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
                             <button type="submit" class="btn green">保存</button>
-                            <button type="button" class="btn default">取消</button>
+                            <button type="button" class="btn default" onclick="history.back(-1)">取消</button>
                         </div>
                     </div>
                 </div>
@@ -211,6 +212,10 @@
                 else return;
 
             }
+
+            $(function () {
+                $("input[name=urlTarget][value=${scenario.urlTarget}]").attr("checked", true);
+            });
         </script>
     </content-script>
 </body>

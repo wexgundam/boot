@@ -22,7 +22,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Profile("mysql")
-@Transactional
+//@Transactional
 public class TestScenarioMysqlRepository {
     @Autowired
     IScenarioRepository repository;
@@ -30,10 +30,14 @@ public class TestScenarioMysqlRepository {
 
     @Before
     public void insertOne() {
+        Scenario parent = new Scenario();
+        parent.setName("北京");
+        repository.insertOne(parent);
+
         scenario = new Scenario();
         scenario.setName("name");
         scenario.setDescription("description");
-        scenario.setParentId(1);
+        scenario.setParent(parent);
         scenario.setUrl("2");
         scenario.setUrlTarget("3");
         scenario.setIcon("icon");
@@ -42,12 +46,13 @@ public class TestScenarioMysqlRepository {
     }
 
     @Test
-    public void testOne() {
+    public void testQueryOne() {
         Scenario queryOne = repository.queryOne(scenario.getId());
         Assert.assertNotNull(queryOne);
         Assert.assertEquals(queryOne.getName(), this.scenario.getName());
         Assert.assertEquals(queryOne.getDescription(), this.scenario.getDescription());
-        Assert.assertEquals(queryOne.getParentId(), this.scenario.getParentId());
+        Assert.assertEquals(queryOne.getParent().getId(), this.scenario.getParent().getId());
+        Assert.assertEquals(queryOne.getParentName(), this.scenario.getParentName());
         Assert.assertNotNull(queryOne.getParent());
         Assert.assertEquals(queryOne.getUrl(), this.scenario.getUrl());
         Assert.assertEquals(queryOne.getUrlTarget(), this.scenario.getUrlTarget());
@@ -63,11 +68,8 @@ public class TestScenarioMysqlRepository {
 
     @Test
     public void testUpdateOne() {
-        Scenario scenario = new Scenario();
-        scenario.setId(this.scenario.getId());
-        scenario.setName("name2");
+        scenario.setName("角色");
         scenario.setDescription("description2");
-        scenario.setParentId(12);
         scenario.setUrl("22");
         scenario.setUrlTarget("33");
         scenario.setIcon("icon2");
@@ -79,7 +81,7 @@ public class TestScenarioMysqlRepository {
         Assert.assertNotNull(queriedOne);
         Assert.assertEquals(queriedOne.getName(), scenario.getName());
         Assert.assertEquals(queriedOne.getDescription(), scenario.getDescription());
-        Assert.assertEquals(queriedOne.getParentId(), scenario.getParentId());
+        Assert.assertEquals(queriedOne.getParent().getId(), scenario.getParent().getId());
         Assert.assertNotNull(queriedOne.getParent());
         Assert.assertEquals(queriedOne.getUrl(), scenario.getUrl());
         Assert.assertEquals(queriedOne.getUrlTarget(), scenario.getUrlTarget());

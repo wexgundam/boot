@@ -111,13 +111,38 @@ public class ScenarioController {
         }
     }
 
+    /**
+     * 请求更新界面
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public ModelAndView updatePage(int id) {
         Scenario scenario = scenarioService.getScenario(id);
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("scenario", scenario);
-        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/update", indexPageUrl, parameters);
+        String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
+
+        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/update", indexPageUrl);
+        modelAndView.addObject("scenario", scenario);
+        modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
     }
 
+    /**
+     * 请求更新操作
+     *
+     * @param scenario
+     * @return
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ModelAndView updateScenario(Scenario scenario) {
+        int returnCode = scenarioService.updateScenario(scenario);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = viewService.forwardSuccessPage("场景更新成功！", indexPageUrl, indexPageUrl);
+            return modelAndView;
+        }
+    }
 }

@@ -80,19 +80,35 @@ public class Scenario {
         return getId();
     }
 
+    public Scenario getParent() {
+        return parent;
+    }
+
+    public void setParent(Scenario parent) {
+        this.parent = parent;
+    }
 
     public void setParentId(Integer parentId) {
         if (parentId == null) {
             parent = null;
             return;
         } else {
-            parent = new Scenario();
+            parent = parent == null ? new Scenario() : parent;
             parent.setId(parentId);
         }
     }
 
     public Integer getParentId() {
         return parent == null ? null : parent.getId();
+    }
+
+    public void setParentName(String parentName) {
+        parent = parent == null ? new Scenario() : parent;
+        parent.setName(parentName);
+    }
+
+    public String getParentName() {
+        return parent == null ? null : parent.getName();
     }
 
     public int getId() {
@@ -117,14 +133,6 @@ public class Scenario {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Scenario getParent() {
-        return parent;
-    }
-
-    public void setParent(Scenario parent) {
-        this.parent = parent;
     }
 
     public String getIcon() {
