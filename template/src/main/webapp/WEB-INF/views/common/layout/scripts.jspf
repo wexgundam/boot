@@ -18,6 +18,8 @@
 
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/jquery.validate.js" type="text/javascript"></script>
+<script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript"></script>
 <script src="${staticResourceServerUrl}/assets/metronic_v4.7.5/global/plugins/bootbox/bootbox.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 

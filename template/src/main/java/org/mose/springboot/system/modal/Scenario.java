@@ -26,6 +26,14 @@ public class Scenario {
      */
     private Scenario parent;
     /**
+     * 父场景id
+     */
+    private Integer parentId;
+    /**
+     * 父场景名称
+     */
+    private String parentName;
+    /**
      * 场景连接地址
      */
     private String url;
@@ -40,7 +48,7 @@ public class Scenario {
     /**
      * 在父场景中的顺序
      */
-    private Integer displayOrder = 0;
+    private int displayOrder = 0;
 
     /**
      * 包含的子场景
@@ -66,7 +74,7 @@ public class Scenario {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", parent=" + parent +
+                ", parent=" + getParent() +
                 ", url='" + url + '\'' +
                 ", urlTarget='" + urlTarget + '\'' +
                 ", icon='" + icon + '\'' +
@@ -81,34 +89,41 @@ public class Scenario {
     }
 
     public Scenario getParent() {
+        if (parentId == null) {
+            parent = null;
+        } else {
+            parent = parent == null ? new Scenario() : parent;
+            parent.setId(parentId);
+            parent.setName(parentName);
+        }
         return parent;
     }
 
     public void setParent(Scenario parent) {
+        if (parent == null) {
+            parentId = null;
+            parentName = null;
+        } else {
+            parentId = parent.getId();
+            parentName = parent.getName();
+        }
         this.parent = parent;
     }
 
-    public void setParentId(Integer parentId) {
-        if (parentId == null) {
-            parent = null;
-            return;
-        } else {
-            parent = parent == null ? new Scenario() : parent;
-            parent.setId(parentId);
-        }
-    }
-
     public Integer getParentId() {
-        return parent == null ? null : parent.getId();
+        return parentId;
     }
 
-    public void setParentName(String parentName) {
-        parent = parent == null ? new Scenario() : parent;
-        parent.setName(parentName);
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getParentName() {
-        return parent == null ? null : parent.getName();
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public int getId() {

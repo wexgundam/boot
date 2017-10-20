@@ -21,3 +21,7 @@
 <!-- END THEME LAYOUT STYLES -->
 
 <link rel="shortcut icon" href="${staticResourceServerUrl}/assets/common/images/web-site-icon.ico" />
+
+<!-- BEGIN CUSTOM STYLES -->
+<link href="${staticResourceServerUrl}/assets/common/common.css" rel="stylesheet" type="text/css" />
+<!-- END CUSTOM STYLES -->

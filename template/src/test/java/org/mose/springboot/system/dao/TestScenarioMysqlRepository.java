@@ -22,7 +22,7 @@ import java.util.List;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @Profile("mysql")
-//@Transactional
+@Transactional
 public class TestScenarioMysqlRepository {
     @Autowired
     IScenarioRepository repository;
@@ -52,7 +52,7 @@ public class TestScenarioMysqlRepository {
         Assert.assertEquals(queryOne.getName(), this.scenario.getName());
         Assert.assertEquals(queryOne.getDescription(), this.scenario.getDescription());
         Assert.assertEquals(queryOne.getParent().getId(), this.scenario.getParent().getId());
-        Assert.assertEquals(queryOne.getParentName(), this.scenario.getParentName());
+        Assert.assertEquals(queryOne.getParent().getName(), this.scenario.getParent().getName());
         Assert.assertNotNull(queryOne.getParent());
         Assert.assertEquals(queryOne.getUrl(), this.scenario.getUrl());
         Assert.assertEquals(queryOne.getUrlTarget(), this.scenario.getUrlTarget());

@@ -69,12 +69,13 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <form class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/scenario/update.htm?id=${scenario.id }" method="post">
+            <form id="scenarioForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/scenario/update.htm?id=${scenario.id }" method="post">
                 <div class="form-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景名称</label>
                         <div class="col-md-9">
                             <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称" value="${scenario.name}">
+                            <label id="nameTip"></label>
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -131,6 +132,9 @@
                                          <a class="btn btn-primary" data-toggle="modal" href="#parentScenarioSelectModal">
                                             <i class="icon-magnifier"></i> 场景
                                          </a>
+                                         <a class="btn btn-primary" onclick="cancelParent()">
+                                            <i class="icon-fire"></i> 取消
+                                         </a>
                                         <div class="modal fade" id="parentScenarioSelectModal" tabindex="-1" role="basic" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -150,7 +154,6 @@
                                         </div>
                                      </span>
                                 </div>
-                                <span class="help-inline">选择所属的父场景</span>
                             </div>
                         </div>
                     </div>
@@ -158,12 +161,14 @@
                         <label class="col-md-3 control-label">场景排序</label>
                         <div class="col-md-9">
                             <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="${scenario.displayOrder}">
+                            <label id="displayOrderTip"></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">描述</label>
                         <div class="col-md-9">
-                            <textarea class="form-control input-xlarge" rows="3" name="description" value="${scenario.description}"></textarea>
+                            <textarea class="form-control input-xlarge" rows="3" name="description">${scenario.description}</textarea>
+                            <label id="descriptionTip"></label>
                         </div>
                     </div>
                 </div>
@@ -210,11 +215,48 @@
                     $('#parentScenarioSelectModal').modal('hide');
                 }
                 else return;
-
             }
 
+            <c:if test="${scenario.urlTarget !=null}">
             $(function () {
                 $("input[name=urlTarget][value=${scenario.urlTarget}]").attr("checked", true);
+            });
+            </c:if>
+
+            //取消选中的父场景
+            function cancelParent() {
+                $("#parentId").val(null);
+                $("#parentName").val(null);
+            }
+
+            //表单验证
+            $(function () {
+                $("#scenarioForm").validate({
+                    debug: true,
+                    errorElement: "label",
+                    errorClass: "validateError",
+                    errorPlacement: function (error, element) {
+                        error.appendTo($("#" + element.attr('name') + "Tip"));
+                    },
+                    rules: {
+                        name: {
+                            required: true,
+                            maxlength: 40
+                        },
+                        displayOrder: {
+                            required: true,
+                            number: true,
+                            maxlength: 10
+                        },
+                        description: {
+                            maxlength: 50
+                        }
+                    },
+                    messages: {},
+                    submitHandler: function (form) {
+                        form.submit();
+                    }
+                });
             });
         </script>
     </content-script>
