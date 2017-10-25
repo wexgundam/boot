@@ -7,6 +7,8 @@ import org.mose.springboot.util.spring.SpringContextHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
+import org.springframework.core.env.Environment;
 
 /**
  * Description:配置Spring Application Context
@@ -33,14 +35,16 @@ public class SpringConfiguration {
         return new SpringContextHolder();
     }
 
-    @Profile("mysql")
     @Bean
+    @Scope("prototype")
+    @Profile("mysql")
     public IPaging mysqlPaging() {
         return new MysqlPaging();
     }
 
-    @Profile("oracle")
     @Bean
+    @Scope("prototype")
+    @Profile("oracle")
     public IPaging oraclePaging() {
         return new OraclePaging();
     }

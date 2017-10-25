@@ -15,7 +15,6 @@ import java.util.List;
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */
-@Profile("mysql")
 @Component
 public class ScenarioMysqlRepository extends AbstractStreamRepository<Scenario, Integer> implements IScenarioRepository {
     @Override

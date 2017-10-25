@@ -47,16 +47,16 @@
         </dependency>
         <!-- End Spring Security -->
 
-        <!-- Begin AspectJ -->
+        <!-- Begin Spring AspectJ -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        <!--Aop-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!-- End Spring AspectJ -->
 
         <!-- Begin Database -->
         <dependency>
@@ -66,12 +66,10 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
         </dependency>
         <!-- End Database -->
 
@@ -82,18 +80,17 @@
         </dependency>
         <!-- End redis -->
 
-        <!-- Begin redis -->
+        <!-- Begin spring session -->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
         </dependency>
-        <!-- End redis -->
+        <!-- End spring session -->
 
         <!-- Begin sitemesh -->
         <dependency>
             <groupId>org.sitemesh</groupId>
             <artifactId>sitemesh</artifactId>
-            <version>${sitemesh.version}</version>
         </dependency>
         <!-- End sitemesh -->
 
@@ -101,7 +98,6 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>${fileupload.version}</version>
         </dependency>
         <!-- End commons fileupload -->
 
@@ -109,7 +105,6 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
         </dependency>
         <!-- End http client -->
 
@@ -117,7 +112,6 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>${net.version}</version>
         </dependency>
         <!-- End apache commons net -->
 
@@ -129,7 +123,6 @@
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>${ehcache.version}</version>
         </dependency>
         <!-- End EHCache -->
 
@@ -137,12 +130,10 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>${poi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
         </dependency>
         <!-- End POI -->
 
