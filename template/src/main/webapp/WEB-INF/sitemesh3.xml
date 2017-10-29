@@ -20,6 +20,7 @@
     <mapping path="/login" exclue="true"/>
     <mapping path="/login.*" exclue="true"/>
     <mapping path="/lock.*" exclue="true"/>
+    <mapping path="/" exclue="true"/>
     <mapping path="/index" exclue="true"/>
     <mapping path="/index.*" exclue="true"/>
 

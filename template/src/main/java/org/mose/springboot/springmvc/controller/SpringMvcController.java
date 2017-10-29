@@ -42,12 +42,7 @@ public class SpringMvcController {
         return "login";
     }
 
-    @RequestMapping("/lock")
-    public String lockPage() {
-        return "lock";
-    }
-
-    @RequestMapping("/index")
+    @RequestMapping(value = {"/index", "/"})
     public String indexPage() {
         return "index";
     }
