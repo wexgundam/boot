@@ -11,7 +11,7 @@
                 <input type="submit" value="Logout">
             </form>
             <div>
-                <a href="/test" target="_self">Test</a>
+                <a href="/test.htm" target="_self">Test</a>
             </div>
             <sec:authorize url="/admin">
                 <h1>通过Url控制访问：</h1>
