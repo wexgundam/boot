@@ -5,11 +5,11 @@
     <artifactId>spring.boot</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>template</module>
-    </modules>
-    <name>spring.boot learning</name>
+    <name>spring.boot</name>
     <url>https://github.com/wexgundam/spring.boot</url>
+    <modules>
+        <module>spring.boot.template</module>
+    </modules>
 
     <properties>
         <common.springboot.version>1.5.8.RELEASE</common.springboot.version>
