@@ -35,7 +35,7 @@ public class ScenarioController {
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexPageUrl = "/system/scenario/index";
+    String indexViewUrl = "/system/scenario/index";
 
     /**
      * 展示场景index视图
@@ -43,14 +43,14 @@ public class ScenarioController {
      * @return
      */
     @RequestMapping("/index")
-    public ModelAndView indexPage(Pagination pagination) {
-        pagination.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + indexPageUrl);
+    public ModelAndView indexView(Pagination pagination) {
+        pagination.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + indexViewUrl);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
         parameters.put("scenarios", scenarioService.getScenarioList());
 
-        ModelAndView modelAndView = viewService.forwardDecoratePage(indexPageUrl, parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewUrl, parameters);
         return modelAndView;
     }
 
@@ -60,8 +60,8 @@ public class ScenarioController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addPage() {
-        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/add", indexPageUrl);
+    public ModelAndView addView() {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", indexViewUrl);
         String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
@@ -85,10 +85,10 @@ public class ScenarioController {
 
         int returnCode = scenarioService.addScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl, indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl, indexViewUrl);
             return modelAndView;
         }
     }
@@ -103,10 +103,10 @@ public class ScenarioController {
     public ModelAndView deleteScenario(int id) {
         int returnCode = scenarioService.deleteScenario(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessPage("场景删除成功！", indexPageUrl, indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView("场景删除成功！", indexViewUrl, indexViewUrl);
             return modelAndView;
         }
     }
@@ -118,11 +118,11 @@ public class ScenarioController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updatePage(int id) {
+    public ModelAndView updateView(int id) {
         Scenario scenario = scenarioService.getScenario(id);
         String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
 
-        ModelAndView modelAndView = viewService.forwardDecoratePage("/system/scenario/update", indexPageUrl);
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/update", indexViewUrl);
         modelAndView.addObject("scenario", scenario);
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
@@ -138,10 +138,10 @@ public class ScenarioController {
     public ModelAndView updateScenario(Scenario scenario) {
         int returnCode = scenarioService.updateScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailPage(ReturnCodeUtil.getMsg(returnCode), indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessPage("场景更新成功！", indexPageUrl, indexPageUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView("场景更新成功！", indexViewUrl, indexViewUrl);
             return modelAndView;
         }
     }
