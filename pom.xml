@@ -12,7 +12,7 @@
     </modules>
 
     <properties>
-        <common.springboot.version>1.5.8.RELEASE</common.springboot.version>
+        <common.springboot.version>1.5.9.RELEASE</common.springboot.version>
         <common.fileupload.version>1.3.1</common.fileupload.version>
         <common.sitemesh.version>3.0.1</common.sitemesh.version>
         <common.druid.version>1.0.25</common.druid.version>
@@ -24,14 +24,18 @@
         <common.spring-session>1.3.1.RELEASE</common.spring-session>
     </properties>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
-    </parent>
-
     <dependencyManagement>
         <dependencies>
+            <!-- Begin Spring boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${common.springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- End Spring boot -->
+
             <!-- Begin Database -->
             <dependency>
                 <groupId>com.alibaba</groupId>
