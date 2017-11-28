@@ -150,4 +150,8 @@
         </dependency>
         <!-- End Test -->
     </dependencies>
+
+    <build>
+        <finalName>org.mose.boot-core</finalName>
+    </build>
 </project>
