@@ -2,17 +2,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mose</groupId>
-    <artifactId>spring.boot</artifactId>
+    <artifactId>boot</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>spring.boot</name>
+    <name>org.mose.boot</name>
     <url>https://github.com/wexgundam/spring.boot</url>
+    <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>spring.boot.template</module>
+        <module>org.mose.boot-core</module>
+        <module>org.mose.boot-war</module>
     </modules>
 
     <properties>
-        <common.springboot.version>1.5.9.RELEASE</common.springboot.version>
+        <common.springboot.version>1.5.8.RELEASE</common.springboot.version>
         <common.fileupload.version>1.3.1</common.fileupload.version>
         <common.sitemesh.version>3.0.1</common.sitemesh.version>
         <common.druid.version>1.0.25</common.druid.version>
@@ -113,6 +114,6 @@
     </dependencyManagement>
 
     <build>
-        <finalName>spring.boot</finalName>
+        <finalName>org.mose.boot</finalName>
     </build>
 </project>
