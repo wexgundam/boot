@@ -1,0 +1,11 @@
+input.validateError {
+    border: 1px solid red;
+    background-color: #FFFFD5;
+}
+
+label.validateError {
+    color: red;
+    margin-left: 4px;
+    margin-top: 4px;
+    float: inherit;
+}
