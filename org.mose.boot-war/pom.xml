@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>org.mose</groupId>
-            <artifactId>boot-core</artifactId>
+            <artifactId>boot-system</artifactId>
             <version>${project.version}</version>
         </dependency>
 
