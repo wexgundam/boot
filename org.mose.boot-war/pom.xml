@@ -9,7 +9,7 @@
     <artifactId>boot-war</artifactId>
     <packaging>war</packaging>
     <name>org.mose.boot-war</name>
-    <url></url>
+    <url>org.mose.boot-war</url>
 
     <dependencies>
         <dependency>

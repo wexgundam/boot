@@ -9,7 +9,7 @@
     <artifactId>boot-core</artifactId>
     <packaging>jar</packaging>
     <name>org.mose.boot-core</name>
-    <url></url>
+    <url>https://github.com/wexgundam/org.mose.boot-core</url>
 
     <dependencies>
         <!-- Begin web -->

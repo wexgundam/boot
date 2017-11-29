@@ -5,7 +5,7 @@
     <artifactId>boot</artifactId>
     <packaging>pom</packaging>
     <name>org.mose.boot</name>
-    <url>https://github.com/wexgundam/spring.boot</url>
+    <url>https://github.com/wexgundam/org.mose.boot</url>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>org.mose.boot-core</module>
