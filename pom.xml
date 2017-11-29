@@ -10,6 +10,7 @@
     <modules>
         <module>org.mose.boot-core</module>
         <module>org.mose.boot-war</module>
+        <module>org.mose.boot-system</module>
     </modules>
 
     <properties>

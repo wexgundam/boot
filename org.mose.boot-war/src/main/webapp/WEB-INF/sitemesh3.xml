@@ -26,6 +26,6 @@
 
     <!-- 自定义标签 -->
     <content-processor>
-        <tag-rule-bundle class="org.mose.boot.sitemesh.SitemeshTagRuleBundle"/>
+        <tag-rule-bundle class="org.mose.boot.configuration.sitemesh.SitemeshTagRuleBundle"/>
     </content-processor>
 </sitemesh>
