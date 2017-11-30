@@ -1,6 +1,6 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.service.springmvc.ViewService;
+import org.mose.boot.springmvc.service.ViewService;
 import org.mose.boot.util.json.JsonUtil;
 import org.mose.boot.util.string.StringUtil;
 import org.mose.boot.util.web.WebUtil;

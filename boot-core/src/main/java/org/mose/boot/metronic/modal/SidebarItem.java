@@ -1,4 +1,4 @@
-package org.mose.boot.service.metronic.modal;
+package org.mose.boot.metronic.modal;
 
 import java.util.List;
 

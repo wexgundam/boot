@@ -1,8 +1,8 @@
 package org.mose.boot.system.controller;
 
-import org.mose.boot.service.metronic.modal.Pagination;
-import org.mose.boot.service.spring.ResourceService;
-import org.mose.boot.service.springmvc.ViewService;
+import org.mose.boot.metronic.modal.Pagination;
+import org.mose.boot.springmvc.service.ResourceService;
+import org.mose.boot.springmvc.service.ViewService;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.system.service.ScenarioService;
 import org.mose.boot.util.code.ReturnCodeUtil;

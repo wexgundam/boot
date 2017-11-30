@@ -1,40 +1,31 @@
 package org.mose.boot.springmvc.controller;
 
-import org.mose.boot.service.springmvc.ViewService;
+import org.mose.boot.springmvc.service.ResourceService;
+import org.mose.boot.springmvc.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/8/2.
  */
-@Controller
+@Controller("/")
 public class SpringMvcController {
+    @Autowired
+    private ResourceService resourceService;
     @Autowired
     private ViewService viewService;
 
     /**
-     * 利用MappingJackson2HttpMessageConverter实现Json转换
-     *
-     * @return
+     * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    @RequestMapping("/testJson")
-    @ResponseBody
-    public Map<String, Object> testJson() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("action", "test json");
-        return map;
-    }
+    String indexViewName = "/index";
+    String indexPageUrl = null;
 
-    @RequestMapping("/exception")
-    public void testException() throws Exception {
-        throw new Exception("Controller exception.");
+    private String getIndexPageUrl() {
+        indexPageUrl = indexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + indexViewName + ".htm" : indexPageUrl;
+        return indexPageUrl;
     }
 
     @RequestMapping("/login")
@@ -43,15 +34,13 @@ public class SpringMvcController {
     }
 
     @RequestMapping(value = {"/index", "/"})
-    public String indexPage() {
-        return "index";
+    public ModelAndView indexPage() {
+        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), null);
+        return modelAndView;
     }
 
-    @RequestMapping("/test")
-    public ModelAndView tablePage(@RequestParam(required = false) String color) {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("color", color);
-        ModelAndView modelAndView = viewService.forwardDecorateView("test", "test.htm", parameters);
-        return modelAndView;
+    @RequestMapping("/lock")
+    public String lockPage() {
+        return "/lock";
     }
 }

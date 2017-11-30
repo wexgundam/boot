@@ -1,4 +1,4 @@
-package org.mose.boot.service.spring;
+package org.mose.boot.springmvc.service;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

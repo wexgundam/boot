@@ -1,6 +1,6 @@
-package org.mose.boot.springsecurity.controller;
+package org.mose.boot.springmvc.controller;
 
-import org.mose.boot.service.metronic.service.SidebarService;
+import org.mose.boot.metronic.service.SidebarService;
 import org.mose.boot.system.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Description: 视图控制器，组织生成视图公用数据
+ * Description: 视图控制器，组织生成视图公用页面组件
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:46
@@ -38,9 +38,8 @@ public class ViewController {
     @RequestMapping("/view")
     public ModelAndView decoratePage(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarItems", scenarioService.getScenarioTree());
-        modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);
         modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(scenarioService.createSidebarItems()));
+        modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);
         modelAndView.setViewName(targetViewName);
         return modelAndView;
     }

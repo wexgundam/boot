@@ -1,15 +1,18 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.service.spring.ResourceService;
+import org.mose.boot.springmvc.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
  * SpringMvc 配置
- *
+ * <p>
  * Spring boot默认配置了如下bean：
  * 1. MappingJackson2HttpMessageConverter设置Controller注解，及json格式解析器
  * 2. RequestMappingHandlerAdapter处理请求头、获取handlerMethod等
@@ -38,7 +41,7 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
 
     /**
      * Spring boot默认创建了InternalResourceViewResolver
-     *
+     * <p>
      * 这里对InternalResourceViewResolver进行一些自定义配置
      *
      * @return

@@ -2,8 +2,8 @@ package org.mose.boot.system.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.mose.boot.service.metronic.modal.SidebarItem;
-import org.mose.boot.service.spring.ResourceService;
+import org.mose.boot.metronic.modal.SidebarItem;
+import org.mose.boot.springmvc.service.ResourceService;
 import org.mose.boot.system.dao.IScenarioRepository;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.util.log.LogUtil;
