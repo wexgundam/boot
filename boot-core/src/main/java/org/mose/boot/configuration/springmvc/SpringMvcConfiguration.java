@@ -3,6 +3,7 @@ package org.mose.boot.configuration.springmvc;
 import org.mose.boot.service.spring.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -20,6 +21,20 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     ResourceService resourceService;
+
+    /**
+     * 支持跨域请求
+     *
+     * @param registry
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        super.addCorsMappings(registry);
+        registry.addMapping("/**")
+                .allowedMethods("*")
+                .allowedOrigins("*")
+                .allowedHeaders("*");
+    }
 
     /**
      * Spring boot默认创建了InternalResourceViewResolver
