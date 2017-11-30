@@ -1,5 +1,7 @@
 package org.mose.boot.configuration.springsession;
 
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+
 /**
  * Description:Spring Session配置类
  *
@@ -8,6 +10,6 @@ package org.mose.boot.configuration.springsession;
  * @Author: 靳磊
  * @Date: 2017/9/30 10:04
  */
-//@EnableRedisHttpSession
+@EnableRedisHttpSession
 public class SpringSessionConfiguration {
 }

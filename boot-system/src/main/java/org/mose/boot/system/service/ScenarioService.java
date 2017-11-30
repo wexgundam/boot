@@ -2,8 +2,8 @@ package org.mose.boot.system.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.mose.boot.ui.metronic.modal.SidebarItem;
-import org.mose.boot.configuration.spring.ResourceConfiguration;
+import org.mose.boot.service.metronic.modal.SidebarItem;
+import org.mose.boot.service.spring.ResourceService;
 import org.mose.boot.system.dao.IScenarioRepository;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.util.log.LogUtil;
@@ -34,7 +34,7 @@ public class ScenarioService {
      * 系统资源配置
      */
     @Autowired
-    ResourceConfiguration resourceConfiguration;
+    ResourceService resourceService;
 
     /**
      * 获取所有场景并按照树形组织排序
@@ -129,7 +129,7 @@ public class ScenarioService {
         SidebarItem sidebarItem = new SidebarItem();
         sidebarItem.setId(scenario.getId());
         sidebarItem.setName(scenario.getName());
-        sidebarItem.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + (scenario.getUrl() == null ? "/index.htm" : scenario.getUrl()));
+        sidebarItem.setUrl(resourceService.getDynamicResourceServerUrl() + (scenario.getUrl() == null ? "/index.htm" : scenario.getUrl()));
         sidebarItem.setUrlTarget(scenario.getUrlTarget());
         sidebarItem.setIcon(scenario.getIcon());
         sidebarItem.setOrder(scenario.getDisplayOrder());

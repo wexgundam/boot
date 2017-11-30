@@ -1,6 +1,6 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.configuration.spring.ResourceConfiguration;
+import org.mose.boot.service.spring.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
-    ResourceConfiguration resourceConfiguration;
+    ResourceService resourceService;
 
     /**
      * Spring boot默认创建了InternalResourceViewResolver
@@ -30,6 +30,6 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
      */
     @Autowired
     public void configureViewResolver(InternalResourceViewResolver viewResolver) {
-        viewResolver.getAttributesMap().putAll(resourceConfiguration.toMap());
+        viewResolver.getAttributesMap().putAll(resourceService.toMap());
     }
 }

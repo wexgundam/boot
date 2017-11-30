@@ -1,4 +1,4 @@
-package org.mose.boot.ui.metronic.modal;
+package org.mose.boot.service.metronic.modal;
 
 import org.mose.boot.dao.AbstractPagination;
 

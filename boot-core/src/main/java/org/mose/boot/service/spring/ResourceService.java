@@ -1,4 +1,4 @@
-package org.mose.boot.configuration.spring;
+package org.mose.boot.service.spring;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @Component
 @ConfigurationProperties("custom.resource")
-public class ResourceConfiguration {
+public class ResourceService {
     /**
      * 静态资源服务器地址
      */

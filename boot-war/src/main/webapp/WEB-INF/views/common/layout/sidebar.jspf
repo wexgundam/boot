@@ -103,7 +103,7 @@
     <script type="application/javascript">
         $(function () {
             // 根据viewName查找对应的菜单项，展开高亮显示
-            var parents = $("a[href$='${activeSidebarItemUrl}.htm']").parents("li.nav-item");
+            var parents = $("a[href$='${activeSidebarItemUrl}']").parents("li.nav-item");
             parents.addClass("active open");
             $("a > span.arrow", parents).addClass("open");
         });

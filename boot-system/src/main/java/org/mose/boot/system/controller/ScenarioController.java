@@ -1,8 +1,8 @@
 package org.mose.boot.system.controller;
 
 import org.mose.boot.service.springmvc.ViewService;
-import org.mose.boot.ui.metronic.modal.Pagination;
-import org.mose.boot.configuration.spring.ResourceConfiguration;
+import org.mose.boot.service.metronic.modal.Pagination;
+import org.mose.boot.service.spring.ResourceService;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.system.service.ScenarioService;
 import org.mose.boot.util.code.ReturnCodeUtil;
@@ -25,7 +25,7 @@ import java.util.Map;
 @RequestMapping("/system/scenario")
 public class ScenarioController {
     @Autowired
-    private ResourceConfiguration resourceConfiguration;
+    private ResourceService resourceService;
     @Autowired
     private ScenarioService scenarioService;
     @Autowired
@@ -34,7 +34,13 @@ public class ScenarioController {
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexViewUrl = "/system/scenario/index";
+    String indexViewName = "/system/scenario/index";
+    String indexPageUrl = null;
+
+    private String getIndexPageUrl() {
+        indexPageUrl = indexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + indexViewName + ".htm" : indexPageUrl;
+        return indexPageUrl;
+    }
 
     /**
      * 展示场景index视图
@@ -43,13 +49,13 @@ public class ScenarioController {
      */
     @RequestMapping("/index")
     public ModelAndView indexView(Pagination pagination) {
-        pagination.setUrl(resourceConfiguration.getDynamicResourceServerUrl() + indexViewUrl);
+        pagination.setUrl(getIndexPageUrl());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
         parameters.put("scenarios", scenarioService.getScenarioList());
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewUrl, parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), parameters);
         return modelAndView;
     }
 
@@ -60,7 +66,7 @@ public class ScenarioController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addView() {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", indexViewUrl);
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", getIndexPageUrl());
         String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
@@ -70,6 +76,7 @@ public class ScenarioController {
      * 执行新增操作
      *
      * @param scenario
+     *
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -84,10 +91,10 @@ public class ScenarioController {
 
         int returnCode = scenarioService.addScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl, indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView(ReturnCodeUtil.getMsg(returnCode), indexViewName + ".htm", indexViewName + ".htm");
             return modelAndView;
         }
     }
@@ -96,16 +103,17 @@ public class ScenarioController {
      * 执行删除操作
      *
      * @param id
+     *
      * @return
      */
     @RequestMapping(value = "/delete")
     public ModelAndView deleteScenario(int id) {
         int returnCode = scenarioService.deleteScenario(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessView("场景删除成功！", indexViewUrl, indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView("场景删除成功！", indexViewName, indexViewName);
             return modelAndView;
         }
     }
@@ -114,6 +122,7 @@ public class ScenarioController {
      * 请求更新界面
      *
      * @param id
+     *
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
@@ -121,7 +130,7 @@ public class ScenarioController {
         Scenario scenario = scenarioService.getScenario(id);
         String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/update", indexViewUrl);
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/update", indexViewName + ".htm");
         modelAndView.addObject("scenario", scenario);
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
@@ -131,16 +140,17 @@ public class ScenarioController {
      * 请求更新操作
      *
      * @param scenario
+     *
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateScenario(Scenario scenario) {
         int returnCode = scenarioService.updateScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessView("场景更新成功！", indexViewUrl, indexViewUrl);
+            ModelAndView modelAndView = viewService.forwardSuccessView("场景更新成功！", indexViewName + ".htm", indexViewName + ".htm");
             return modelAndView;
         }
     }

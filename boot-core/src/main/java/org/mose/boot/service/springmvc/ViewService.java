@@ -34,33 +34,12 @@ public class ViewService {
     /**
      * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
      *
-     * @param targetViewName 目标视图名
-     * @param parameter      参数
-     */
-    public ModelAndView forwardDecorateView(String targetViewName, Map<String, Object> parameter) {
-        return forwardDecorateView(targetViewName, targetViewName, parameter);
-    }
-
-    /**
-     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
-     *
      * @param targetViewName       目标视图名
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
      */
     public ModelAndView forwardDecorateView(String targetViewName, String activeSidebarItemUrl) {
         return forwardDecorateView(targetViewName, activeSidebarItemUrl, null);
     }
-
-
-    /**
-     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
-     *
-     * @param targetViewName 目标视图名和需要激活的SidebarItem Url
-     */
-    public ModelAndView forwardDecorateView(String targetViewName) {
-        return forwardDecorateView(targetViewName, targetViewName);
-    }
-
 
     /**
      * 获得转发视图控制器的地址

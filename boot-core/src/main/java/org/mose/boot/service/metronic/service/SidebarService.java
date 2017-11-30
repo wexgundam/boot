@@ -1,6 +1,6 @@
-package org.mose.boot.ui.metronic.service;
+package org.mose.boot.service.metronic.service;
 
-import org.mose.boot.ui.metronic.modal.SidebarItem;
+import org.mose.boot.service.metronic.modal.SidebarItem;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
