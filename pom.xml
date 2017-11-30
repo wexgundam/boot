@@ -10,7 +10,6 @@
     <modules>
         <module>boot-core</module>
         <module>boot-war</module>
-        <module>boot-system</module>
     </modules>
 
     <properties>
