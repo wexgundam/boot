@@ -57,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form action="/upload.htm" method="POST" enctype="multipart/form-data">
+                <form action="${dynamicResourceServerUrl}/uploadFile.htm" method="POST" enctype="multipart/form-data">
                     <input type="file" name="file"/>
                     <input type="submit" value="Upload"/>
                 </form>
@@ -83,7 +83,7 @@
                     fd.append("files", file);
                     var xhr = new XMLHttpRequest();
                     xhr.addEventListener("load", uploadComplete, false);
-                    xhr.open("POST", "upload.htm");
+                    xhr.open("POST", "${dynamicResourceServerUrl}/uploadImage.htm");
                     xhr.send(fd);
                     bootbox.alert("上传成功");
                 }

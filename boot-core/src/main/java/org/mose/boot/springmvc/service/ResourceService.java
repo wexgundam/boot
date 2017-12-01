@@ -32,20 +32,22 @@ public class ResourceService {
      */
     public static final String IMAGE_SERVER_URL = "imageServerUrl";
     private String imageServerUrl;
-
     /**
      * 文件上传服务器地址
      */
-    public static final String UPLOADED_FILE_SERVER_URL = "uploadedFileServerUrl";
-    private String uploadedFileServerUrl;
-
+    public static final String IMAGE_UPLOAD_PATH = "imageUploadPath";
+    private String imageUploadPath;
+    /**
+     * 文件上传服务器地址
+     */
+    public static final String FILE_UPLOAD_PATH = "fileUploadPath";
+    private String fileUploadPath;
 
     /**
      * 网站名称
      */
     public static final String WEB_TITLE = "webTitle";
     private String webTitle;
-
     /**
      * 资源版本，应对浏览器缓存
      */
@@ -62,6 +64,8 @@ public class ResourceService {
         map.put(STATIC_RESOURCE_SERVER_URL, staticResourceServerUrl);
         map.put(DYNAMIC_RESOURCE_SERVER_URL, dynamicResourceServerUrl);
         map.put(IMAGE_SERVER_URL, imageServerUrl);
+        map.put(IMAGE_UPLOAD_PATH, imageUploadPath);
+        map.put(FILE_UPLOAD_PATH, fileUploadPath);
         map.put(WEB_TITLE, webTitle);
         map.put(RESOURCE_VERSION, resourceVersion);
         return map;
@@ -99,12 +103,12 @@ public class ResourceService {
         this.resourceVersion = resourceVersion;
     }
 
-    public String getUploadedFileServerUrl() {
-        return uploadedFileServerUrl;
+    public String getFileUploadPath() {
+        return fileUploadPath;
     }
 
-    public void setUploadedFileServerUrl(String uploadedFileServerUrl) {
-        this.uploadedFileServerUrl = uploadedFileServerUrl;
+    public void setFileUploadPath(String fileUploadPath) {
+        this.fileUploadPath = fileUploadPath;
     }
 
     public String getImageServerUrl() {
@@ -113,5 +117,13 @@ public class ResourceService {
 
     public void setImageServerUrl(String imageServerUrl) {
         this.imageServerUrl = imageServerUrl;
+    }
+
+    public String getImageUploadPath() {
+        return imageUploadPath;
+    }
+
+    public void setImageUploadPath(String imageUploadPath) {
+        this.imageUploadPath = imageUploadPath;
     }
 }
