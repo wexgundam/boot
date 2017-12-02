@@ -1,6 +1,10 @@
 package org.mose.boot.configuration.cache;
 
+import org.ehcache.jsr107.EhcacheCachingProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,5 +17,5 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableCaching
-public class CacheConfiguration {
+public class EhcacheConfiguration {
 }
