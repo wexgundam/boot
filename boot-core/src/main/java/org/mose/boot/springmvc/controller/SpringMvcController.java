@@ -4,6 +4,7 @@ import org.mose.boot.springmvc.service.ResourceService;
 import org.mose.boot.springmvc.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +17,12 @@ public class SpringMvcController {
     private ResourceService resourceService;
     @Autowired
     private ViewService viewService;
+
+    @GetMapping("/testE")
+    public void testE() throws Exception {
+        throw new IllegalStateException("My Exception。");
+    }
+
 
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName

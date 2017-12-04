@@ -8,31 +8,30 @@ package org.mose.boot.configuration.cache;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mose.boot.system.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
+ * what:    测试CacheConfiguration是否配置成功 <br/>
  * when:    (这里描述这个类的适用时机 – 可选).<br/>
  * how:     (这里描述这个类的使用方法 – 可选).<br/>
  * warning: (这里描述这个类的注意事项 – 可选).<br/>
  *
- * @author TODO:Who created on 2017/12/2
+ * @author TODO:瓦力 created on 2017/12/2
  */
-@SpringBootTest
+@SpringBootTest(classes = TestEhcacheConfiguration.class)
+@ComponentScan({"org.mose.boot.configuration.cache"})
 @RunWith(SpringRunner.class)
-@Profile("mysql")
+@SpringBootApplication
 public class TestEhcacheConfiguration {
     @Autowired
-    MockService service;
+    private DemoService demoService;
 
     @Before
     public void before() {
@@ -40,8 +39,8 @@ public class TestEhcacheConfiguration {
 
     @Test
     public void testCache() {
-        service.findOrCreateItem(1);
-        service.findOrCreateItem(2);
-        service.findOrCreateItem(1);
+        demoService.findOrCreateItem(1);
+        demoService.findOrCreateItem(2);
+        demoService.findOrCreateItem(1);
     }
 }

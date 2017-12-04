@@ -22,5 +22,5 @@
         </heap-store-settings>
     </cache-template>
 
-    <cache alias="systemCache" uses-template="template"></cache>
+    <cache alias="testCache" uses-template="template"></cache>
 </config>

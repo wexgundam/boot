@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
  * @author TODO:Who created on 2017/12/2
  */
 @Component
-public class MockService {
-    @Cacheable(value = "tileImageCache")
+public class DemoService {
+    @Cacheable(value = "testCache")
     public String findOrCreateItem(int id) {
         System.out.println("create item[" + id + "]");
         return Integer.toString(id);
