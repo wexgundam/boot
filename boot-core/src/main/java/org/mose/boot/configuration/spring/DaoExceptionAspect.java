@@ -15,13 +15,14 @@ import org.slf4j.LoggerFactory;
 
 @Aspect
 public class DaoExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("daoLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
 
     @AfterThrowing(value = "execution (* org.mose.boot.*..dao.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         // 拦截的实体类
         Object target = joinPoint.getTarget(); // 拦截的方法名称
         String methodName = joinPoint.getSignature().getName();
+        logger.error("Dao Exception ##############################");
         logger.error("实体类:" + target);
         logger.error("方法名:" + methodName);
         logger.error("异常类名：" + joinPoint.getSignature().getName().getClass());

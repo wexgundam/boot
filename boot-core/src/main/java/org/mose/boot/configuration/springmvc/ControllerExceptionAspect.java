@@ -23,13 +23,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @ControllerAdvice
 public class ControllerExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("controllerLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
+
     @Autowired
     private ViewService viewService;
 
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(HttpServletRequest request, HttpServletResponse response, Exception ex) {
-        logger.error(ex.getMessage());
+        logger.error("Controller Exception ##############################", ex);
+
         //判断是否是Ajax请求
         boolean isAjaxRequest = StringUtil.checkAjaxRequest(request);// this.isAjaxRequest(request);
         //获取异常的详细信息

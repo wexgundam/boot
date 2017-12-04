@@ -16,12 +16,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("serviceLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
 
     @AfterThrowing(value = "execution (* org.mose.boot.*..service.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         Object target = joinPoint.getTarget();  // 拦截的实体类
         String methodName = joinPoint.getSignature().getName();// 拦截的方法名称
+        logger.error("Service Exception ##############################");
         logger.error("实体类:" + target);
         logger.error("方法名:" + methodName);
         Object[] args = joinPoint.getArgs(); // 得到被拦截方法参数，并打印

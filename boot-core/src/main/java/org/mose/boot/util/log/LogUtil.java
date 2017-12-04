@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * @date 2017-05-23
  */
 public class LogUtil {
-    private static Logger sysLog = LoggerFactory.getLogger("sysLog");
+    private static Logger logger = LoggerFactory.getLogger("systemLog");
 
     /**
      * 功能描述:记录系统日志
@@ -20,7 +20,7 @@ public class LogUtil {
      * @date 2017-05-23
      */
     public static void inf(String str) {
-        sysLog.info(str);
+        logger.info(str);
     }
 
     /**
@@ -31,7 +31,7 @@ public class LogUtil {
      * @date 2017-05-23
      */
     public static void error(String str) {
-        sysLog.error(str);
+        logger.error(str);
     }
 
     /**
@@ -42,7 +42,7 @@ public class LogUtil {
      * @date 2017-05-23
      */
     public static void error(Exception e) {
-        sysLog.error(e.getStackTrace().toString());
+        logger.error(e.getStackTrace().toString());
     }
 
 }

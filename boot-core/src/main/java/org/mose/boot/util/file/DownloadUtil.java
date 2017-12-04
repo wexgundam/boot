@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 public class DownloadUtil {
-    private static Logger logger = LoggerFactory.getLogger("sysLog");
+    private static Logger logger = LoggerFactory.getLogger("systemLog");
 
     /**
      * 文件下载方法
