@@ -1,81 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-    <property name="logBase" value="d:\\logs\\spring.boot\\"/>
+    <property name="logBase" value="d:\\logs\\org.mose.boot\\"/>
+    <property name="encoderPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{0} %class{0} - %m%n"/>
     <!-- appender -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %m%n
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %red(%-5level) %green(%logger{0}) %blue(%class{0}) - %m%n%ex{short}
             </pattern>
             <charset>GBK</charset>
         </encoder>
     </appender>
 
-    <!-- 系统日志配置 -->
-    <appender name="sysLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/sys.log</file>
+    <!-- 异常日志 -->
+    <appender name="exceptionLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBase}/exception.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/sys-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/exception-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}] - %m%n</Pattern>
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{0} %class{0} - %m%n%ex{short}
+            </Pattern>
         </encoder>
     </appender>
+    <!-- dao日志 -->
     <appender name="daoLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logBase}/dao.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/dao-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/dao-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}] [%-5level] [%-30logger{0}][%-3L]
-                [SeqId:%X{SeqId}] - %m%n
-            </Pattern>
+            <Pattern>${encoderPattern}</Pattern>
         </encoder>
     </appender>
+    <!-- 服务日志 -->
     <appender name="serviceLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logBase}/service.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/service-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/service-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}] - %m%n</Pattern>
+            <Pattern>${encoderPattern}</Pattern>
         </encoder>
     </appender>
+    <!-- 控制器日志 -->
     <appender name="controllerLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logBase}/controller.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/controller-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/controller-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}]- %m%n</Pattern>
+            <Pattern>${encoderPattern}</Pattern>
         </encoder>
     </appender>
-
+    <!-- 定时任务日志 -->
+    <appender name="jobLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBase}/job.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/job-%d{yyyyMMdd}.log</FileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <ImmediateFlush>true</ImmediateFlush>
+            <charset>utf-8</charset>
+            <Pattern>${encoderPattern}</Pattern>
+        </encoder>
+    </appender>
+    <!-- 性能日志 -->
+    <appender name="performanceLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBase}/performance.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/performance-%d{yyyyMMdd}.log</FileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <ImmediateFlush>true</ImmediateFlush>
+            <charset>utf-8</charset>
+            <Pattern>${encoderPattern}</Pattern>
+        </encoder>
+    </appender>
+    <!-- 认证、授权日志 -->
+    <appender name="securityLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBase}/security.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/security-%d{yyyyMMdd}.log</FileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <ImmediateFlush>true</ImmediateFlush>
+            <charset>utf-8</charset>
+            <Pattern>${encoderPattern}</Pattern>
+        </encoder>
+    </appender>
+    <!-- 操作日志 -->
     <appender name="operationLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logBase}/operation.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/operation-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/operation-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -84,70 +126,52 @@
             <Pattern>%m%n</Pattern>
         </encoder>
     </appender>
-    <appender name="jobLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/job.log</file>
+
+    <!-- 系统日志配置 -->
+    <appender name="systemLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logBase}/system.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/job-%d{yyyyMMdd}.log
-            </FileNamePattern>
+            <FileNamePattern>${logBase}/%d{yyyyMMdd}/system-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}]- %m%n</Pattern>
-        </encoder>
-    </appender>
-    <appender name="performanceLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/performance.log</file>
-        <append>true</append>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/performance-%d{yyyyMMdd}.log
-            </FileNamePattern>
-            <maxHistory>365</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <ImmediateFlush>true</ImmediateFlush>
-            <charset>utf-8</charset>
-            <Pattern>[%d{yyyyMMdd HH:mm:ss}] - %m%n</Pattern>
+            <Pattern>${encoderPattern}</Pattern>
         </encoder>
     </appender>
 
     <!-- additivity为false不向root控制台输出 -->
-    <logger name="sysLog" additivity="false" level="info">
-        <appender-ref ref="stdout"/>
-        <appender-ref ref="sysLogAppender"/>
+    <logger name="systemLog" level="INFO">
+        <appender-ref ref="systemLogAppender"/>
     </logger>
-    <logger name="daoLog" additivity="false" level="ERROR">
-        <appender-ref ref="stdout"/>
+    <logger name="daoLog" level="INFO">
         <appender-ref ref="daoLogAppender"/>
     </logger>
-    <logger name="serviceLog" additivity="false" level="ERROR">
-        <appender-ref ref="stdout"/>
+    <logger name="serviceLog" level="INFO">
         <appender-ref ref="serviceLogAppender"/>
     </logger>
-    <logger name="controllerLog" additivity="false" level="ERROR">
-        <appender-ref ref="stdout"/>
+    <logger name="controllerLog" level="INFO">
         <appender-ref ref="controllerLogAppender"/>
     </logger>
-    <logger name="operationLog" additivity="false" level="INFO">
-        <appender-ref ref="stdout"/>
+    <logger name="operationLog" level="INFO">
         <appender-ref ref="operationLogAppender"/>
     </logger>
-    <logger name="performanceLog" additivity="false" level="INFO">
-        <appender-ref ref="stdout"/>
+    <logger name="performanceLog" level="INFO">
         <appender-ref ref="performanceLogAppender"/>
     </logger>
-    <logger name="jobLog" additivity="false" level="INFO">
-        <appender-ref ref="stdout"/>
+    <logger name="jobLog" level="INFO">
         <appender-ref ref="jobLogAppender"/>
     </logger>
+    <logger name="exceptionLog" level="ERROR">
+        <appender-ref ref="exceptionLogAppender"/>
+    </logger>
     <logger name="druid" level="INFO">
-        <appender-ref ref="stdout" />
     </logger>
 
     <!-- root 默认日志配置 -->
-    <root level="info">
+    <root level="INFO">
         <appender-ref ref="stdout"/>
     </root>
     <logger name="org.springframework" level="INFO"/>
