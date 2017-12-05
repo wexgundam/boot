@@ -48,7 +48,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -59,8 +58,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/error").permitAll()
-                .antMatchers("/**").permitAll()
-//                .antMatchers("/**").hasRole("USER")
+                .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().logoutUrl("/logout.htm").permitAll()
@@ -79,7 +77,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param auth
      * @return
-     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
