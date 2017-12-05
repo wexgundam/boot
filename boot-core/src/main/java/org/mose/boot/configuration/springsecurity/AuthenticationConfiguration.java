@@ -48,6 +48,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param http
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/19 13:47
      */
@@ -77,6 +78,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      *
      * @param auth
      * @return
+     *
      * @Author: 靳磊
      * @Date: 2017/7/21 17:04
      */
