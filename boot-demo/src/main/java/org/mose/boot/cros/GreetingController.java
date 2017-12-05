@@ -1,4 +1,4 @@
-package org.mose.boot;
+package org.mose.boot.cros;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
