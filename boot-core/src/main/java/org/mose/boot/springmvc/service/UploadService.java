@@ -1,28 +1,22 @@
 package org.mose.boot.springmvc.service;
 
 import org.mose.boot.util.date.DateUtil;
-import org.mose.boot.util.json.JsonUtil;
-import org.mose.boot.util.web.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
 @Controller
 public class UploadService {
-    private Logger logger = LoggerFactory.getLogger("serviceLog");
+    private Logger logger = LoggerFactory.getLogger("exceptionLogger");
     @Autowired
     private ResourceService resourceService;
 

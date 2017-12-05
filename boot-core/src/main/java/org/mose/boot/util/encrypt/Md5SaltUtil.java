@@ -1,7 +1,8 @@
 package org.mose.boot.util.encrypt;
 
 
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.MessageDigest;
 
@@ -12,6 +13,7 @@ import java.security.MessageDigest;
  * @date 2017年2月7日
  */
 public class Md5SaltUtil {
+    private Logger logger = LoggerFactory.getLogger("exceptionLogger");
     private final static String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
     private Object salt;
     private String algorithm = "MD5";
@@ -29,7 +31,9 @@ public class Md5SaltUtil {
      * 加密密码
      *
      * @param rawPass
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -40,7 +44,7 @@ public class Md5SaltUtil {
             // 加密后的字符串
             result = byteArrayToHexString(md.digest(mergePasswordAndSalt(rawPass).getBytes("utf-8")));
         } catch (Exception ex) {
-            LogUtil.error(ex);
+            logger.error(ex.getMessage(), ex);
         }
         return result;
     }
@@ -67,6 +71,7 @@ public class Md5SaltUtil {
      * 转换字节数组为16进制字串
      *
      * @param b 字节数组
+     *
      * @return 16进制字串
      */
     private static String byteArrayToHexString(byte[] b) {

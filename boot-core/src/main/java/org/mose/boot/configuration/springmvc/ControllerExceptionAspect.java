@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @ControllerAdvice
 public class ControllerExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     @Autowired
     private ViewService viewService;

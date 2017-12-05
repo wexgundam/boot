@@ -1,12 +1,17 @@
 package org.mose.boot.util.string;
 
-import org.mose.boot.util.log.LogUtil;
+import com.sun.media.jfxmedia.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 系统获取IP工具类
@@ -15,11 +20,13 @@ import java.util.*;
  * @date 2017-05-23
  */
 public final class IPUtil {
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 取到当前机器的IP地址，这里可以直接获取该服务器的所有网卡ip，如果包括内外网网卡，就是两个ip，中间以,分隔
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -41,7 +48,7 @@ public final class IPUtil {
                     }
                 }
             } catch (SocketException ex) {
-                ex.printStackTrace();
+                logger.error(ex.getMessage(), ex);
             }
             hostIp = collectionToDelimitedString(ips, ",");
         }
@@ -73,7 +80,7 @@ public final class IPUtil {
         try {
             hostName = InetAddress.getLocalHost().getHostName();
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         return hostName;
     }

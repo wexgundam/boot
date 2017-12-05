@@ -1,5 +1,6 @@
 package org.mose.boot.system.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.mose.boot.metronic.modal.Pagination;
 import org.mose.boot.springmvc.service.ResourceService;
 import org.mose.boot.springmvc.service.ViewService;
@@ -67,7 +68,8 @@ public class ScenarioController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addView() {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", getIndexPageUrl());
-        String scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
+        String scenarioZTreeJson = null;
+        scenarioZTreeJson = scenarioService.getScenarioZTreeJson();
         modelAndView.addObject("scenarioZTreeJson", scenarioZTreeJson);
         return modelAndView;
     }

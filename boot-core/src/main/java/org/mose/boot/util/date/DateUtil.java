@@ -1,12 +1,17 @@
 package org.mose.boot.util.date;
 
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * 日期格式处理
@@ -17,13 +22,17 @@ import java.util.*;
 public class DateUtil {
     private static final String defaultDateFormatStr = "yyyy-MM-dd";//系统默认的格式化字符串
     private static final String defaultTimeFormatStr = "yyyy-MM-dd HH:mm:ss";//系统默认的格式化字符串
-    
+
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
+
     /**
      * 日期转字符串
      *
      * @param date
      * @param formatStr 格式化字符串
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -37,7 +46,9 @@ public class DateUtil {
      *
      * @param dateStr   需要转换的字符串
      * @param formatStr 需要格式的目标字符串 比如 yyyy-MM-dd
+     *
      * @return Date 返回转换后的时间
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -47,7 +58,7 @@ public class DateUtil {
         try {
             date = sdf.parse(dateStr);
         } catch (ParseException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         return date;
     }
@@ -56,6 +67,7 @@ public class DateUtil {
      * 取得系统时间，格式为yyyy-MM-dd HH:mm:ss
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -70,6 +82,7 @@ public class DateUtil {
      * 取得系统日期，格式为yyyy-MM-dd
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -85,6 +98,7 @@ public class DateUtil {
      * 取得系统时间
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -100,6 +114,7 @@ public class DateUtil {
      * 取得系统短日期，yyyyMMdd
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -116,7 +131,9 @@ public class DateUtil {
      * @param date      当前日期
      * @param dayNum    加减的日期数
      * @param formatStr 格式化字符串
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -126,7 +143,7 @@ public class DateUtil {
         try {
             dt = df.parse(date);
         } catch (ParseException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(dt);
@@ -139,7 +156,9 @@ public class DateUtil {
      *
      * @param date   当前日期
      * @param dayNum 加减的日期数
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -153,7 +172,9 @@ public class DateUtil {
      * @param date      日期字符串
      * @param monthNum  月份数
      * @param formatStr 格式化字符串
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -163,7 +184,7 @@ public class DateUtil {
         try {
             dt = df.parse(date);
         } catch (ParseException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(dt);
@@ -176,7 +197,9 @@ public class DateUtil {
      *
      * @param date
      * @param monthNum
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -190,7 +213,9 @@ public class DateUtil {
      * @param date1     日期1
      * @param date2     日期2
      * @param formatStr 格式化字符串
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -209,7 +234,9 @@ public class DateUtil {
      *
      * @param date1 日期1
      * @param date2 日期2
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -222,7 +249,9 @@ public class DateUtil {
      *
      * @param date1 日期1
      * @param date2 日期2
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -237,7 +266,9 @@ public class DateUtil {
      * @param date1     日期1
      * @param date2     日期2
      * @param formatStr 格式化字符换
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -250,7 +281,7 @@ public class DateUtil {
             c1.setTime(sdf.parse(date1));
             c2.setTime(sdf.parse(date2));
         } catch (ParseException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         result = c2.get(Calendar.MONTH) - c1.get(Calendar.MONTH);
         return result == 0 ? 1 : Math.abs(result);
@@ -261,7 +292,9 @@ public class DateUtil {
      *
      * @param date1 日期1
      * @param date2 日期2
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -274,7 +307,7 @@ public class DateUtil {
             c1.setTime(sdf.parse(date1));
             c2.setTime(sdf.parse(date2));
         } catch (ParseException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         result = c2.get(Calendar.MONTH) - c1.get(Calendar.MONTH);
         return result;
@@ -284,6 +317,7 @@ public class DateUtil {
      * 取得当月最后一天
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -301,6 +335,7 @@ public class DateUtil {
      * 取得当月第一天
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -317,6 +352,7 @@ public class DateUtil {
      * 取得上个月的第一天
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -334,6 +370,7 @@ public class DateUtil {
      * 取得下个月的最后一天
      *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -353,7 +390,9 @@ public class DateUtil {
      * 取得当月最后一天
      *
      * @param date 当前日期
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -380,7 +419,9 @@ public class DateUtil {
      *
      * @param starDate
      * @param endDate
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */

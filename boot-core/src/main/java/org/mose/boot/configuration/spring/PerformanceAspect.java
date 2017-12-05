@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "custom.performance")
 public class PerformanceAspect {
-    private static Logger logger = LoggerFactory.getLogger("performanceLog");
+    private static Logger logger = LoggerFactory.getLogger("performanceLogger");
     private int checkPoint;
 
     @Around("execution (* org.mose.boot.*..service.*.*(..))")

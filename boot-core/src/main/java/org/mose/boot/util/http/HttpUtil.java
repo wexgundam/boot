@@ -10,13 +10,18 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * http工具类
@@ -25,12 +30,16 @@ import java.util.*;
  * @date 2017-05-23
  */
 public class HttpUtil {
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
+
     /**
      * 发送http的json请求
      *
      * @param url
      * @param json
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -50,13 +59,13 @@ public class HttpUtil {
             ret = getResponse(httpResponse, is, br);
             httpPost.releaseConnection();
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 br.close();
                 is.close();
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
         return ret;
@@ -67,7 +76,9 @@ public class HttpUtil {
      *
      * @param url     请求url
      * @param hashMap 参数列表
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -93,13 +104,13 @@ public class HttpUtil {
             ret = getResponse(httpResponse, is, br);
             httpPost.releaseConnection();
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 br.close();
                 is.close();
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
         return ret;
@@ -109,7 +120,9 @@ public class HttpUtil {
      * 请求url
      *
      * @param url url地址
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -125,13 +138,13 @@ public class HttpUtil {
             ret = getResponse(httpResponse, is, br);
             httpGet.releaseConnection();
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 br.close();
                 is.close();
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
         return ret;
@@ -143,7 +156,9 @@ public class HttpUtil {
      * @param httpResponse
      * @param is
      * @param br
+     *
      * @return
+     *
      * @throws Exception
      */
     private static String getResponse(HttpResponse httpResponse, InputStream is, BufferedReader br) throws Exception {

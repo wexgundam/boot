@@ -5,12 +5,26 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,13 +37,16 @@ import java.util.List;
  * @date 2017-05-23
  */
 public class ExcelUtil {
+    private Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 读取excel表头，返回一个字符串数组
      *
      * @param fileName   文件流传入参数
      * @param titleIndex excel文件头的行数,默认从第一行开始，对应excel应该是titleIndex-1
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -51,19 +68,19 @@ public class ExcelUtil {
                 title[i] = getCellFormatValue(row.getCell(i));
             }
         } catch (FileNotFoundException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (InvalidFormatException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             if (is != null)
                 try {
                     is.close();
                 } catch (IOException e) {
-                    LogUtil.error(e);
+                    logger.error(e.getMessage(), e);
                 }
         }
         return title;
@@ -74,7 +91,9 @@ public class ExcelUtil {
      *
      * @param fileName  文件全路径名
      * @param dataIndex 为数据行的起始行数
+     *
      * @return List 包含单元格数据内容的Map对象
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -102,17 +121,17 @@ public class ExcelUtil {
                 }
             }
         } catch (FileNotFoundException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (InvalidFormatException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             if (is != null)
                 try {
                     is.close();
                 } catch (IOException e) {
-                    LogUtil.error(e);
+                    logger.error(e.getMessage(), e);
                 }
         }
         return list;
@@ -159,6 +178,7 @@ public class ExcelUtil {
      * @param foregroundColor
      * @param halign
      * @param font
+     *
      * @return
      */
     public CellStyle createBorderCellStyle(Workbook wb, short backgroundColor, short foregroundColor, short halign,
@@ -190,6 +210,7 @@ public class ExcelUtil {
      * @param boldweight
      * @param color
      * @param size
+     *
      * @return
      */
     public Font createFont(Workbook wb, short boldweight, short color, short size) {
@@ -206,6 +227,7 @@ public class ExcelUtil {
      * @param data     二维数组
      * @param fileName 要生成文件名，可以为中文
      * @param response 页面传过来的response
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -274,7 +296,7 @@ public class ExcelUtil {
                 }
                 response.flushBuffer();
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
     }
@@ -284,6 +306,7 @@ public class ExcelUtil {
      *
      * @param data     二维数组
      * @param fileName 写入的文件名
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -339,7 +362,7 @@ public class ExcelUtil {
             wb.write(out);
             out.flush();
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 if (out != null) {
@@ -347,7 +370,7 @@ public class ExcelUtil {
                     out = null;
                 }
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
     }

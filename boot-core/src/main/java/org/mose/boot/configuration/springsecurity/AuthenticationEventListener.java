@@ -1,5 +1,7 @@
 package org.mose.boot.configuration.springsecurity;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.stereotype.Component;
@@ -11,10 +13,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AuthenticationEventListener implements ApplicationListener<AbstractAuthenticationEvent> {
-//    private static Logger logger = LoggerFactory.getLogger("systemLog");
+    private static Logger logger = LoggerFactory.getLogger("securityLogger");
 
     @Override
     public void onApplicationEvent(AbstractAuthenticationEvent event) {
-//        logger.info("Receive event of type:" + event.getClass().getName() + ":" + event.toString());
+        logger.info("Receive event of type:" + event.getClass().getName() + ":" + event.toString());
     }
 }

@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 @Aspect
 public class DaoExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     @AfterThrowing(value = "execution (* org.mose.boot.*..dao.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {

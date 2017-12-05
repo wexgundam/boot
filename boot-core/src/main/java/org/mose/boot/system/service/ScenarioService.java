@@ -6,8 +6,9 @@ import org.mose.boot.metronic.modal.SidebarItem;
 import org.mose.boot.springmvc.service.ResourceService;
 import org.mose.boot.system.dao.IScenarioRepository;
 import org.mose.boot.system.modal.Scenario;
-import org.mose.boot.util.log.LogUtil;
 import org.mose.boot.util.ztree.TreeNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 @Service
 public class ScenarioService {
+    private Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
     /**
      * 场景数据获取对象
      */
@@ -54,6 +56,7 @@ public class ScenarioService {
      * 递归方法，遍历scenario的scenario，将其均加入到list，最后返回所有list形式的集合
      *
      * @param scenario
+     *
      * @return
      */
     private List<Scenario> toList(Scenario scenario) {
@@ -123,6 +126,7 @@ public class ScenarioService {
      *
      * @param parentSidebarItem
      * @param scenario
+     *
      * @return
      */
     private SidebarItem createSidebarItem(SidebarItem parentSidebarItem, Scenario scenario) {
@@ -149,6 +153,7 @@ public class ScenarioService {
      * Description:删除记录
      *
      * @param scenario
+     *
      * @return
      *
      * @Author: 靳磊
@@ -168,17 +173,17 @@ public class ScenarioService {
      * @Date: 2017/10/18 13:20
      */
     public String getScenarioZTreeJson() {
+        List<Scenario> scenarioTree = getScenarioTree();
+        List<TreeNode> treeNodes = new ArrayList<>();
+        for (Scenario scenario : scenarioTree) {
+            TreeNode treeNode = createTreeNode(scenario);
+            treeNodes.add(treeNode);
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            List<Scenario> scenarioTree = getScenarioTree();
-            List<TreeNode> treeNodes = new ArrayList<>();
-            for (Scenario scenario : scenarioTree) {
-                TreeNode treeNode = createTreeNode(scenario);
-                treeNodes.add(treeNode);
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(treeNodes);
         } catch (JsonProcessingException e) {
-            LogUtil.error(e);
+            exceptionLogger.error(e.getMessage(), e);
         }
         return null;
     }
@@ -187,6 +192,7 @@ public class ScenarioService {
      * Description: 获得给定场景对应的TreeNode
      *
      * @param scenario
+     *
      * @return
      *
      * @Author: 靳磊
@@ -213,6 +219,7 @@ public class ScenarioService {
      * 删除给定id对应的记录
      *
      * @param id
+     *
      * @return
      */
     @Transactional
@@ -224,6 +231,7 @@ public class ScenarioService {
      * 根据给定的id查询
      *
      * @param id
+     *
      * @return
      */
     public Scenario getScenario(int id) {

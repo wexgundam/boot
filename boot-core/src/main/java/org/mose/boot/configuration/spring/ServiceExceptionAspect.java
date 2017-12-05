@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ServiceExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("exceptionLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     @AfterThrowing(value = "execution (* org.mose.boot.*..service.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {

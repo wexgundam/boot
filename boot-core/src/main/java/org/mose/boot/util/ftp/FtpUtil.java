@@ -3,9 +3,14 @@ package org.mose.boot.util.ftp;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +23,7 @@ import java.util.List;
  */
 
 public class FtpUtil {
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 建立ftp连接
@@ -27,7 +33,9 @@ public class FtpUtil {
      * @param username 账号
      * @param userpass 密码
      * @param path     连接后跳转路径
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -41,9 +49,9 @@ public class FtpUtil {
                 ftpClient.changeWorkingDirectory(path);
             }
         } catch (SocketException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         return ftpClient;
     }
@@ -52,6 +60,7 @@ public class FtpUtil {
      * 关闭连接
      *
      * @param ftpClient
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -61,7 +70,7 @@ public class FtpUtil {
                 ftpClient.disconnect();
                 ftpClient = null;
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
         }
     }
@@ -70,7 +79,9 @@ public class FtpUtil {
      * 列出服务器文件列表
      *
      * @param ftpClient
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -85,9 +96,9 @@ public class FtpUtil {
                 }
             }
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         return listFiles;
     }
@@ -97,7 +108,9 @@ public class FtpUtil {
      *
      * @param ftpClient
      * @param filename
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -119,16 +132,16 @@ public class FtpUtil {
                 reader.close();
             }
         } catch (UnsupportedEncodingException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 if (is != null) {
                     is.close();
                 }
             } catch (IOException e) {
-                LogUtil.error(e);
+                logger.error(e.getMessage(), e);
             }
             is = null;
         }

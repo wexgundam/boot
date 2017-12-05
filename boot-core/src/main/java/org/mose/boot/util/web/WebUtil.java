@@ -2,7 +2,8 @@ package org.mose.boot.util.web;
 
 
 import org.mose.boot.util.json.JsonUtil;
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.IOException;
  * @date 2017-05-23
  */
 public class WebUtil {
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 在controller或action里面打印字符串，返回给前台
@@ -28,7 +30,7 @@ public class WebUtil {
             response.setContentType("text/html; charset=UTF-8");
             response.getWriter().println(str);
         } catch (IOException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -45,7 +47,7 @@ public class WebUtil {
             response.setContentType("application/json; charset=UTF-8");
             response.getWriter().println(JsonUtil.toStr(obj));
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
     }
 

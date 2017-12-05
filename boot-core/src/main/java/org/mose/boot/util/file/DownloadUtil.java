@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 public class DownloadUtil {
-    private static Logger logger = LoggerFactory.getLogger("systemLog");
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 文件下载方法
@@ -34,8 +34,7 @@ public class DownloadUtil {
                 bos.write(buff, 0, bytesRead);
             }
         } catch (Exception e) {
-            logger.error(e.getMessage());
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         } finally {
             if (bis != null)
                 try {

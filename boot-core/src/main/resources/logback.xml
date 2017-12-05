@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-    <property name="logBase" value="d:\\logs\\org.mose.boot\\"/>
+    <property name="rootPath" value="d:\\logs\\org.mose.boot\\"/>
     <property name="encoderPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5level - %m[%class]%n"/>
     <!-- appender -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -13,11 +13,11 @@
     </appender>
 
     <!-- 异常日志 -->
-    <appender name="exceptionLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/exception.log</file>
+    <appender name="exceptionLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/exception.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/exception-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/exception-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -29,11 +29,11 @@
         </encoder>
     </appender>
     <!-- dao日志 -->
-    <appender name="daoLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/dao.log</file>
+    <appender name="daoLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/dao.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/dao-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/dao-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -43,11 +43,11 @@
         </encoder>
     </appender>
     <!-- 服务日志 -->
-    <appender name="serviceLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/service.log</file>
+    <appender name="serviceLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/service.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/service-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/service-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -57,11 +57,11 @@
         </encoder>
     </appender>
     <!-- 控制器日志 -->
-    <appender name="controllerLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/controller.log</file>
+    <appender name="controllerLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/controller.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/controller-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/controller-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -71,11 +71,11 @@
         </encoder>
     </appender>
     <!-- 定时任务日志 -->
-    <appender name="jobLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/job.log</file>
+    <appender name="jobLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/job.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/job-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/job-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -85,11 +85,11 @@
         </encoder>
     </appender>
     <!-- 性能日志 -->
-    <appender name="performanceLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/performance.log</file>
+    <appender name="performanceLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/performance.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/performance-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/performance-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -99,40 +99,11 @@
         </encoder>
     </appender>
     <!-- 认证、授权日志 -->
-    <appender name="securityLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/security.log</file>
+    <appender name="securityLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/security.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/security-%d{yyyyMMdd}.log</FileNamePattern>
-            <maxHistory>365</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <ImmediateFlush>true</ImmediateFlush>
-            <charset>utf-8</charset>
-            <Pattern>${encoderPattern}</Pattern>
-        </encoder>
-    </appender>
-    <!-- 操作日志 -->
-    <appender name="operationLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/operation.log</file>
-        <append>true</append>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/operation-%d{yyyyMMdd}.log</FileNamePattern>
-            <maxHistory>365</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <ImmediateFlush>true</ImmediateFlush>
-            <charset>utf-8</charset>
-            <Pattern>%m%n</Pattern>
-        </encoder>
-    </appender>
-
-    <!-- 系统日志配置 -->
-    <appender name="systemLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logBase}/system.log</file>
-        <append>true</append>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${logBase}/%d{yyyyMMdd}/system-%d{yyyyMMdd}.log</FileNamePattern>
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/security-%d{yyyyMMdd}.log</FileNamePattern>
             <maxHistory>365</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -142,32 +113,28 @@
         </encoder>
     </appender>
 
-    <!-- additivity为false不向root控制台输出 -->
-    <logger name="systemLog" level="INFO">
-        <appender-ref ref="systemLogAppender"/>
+    <logger name="exceptionLogger" level="ERROR">
+        <appender-ref ref="exceptionLoggerAppender"/>
     </logger>
-    <logger name="daoLog" level="INFO">
-        <appender-ref ref="daoLogAppender"/>
+    <logger name="daoLogger" level="INFO">
+        <appender-ref ref="daoLoggerAppender"/>
     </logger>
-    <logger name="serviceLog" level="INFO">
-        <appender-ref ref="serviceLogAppender"/>
+    <logger name="serviceLogger" level="INFO">
+        <appender-ref ref="serviceLoggerAppender"/>
     </logger>
-    <logger name="controllerLog" level="INFO">
-        <appender-ref ref="controllerLogAppender"/>
+    <logger name="controllerLogger" level="INFO">
+        <appender-ref ref="controllerLoggerAppender"/>
     </logger>
-    <logger name="operationLog" level="INFO">
-        <appender-ref ref="operationLogAppender"/>
+    <logger name="performanceLogger" level="INFO">
+        <appender-ref ref="performanceLoggerAppender"/>
     </logger>
-    <logger name="performanceLog" level="INFO">
-        <appender-ref ref="performanceLogAppender"/>
-    </logger>
-    <logger name="jobLog" level="INFO">
-        <appender-ref ref="jobLogAppender"/>
-    </logger>
-    <logger name="exceptionLog" level="ERROR">
-        <appender-ref ref="exceptionLogAppender"/>
+    <logger name="jobLogger" level="INFO">
+        <appender-ref ref="jobLoggerAppender"/>
     </logger>
     <logger name="druid" level="INFO">
+    </logger>
+    <logger name="securityLogger" level="INFO">
+        <appender-ref ref="securityLoggerAppender"/>
     </logger>
 
     <!-- root 默认日志配置 -->

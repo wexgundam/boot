@@ -1,8 +1,13 @@
 package org.mose.boot.util.excel;
 
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 /**
  * 导出CSV文件
@@ -11,6 +16,7 @@ import java.io.*;
  * @date 2017-05-23
  */
 public class CSVUtil {
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 生成为CVS文件
@@ -18,7 +24,9 @@ public class CSVUtil {
      * @param outPutPath
      * @param fileName   要导出生成的文件名
      * @param data       二维数组
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -43,7 +51,7 @@ public class CSVUtil {
             }
             csvFileOutputStream.flush();
         } catch (Exception e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         } finally {
             try {
                 csvFileOutputStream.close();

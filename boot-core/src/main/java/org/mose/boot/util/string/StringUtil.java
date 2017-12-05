@@ -1,7 +1,8 @@
 package org.mose.boot.util.string;
 
 
-import org.mose.boot.util.log.LogUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -18,12 +19,15 @@ import java.util.regex.Pattern;
  * @date 2017-05-23
  */
 public class StringUtil {
+    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
     /**
      * 把前台传过来的含中文的url字符串转换成标准中文，比如%25E5%258C%2597%25E4%25BA%25AC转换成北京
      *
      * @param url url字符串
+     *
      * @return string
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -42,7 +46,9 @@ public class StringUtil {
      * 把比如北京转换成%25E5%258C%2597%25E4%25BA%25AC
      *
      * @param url url字符串
+     *
      * @return string
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -53,7 +59,7 @@ public class StringUtil {
         try {
             str = URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            LogUtil.error(e);
+            logger.error(e.getMessage(), e);
         }
         return str;
     }
@@ -62,7 +68,9 @@ public class StringUtil {
      * 取字符除最后一位的子串，比如 aaa,bbb, 返回aaa,bbb，一般用在多个字段进行拼接，要去除最后一位
      *
      * @param str 字符串
+     *
      * @return string
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -77,7 +85,9 @@ public class StringUtil {
      * 判断字符串是null或空，null或""都返回true
      *
      * @param str 字符串
+     *
      * @return boolean
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -93,7 +103,9 @@ public class StringUtil {
      * 判断字符串不是null或空
      *
      * @param str 字符串
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -109,7 +121,9 @@ public class StringUtil {
      * 判断是否是ajax请求，用于进行权限控制或异常处理时，得判断是否是ajax请求
      *
      * @param request
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -126,7 +140,9 @@ public class StringUtil {
      * 获取客户端请求的ip地址，可以跳过代理等直接获取
      *
      * @param request
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -146,7 +162,9 @@ public class StringUtil {
      * 过滤表情，在移动开发中，有些字符是表情等特殊字符，数据库不识别，需要过滤掉， 替换为*
      *
      * @param source
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -162,7 +180,9 @@ public class StringUtil {
      * 获取url地址，整个请求地址，不包含?后面的参数信息，如果最后一位后缀为#，去掉
      *
      * @param request 请求
+     *
      * @return url地址
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -183,7 +203,9 @@ public class StringUtil {
      * 判断是否是手机号
      *
      * @param mobile
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -196,7 +218,9 @@ public class StringUtil {
 
     /**
      * 获取Request的参数，并将其"Key=Value&Key=Value"的格式返回
+     *
      * @param request 请求
+     *
      * @return "Key=Value&Key=Value"格式的字符串
      */
     public static String getOperaParams(HttpServletRequest request) {
