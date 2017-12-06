@@ -117,6 +117,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
             JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
             jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
             jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
+
         }
         return userDetailsService;
     }
