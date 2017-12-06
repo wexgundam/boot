@@ -1,6 +1,6 @@
 package org.mose.boot.common.service;
 
-import org.mose.boot.common.modal.SidebarItem;
+import org.mose.boot.common.vo.SidebarItem;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;

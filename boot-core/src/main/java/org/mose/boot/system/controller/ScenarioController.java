@@ -1,6 +1,6 @@
 package org.mose.boot.system.controller;
 
-import org.mose.boot.common.dao.Pagination;
+import org.mose.boot.common.vo.Pagination;
 import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.system.modal.Scenario;

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/common/result")
 public class ResultPageController {
-    @RequestMapping("/404")
+    @RequestMapping("/404.htm")
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/404";
     }

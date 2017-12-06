@@ -21,7 +21,7 @@ public class UploadService {
     private ResourceService resourceService;
 
     public boolean uploadImage(HttpServletRequest request, String context) {
-        String rootPath = resourceService.getFileUploadPath();
+        String rootPath = resourceService.getImageUploadPath();
         try {
             storage(request, context == null ? rootPath : rootPath + context);
             return true;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
+@RequestMapping("/common/upload")
 public class UploadController {
     @Autowired
     private UploadService uploadService;
@@ -26,9 +28,9 @@ public class UploadController {
      *
      * @author 杨超凡 created on 2017年11月2日
      */
-    @GetMapping("/uploadImage")
+    @GetMapping("/image.htm")
     private String uploadImage() {
-        return "/uploadImage";
+        return "/common/upload/image";
     }
 
     /**
@@ -41,7 +43,7 @@ public class UploadController {
      * @throws IOException           IOException
      * @author 杨超凡 created on 2017年11月2日
      */
-    @PostMapping("/uploadImage")
+    @PostMapping("/image.htm")
     public void uploadImage(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String context) {
         long startTime = System.currentTimeMillis();
         boolean uploaded = uploadService.uploadImage(request, context);
@@ -61,9 +63,9 @@ public class UploadController {
      *
      * @author 杨超凡 created on 2017年11月2日
      */
-    @GetMapping("/uploadFile")
+    @GetMapping("/file.htm")
     private String uploadFile() {
-        return "/uploadFile";
+        return "/common/upload/file";
     }
 
     /**
@@ -76,7 +78,7 @@ public class UploadController {
      * @throws IOException           IOException
      * @author 杨超凡 created on 2017年11月2日
      */
-    @PostMapping("/uploadFile")
+    @PostMapping("/file.htm")
     public void uploadFile(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String context) {
         long startTime = System.currentTimeMillis();
         boolean uploaded = uploadService.uploadFile(request, context);

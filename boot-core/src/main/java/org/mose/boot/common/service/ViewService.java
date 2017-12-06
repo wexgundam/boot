@@ -51,7 +51,7 @@ public class ViewService {
      */
     private String createDecoratorViewName(String targetViewName, String activeSidebarItemUrl) {
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("forward:/view.htm?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
+        stringBuffer.append("forward:/common/view.htm?targetViewName=").append(targetViewName).append("&activeSidebarItemUrl=" + activeSidebarItemUrl);
         return stringBuffer.substring(0);
     }
 

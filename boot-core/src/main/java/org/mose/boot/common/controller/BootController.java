@@ -12,16 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Administrator on 2017/8/2.
  */
 @Controller("/")
-public class SpringMvcController {
+public class BootController {
     @Autowired
     private ResourceService resourceService;
     @Autowired
     private ViewService viewService;
-
-    @GetMapping("/testE")
-    public void testE() throws Exception {
-        throw new IllegalStateException("My Exception。");
-    }
 
 
     /**
@@ -35,7 +30,7 @@ public class SpringMvcController {
         return indexPageUrl;
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/login.htm")
     public String loginPage() {
         return "login";
     }
@@ -46,7 +41,7 @@ public class SpringMvcController {
         return modelAndView;
     }
 
-    @RequestMapping("/lock")
+    @RequestMapping("/lock.htm")
     public String lockPage() {
         return "/lock";
     }

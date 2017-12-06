@@ -1,4 +1,4 @@
-package org.mose.boot.common.modal;
+package org.mose.boot.common.vo;
 
 import java.util.List;
 

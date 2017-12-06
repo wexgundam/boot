@@ -1,4 +1,4 @@
-package org.mose.boot.common.dao;
+package org.mose.boot.common.vo;
 
 
 import org.mose.boot.common.dao.AbstractPagination;

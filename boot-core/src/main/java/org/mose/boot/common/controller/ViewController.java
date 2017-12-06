@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @Date: 2017/8/18 14:46
  */
 @Controller
+@RequestMapping("/common")
 public class ViewController {
     /**
      * 模块服务，用于生成侧边菜单
@@ -35,7 +36,7 @@ public class ViewController {
      * @param activeSidebarItemUrl 激活的SidebarItem Url
      * @return
      */
-    @RequestMapping("/view")
+    @RequestMapping("/view.htm")
     public ModelAndView decoratePage(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(scenarioService.createSidebarItems()));
