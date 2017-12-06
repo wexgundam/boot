@@ -1,8 +1,6 @@
 package org.mose.boot.configuration.springsecurity;
 
-import org.mose.boot.common.service.UserService;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.method.MapBasedMethodSecurityMetadataSource;
 import org.springframework.security.access.method.MethodSecurityMetadataSource;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -32,7 +30,6 @@ public class MethodSecurityConfiguration extends GlobalMethodSecurityConfigurati
     @Override
     protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
         MapBasedMethodSecurityMetadataSource metadataSource = new MapBasedMethodSecurityMetadataSource();
-        metadataSource.addSecureMethod(UserService.class, "javaConfiguredMethod", SecurityConfig.createList("ROLE_ADMIN"));
         return metadataSource;
     }
 }

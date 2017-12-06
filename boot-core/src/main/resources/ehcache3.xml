@@ -14,7 +14,7 @@
         </expiry>
         <resources>
             <heap unit="entries">1000</heap>
-            <offheap unit="MB">500</offheap>
+            <offheap unit="MB">50</offheap>
         </resources>
         <heap-store-settings>
             <max-object-graph-size>100</max-object-graph-size>

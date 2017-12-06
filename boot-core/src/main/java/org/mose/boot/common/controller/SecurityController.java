@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by Administrator on 2017/8/2.
  */
 @Controller("/")
-public class BootController {
+public class SecurityController {
     @Autowired
     private ResourceService resourceService;
     @Autowired
