@@ -193,7 +193,7 @@
             var setting = {
                 data: {
                     simpleData: {
-                        enable: true,
+                        enabled: true,
                         idKey: "id",
                         pIdKey: "pId",
                         rootPId: ""

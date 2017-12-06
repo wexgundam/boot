@@ -24,7 +24,7 @@ import java.lang.reflect.ParameterizedType;
  * @Author: 靳磊
  * @Date: 2017/8/11:21
  */
-public abstract class AbstractStreamRepository<Entity, Id> {
+public abstract class AbstractStreamRepository<Id, Entity> {
     /**
      * Spring JdbcTemplate
      */
