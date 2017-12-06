@@ -2,7 +2,7 @@ package org.mose.boot.configuration.redis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mose.boot.springsession.service.SpringSessionRedisService;
+import org.mose.boot.common.service.SpringSessionRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;

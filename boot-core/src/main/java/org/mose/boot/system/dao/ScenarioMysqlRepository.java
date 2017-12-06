@@ -1,6 +1,6 @@
 package org.mose.boot.system.dao;
 
-import org.mose.boot.dao.stream.AbstractStreamRepository;
+import org.mose.boot.common.dao.stream.AbstractStreamRepository;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.stereotype.Component;

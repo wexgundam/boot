@@ -1,8 +1,8 @@
 package org.mose.boot.configuration.spring;
 
-import org.mose.boot.dao.IPaging;
-import org.mose.boot.dao.MysqlPaging;
-import org.mose.boot.dao.OraclePaging;
+import org.mose.boot.common.dao.IPaging;
+import org.mose.boot.common.dao.MysqlPaging;
+import org.mose.boot.common.dao.OraclePaging;
 import org.mose.boot.util.spring.SpringContextHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

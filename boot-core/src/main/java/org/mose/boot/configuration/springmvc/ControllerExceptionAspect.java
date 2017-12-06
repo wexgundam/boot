@@ -1,6 +1,6 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.springmvc.service.ViewService;
+import org.mose.boot.common.service.ViewService;
 import org.mose.boot.util.json.JsonUtil;
 import org.mose.boot.util.string.StringUtil;
 import org.mose.boot.util.web.WebUtil;
@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
