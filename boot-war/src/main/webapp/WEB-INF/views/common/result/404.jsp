@@ -19,7 +19,7 @@
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
-                <a href="index.html">首页</a>
+                <a href="${dynamicResourceServerUrl}/index.htm">首页</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -42,7 +42,7 @@
                 <h3>哎呀！ 非常抱歉.</h3>
                 <p> 我们找不到您请求的页面！
                     <br />
-                    返回 <a href="/index.html"> 首页 </a> 或者 <a href="javascript:;" onclick="window.history.go(-1)">
+                    返回 <a href="${dynamicResourceServerUrl}/index.htm"> 首页 </a> 或者 <a href="javascript:;" onclick="window.history.go(-1)">
                         上一页 </a>
                 <form action="#" class="hide">
                     <div class="input-group input-medium">

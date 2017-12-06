@@ -47,6 +47,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      * 8.关闭csrf限制，该功能以后再讲，默认为开启状态<br>
      *
      * @param http
+     *
      * @return
      *
      * @Author: 靳磊
@@ -57,14 +58,12 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/error").permitAll()
                 .antMatchers("/**").hasRole("USER")
                 .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().logoutUrl("/logout.htm").permitAll()
                 //配置未授权处理地址
-                .and().exceptionHandling().accessDeniedPage("/accessDenied")
+                .and().exceptionHandling().accessDeniedPage("/denied.htm")
                 .and().rememberMe().tokenRepository(persistentTokenRepository())
                 //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
@@ -77,6 +76,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      * Description:配置认证细节
      *
      * @param auth
+     *
      * @return
      *
      * @Author: 靳磊
@@ -106,6 +106,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
      *
      * @param auth
+     *
      * @return
      */
     @Bean
