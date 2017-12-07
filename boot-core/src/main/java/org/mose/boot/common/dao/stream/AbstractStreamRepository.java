@@ -47,7 +47,7 @@ public abstract class AbstractStreamRepository<Id, Entity> {
      * @return
      */
     public Class<Entity> getEntityClass() {
-        return ((Class<Entity>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+        return ((Class<Entity>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1]);
     }
 
     /**

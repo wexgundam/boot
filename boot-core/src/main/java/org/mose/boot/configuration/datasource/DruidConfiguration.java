@@ -6,6 +6,9 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
+import org.mose.boot.common.dao.IPaging;
+import org.mose.boot.common.dao.MysqlPaging;
+import org.mose.boot.common.dao.OraclePaging;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.JdkRegexpMethodPointcut;
@@ -15,6 +18,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 
@@ -29,6 +34,20 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class DruidConfiguration {
+    @Bean
+    @Scope("prototype")
+    @Profile("mysql")
+    public IPaging mysqlPaging() {
+        return new MysqlPaging();
+    }
+
+    @Bean
+    @Scope("prototype")
+    @Profile("oracle")
+    public IPaging oraclePaging() {
+        return new OraclePaging();
+    }
+
     /**
      * 声明name为“dataSource”的bean，对应druid sql监控才能显示
      *

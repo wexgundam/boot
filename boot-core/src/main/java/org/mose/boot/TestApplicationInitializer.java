@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2017/07/06
  */
 @SpringBootApplication
-public class ApplicationInitializer {
+public class TestApplicationInitializer {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(ApplicationInitializer.class, args);
+        SpringApplication.run(TestApplicationInitializer.class, args);
     }
 }
 

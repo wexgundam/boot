@@ -15,8 +15,8 @@ package org.mose.boot.system.modal;
  */
 public class UserRole {
     private int id;
-    private User user;
-    private Role role;
+    private int userId;
+    private int roleId;
 
     @Override
     public boolean equals(Object o) {
@@ -37,8 +37,8 @@ public class UserRole {
     public String toString() {
         return "UserRole{" +
                 "id=" + id +
-                ", user=" + user +
-                ", role=" + role +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
                 '}';
     }
 
@@ -50,19 +50,19 @@ public class UserRole {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Role getRole() {
-        return role;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 }

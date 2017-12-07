@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mose.boot.common.vo.SidebarItem;
 import org.mose.boot.common.service.ResourceService;
-import org.mose.boot.system.dao.IScenarioRepository;
+import org.mose.boot.system.repository.IScenarioRepository;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.util.ztree.TreeNode;
 import org.slf4j.Logger;

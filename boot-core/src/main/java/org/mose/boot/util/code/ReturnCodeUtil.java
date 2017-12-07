@@ -21,7 +21,7 @@ public class ReturnCodeUtil {
     /**
      * 保存成功
      */
-    public static final int SUCCESS__SAVE = 10001;
+    public static final int SUCCESS__INSERT = 10001;
     /**
      * 更新成功
      */
@@ -34,27 +34,34 @@ public class ReturnCodeUtil {
     /**
      * 保存失败
      */
-    public static final int FAIL__SAVE = 20001;
-    /**
-     * 删除失败：包含下级节点
-     */
-    public static final int FAIL__DELETE_HAVE_CHILDREN = 20002;
+    public static final int FAIL__INSERT = 20001;
     /**
      * 没有数据可更新
      *
      * @return
      */
-    public static final int FAIL__UPDATE_NULL = 20003;
+    public static final int FAIL__UPDATE_NONE = 20002;
+    /**
+     * 没有数据可删除
+     *
+     * @return
+     */
+    public static final int FAIL__DELETE_NONE = 20003;
+    /**
+     * 删除失败：包含下级节点
+     */
+    public static final int FAIL__DELETE_HAVE_CHILDREN = 20004;
 
     //初始化map
     private static Map<Integer, String> createMap() {
         map = new HashMap<>();
-        map.put(SUCCESS__SAVE, "保存成功");
+        map.put(SUCCESS__INSERT, "保存成功");
         map.put(SUCCESS__UPDATE, "更新成功");
         map.put(SUCCESS__DELETE, "删除成功");
-        map.put(FAIL__SAVE, "保存失败");
+        map.put(FAIL__INSERT, "保存失败");
+        map.put(FAIL__UPDATE_NONE, "没有数据可更新");
+        map.put(FAIL__DELETE_NONE, "没有数据可删除");
         map.put(FAIL__DELETE_HAVE_CHILDREN, "包含下级节点");
-        map.put(FAIL__UPDATE_NULL, "没有数据可更新");
 
         return map;
     }
@@ -63,6 +70,7 @@ public class ReturnCodeUtil {
      * 获取返回的中文说明
      *
      * @param returnCode
+     *
      * @return
      */
     public static String getMsg(int returnCode) {
@@ -74,6 +82,7 @@ public class ReturnCodeUtil {
      * 返回编码是否是成功
      *
      * @param returnCode
+     *
      * @return
      */
     public static boolean isSuccess(int returnCode) {
@@ -84,6 +93,7 @@ public class ReturnCodeUtil {
      * 返回编码是否是失败
      *
      * @param returnCode
+     *
      * @return
      */
     public static boolean isFail(int returnCode) {

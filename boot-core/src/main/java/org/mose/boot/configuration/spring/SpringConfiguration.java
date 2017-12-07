@@ -33,18 +33,4 @@ public class SpringConfiguration {
     public SpringContextHolder springContextConfiguration() {
         return new SpringContextHolder();
     }
-
-    @Bean
-    @Scope("prototype")
-    @Profile("mysql")
-    public IPaging mysqlPaging() {
-        return new MysqlPaging();
-    }
-
-    @Bean
-    @Scope("prototype")
-    @Profile("oracle")
-    public IPaging oraclePaging() {
-        return new OraclePaging();
-    }
 }

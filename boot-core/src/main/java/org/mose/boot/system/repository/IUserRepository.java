@@ -1,4 +1,4 @@
-package org.mose.boot.system.dao;
+package org.mose.boot.system.repository;
 
 import org.mose.boot.system.modal.User;
 

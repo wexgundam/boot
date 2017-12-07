@@ -1,0 +1,69 @@
+/**
+ * Copyright 2017 弘远技术研发中心. All rights reserved
+ * Project Name:boot
+ * Module Name:TODO:Module
+ */
+package org.mose.boot.system.repository;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mose.boot.TestApplicationInitializer;
+import org.mose.boot.system.modal.User;
+import org.mose.boot.util.code.ReturnCodeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+/**
+ * what:    测试UserMysqlRepository.<br/>
+ * when:    (这里描述这个类的适用时机 – 可选).<br/>
+ * how:     (这里描述这个类的使用方法 – 可选).<br/>
+ * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ *
+ * @author 靳磊 created on 2017/12/2
+ */
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@Transactional
+public class TestUserMysqlRepository {
+    @Autowired
+    private IUserRepository userRepository;
+
+    @Test
+    public void contextLoads() {
+    }
+
+    @Test
+    public void testRepository() {
+        User user = new User();
+        user.setUsername("username");
+        int returnCode = userRepository.insertOne(user);
+        assertEquals(ReturnCodeUtil.SUCCESS__INSERT, returnCode);
+        assertFalse(user.getId() == 0);
+        User queryOne = userRepository.queryOne(user.getId());
+        assertEquals(user, queryOne);
+        List<User> users = userRepository.queryAll();
+        assertNotNull(users);
+        returnCode = userRepository.updateOne(user);
+        assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
+        returnCode = userRepository.deleteOne(user);
+        assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
+        queryOne = userRepository.queryOne(user.getId());
+        assertNull(queryOne);
+    }
+}
