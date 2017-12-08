@@ -7,18 +7,15 @@ package org.mose.boot.system.repository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mose.boot.TestApplicationInitializer;
+import org.mose.boot.configuration.datasource.DruidConfiguration;
 import org.mose.boot.system.modal.User;
+import org.mose.boot.test.ApplicationInitializer;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +34,10 @@ import static org.junit.Assert.assertNull;
  *
  * @author 靳磊 created on 2017/12/2
  */
-@SpringBootTest
+@SpringBootTest(classes = ApplicationInitializer.class)
+@Import(DruidConfiguration.class)
+@ComponentScan("org.mose.boot.system.repository")
+@ActiveProfiles({"mysql"})
 @RunWith(SpringRunner.class)
 @Transactional
 public class TestUserMysqlRepository {

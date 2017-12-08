@@ -1,4 +1,4 @@
-package org.mose.boot;
+package org.mose.boot.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2017/07/06
  */
 @SpringBootApplication
-public class TestApplicationInitializer {
+public class ApplicationInitializer {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(TestApplicationInitializer.class, args);
+        SpringApplication.run(ApplicationInitializer.class, args);
     }
 }
 
