@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class DaoExceptionAspect {
     private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
-    @AfterThrowing(value = "execution (* org.mose.boot.*..dao.*.*(..))", throwing = "e")
+    @AfterThrowing(value = "execution (* org.mose.boot.*..repository.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         // 拦截的实体类
         Object target = joinPoint.getTarget(); // 拦截的方法名称

@@ -15,8 +15,17 @@ package org.mose.boot.system.modal;
  */
 public class RoleAuthority {
     private int id;
-    private Role role;
-    private Authority authority;
+    private int authorityId;
+    private int roleId;
+
+    @Override
+    public String toString() {
+        return "RoleAuthority{" +
+                "id=" + id +
+                ", authorityId=" + authorityId +
+                ", roleId=" + roleId +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -33,15 +42,6 @@ public class RoleAuthority {
         return getId();
     }
 
-    @Override
-    public String toString() {
-        return "RoleAuthority{" +
-                "id=" + id +
-                ", role=" + role +
-                ", authority=" + authority +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
@@ -50,19 +50,19 @@ public class RoleAuthority {
         this.id = id;
     }
 
-    public Role getRole() {
-        return role;
+    public int getAuthorityId() {
+        return authorityId;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setAuthorityId(int authorityId) {
+        this.authorityId = authorityId;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 }

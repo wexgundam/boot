@@ -1,7 +1,8 @@
-package org.mose.boot.system.repository;
+package org.mose.boot.system.repository.mysql;
 
 import org.mose.boot.common.dao.stream.AbstractStreamRepository;
 import org.mose.boot.system.modal.Scenario;
+import org.mose.boot.system.repository.IScenarioRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.stereotype.Component;
 

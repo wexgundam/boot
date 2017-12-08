@@ -3,19 +3,18 @@
  * Project Name:boot
  * Module Name:TODO:Module
  */
-package org.mose.boot.system.repository;
+package org.mose.boot.system.repository.mysql;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mose.boot.configuration.datasource.DruidConfiguration;
 import org.mose.boot.system.modal.User;
-import org.mose.boot.system.modal.UserRole;
+import org.mose.boot.system.repository.IUserRepository;
 import org.mose.boot.test.ApplicationInitializer;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -42,9 +41,9 @@ import static org.junit.Assert.assertNull;
 @ActiveProfiles({"mysql"})
 @RunWith(SpringRunner.class)
 @Transactional
-public class TestUserRoleMysqlRepository {
+public class TestUserMysqlRepository {
     @Autowired
-    private IUserRoleRepository userRoleRepository;
+    private IUserRepository userRepository;
 
     @Test
     public void contextLoads() {
@@ -52,27 +51,20 @@ public class TestUserRoleMysqlRepository {
 
     @Test
     public void testRepository() {
-        UserRole userRole = new UserRole();
-        int userId = 1;
-        int roleId = 2;
-        userRole.setUserId(userId);
-        userRole.setRoleId(roleId);
-        int returnCode = userRoleRepository.insertOne(userRole);
+        User user = new User();
+        user.setUsername("username");
+        int returnCode = userRepository.insertOne(user);
         assertEquals(ReturnCodeUtil.SUCCESS__INSERT, returnCode);
-        assertFalse(userRole.getId() == 0);
-        UserRole queryOne = userRoleRepository.queryOne(userRole.getId());
-        assertEquals(userRole, queryOne);
-        List<UserRole> userRoles = userRoleRepository.queryAllByUserId(userId);
-        assertNotNull(userRoles);
-        userRoles = userRoleRepository.queryAllByRoleId(roleId);
-        assertNotNull(userRoles);
-        returnCode = userRoleRepository.updateOne(userRole);
+        assertFalse(user.getId() == 0);
+        User queryOne = userRepository.queryOne(user.getId());
+        assertEquals(user, queryOne);
+        List<User> users = userRepository.queryAll();
+        assertNotNull(users);
+        returnCode = userRepository.updateOne(user);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
-        returnCode = userRoleRepository.deleteOne(userRole);
+        returnCode = userRepository.deleteOne(user);
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
-        queryOne = userRoleRepository.queryOne(userRole.getId());
+        queryOne = userRepository.queryOne(user.getId());
         assertNull(queryOne);
-        userRoleRepository.deleteAllByUserId(userId);
-        userRoleRepository.deleteAllByRoleId(roleId);
     }
 }
