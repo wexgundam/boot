@@ -73,7 +73,7 @@ public class ReturnCodeUtil {
      *
      * @return
      */
-    public static String getMsg(int returnCode) {
+    public static String getMessage(int returnCode) {
         map = map == null ? createMap() : map;
         return map.containsKey(returnCode) ? map.get(returnCode) : "";
     }

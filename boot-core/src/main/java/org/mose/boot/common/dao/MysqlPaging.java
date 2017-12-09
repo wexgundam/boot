@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
  */
 public class MysqlPaging implements IPaging {
     @Override
-    public String doPaging(String sql, int pageNumber, int pageSize) {
+    public String paging(String sql, int pageNumber, int pageSize) {
         Assert.notNull(sql, "The sql is null.");
         return sql + " limit " + (pageNumber - 1) * pageSize + "," + pageSize;
     }

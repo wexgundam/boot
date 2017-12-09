@@ -92,10 +92,10 @@ public class ScenarioController {
 
         int returnCode = scenarioService.addScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMessage(returnCode), indexViewName);
             return modelAndView;
         } else {
-            ModelAndView modelAndView = viewService.forwardSuccessView(ReturnCodeUtil.getMsg(returnCode), indexViewName + ".htm", indexViewName + ".htm");
+            ModelAndView modelAndView = viewService.forwardSuccessView(ReturnCodeUtil.getMessage(returnCode), indexViewName + ".htm", indexViewName + ".htm");
             return modelAndView;
         }
     }
@@ -111,7 +111,7 @@ public class ScenarioController {
     public ModelAndView deleteScenario(int id) {
         int returnCode = scenarioService.deleteScenario(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMessage(returnCode), indexViewName);
             return modelAndView;
         } else {
             ModelAndView modelAndView = viewService.forwardSuccessView("场景删除成功！", indexViewName, indexViewName);
@@ -148,7 +148,7 @@ public class ScenarioController {
     public ModelAndView updateScenario(Scenario scenario) {
         int returnCode = scenarioService.updateScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMsg(returnCode), indexViewName);
+            ModelAndView modelAndView = viewService.forwardFailView(ReturnCodeUtil.getMessage(returnCode), indexViewName);
             return modelAndView;
         } else {
             ModelAndView modelAndView = viewService.forwardSuccessView("场景更新成功！", indexViewName + ".htm", indexViewName + ".htm");

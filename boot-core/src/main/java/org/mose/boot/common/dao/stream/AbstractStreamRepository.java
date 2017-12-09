@@ -24,7 +24,7 @@ import java.lang.reflect.ParameterizedType;
  * @Author: 靳磊
  * @Date: 2017/8/11:21
  */
-public abstract class AbstractStreamRepository<Id, Entity> {
+public abstract class AbstractStreamRepository<Entity, Id> {
     /**
      * Spring JdbcTemplate
      */
@@ -47,7 +47,7 @@ public abstract class AbstractStreamRepository<Id, Entity> {
      * @return
      */
     public Class<Entity> getEntityClass() {
-        return ((Class<Entity>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1]);
+        return ((Class<Entity>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
     }
 
     /**
@@ -57,7 +57,7 @@ public abstract class AbstractStreamRepository<Id, Entity> {
      */
     public Class<Id> getIdClass() {
         return ((Class<Id>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0]);
+                .getGenericSuperclass()).getActualTypeArguments()[1]);
     }
 
     /**

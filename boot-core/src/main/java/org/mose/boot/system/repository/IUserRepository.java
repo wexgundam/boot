@@ -1,6 +1,7 @@
 package org.mose.boot.system.repository;
 
 import org.mose.boot.system.modal.User;
+import org.mose.boot.util.page.PageNavigate;
 
 import java.util.List;
 
@@ -15,14 +16,27 @@ public interface IUserRepository {
      * 根据id查询
      *
      * @param id
+     *
      * @return
      */
     User queryOne(int id);
 
     /**
+     * 分页查询用户
+     */
+    List<User> queryMany(int pageNumber, int pageRowCount);
+
+    /**
      * 查询全部用户
      */
     List<User> queryAll();
+
+    /**
+     * 查询用户总数
+     *
+     * @return
+     */
+    int queryCount();
 
     /**
      * 插入一条记录
@@ -49,7 +63,10 @@ public interface IUserRepository {
      * 根据Id删除记录
      *
      * @param id
+     *
      * @return
      */
     int deleteOne(int id);
+
+
 }

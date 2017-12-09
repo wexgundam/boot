@@ -15,7 +15,7 @@ import java.util.List;
  * @Date: 2017/8/14:22
  */
 @Component
-public class UserRoleMysqlRepository extends AbstractStreamRepository<Integer, UserRole> implements IUserRoleRepository {
+public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, Integer> implements IUserRoleRepository {
     @Override
     public UserRole queryOne(int id) {
         String sql = "select id, user_id, role_id  from t_system_user_role t where id=?";

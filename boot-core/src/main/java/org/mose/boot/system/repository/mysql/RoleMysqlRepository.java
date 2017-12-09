@@ -17,7 +17,7 @@ import java.util.List;
  * @Date: 2017/8/14:22
  */
 @Component
-public class RoleMysqlRepository extends AbstractStreamRepository<Integer, Role> implements IRoleRepository {
+public class RoleMysqlRepository extends AbstractStreamRepository<Role, Integer> implements IRoleRepository {
     @Autowired
     private IRoleAuthorityRepository roleAuthorityRepository;
 

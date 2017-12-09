@@ -186,7 +186,7 @@ public abstract class AbstractRepository<Entity, Id> {
      */
     protected List<Entity> queryManyByParametersAndPaging(RowMapper<Entity> rowMapper, String sql, int pageNumber,
                                                           int pageSize, Object... parameters) {
-        sql = paging.doPaging(sql, pageNumber, pageSize);
+        sql = paging.paging(sql, pageNumber, pageSize);
         return queryManyByParameters(rowMapper, sql, parameters);
     }
 
@@ -251,7 +251,7 @@ public abstract class AbstractRepository<Entity, Id> {
      */
     protected List<Entity> queryManyByParameterBeanAndPaging(RowMapper<Entity> rowMapper, String sql, int pageNumber,
                                                              int pageSize, Object parameterBean) {
-        sql = paging.doPaging(sql, pageNumber, pageSize);
+        sql = paging.paging(sql, pageNumber, pageSize);
         return queryManyByParameterBean(rowMapper, sql, parameterBean);
     }
 

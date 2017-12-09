@@ -15,7 +15,7 @@ import java.util.List;
  * @Date: 2017/8/14:22
  */
 @Component
-public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<Integer, RoleAuthority> implements IRoleAuthorityRepository {
+public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleAuthority, Integer> implements IRoleAuthorityRepository {
     @Override
     public RoleAuthority queryOne(int id) {
         String sql = "select id, role_id, authority_id  from t_system_role_authority t where id=?";

@@ -17,7 +17,7 @@ import java.util.List;
  * @Date: 2017/8/14:22
  */
 @Component
-public class UserMysqlRepository extends AbstractStreamRepository<Integer, User> implements IUserRepository {
+public class UserMysqlRepository extends AbstractStreamRepository<User, Integer> implements IUserRepository {
     @Autowired
     private IUserRoleRepository userRoleRepository;
 
@@ -28,9 +28,21 @@ public class UserMysqlRepository extends AbstractStreamRepository<Integer, User>
     }
 
     @Override
+    public List<User> queryMany(int pageNumber, int pageRowCount) {
+        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t";
+        return query().sql(sql).paging(pageNumber, pageRowCount).queryMany();
+    }
+
+    @Override
     public List<User> queryAll() {
         String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t";
         return query().sql(sql).queryMany();
+    }
+
+    @Override
+    public int queryCount() {
+        String sql = "select count(id) from t_system_user";
+        return query().sql(sql).queryCount();
     }
 
     @Override

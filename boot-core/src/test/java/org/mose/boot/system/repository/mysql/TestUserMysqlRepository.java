@@ -66,5 +66,6 @@ public class TestUserMysqlRepository {
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
         queryOne = userRepository.queryOne(user.getId());
         assertNull(queryOne);
+        userRepository.queryMany(1, 20);
     }
 }

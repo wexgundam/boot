@@ -33,10 +33,11 @@ public class Pagination extends AbstractPagination {
         // 第一页
         if (1 == pageNumber) {
             stringBuffer.append("<li").append(" class=\"disabled\" ").append(">");
+            stringBuffer.append("<a href = \"javascript:;\">");
         } else {
             stringBuffer.append("<li>");
+            stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(1).append("\" >");
         }
-        stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(1).append("\" >");
         stringBuffer.append("<i class=\"fa fa-angle-double-left\" ></i >");
         stringBuffer.append("</a >");
         stringBuffer.append("</li >");
@@ -44,10 +45,11 @@ public class Pagination extends AbstractPagination {
         // 上一页
         if (previousPageNumber == pageNumber) {
             stringBuffer.append("<li").append(" class=\"disabled\" ").append(">");
+            stringBuffer.append("<a href = \"javascript:;\">");
         } else {
             stringBuffer.append("<li>");
+            stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(previousPageNumber).append("\" >");
         }
-        stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(previousPageNumber).append("\" >");
         stringBuffer.append("<i class=\"fa fa-angle-left\" ></i >");
         stringBuffer.append("</a >");
         stringBuffer.append("</li >");
@@ -55,10 +57,11 @@ public class Pagination extends AbstractPagination {
         for (int index = beginPageNumber; index <= endPageNumber; index++) {
             if (index == pageNumber) {
                 stringBuffer.append("<li").append(" class=\"active\" ").append(">");
+                stringBuffer.append("<a href = \"javascript:;\">");
             } else {
                 stringBuffer.append("<li>");
+                stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(index).append("\" >");
             }
-            stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(index).append("\" >");
             stringBuffer.append(index);
             stringBuffer.append("</a >");
             stringBuffer.append("</li >");
@@ -67,10 +70,11 @@ public class Pagination extends AbstractPagination {
         // 下一页
         if (nextPageNumber == pageNumber) {
             stringBuffer.append("<li").append(" class=\"disabled\" ").append(">");
+            stringBuffer.append("<a href = \"javascript:;\">");
         } else {
             stringBuffer.append("<li>");
+            stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(nextPageNumber).append("\" >");
         }
-        stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(nextPageNumber).append("\" >");
         stringBuffer.append("<i class=\"fa fa-angle-right\" ></i >");
         stringBuffer.append("</a >");
         stringBuffer.append("</li >");
@@ -78,10 +82,11 @@ public class Pagination extends AbstractPagination {
         // 最后一页
         if (pageCount == pageNumber) {
             stringBuffer.append("<li").append(" class=\"disabled\" ").append(">");
+            stringBuffer.append("<a href = \"javascript:;\">");
         } else {
             stringBuffer.append("<li>");
+            stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(endPageNumber).append("\" >");
         }
-        stringBuffer.append("<a href = \"").append(url).append("?pageNumber=").append(1).append("\" >");
         stringBuffer.append("<i class=\"fa fa-angle-double-right\" ></i >");
         stringBuffer.append("</a >");
         stringBuffer.append("</li >");

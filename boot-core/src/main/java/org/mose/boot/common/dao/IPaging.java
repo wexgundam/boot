@@ -17,5 +17,5 @@ public interface IPaging {
      * @param pageSize   每页行数
      * @return
      */
-    String doPaging(String sql, int pageNumber, int pageSize);
+    String paging(String sql, int pageNumber, int pageSize);
 }

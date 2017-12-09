@@ -76,6 +76,7 @@ public class Query<Entity, Id> {
      * 注入查询语句
      *
      * @param sql
+     *
      * @return
      */
     public Query<Entity, Id> sql(String sql) {
@@ -87,6 +88,7 @@ public class Query<Entity, Id> {
      * 注入查询参数数组，同时将参数bean设为null
      *
      * @param parameters
+     *
      * @return
      */
     public Query<Entity, Id> parameters(Object... parameters) {
@@ -99,6 +101,7 @@ public class Query<Entity, Id> {
      * 注入查询参数bean，同时将参数数组设为null
      *
      * @param parameterBean
+     *
      * @return
      */
     public Query<Entity, Id> parameterBean(Object parameterBean) {
@@ -111,10 +114,16 @@ public class Query<Entity, Id> {
      * 注入将查询结果映射为实体Entity的RowMapper
      *
      * @param rowMapper
+     *
      * @return
      */
     public Query<Entity, Id> rowMapper(RowMapper<Entity> rowMapper) {
         this.rowMapper = rowMapper;
+        return this;
+    }
+
+    public Query<Entity, Id> paging(int pageNumber, int pageSize) {
+        this.sql = this.paging.paging(sql, pageNumber, pageSize);
         return this;
     }
 
@@ -175,4 +184,6 @@ public class Query<Entity, Id> {
         }
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
+
+
 }

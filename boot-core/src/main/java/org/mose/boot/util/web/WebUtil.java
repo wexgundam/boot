@@ -22,6 +22,7 @@ public class WebUtil {
      *
      * @param response
      * @param str
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -39,6 +40,7 @@ public class WebUtil {
      *
      * @param response 响应
      * @param obj      需要转换为String的对象
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -55,7 +57,9 @@ public class WebUtil {
      * 根据字符串转换，如果为null，则变成""
      *
      * @param obj
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -68,7 +72,9 @@ public class WebUtil {
      *
      * @param obj
      * @param strDefault 为空默认值
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -80,7 +86,9 @@ public class WebUtil {
      * 根据字符串转换，如果为null，则变成0
      *
      * @param obj
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -93,7 +101,9 @@ public class WebUtil {
      *
      * @param obj
      * @param nDefualt 为空的默认值
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -105,7 +115,9 @@ public class WebUtil {
      * 根据字符串转换，如果为null，则变成0
      *
      * @param obj
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -118,7 +130,9 @@ public class WebUtil {
      *
      * @param obj
      * @param nDefualt
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -130,7 +144,9 @@ public class WebUtil {
      * 根据字符串转换，如果为null，则变成0
      *
      * @param obj
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -142,7 +158,9 @@ public class WebUtil {
      * 根据字符串转换，如果为null，则变成defaultDouble
      *
      * @param obj
+     *
      * @return
+     *
      * @author 孔垂云
      * @date 2017-05-23
      */
@@ -150,4 +168,20 @@ public class WebUtil {
         return obj == null ? 0 : Float.parseFloat(String.valueOf(obj));
     }
 
+
+    /**
+     * what:    将给定视图名转为地址. <br/>
+     * when:    (这里描述这个方法适用时机 – 可选).<br/>
+     * how:     (这里描述这个方法的执行流程或使用方法 – 可选).<br/>
+     * warning: (这里描述这个方法的注意事项 – 可选).<br/>
+     *
+     * @param viewName
+     *
+     * @return
+     *
+     * @author 靳磊 created on 2017/12/8
+     */
+    public static String viewName2Url(String viewName) {
+        return viewName + ".htm";
+    }
 }

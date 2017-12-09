@@ -1,7 +1,7 @@
 package org.mose.boot.common.service;
 
+import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -47,6 +47,7 @@ public class ViewService {
      *
      * @param targetViewName       跳转目标视图名
      * @param activeSidebarItemUrl 激活的SidebarItem Url
+     *
      * @return
      */
     private String createDecoratorViewName(String targetViewName, String activeSidebarItemUrl) {
@@ -69,6 +70,16 @@ public class ViewService {
     }
 
     /**
+     * 跳转到错误页面
+     *
+     * @param returnCode           返回编码
+     * @param activeSidebarItemUrl
+     */
+    public ModelAndView forwardFailView(int returnCode, String activeSidebarItemUrl) {
+        return forwardFailView(ReturnCodeUtil.getMessage(returnCode), activeSidebarItemUrl);
+    }
+
+    /**
      * 跳转到成功页面
      *
      * @param message              成功描述信息
@@ -81,6 +92,17 @@ public class ViewService {
         parameters.put("redirectUrl", redirectUrl);
         ModelAndView modelAndView = forwardDecorateView("/common/result/success", activeSidebarItemUrl, parameters);
         return modelAndView;
+    }
+
+    /**
+     * 跳转到成功页面
+     *
+     * @param returnCode           返回编码
+     * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
+     * @param redirectUrl          重定向页面地址
+     */
+    public ModelAndView forwardSuccessView(int returnCode, String activeSidebarItemUrl, String redirectUrl) {
+        return forwardSuccessView(ReturnCodeUtil.getMessage(returnCode), activeSidebarItemUrl, redirectUrl);
     }
 
     /**
