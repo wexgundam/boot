@@ -62,7 +62,7 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
     @Override
     public int updateOne(User user) {
         StringBuffer sql = new StringBuffer();
-        sql.append("update t_system_user set username=:username, password=:password, account_non_expired=:accountNonExpired, account_non_locked=:accountNonLocked, credentials_non_expired=:credentialsNonExpired, enabled=:enabled");
+        sql.append("update t_system_user set username=:username, account_non_expired=:accountNonExpired, account_non_locked=:accountNonLocked, credentials_non_expired=:credentialsNonExpired, enabled=:enabled");
         sql.append(" where id=:id");
         int rowCount = update().sql(sql.substring(0)).parameterBean(user).updateAny();
         if (rowCount > 0) {

@@ -82,10 +82,10 @@
                     <tr>
                         <th width=50>#</th>
                         <th width=200>用户名称</th>
-                        <th width=100>账户有效期</th>
-                        <th width=100>账户锁</th>
-                        <th width=100>认证有效期</th>
-                        <th width=100>可用性</th>
+                        <th width=100>账户未过期</th>
+                        <th width=100>账户位锁定锁</th>
+                        <th width=100>认证未过期</th>
+                        <th width=100>可用</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -101,7 +101,7 @@
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/user/update.htm?id=${user.id}"> 修改 </a>
-                                    <a href="${dynamicResourceServerUrl}/system/user/delete.htm?id=${user.id }"> 删除 </a>
+                                    <a href="javascript:deleteUser(${user.id})"> 删除 </a>
                                 </security:authorize>
                             </td>
                         </tr>
@@ -124,10 +124,10 @@
             var deleteUser = function (id) {
                 bootbox.confirm("你确定要删除该场景吗？", function (result) {
                     if (result) {
-                        window.location = "delete.htm?id=" + id;
+                        window.location = "${dynamicResourceServerUrl}/system/user/delete.htm?id=" + id;
                     }
                 })
-            }
+            };
         </script>
     </content-script>
     <!-- End Javascript -->

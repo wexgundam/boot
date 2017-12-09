@@ -91,23 +91,6 @@ public class UserController {
     }
 
     /**
-     * 执行删除操作
-     *
-     * @param id
-     *
-     * @return
-     */
-    @RequestMapping(value = "/delete")
-    public ModelAndView deleteUser(int id) {
-        int returnCode = userService.deleteUser(id);
-        if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
-        } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
-        }
-    }
-
-    /**
      * 请求更新界面
      *
      * @param id
@@ -133,6 +116,23 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateUser(User user) {
         int returnCode = userService.updateUser(user);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            return viewService.forwardFailView(returnCode, indexViewName);
+        } else {
+            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+        }
+    }
+
+    /**
+     * 执行删除操作
+     *
+     * @param id
+     *
+     * @return
+     */
+    @RequestMapping(value = "/delete")
+    public ModelAndView deleteUser(int id) {
+        int returnCode = userService.deleteUser(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, indexViewName);
         } else {
