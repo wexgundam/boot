@@ -3,7 +3,9 @@ package org.mose.boot.system.controller;
 import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.User;
+import org.mose.boot.system.service.AuthorityService;
 import org.mose.boot.system.service.UserService;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.mose.boot.util.web.WebUtil;
@@ -17,25 +19,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 用户控制器
+ * Description: 权限控制器
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:52
  */
 @Controller
-@RequestMapping("/system/user")
-public class UserController {
+@RequestMapping("/system/authority")
+public class AuthorityController {
     @Autowired
     private ResourceService resourceService;
     @Autowired
-    private UserService userService;
+    private AuthorityService authorityService;
     @Autowired
     private ViewService viewService;
 
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexViewName = "/system/user/index";
+    String indexViewName = "/system/authority/index";
     String indexPageUrl = null;
 
     private String getIndexPageUrl() {
@@ -51,11 +53,11 @@ public class UserController {
     @RequestMapping("/index")
     public ModelAndView indexView(Pagination pagination) {
         pagination.setUrl(getIndexPageUrl());
-        pagination.setRowCount(userService.queryUserCount());
+        pagination.setRowCount(authorityService.queryAuthorityCount());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
-        parameters.put("users", userService.queryUserList(pagination.getPageNumber(), pagination.getPageRowCount()));
+        parameters.put("authorities", authorityService.queryAuthorityList(pagination.getPageNumber(), pagination.getPageRowCount()));
 
         ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), parameters);
         return modelAndView;
@@ -68,20 +70,20 @@ public class UserController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addView() {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/add", getIndexPageUrl());
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/add", getIndexPageUrl());
         return modelAndView;
     }
 
     /**
      * 执行新增操作
      *
-     * @param user
+     * @param authority
      *
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addUser(User user) {
-        int returnCode = userService.addUser(user);
+    public ModelAndView addAuthority(Authority authority) {
+        int returnCode = authorityService.addAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(indexViewName));
         } else {
@@ -98,23 +100,23 @@ public class UserController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public ModelAndView updateView(int id) {
-        User user = userService.queryUser(id);
+        Authority authority = authorityService.queryAuthority(id);
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", indexViewName + ".htm");
-        modelAndView.addObject("user", user);
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/update", indexViewName + ".htm");
+        modelAndView.addObject("authority", authority);
         return modelAndView;
     }
 
     /**
      * 请求更新操作
      *
-     * @param user
+     * @param authority
      *
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView updateUser(User user) {
-        int returnCode = userService.updateUser(user);
+    public ModelAndView updateAuthority(Authority authority) {
+        int returnCode = authorityService.updateAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, indexViewName);
         } else {
@@ -130,8 +132,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/delete")
-    public ModelAndView deleteUser(int id) {
-        int returnCode = userService.deleteUser(id);
+    public ModelAndView deleteAuthority(int id) {
+        int returnCode = authorityService.deleteAuthority(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, indexViewName);
         } else {

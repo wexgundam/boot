@@ -35,7 +35,7 @@ public class UserService {
      *
      * @return
      */
-    public User getUser(int id) {
+    public User queryUser(int id) {
         return userRepository.queryOne(id);
     }
 
@@ -45,7 +45,7 @@ public class UserService {
      * @return
      */
 //    @Cacheable(value = "sysCache", key = "'userList'")
-    public List<User> getUserList(int pageNumber, int pageRowCount) {
+    public List<User> queryUserList(int pageNumber, int pageRowCount) {
         List<User> users = userRepository.queryMany(pageNumber, pageRowCount);
         return users;
     }
@@ -63,7 +63,7 @@ public class UserService {
      *
      * @author 靳磊 created on 2017/12/9
      */
-    public int getUserCount() {
+    public int queryUserCount() {
         return userRepository.queryCount();
     }
 

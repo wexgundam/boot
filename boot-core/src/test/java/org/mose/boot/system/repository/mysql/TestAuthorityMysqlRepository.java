@@ -67,11 +67,13 @@ public class TestAuthorityMysqlRepository {
     public void testRepository() {
         Authority authority = new Authority();
         authority.setName("name");
+        authority.setDescription("description");
         int returnCode = authorityRepository.insertOne(authority);
         assertEquals(ReturnCodeUtil.SUCCESS__INSERT, returnCode);
         assertFalse(authority.getId() == 0);
         Authority queryOne = authorityRepository.queryOne(authority.getId());
         assertEquals(authority, queryOne);
+        authorityRepository.queryExistByName(authority.getName());
         List<Authority> authoritys = authorityRepository.queryAll();
         assertNotNull(authoritys);
         returnCode = authorityRepository.updateOne(authority);

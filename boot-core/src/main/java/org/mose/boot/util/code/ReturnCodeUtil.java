@@ -31,26 +31,36 @@ public class ReturnCodeUtil {
      */
     public static final int SUCCESS__DELETE = 10003;
 
+    /**************************************************
+     * 20101~20199 插入失败
+     * 20201~20299 更新失败
+     * 20301~20399 删除失败
+     *
+     *************************************************/
     /**
      * 保存失败
      */
     public static final int FAIL__INSERT = 20001;
     /**
+     * 保存失败，已存在相同数据
+     */
+    public static final int FAIL__INSERT_EXIST = 20002;
+    /**
      * 没有数据可更新
      *
      * @return
      */
-    public static final int FAIL__UPDATE_NONE = 20002;
+    public static final int FAIL__UPDATE_NONE = 20201;
     /**
      * 没有数据可删除
      *
      * @return
      */
-    public static final int FAIL__DELETE_NONE = 20003;
+    public static final int FAIL__DELETE_NONE = 20301;
     /**
      * 删除失败：包含下级节点
      */
-    public static final int FAIL__DELETE_HAVE_CHILDREN = 20004;
+    public static final int FAIL__DELETE_HAVE_CHILDREN = 20302;
 
     //初始化map
     private static Map<Integer, String> createMap() {
@@ -59,6 +69,7 @@ public class ReturnCodeUtil {
         map.put(SUCCESS__UPDATE, "更新成功");
         map.put(SUCCESS__DELETE, "删除成功");
         map.put(FAIL__INSERT, "保存失败");
+        map.put(FAIL__INSERT_EXIST, "保存失败，已存在相同数据");
         map.put(FAIL__UPDATE_NONE, "没有数据可更新");
         map.put(FAIL__DELETE_NONE, "没有数据可删除");
         map.put(FAIL__DELETE_HAVE_CHILDREN, "包含下级节点");

@@ -21,9 +21,30 @@ public interface IAuthorityRepository {
     Authority queryOne(int id);
 
     /**
-     * 查询全部权限
+     * 根据权限名称查询数据是否已存在
+     *
+     * @param name
+     *
+     * @return
+     */
+    boolean queryExistByName(String name);
+
+    /**
+     * 分页查询用户
+     */
+    List<Authority> queryMany(int pageNumber, int pageRowCount);
+
+    /**
+     * 查询全部用户
      */
     List<Authority> queryAll();
+
+    /**
+     * 查询用户总数
+     *
+     * @return
+     */
+    int queryCount();
 
     /**
      * 查询给定角色的全部权限

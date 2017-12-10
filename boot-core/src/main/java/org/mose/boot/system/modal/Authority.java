@@ -18,18 +18,11 @@ import org.springframework.security.core.GrantedAuthority;
 public class Authority implements GrantedAuthority {
     private int id;
     private String name;
+    private String description;
 
     @Override
     public String getAuthority() {
         return name;
-    }
-
-    @Override
-    public String toString() {
-        return "Authority{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 
     @Override
@@ -45,6 +38,23 @@ public class Authority implements GrantedAuthority {
     @Override
     public int hashCode() {
         return getId();
+    }
+
+    @Override
+    public String toString() {
+        return "Authority{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
