@@ -58,6 +58,7 @@ public class TestUserMysqlRepository {
         assertFalse(user.getId() == 0);
         User queryOne = userRepository.queryOne(user.getId());
         assertEquals(user, queryOne);
+        userRepository.queryExistByUsername(user.getUsername());
         List<User> users = userRepository.queryAll();
         assertNotNull(users);
         returnCode = userRepository.updateOne(user);

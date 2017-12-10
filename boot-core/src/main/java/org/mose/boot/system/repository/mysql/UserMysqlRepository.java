@@ -28,14 +28,21 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
     }
 
     @Override
+    public boolean queryExistByUsername(String username) {
+        String sql = "select count(id) from t_system_user t where t.username=?";
+        int count = query().sql(sql).parameters(username).queryCount();
+        return count > 0;
+    }
+
+    @Override
     public List<User> queryMany(int pageNumber, int pageRowCount) {
-        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t";
+        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t order by t.username";
         return query().sql(sql).paging(pageNumber, pageRowCount).queryMany();
     }
 
     @Override
     public List<User> queryAll() {
-        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t";
+        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t order by t.username";
         return query().sql(sql).queryMany();
     }
 
@@ -47,6 +54,12 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
 
     @Override
     public int insertOne(User user) {
+        //不允许写入名称一样的权限
+        boolean exist = queryExistByUsername(user.getUsername());
+        if (exist) {
+            return ReturnCodeUtil.FAIL__INSERT_EXIST;
+        }
+
         StringBuffer sql = new StringBuffer();
         sql.append("insert into t_system_user(username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled)");
         sql.append(" values(:username, :password, :accountNonExpired, :accountNonLocked, :credentialsNonExpired, :enabled)");

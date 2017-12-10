@@ -2,9 +2,6 @@ package org.mose.boot.system.service;
 
 import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.repository.IAuthorityRepository;
-import org.mose.boot.util.code.ReturnCodeUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +16,6 @@ import java.util.List;
  */
 @Service
 public class AuthorityService {
-    private Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
     /**
      * 场景数据获取对象
      */

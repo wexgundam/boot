@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">用户名称</label>
                         <div class="col-md-9">
-                            <input name="username" type="text" class="form-control input-xlarge" placeholder="输入用户名称" value="${user.username}">
+                            <input name="username" type="text" class="form-control input-xlarge" placeholder="输入用户名称" value="${user.username}" readonly style="border: hidden;background: none">
                             <label id="nameTip"></label>
                             <span class="help-block"></span>
                         </div>

@@ -22,6 +22,15 @@ public interface IUserRepository {
     User queryOne(int id);
 
     /**
+     * 查询是否已存在给定用户名的数据
+     *
+     * @param username
+     *
+     * @return
+     */
+    boolean queryExistByUsername(String username);
+
+    /**
      * 分页查询用户
      */
     List<User> queryMany(int pageNumber, int pageRowCount);
