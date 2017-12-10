@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     /**
-     * 场景数据获取对象
+     * 权限数据获取对象
      */
     @Autowired
     private IUserRepository userRepository;

@@ -30,7 +30,7 @@ public interface IAuthorityRepository {
     boolean queryExistByName(String name);
 
     /**
-     * 分页查询用户
+     * 分页查询
      */
     List<Authority> queryMany(int pageNumber, int pageRowCount);
 
@@ -40,7 +40,7 @@ public interface IAuthorityRepository {
     List<Authority> queryAll();
 
     /**
-     * 查询用户总数
+     * 查询总数
      *
      * @return
      */

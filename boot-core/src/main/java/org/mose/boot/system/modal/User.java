@@ -135,6 +135,7 @@ public class User implements UserDetails {
 
 
     public List<Role> getRoles() {
+        roles = roles == null ? new ArrayList<>() : roles;
         return roles;
     }
 

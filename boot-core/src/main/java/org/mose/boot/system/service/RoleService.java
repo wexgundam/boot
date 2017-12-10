@@ -1,7 +1,7 @@
 package org.mose.boot.system.service;
 
-import org.mose.boot.system.modal.Authority;
-import org.mose.boot.system.repository.IAuthorityRepository;
+import org.mose.boot.system.modal.Role;
+import org.mose.boot.system.repository.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,18 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Description: 权限服务
+ * Description: 角色服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
  */
 @Service
-public class AuthorityService {
+public class RoleService {
     /**
-     * 权限数据获取对象
+     * 角色数据获取对象
      */
     @Autowired
-    private IAuthorityRepository authorityRepository;
+    private IRoleRepository roleRepository;
 
     /**
      * 根据给定的id查询
@@ -29,8 +29,8 @@ public class AuthorityService {
      *
      * @return
      */
-    public Authority queryAuthority(int id) {
-        return authorityRepository.queryOne(id);
+    public Role queryRole(int id) {
+        return roleRepository.queryOne(id);
     }
 
     /**
@@ -38,8 +38,8 @@ public class AuthorityService {
      *
      * @return
      */
-    public List<Authority> queryAuthorityList(int pageNumber, int pageRowCount) {
-        List<Authority> authorities = authorityRepository.queryMany(pageNumber, pageRowCount);
+    public List<Role> queryRoleList(int pageNumber, int pageRowCount) {
+        List<Role> authorities = roleRepository.queryMany(pageNumber, pageRowCount);
         return authorities;
     }
 
@@ -56,14 +56,14 @@ public class AuthorityService {
      *
      * @author 靳磊 created on 2017/12/9
      */
-    public int queryAuthorityCount() {
-        return authorityRepository.queryCount();
+    public int queryRoleCount() {
+        return roleRepository.queryCount();
     }
 
     /**
      * Description:删除记录
      *
-     * @param authority
+     * @param role
      *
      * @return
      *
@@ -71,8 +71,8 @@ public class AuthorityService {
      * @Date: 2017/10/18 13:19
      */
     @Transactional
-    public int addAuthority(Authority authority) {
-        return authorityRepository.insertOne(authority);
+    public int addRole(Role role) {
+        return roleRepository.insertOne(role);
     }
 
     /**
@@ -83,26 +83,26 @@ public class AuthorityService {
      * @return
      */
     @Transactional
-    public int deleteAuthority(int id) {
-        return authorityRepository.deleteOne(id);
+    public int deleteRole(int id) {
+        return roleRepository.deleteOne(id);
     }
 
 
     /**
      * 更新
      *
-     * @param authority
+     * @param role
      */
     @Transactional
-    public int updateAuthority(Authority authority) {
-        return authorityRepository.updateOne(authority);
+    public int updateRole(Role role) {
+        return roleRepository.updateOne(role);
     }
 
-    public IAuthorityRepository getAuthorityRepository() {
-        return authorityRepository;
+    public IRoleRepository getRoleRepository() {
+        return roleRepository;
     }
 
-    public void setAuthorityRepository(IAuthorityRepository authorityRepository) {
-        this.authorityRepository = authorityRepository;
+    public void setRoleRepository(IRoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 }

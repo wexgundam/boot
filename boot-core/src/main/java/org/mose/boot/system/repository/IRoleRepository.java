@@ -21,6 +21,20 @@ public interface IRoleRepository {
     Role queryOne(int id);
 
     /**
+     * 根据角色名称查询数据是否已存在
+     *
+     * @param name
+     *
+     * @return
+     */
+    boolean queryExistByName(String name);
+
+    /**
+     * 分页查询
+     */
+    List<Role> queryMany(int pageNumber, int pageRowCount);
+
+    /**
      * 查询全部用户
      */
     List<Role> queryAll();
@@ -29,6 +43,13 @@ public interface IRoleRepository {
      * 查询给定用户对应的全部角色
      */
     List<Role> queryAllByUserId(int userId);
+
+    /**
+     * 查询总数
+     *
+     * @return
+     */
+    int queryCount();
 
     /**
      * 插入一条记录

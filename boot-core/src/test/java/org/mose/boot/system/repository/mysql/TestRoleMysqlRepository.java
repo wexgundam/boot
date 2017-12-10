@@ -57,11 +57,13 @@ public class TestRoleMysqlRepository {
     public void testRepository() {
         Role role = new Role();
         role.setName("name");
+        role.setDescription("description");
         int returnCode = roleRepository.insertOne(role);
         assertEquals(ReturnCodeUtil.SUCCESS__INSERT, returnCode);
         assertFalse(role.getId() == 0);
         Role queryOne = roleRepository.queryOne(role.getId());
         assertEquals(role, queryOne);
+        roleRepository.queryExistByName(role.getName());
         List<Role> roles = roleRepository.queryAll();
         assertNotNull(roles);
         returnCode = roleRepository.updateOne(role);

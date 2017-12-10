@@ -5,6 +5,7 @@
  */
 package org.mose.boot.system.modal;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 public class Role {
     private int id;
     private String name;
+    private String description;
 
     private List<Authority> authorities;
 
@@ -27,6 +29,7 @@ public class Role {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", authorities=" + authorities +
                 '}';
     }
@@ -46,7 +49,16 @@ public class Role {
         return getId();
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<Authority> getAuthorities() {
+        authorities = authorities == null ? new ArrayList<>() : authorities;
         return authorities;
     }
 
