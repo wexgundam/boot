@@ -101,6 +101,7 @@
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/user/update.htm?id=${user.id}"> 修改 </a>
+                                    <a href="${dynamicResourceServerUrl}/system/user/role/index.htm?userId=${user.id}"> 角色 </a>
                                     <a href="javascript:deleteUser(${user.id})"> 删除 </a>
                                 </security:authorize>
                             </td>

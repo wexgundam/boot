@@ -1,6 +1,8 @@
 package org.mose.boot.system.service;
 
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.User;
+import org.mose.boot.system.repository.IRoleRepository;
 import org.mose.boot.system.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +26,11 @@ public class UserService {
      */
     @Autowired
     private IUserRepository userRepository;
+    /**
+     * 角色获取对象
+     */
+    @Autowired
+    private IRoleRepository roleRepository;
 
     /**
      * 根据给定的id查询
@@ -62,6 +69,30 @@ public class UserService {
      */
     public int queryUserCount() {
         return userRepository.queryCount();
+    }
+
+    /**
+     * 查询给定用户的角色
+     *
+     * @param userId
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    public List<Role> queryRoles(int userId, int pageNumber, int pageRowCount) {
+        return roleRepository.queryManyByUserId(userId, pageNumber, pageRowCount);
+    }
+
+    /**
+     * 查询给定用户的角色数
+     *
+     * @param userId
+     *
+     * @return
+     */
+    public int queryRoleCount(int userId) {
+        return roleRepository.queryCountByUserId(userId);
     }
 
     /**
@@ -118,4 +149,14 @@ public class UserService {
     public void setUserRepository(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public IRoleRepository getRoleRepository() {
+        return roleRepository;
+    }
+
+    public void setRoleRepository(IRoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
+
+
 }

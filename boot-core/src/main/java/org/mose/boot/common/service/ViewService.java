@@ -22,12 +22,12 @@ public class ViewService {
      *
      * @param targetViewName       目标视图名
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
-     * @param parameter            参数
+     * @param parameters            参数
      */
     public ModelAndView forwardDecorateView(String targetViewName, String activeSidebarItemUrl,
-                                            Map<String, Object> parameter) {
+                                            Map<String, Object> parameters) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addAllObjects(parameter);
+        modelAndView.addAllObjects(parameters);
         modelAndView.setViewName(createDecoratorViewName(targetViewName, activeSidebarItemUrl));
         return modelAndView;
     }

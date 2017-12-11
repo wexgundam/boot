@@ -122,8 +122,8 @@ public class Query<Entity, Id> {
         return this;
     }
 
-    public Query<Entity, Id> paging(int pageNumber, int pageSize) {
-        this.sql = this.paging.paging(sql, pageNumber, pageSize);
+    public Query<Entity, Id> paging(int pageNumber, int pageRowCount) {
+        this.sql = this.paging.paging(sql, pageNumber, pageRowCount);
         return this;
     }
 

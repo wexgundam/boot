@@ -46,6 +46,19 @@ public class RoleMysqlRepository extends AbstractStreamRepository<Role, Integer>
         return query().sql(sql).queryMany();
     }
 
+
+    @Override
+    public int queryCount() {
+        String sql = "select count(id) from t_system_role";
+        return query().sql(sql).queryCount();
+    }
+
+    @Override
+    public List<Role> queryManyByUserId(int userId, int pageNumber, int pageRowCount) {
+        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+        return query().sql(sql).paging(pageNumber, pageRowCount).parameters(userId).queryMany();
+    }
+
     @Override
     public List<Role> queryAllByUserId(int userId) {
         String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
@@ -53,9 +66,9 @@ public class RoleMysqlRepository extends AbstractStreamRepository<Role, Integer>
     }
 
     @Override
-    public int queryCount() {
-        String sql = "select count(id) from t_system_role";
-        return query().sql(sql).queryCount();
+    public int queryCountByUserId(int userId) {
+        String sql = "select count(r.id) from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=?";
+        return query().sql(sql).parameters(userId).queryCount();
     }
 
     @Override

@@ -117,7 +117,7 @@
         <script type="text/javascript">
             // 删除
             var deleteRole = function (id) {
-                bootbox.confirm("你确定要删除该场景吗？", function (result) {
+                bootbox.confirm("你确定要删除该角色吗？", function (result) {
                     if (result) {
                         window.location = "${dynamicResourceServerUrl}/system/role/delete.htm?id=" + id;
                     }

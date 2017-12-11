@@ -14,8 +14,8 @@ public interface IPaging {
      *
      * @param sql        查询语句
      * @param pageNumber 页码
-     * @param pageSize   每页行数
+     * @param pageRowCount   每页行数
      * @return
      */
-    String paging(String sql, int pageNumber, int pageSize);
+    String paging(String sql, int pageNumber, int pageRowCount);
 }

@@ -66,6 +66,10 @@ public class TestRoleMysqlRepository {
         roleRepository.queryExistByName(role.getName());
         List<Role> roles = roleRepository.queryAll();
         assertNotNull(roles);
+        roleRepository.queryCount();
+        roleRepository.queryManyByUserId(1, 1, 20);
+        roleRepository.queryAllByUserId(1);
+        roleRepository.queryCountByUserId(1);
         returnCode = roleRepository.updateOne(role);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
         returnCode = roleRepository.deleteOne(role);

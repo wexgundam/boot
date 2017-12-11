@@ -7,9 +7,9 @@
     <!--<mapping path="/*" decorator="/WEB-INF/views/sitemdecoratorContentPage.jsp.jsp"/>-->
     <mapping path="/*">
         <!-- 装饰页面 -->
-        <decorator>/WEB-INF/views/sitemesh/decoratorContentPage.jsp</decorator>
+        <decorator>/WEB-INF/views/common/sitemesh/decoratorContentPage.jsp</decorator>
         <!-- 装饰脚本，将各分片脚本复制到页面的指定位置 -->
-        <decorator>/WEB-INF/views/sitemesh/decoratorCssScript.jsp</decorator>
+        <decorator>/WEB-INF/views/common/sitemesh/decoratorCssScript.jsp</decorator>
     </mapping>
 
     <!-- 指明满足path的页面，将被排除，不被装饰 -->

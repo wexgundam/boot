@@ -7,7 +7,7 @@
     <meta content="" name="author" />
 
     <!-- BEGIN STYLES -->
-    <%@include file="../common/layout/styles.jspf" %>
+    <%@include file="../layout/styles.jspf" %>
     <!-- END STYLES -->
 
     <sitemesh:write property='head' />
@@ -16,7 +16,7 @@
 <body>
     <div class="page-wrapper">
         <!-- BEGIN HEADER -->
-        <%@include file="../common/layout/header.jspf" %>
+        <%@include file="../layout/header.jspf" %>
         <!-- END HEADER -->
 
         <!-- BEGIN HEADER & CONTENT DIVIDER -->
@@ -26,7 +26,7 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDEBAR -->
-            <%@include file="../common/layout/sidebar.jspf" %>
+            <%@include file="../layout/sidebar.jspf" %>
             <!-- END SIDEBAR -->
 
             <!-- BEGIN CONTENT -->
@@ -46,21 +46,21 @@
             <!-- END CONTENT -->
 
             <!-- BEGIN QUICK SIDEBAR -->
-            <%@include file="../common/layout/quick_sidebar.jspf" %>
+            <%@include file="../layout/quick_sidebar.jspf" %>
             <!-- END QUICK SIDEBAR -->
         </div>
         <!-- END CONTAINER -->
 
         <!-- BEGIN FOOTER -->
-        <%@include file="../common/layout/footer.jspf" %>
+        <%@include file="../layout/footer.jspf" %>
         <!-- END FOOTER -->
     </div>
 
     <!-- BEGIN QUICK NAV -->
-    <%@include file="../common/layout/quick_nav.jspf" %>
+    <%@include file="../layout/quick_nav.jspf" %>
     <!-- END QUICK NAV -->
 
     <!-- BEGIN SCRIPTS -->
-    <%@include file="../common/layout/scripts.jspf" %>
+    <%@include file="../layout/scripts.jspf" %>
     <!-- END SCRIPTS -->
 </body>
