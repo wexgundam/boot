@@ -2,8 +2,10 @@ package org.mose.boot.system.service;
 
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.User;
-import org.mose.boot.system.repository.IRoleRepository;
+import org.mose.boot.system.modal.UserRole;
 import org.mose.boot.system.repository.IUserRepository;
+import org.mose.boot.system.repository.IUserRoleRepository;
+import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,10 +29,16 @@ public class UserService {
     @Autowired
     private IUserRepository userRepository;
     /**
+     * 用户角色获取对象
+     */
+    @Autowired
+    private IUserRoleRepository userRoleRepository;
+    /**
      * 角色获取对象
      */
     @Autowired
-    private IRoleRepository roleRepository;
+    private RoleService roleService;
+    public static final String ROLE_ID_ARRAY_STRING_SPLITTER = "@";
 
     /**
      * 根据给定的id查询
@@ -71,6 +79,13 @@ public class UserService {
         return userRepository.queryCount();
     }
 
+
+    public Object queryRoleListByUserId(int userId) {
+        return roleService.queryRoleListByUserId(userId);
+    }
+
+    ;
+
     /**
      * 查询给定用户的角色
      *
@@ -80,8 +95,8 @@ public class UserService {
      *
      * @return
      */
-    public List<Role> queryRoles(int userId, int pageNumber, int pageRowCount) {
-        return roleRepository.queryManyByUserId(userId, pageNumber, pageRowCount);
+    public List<Role> queryRoleListByUserId(int userId, int pageNumber, int pageRowCount) {
+        return roleService.queryRoleListByUserId(userId, pageNumber, pageRowCount);
     }
 
     /**
@@ -91,9 +106,10 @@ public class UserService {
      *
      * @return
      */
-    public int queryRoleCount(int userId) {
-        return roleRepository.queryCountByUserId(userId);
+    public int queryRoleCountByUserId(int userId) {
+        return roleService.queryRoleCountByUserId(userId);
     }
+
 
     /**
      * Description:删除记录
@@ -112,6 +128,36 @@ public class UserService {
     }
 
     /**
+     * 更新
+     *
+     * @param user
+     */
+    @Transactional
+    public int updateUser(User user) {
+        return userRepository.updateOne(user);
+    }
+
+    /**
+     * 更新
+     *
+     * @param userId
+     */
+    @Transactional
+    public int updateUserRoles(int userId, String roleIdArrayString) {
+        deleteUserRoles(userId);
+        if (roleIdArrayString != null) {
+            for (String roleIdString : roleIdArrayString.split(ROLE_ID_ARRAY_STRING_SPLITTER)) {
+                UserRole userRole = new UserRole();
+                userRole.setUserId(userId);
+                userRole.setRoleId(Integer.parseInt(roleIdString));
+                userRoleRepository.insertOne(userRole);
+            }
+        }
+        return ReturnCodeUtil.SUCCESS__UPDATE;
+    }
+
+
+    /**
      * 删除给定id对应的记录
      *
      * @param id
@@ -123,15 +169,19 @@ public class UserService {
         return userRepository.deleteOne(id);
     }
 
-
     /**
      * 更新
      *
-     * @param user
+     * @param userId
      */
     @Transactional
-    public int updateUser(User user) {
-        return userRepository.updateOne(user);
+    public int deleteUserRoles(int userId) {
+        return userRoleRepository.deleteAllByUserId(userId);
+    }
+
+    @Transactional
+    public int deleteUserRole(int userId, int roleId) {
+        return userRoleRepository.deleteUserRole(userId, roleId);
     }
 
     public PasswordEncoder getPasswordEncoder() {
@@ -150,13 +200,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public IRoleRepository getRoleRepository() {
-        return roleRepository;
+    public RoleService getRoleService() {
+        return roleService;
     }
 
-    public void setRoleRepository(IRoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
     }
-
-
 }
+

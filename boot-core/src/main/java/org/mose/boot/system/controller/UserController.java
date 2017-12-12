@@ -3,7 +3,6 @@ package org.mose.boot.system.controller;
 import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
-import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.service.RoleService;
 import org.mose.boot.system.service.UserService;
@@ -54,6 +53,13 @@ public class UserController {
         return roleIndexPageUrl;
     }
 
+    private String getRoleIndexPageUrl(int userId) {
+        StringBuilder roleIndexPageUrl = new StringBuilder();
+        roleIndexPageUrl.append(getRoleIndexPageUrl());
+        roleIndexPageUrl.append("?userId=").append(userId);
+        return roleIndexPageUrl.substring(0);
+    }
+
     /**
      * 展示场景index视图
      *
@@ -94,9 +100,9 @@ public class UserController {
     public ModelAndView addUser(User user) {
         int returnCode = userService.addUser(user);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(indexViewName));
+            return viewService.forwardFailView(returnCode, getIndexPageUrl());
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
         }
     }
 
@@ -111,7 +117,7 @@ public class UserController {
     public ModelAndView updateView(int id) {
         User user = userService.queryUser(id);
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", indexViewName + ".htm");
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", getIndexPageUrl());
         modelAndView.addObject("user", user);
         return modelAndView;
     }
@@ -129,7 +135,7 @@ public class UserController {
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, indexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
         }
     }
 
@@ -146,7 +152,7 @@ public class UserController {
         if (ReturnCodeUtil.isFail(returnCode)) {
             return viewService.forwardFailView(returnCode, indexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
         }
     }
 
@@ -156,13 +162,13 @@ public class UserController {
      * @return
      */
     @RequestMapping("/role/index")
-    public ModelAndView roleIndexView(int userId, Pagination pagination) {
+    public ModelAndView userRoleIndexView(int userId, Pagination pagination) {
         pagination.setUrl(getRoleIndexPageUrl());
-        pagination.setRowCount(userService.queryRoleCount(userId));
+        pagination.setRowCount(userService.queryRoleCountByUserId(userId));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(roleIndexViewName, getRoleIndexPageUrl());
+        ModelAndView modelAndView = viewService.forwardDecorateView(roleIndexViewName, getIndexPageUrl());
         modelAndView.addObject("userId", userId);
-        modelAndView.addObject("roles", userService.queryRoles(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
+        modelAndView.addObject("roles", userService.queryRoleListByUserId(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
         modelAndView.addObject("pagination", pagination.createHtml());
         return modelAndView;
     }
@@ -173,82 +179,43 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/role/update", method = RequestMethod.GET)
-    public ModelAndView selectRoleView(int userId, Pagination pagination) {
-        pagination.setUrl(getRoleIndexPageUrl());
-        pagination.setRowCount(roleService.queryRoleCount());
-
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/role/update", getRoleIndexPageUrl());
+    public ModelAndView updateUserRolesView(int userId) {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/role/update", getIndexPageUrl());
         modelAndView.addObject("userId", userId);
-        modelAndView.addObject("roles", roleService.queryRoleList(pagination.getPageNumber(), pagination.getPageRowCount()));
-        modelAndView.addObject("pagination", pagination.createHtml());
+        modelAndView.addObject("roles", roleService.queryRoleList());
+        modelAndView.addObject("userRoles", userService.queryRoleListByUserId(userId));
         return modelAndView;
     }
 
-//    /**
-//     * 执行新增操作
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/role/add", method = RequestMethod.POST)
-//    public ModelAndView addUser(int userId, Role role) {
-//        int returnCode = userService.addRole(, role);
-//        if (ReturnCodeUtil.isFail(returnCode)) {
-//            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(indexViewName));
-//        } else {
-//            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
-//        }
-//    }
-//
-//    /**
-//     * 请求更新界面
-//     *
-//     * @param id
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/update", method = RequestMethod.GET)
-//    public ModelAndView updateView(int id) {
-//        User user = userService.queryUser(id);
-//
-//        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", indexViewName + ".htm");
-//        modelAndView.addObject("user", user);
-//        return modelAndView;
-//    }
-//
-//    /**
-//     * 请求更新操作
-//     *
-//     * @param user
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/update", method = RequestMethod.POST)
-//    public ModelAndView updateUser(User user) {
-//        int returnCode = userService.updateUser(user);
-//        if (ReturnCodeUtil.isFail(returnCode)) {
-//            return viewService.forwardFailView(returnCode, indexViewName);
-//        } else {
-//            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
-//        }
-//    }
-//
-//    /**
-//     * 执行删除操作
-//     *
-//     * @param id
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/delete")
-//    public ModelAndView deleteUser(int id) {
-//        int returnCode = userService.deleteUser(id);
-//        if (ReturnCodeUtil.isFail(returnCode)) {
-//            return viewService.forwardFailView(returnCode, indexViewName);
-//        } else {
-//            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
-//        }
-//    }
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
+    public ModelAndView updateUserRoles(int userId, String roleIdArrayString) {
+        int returnCode = userService.updateUserRoles(userId, roleIdArrayString);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            return viewService.forwardFailView(returnCode, getIndexPageUrl());
+        } else {
+            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getRoleIndexPageUrl(userId));
+        }
+    }
 
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/role/delete")
+    public ModelAndView updateUserRoles(int userId, int roleId) {
+        int returnCode = userService.deleteUserRole(userId, roleId);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            return viewService.forwardFailView(returnCode, getIndexPageUrl());
+        } else {
+            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getRoleIndexPageUrl(userId));
+        }
+    }
 
     public ResourceService getResourceService() {
         return resourceService;

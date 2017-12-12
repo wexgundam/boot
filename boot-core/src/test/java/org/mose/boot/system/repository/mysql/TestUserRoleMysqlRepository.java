@@ -73,6 +73,7 @@ public class TestUserRoleMysqlRepository {
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
         queryOne = userRoleRepository.queryOne(userRole.getId());
         assertNull(queryOne);
+        userRoleRepository.deleteUserRole(1, 2);
         userRoleRepository.deleteAllByUserId(userId);
         userRoleRepository.deleteAllByRoleId(roleId);
     }

@@ -70,11 +70,14 @@
                     <i class=" fa fa-plus"></i> 更新
                 </a>
             </security:authorize>
+            <a class="btn btn default" id="btnAdd" href="${dynamicResourceServerUrl }/system/user/index.htm">
+                <i class=" fa fa-undo"></i> 返回
+            </a>
         </div>
     </div>
     <!-- End 用户角色编辑面板 -->
 
-    <!-- Begin 分页表格 -->
+    <!-- Begin 表格 -->
     <div class="row" style="margin-top: 20px">
         <div class="col-xs-12">
             <table class="table table-striped table-bordered table-hover">
@@ -103,21 +106,16 @@
             </table>
         </div>
     </div>
-
-    <!-- Begin 分页控件 -->
-    ${pagination}
-    <!-- End 分页控件 -->
-
-    <!-- End 分页表格 -->
+    <!-- End 表格 -->
 
     <!-- Begin Javascript -->
     <content-script>
         <script type="text/javascript">
             // 删除
-            var deleteRole = function (id) {
+            var deleteRole = function (roleId) {
                 bootbox.confirm("你确定要删除该角色吗？", function (result) {
                     if (result) {
-                        window.location = "${dynamicResourceServerUrl}/system/user/role/delete.htm?id=" + id;
+                        window.location = "${dynamicResourceServerUrl}/system/user/role/delete.htm?userId=${userId}&roleId=" + roleId;
                     }
                 })
             };

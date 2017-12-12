@@ -66,13 +66,42 @@
     <!-- Begin 角色编辑面板 -->
     <div class="row">
         <div class="col-xs-12">
-            <a class="btn btn-primary" id="btnRefresh" href="">
-                <i class="fa fa-refresh"></i> 刷新
-            </a>
             <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/role/select.htm">
-                    <i class=" fa fa-plus"></i> 保存
-                </a>
+                <form id="userRoleForm" name="scenarioForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/user/role/update.htm" method="post">
+                    <div class="form-body hidden">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">用户ID</label>
+                            <div class="col-md-9">
+                                <input name="userId" type="text" class="form-control input-xlarge" placeholder="输入用户Id" value="${userId}">
+                                <label id="userIdTip"></label>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">角色数组</label>
+                            <div class="col-md-9">
+                                <input id="roleIdArrayString" name="roleIdArrayString" type="text" class="form-control input-xlarge" placeholder="输入用户角色数组">
+                                <label id="roleIdArrayStringTip"></label>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-primary" href="">
+                                    <i class="fa fa-refresh"></i> 刷新
+                                </a>
+                                <button type="submit" class="btn green" onclick="update()">
+                                    <i class=" fa fa-plus"></i> 保存
+                                </button>
+                                <a class="btn default" onclick="history.back(-1);">
+                                    <i class="fa fa-undo"></i> 返回
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </security:authorize>
         </div>
     </div>
@@ -87,7 +116,7 @@
                         <th width=50>#</th>
                         <th width=50>
                             <label class="mt-checkbox mt-checkbox-outline">
-                                <input name="checkAllChange" type="checkbox" id="all" />
+                                <input name="checkAll" type="checkbox" id="all" />
                                 <span></span>
                             </label>
                         </th>
@@ -101,7 +130,7 @@
                             <td>${status.index + 1}</td>
                             <td>
                                 <label class="mt-checkbox mt-checkbox-outline">
-                                    <input name="checkAllChange" type="checkbox" id="${role.id}" />
+                                    <input name="role" type="checkbox" value="${role.id}" />
                                     <span></span>
                                 </label>
                             </td>
@@ -123,13 +152,27 @@
     <!-- Begin Javascript -->
     <content-script>
         <script type="text/javascript">
+            <c:if test="${! empty userRoles}">
+            $(function () {
+                <c:forEach items="${userRoles}" var="role">
+                $("input[value=${role.id}]").attr("checked", true);
+                </c:forEach>
+            });
+            </c:if>
+
             // 删除
-            var deleteRole = function (id) {
-                bootbox.confirm("你确定要删除该角色吗？", function (result) {
-                    if (result) {
-                        window.location = "${dynamicResourceServerUrl}/system/role/delete.htm?id=" + id;
+            var update = function () {
+                var roleIdArrayString = "";
+                $("input[name=role]:checked").each(function (index) {
+                    if (index > 0) {
+                        roleIdArrayString += "@";
                     }
-                })
+                    roleIdArrayString += $(this).val();
+                });
+                if (roleIdArrayString.length > 0) {
+                    $("#roleIdArrayString").attr("value", roleIdArrayString);
+                }
+                $("userRoleForm").submit();
             };
         </script>
     </content-script>

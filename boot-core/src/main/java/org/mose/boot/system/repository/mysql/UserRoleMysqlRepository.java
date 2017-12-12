@@ -80,6 +80,13 @@ public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, 
     }
 
     @Override
+    public int deleteUserRole(int userId, int roleId) {
+        String sql = "delete from t_system_user_role where user_id=? and role_id=?";
+        delete().sql(sql).parameters(userId, roleId).deleteAny();
+        return ReturnCodeUtil.SUCCESS__DELETE;
+    }
+
+    @Override
     public int deleteAllByUserId(int userId) {
         String sql = "delete from t_system_user_role where user_id=?";
         delete().sql(sql).parameters(userId).deleteAny();

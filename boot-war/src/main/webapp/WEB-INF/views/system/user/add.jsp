@@ -63,7 +63,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <form id="scenarioForm" name="scenarioForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/user/add.htm" method="post">
+            <form id="userForm" name="scenarioForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/user/add.htm" method="post">
                 <div class="form-body">
                     <div class="form-group">
                         <label class="col-md-3 control-label">用户名称</label>

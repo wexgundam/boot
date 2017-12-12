@@ -2,6 +2,7 @@ package org.mose.boot.system.service;
 
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.repository.IRoleRepository;
+import org.mose.boot.system.repository.IUserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,13 +35,49 @@ public class RoleService {
     }
 
     /**
-     * 获取所有场景并按照树形组织排序
+     * 获取所有角色列表
+     *
+     * @return
+     */
+    public List<Role> queryRoleList() {
+        List<Role> authorities = roleRepository.queryAll();
+        return authorities;
+    }
+
+    /**
+     * 获取所有角色并按照树形组织排序
      *
      * @return
      */
     public List<Role> queryRoleList(int pageNumber, int pageRowCount) {
         List<Role> authorities = roleRepository.queryMany(pageNumber, pageRowCount);
         return authorities;
+    }
+
+    /**
+     * 查询给定用户的角色
+     *
+     * @param userId
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    public List<Role> queryRoleListByUserId(int userId, int pageNumber, int pageRowCount) {
+        List<Role> roles = roleRepository.queryManyByUserId(userId, pageNumber, pageRowCount);
+        return roles;
+    }
+
+    /**
+     * 查询给定用户的角色
+     *
+     * @param userId
+     *
+     * @return
+     */
+    public Object queryRoleListByUserId(int userId) {
+        List<Role> roles = roleRepository.queryAllByUserId(userId);
+        return roles;
     }
 
 
@@ -60,6 +97,10 @@ public class RoleService {
         return roleRepository.queryCount();
     }
 
+    public int queryRoleCountByUserId(int userId) {
+        return roleRepository.queryCountByUserId(userId);
+    }
+
     /**
      * Description:删除记录
      *
@@ -75,6 +116,17 @@ public class RoleService {
         return roleRepository.insertOne(role);
     }
 
+
+    /**
+     * 更新
+     *
+     * @param role
+     */
+    @Transactional
+    public int updateRole(Role role) {
+        return roleRepository.updateOne(role);
+    }
+
     /**
      * 删除给定id对应的记录
      *
@@ -85,17 +137,6 @@ public class RoleService {
     @Transactional
     public int deleteRole(int id) {
         return roleRepository.deleteOne(id);
-    }
-
-
-    /**
-     * 更新
-     *
-     * @param role
-     */
-    @Transactional
-    public int updateRole(Role role) {
-        return roleRepository.updateOne(role);
     }
 
     public IRoleRepository getRoleRepository() {

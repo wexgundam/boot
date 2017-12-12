@@ -69,4 +69,14 @@ public interface IUserRoleRepository {
      * 删除给定角色对应的全部用户角色
      */
     int deleteAllByRoleId(int roleId);
+
+    /**
+     * 删除给定用户的角色
+     *
+     * @param userId
+     * @param roleId
+     *
+     * @return
+     */
+    int deleteUserRole(int userId, int roleId);
 }
