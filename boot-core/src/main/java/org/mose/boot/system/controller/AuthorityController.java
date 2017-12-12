@@ -4,9 +4,7 @@ import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
 import org.mose.boot.system.modal.Authority;
-import org.mose.boot.system.modal.User;
 import org.mose.boot.system.service.AuthorityService;
-import org.mose.boot.system.service.UserService;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.mose.boot.util.web.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +35,12 @@ public class AuthorityController {
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexViewName = "/system/authority/index";
-    String indexPageUrl = null;
+    String authorityIndexViewName = "/system/authority/index";
+    String authorityIndexPageUrl = null;
 
-    private String getIndexPageUrl() {
-        indexPageUrl = indexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + indexViewName + ".htm" : indexPageUrl;
-        return indexPageUrl;
+    private String getAuthorityIndexPageUrl() {
+        authorityIndexPageUrl = authorityIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + authorityIndexViewName + ".htm" : authorityIndexPageUrl;
+        return authorityIndexPageUrl;
     }
 
     /**
@@ -51,15 +49,15 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping("/index")
-    public ModelAndView indexView(Pagination pagination) {
-        pagination.setUrl(getIndexPageUrl());
+    public ModelAndView authorityIndexView(Pagination pagination) {
+        pagination.setUrl(getAuthorityIndexPageUrl());
         pagination.setRowCount(authorityService.queryAuthorityCount());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
         parameters.put("authorities", authorityService.queryAuthorityList(pagination.getPageNumber(), pagination.getPageRowCount()));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(authorityIndexViewName, getAuthorityIndexPageUrl(), parameters);
         return modelAndView;
     }
 
@@ -69,8 +67,8 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addView() {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/add", getIndexPageUrl());
+    public ModelAndView addAuthorityView() {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/add", getAuthorityIndexPageUrl());
         return modelAndView;
     }
 
@@ -85,9 +83,9 @@ public class AuthorityController {
     public ModelAndView addAuthority(Authority authority) {
         int returnCode = authorityService.addAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(indexViewName));
+            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(authorityIndexViewName));
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getAuthorityIndexPageUrl(), getAuthorityIndexPageUrl());
         }
     }
 
@@ -99,10 +97,10 @@ public class AuthorityController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updateView(int id) {
+    public ModelAndView updateAuthorityView(int id) {
         Authority authority = authorityService.queryAuthority(id);
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/update", indexViewName + ".htm");
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/update", getAuthorityIndexPageUrl());
         modelAndView.addObject("authority", authority);
         return modelAndView;
     }
@@ -118,9 +116,9 @@ public class AuthorityController {
     public ModelAndView updateAuthority(Authority authority) {
         int returnCode = authorityService.updateAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, authorityIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getAuthorityIndexPageUrl(), getAuthorityIndexPageUrl());
         }
     }
 
@@ -135,9 +133,9 @@ public class AuthorityController {
     public ModelAndView deleteAuthority(int id) {
         int returnCode = authorityService.deleteAuthority(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, authorityIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getAuthorityIndexPageUrl(), getAuthorityIndexPageUrl());
         }
     }
 }
