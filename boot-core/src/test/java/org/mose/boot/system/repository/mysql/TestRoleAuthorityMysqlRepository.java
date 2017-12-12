@@ -8,6 +8,7 @@ package org.mose.boot.system.repository.mysql;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mose.boot.configuration.datasource.DruidConfiguration;
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.RoleAuthority;
 import org.mose.boot.system.repository.IRoleAuthorityRepository;
 import org.mose.boot.test.ApplicationInitializer;
@@ -77,7 +78,9 @@ public class TestRoleAuthorityMysqlRepository {
         roleAuthorityRepository.deleteAllByRoleId(roleId);
         roleAuthorityRepository.queryManyAuthoritiesByRoleId(1, 1, 20);
         roleAuthorityRepository.queryAllAuthoritiesByRoleId(1);
-        roleAuthorityRepository.queryManyAuthoritiesByUserId(1, 1, 20);
+        List<Authority> authorities = roleAuthorityRepository.queryManyAuthoritiesByUserId(3, 1, 20);
+        System.out.println(authorities.size());
         roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
+        roleAuthorityRepository.queryCountByUserId(3);
     }
 }

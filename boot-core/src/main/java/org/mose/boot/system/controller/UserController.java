@@ -47,6 +47,8 @@ public class UserController {
     String userIndexPageUrl = null;
     String userRoleIndexViewName = "/system/user/role/index";
     String userRoleIndexPageUrl = null;
+    String userAuthorityIndexViewName = "/system/user/authority/index";
+    String userAuthorityIndexPageUrl = null;
 
     private String getUserIndexPageUrl() {
         userIndexPageUrl = userIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRIndexViewName + ".htm" : userIndexPageUrl;
@@ -56,6 +58,11 @@ public class UserController {
     private String getUserRoleIndexPageUrl() {
         userRoleIndexPageUrl = userRoleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRoleIndexViewName + ".htm" : userRoleIndexPageUrl;
         return userRoleIndexPageUrl;
+    }
+
+    private String getUserAuthorityIndexPageUrl() {
+        userAuthorityIndexPageUrl = userAuthorityIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userAuthorityIndexViewName + ".htm" : userAuthorityIndexPageUrl;
+        return userAuthorityIndexPageUrl;
     }
 
     private String getUserRoleIndexPageUrl(int userId) {
@@ -230,10 +237,10 @@ public class UserController {
      */
     @RequestMapping("/authority/index")
     public ModelAndView userAuthorityIndexView(int userId, Pagination pagination) {
-        pagination.setUrl(getUserRoleIndexPageUrl());
-        pagination.setRowCount(userRoleService.queryRoleCountByUserId(userId));
+        pagination.setUrl(getUserAuthorityIndexPageUrl());
+        pagination.setRowCount(roleAuthorityService.queryAuthorityCountByUserId(userId));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(userRoleIndexViewName, getUserIndexPageUrl());
+        ModelAndView modelAndView = viewService.forwardDecorateView(userAuthorityIndexViewName, getUserIndexPageUrl());
         modelAndView.addObject("userId", userId);
         modelAndView.addObject("authorities", roleAuthorityService.queryManyAuthoritiesByUserId(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
         modelAndView.addObject("pagination", pagination.createHtml());

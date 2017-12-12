@@ -94,14 +94,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${roles}" var="authority" varStatus="status">
+                    <c:forEach items="${roles}" var="role" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
-                            <td>${authority.name}</td>
-                            <td>${authority.description}</td>
+                            <td>${role.name}</td>
+                            <td>${role.description}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="javascript:deleteUserRole(${authority.id})"> 删除 </a>
+                                    <a href="javascript:deleteUserRole(${role.id})"> 删除 </a>
                                 </security:authorize>
                             </td>
                         </tr>

@@ -125,17 +125,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${roles}" var="authority" varStatus="status">
+                    <c:forEach items="${roles}" var="role" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
                                 <label class="mt-checkbox mt-checkbox-outline">
-                                    <input name="role" type="checkbox" value="${authority.id}" />
+                                    <input name="role" type="checkbox" value="${role.id}" />
                                     <span></span>
                                 </label>
                             </td>
-                            <td>${authority.name}</td>
-                            <td>${authority.description}</td>
+                            <td>${role.name}</td>
+                            <td>${role.description}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -154,8 +154,8 @@
         <script type="text/javascript">
             <c:if test="${! empty userRoles}">
             $(function () {
-                <c:forEach items="${userRoles}" var="authority">
-                $("input[value=${authority.id}]").attr("checked", true);
+                <c:forEach items="${userRoles}" var="role">
+                $("input[value=${role.id}]").attr("checked", true);
                 </c:forEach>
             });
             </c:if>

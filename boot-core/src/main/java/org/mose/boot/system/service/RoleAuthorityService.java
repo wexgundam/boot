@@ -62,6 +62,17 @@ public class RoleAuthorityService {
         return roleAuthorityRepository.queryCountByRoleId(roleId);
     }
 
+
+    public Object queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount) {
+        List<Authority> authorities = roleAuthorityRepository.queryManyAuthoritiesByUserId(userId, pageNumber, pageRowCount);
+        return authorities;
+    }
+
+    public int queryAuthorityCountByUserId(int userId) {
+        return roleAuthorityRepository.queryCountByUserId(userId);
+    }
+
+
     @Transactional
     public int deleteRoleAuthority(int roleId, int authorityId) {
         return roleAuthorityRepository.deleteOne(roleId, authorityId);
@@ -94,12 +105,6 @@ public class RoleAuthorityService {
             }
         }
         return ReturnCodeUtil.SUCCESS__UPDATE;
-    }
-
-
-    public Object queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount) {
-        List<Authority> authorities = roleAuthorityRepository.queryManyAuthoritiesByUserId(userId, pageNumber, pageNumber);
-        return authorities;
     }
 
     public IRoleAuthorityRepository getRoleAuthorityRepository() {

@@ -153,4 +153,21 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         StringBuilder sql = getSql4QueryAuthoritiesByUserId();
         return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
     }
+
+    @Override
+    public int queryCountByUserId(int userId) {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select count(a.id) from (");
+        sql.append(getSql4QueryAuthoritiesByUserId());
+        sql.append(") a");
+        return query().sql(sql.substring(0)).parameters(userId).queryCount();
+    }
+
+    public IAuthorityRepository getAuthorityRepository() {
+        return authorityRepository;
+    }
+
+    public void setAuthorityRepository(IAuthorityRepository authorityRepository) {
+        this.authorityRepository = authorityRepository;
+    }
 }

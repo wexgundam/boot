@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>权限管理</title>
+    <title>用户权限</title>
     <content-css>
     </content-css>
 </head>
@@ -23,7 +23,11 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>权限管理</span>
+                <a href="${dynamicResourceServerUrl}/system/user/index.htm">用户管理</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>用户权限</span>
             </li>
         </ul>
         <div class="page-toolbar">
@@ -52,29 +56,27 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 权限管理
-        <small>权限浏览与编辑</small>
+    <h1 class="page-title"> 用户权限
+        <small>用户权限浏览</small>
     </h1>
     <!-- END PAGE TITLE-->
 
     <!-- END PAGE HEADER-->
 
-    <!-- Begin 权限编辑面板 -->
+    <!-- Begin 用户角色编辑面板 -->
     <div class="row">
         <div class="col-xs-12">
             <a class="btn btn-primary" id="btnRefresh" href="">
                 <i class="fa fa-refresh"></i> 刷新
             </a>
-            <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/authority/add.htm">
-                    <i class=" fa fa-plus"></i> 新建
-                </a>
-            </security:authorize>
+            <a class="btn btn default" id="btnAdd" href="${dynamicResourceServerUrl }/system/user/index.htm">
+                <i class=" fa fa-undo"></i> 返回
+            </a>
         </div>
     </div>
-    <!-- End 权限编辑面板 -->
+    <!-- End 用户角色编辑面板 -->
 
-    <!-- Begin 分页表格 -->
+    <!-- Begin 表格 -->
     <div class="row" style="margin-top: 20px">
         <div class="col-xs-12">
             <table class="table table-striped table-bordered table-hover">
@@ -83,7 +85,6 @@
                         <th width=50>#</th>
                         <th width=200>名称</th>
                         <th>描述</th>
-                        <th width=200>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,37 +93,17 @@
                             <td>${status.index + 1}</td>
                             <td>${role.name}</td>
                             <td>${role.description}</td>
-                            <td>
-                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="${dynamicResourceServerUrl}/system/authority/update.htm?id=${role.id}">
-                                        修改 </a>
-                                    <a href="javascript:deleteAuthority(${role.id})"> 删除 </a>
-                                </security:authorize>
-                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
-
-    <!-- Begin 分页控件 -->
-    ${pagination}
-    <!-- End 分页控件 -->
-
-    <!-- End 分页表格 -->
+    <!-- End 表格 -->
 
     <!-- Begin Javascript -->
     <content-script>
         <script type="text/javascript">
-            // 删除
-            var deleteAuthority = function (id) {
-                bootbox.confirm("你确定要删除该角色吗？", function (result) {
-                    if (result) {
-                        window.location = "${dynamicResourceServerUrl}/system/authority/delete.htm?id=" + id;
-                    }
-                })
-            };
         </script>
     </content-script>
     <!-- End Javascript -->

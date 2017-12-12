@@ -105,4 +105,11 @@ public interface IRoleAuthorityRepository {
      * 查询给定用户对应的全部权限
      */
     List<Authority> queryAllAuthoritiesByUserId(int userId);
+
+    /**
+     * 查询给定用户的权限总数
+     * @param userId
+     * @return
+     */
+    int queryCountByUserId(int userId);
 }
