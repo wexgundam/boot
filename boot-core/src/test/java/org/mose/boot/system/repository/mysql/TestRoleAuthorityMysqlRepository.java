@@ -61,10 +61,12 @@ public class TestRoleAuthorityMysqlRepository {
         assertFalse(roleAuthority.getId() == 0);
         RoleAuthority queryOne = roleAuthorityRepository.queryOne(roleAuthority.getId());
         assertEquals(roleAuthority, queryOne);
+        roleAuthorityRepository.queryManyAuthoritiesByRoleId(1, 1, 20);
         List<RoleAuthority> roleAuthoritys = roleAuthorityRepository.queryAllByAuthorityId(authorityId);
         assertNotNull(roleAuthoritys);
         roleAuthoritys = roleAuthorityRepository.queryAllByRoleId(roleId);
         assertNotNull(roleAuthoritys);
+        roleAuthorityRepository.queryCountByRoleId(1);
         returnCode = roleAuthorityRepository.updateOne(roleAuthority);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
         returnCode = roleAuthorityRepository.deleteOne(roleAuthority);
@@ -73,7 +75,8 @@ public class TestRoleAuthorityMysqlRepository {
         assertNull(queryOne);
         roleAuthorityRepository.deleteAllByAuthorityId(authorityId);
         roleAuthorityRepository.deleteAllByRoleId(roleId);
+        roleAuthorityRepository.queryManyAuthoritiesByRoleId(1, 1, 20);
         roleAuthorityRepository.queryAllAuthoritiesByRoleId(1);
-        roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
+//        roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
     }
 }

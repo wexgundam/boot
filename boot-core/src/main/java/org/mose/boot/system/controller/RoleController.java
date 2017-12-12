@@ -4,6 +4,9 @@ import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
 import org.mose.boot.system.modal.Role;
+import org.mose.boot.system.modal.RoleAuthority;
+import org.mose.boot.system.service.AuthorityService;
+import org.mose.boot.system.service.RoleAuthorityService;
 import org.mose.boot.system.service.RoleService;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.mose.boot.util.web.WebUtil;
@@ -30,6 +33,10 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
     @Autowired
+    private RoleAuthorityService roleAuthorityService;
+    @Autowired
+    private AuthorityService authorityService;
+    @Autowired
     private ViewService viewService;
 
     /**
@@ -37,11 +44,26 @@ public class RoleController {
      */
     String roleIndexViewName = "/system/role/index";
     String roleIndexPageUrl = null;
+    String roleAuthorityIndexViewName = "/system/role/authority/index";
+    String roleAuthorityIndexPageUrl = null;
 
     private String getRoleIndexPageUrl() {
         roleIndexPageUrl = roleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleIndexViewName + ".htm" : roleIndexPageUrl;
         return roleIndexPageUrl;
     }
+
+    private String getRoleAuthorityIndexPageUrl() {
+        roleAuthorityIndexPageUrl = roleAuthorityIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleAuthorityIndexViewName + ".htm" : roleAuthorityIndexPageUrl;
+        return roleAuthorityIndexPageUrl;
+    }
+
+    private String getRoleAuthorityIndexPageUrl(int roleId) {
+        StringBuilder roleIndexPageUrl = new StringBuilder();
+        roleIndexPageUrl.append(getRoleAuthorityIndexPageUrl());
+        roleIndexPageUrl.append("?roleId=").append(roleId);
+        return roleIndexPageUrl.substring(0);
+    }
+
 
     /**
      * 展示场景index视图
@@ -55,7 +77,7 @@ public class RoleController {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
-        parameters.put("authorities", roleService.queryManyRoles(pagination.getPageNumber(), pagination.getPageRowCount()));
+        parameters.put("roles", roleService.queryManyRoles(pagination.getPageNumber(), pagination.getPageRowCount()));
 
         ModelAndView modelAndView = viewService.forwardDecorateView(roleIndexViewName, getRoleIndexPageUrl(), parameters);
         return modelAndView;
@@ -137,5 +159,108 @@ public class RoleController {
         } else {
             return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleIndexPageUrl());
         }
+    }
+
+
+    /**
+     * 展示场景index视图
+     *
+     * @return
+     */
+    @RequestMapping("/authority/index")
+    public ModelAndView roleAuthorityIndexView(int roleId, Pagination pagination) {
+        pagination.setUrl(getRoleAuthorityIndexPageUrl());
+        pagination.setRowCount(roleAuthorityService.queryAuthorityCountByRoleId(roleId));
+
+        ModelAndView modelAndView = viewService.forwardDecorateView(roleAuthorityIndexViewName, getRoleIndexPageUrl());
+        modelAndView.addObject("roleId", roleId);
+        modelAndView.addObject("authorities", roleAuthorityService.queryManyAuthoritiesByRoleId(roleId, pagination.getPageNumber(), pagination.getPageRowCount()));
+        modelAndView.addObject("pagination", pagination.createHtml());
+        return modelAndView;
+    }
+
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/authority/update", method = RequestMethod.GET)
+    public ModelAndView updateRoleAuthorityView(int roleId) {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/authority/update", getRoleIndexPageUrl());
+        modelAndView.addObject("roleId", roleId);
+        modelAndView.addObject("authorities", authorityService.queryAllAuthorities());
+        modelAndView.addObject("roleAuthorities", roleAuthorityService.queryAllAuthoritiesByRoleId(roleId));
+        return modelAndView;
+    }
+
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/authority/update", method = RequestMethod.POST)
+    public ModelAndView updateRoleAuthority(int roleId, String authorityIdArrayString) {
+        int returnCode = roleAuthorityService.updateRoleAuthorities(roleId, authorityIdArrayString);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            return viewService.forwardFailView(returnCode, getRoleIndexPageUrl());
+        } else {
+            return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleAuthorityIndexPageUrl(roleId));
+        }
+    }
+
+    /**
+     * 请求新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/authority/delete")
+    public ModelAndView deleteRoleAuthority(int roleId, int authorityId) {
+        int returnCode = roleAuthorityService.deleteRoleAuthority(roleId, authorityId);
+        if (ReturnCodeUtil.isFail(returnCode)) {
+            return viewService.forwardFailView(returnCode, getRoleIndexPageUrl());
+        } else {
+            return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleAuthorityIndexPageUrl(roleId));
+        }
+    }
+
+
+    public ResourceService getResourceService() {
+        return resourceService;
+    }
+
+    public void setResourceService(ResourceService resourceService) {
+        this.resourceService = resourceService;
+    }
+
+    public RoleAuthorityService getRoleAuthorityService() {
+        return roleAuthorityService;
+    }
+
+    public void setRoleAuthorityService(RoleAuthorityService roleAuthorityService) {
+        this.roleAuthorityService = roleAuthorityService;
+    }
+
+    public RoleService getRoleService() {
+        return roleService;
+    }
+
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
+
+    public ViewService getViewService() {
+        return viewService;
+    }
+
+    public void setViewService(ViewService viewService) {
+        this.viewService = viewService;
+    }
+
+    public AuthorityService getAuthorityService() {
+        return authorityService;
+    }
+
+    public void setAuthorityService(AuthorityService authorityService) {
+        this.authorityService = authorityService;
     }
 }

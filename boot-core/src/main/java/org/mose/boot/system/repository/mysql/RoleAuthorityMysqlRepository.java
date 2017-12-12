@@ -2,6 +2,7 @@ package org.mose.boot.system.repository.mysql;
 
 import org.mose.boot.common.dao.stream.AbstractStreamRepository;
 import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.RoleAuthority;
 import org.mose.boot.system.repository.IAuthorityRepository;
 import org.mose.boot.system.repository.IRoleAuthorityRepository;
@@ -41,6 +42,11 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         return query().sql(sql).parameters(authorityId).queryMany();
     }
 
+    @Override
+    public int queryCountByRoleId(int roleId) {
+        String sql = "select count(a.id) from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=?";
+        return query().sql(sql).parameters(roleId).queryCount();
+    }
 
     @Override
     public int insertOne(RoleAuthority roleAuthority) {
@@ -87,6 +93,13 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
     }
 
     @Override
+    public int deleteOne(int roleId, int authorityId) {
+        String sql = "delete from t_system_role_authority where role_id=? and authority_id=?";
+        delete().sql(sql).parameters(roleId, authorityId).deleteAny();
+        return ReturnCodeUtil.SUCCESS__DELETE;
+    }
+
+    @Override
     public int deleteAllByAuthorityId(int authorityId) {
         String sql = "delete from t_system_role_authority where authority_id=?";
         delete().sql(sql).parameters(authorityId).deleteAny();
@@ -101,18 +114,24 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
     }
 
     @Override
+    public List<Authority> queryManyAuthoritiesByRoleId(int roleId, int pageNumber, int pageRowCount) {
+        String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
+        return authorityRepository.queryMany(sql, new Object[]{roleId}, pageNumber, pageRowCount);
+    }
+
+    @Override
     public List<Authority> queryAllAuthoritiesByRoleId(int roleId) {
         String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
         return authorityRepository.queryAll(sql, new Object[]{roleId});
     }
 
-    @Override
-    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
-        StringBuilder sql = new StringBuilder();
-        sql.append("select nra.id, nra.name, nra.description from");
-        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
-        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
-        sql.append(" where ur.user_id=? order by nra.name");
-        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
-    }
+//    @Override
+//    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
+//        StringBuilder sql = new StringBuilder();
+//        sql.append("select nra.id, nra.name, nra.description from");
+//        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
+//        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
+//        sql.append(" where ur.user_id=? order by nra.name");
+//        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
+//    }
 }

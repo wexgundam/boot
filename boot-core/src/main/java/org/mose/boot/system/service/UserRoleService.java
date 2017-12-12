@@ -63,19 +63,6 @@ public class UserRoleService {
         return userRoleRepository.queryCountByUserId(userId);
     }
 
-
-    /**
-     * 删除给定id对应的记录
-     *
-     * @param id
-     *
-     * @return
-     */
-    @Transactional
-    public int deleteRole(int id) {
-        return userRoleRepository.deleteOne(id);
-    }
-
     @Transactional
     public int deleteUserRole(int userId, int roleId) {
         return userRoleRepository.deleteOne(userId, roleId);

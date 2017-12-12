@@ -38,11 +38,21 @@ public class AuthorityService {
      *
      * @return
      */
-    public List<Authority> queryAuthorityList(int pageNumber, int pageRowCount) {
+    public List<Authority> queryManyAuthorities(int pageNumber, int pageRowCount) {
         List<Authority> authorities = authorityRepository.queryMany(pageNumber, pageRowCount);
         return authorities;
     }
 
+
+    /**
+     * 获取所有角色列表
+     *
+     * @return
+     */
+    public List<Authority> queryAllAuthorities() {
+        List<Authority> authorities = authorityRepository.queryAll();
+        return authorities;
+    }
 
     /**
      * what:    获取用户总数. <br/>
@@ -75,6 +85,17 @@ public class AuthorityService {
         return authorityRepository.insertOne(authority);
     }
 
+
+    /**
+     * 更新
+     *
+     * @param authority
+     */
+    @Transactional
+    public int updateAuthority(Authority authority) {
+        return authorityRepository.updateOne(authority);
+    }
+
     /**
      * 删除给定id对应的记录
      *
@@ -85,17 +106,6 @@ public class AuthorityService {
     @Transactional
     public int deleteAuthority(int id) {
         return authorityRepository.deleteOne(id);
-    }
-
-
-    /**
-     * 更新
-     *
-     * @param authority
-     */
-    @Transactional
-    public int updateAuthority(Authority authority) {
-        return authorityRepository.updateOne(authority);
     }
 
     public IAuthorityRepository getAuthorityRepository() {

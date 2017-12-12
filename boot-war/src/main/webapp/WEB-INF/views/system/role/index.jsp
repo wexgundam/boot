@@ -87,7 +87,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${authorities}" var="role" varStatus="status">
+                    <c:forEach items="${roles}" var="role" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${role.name}</td>
@@ -96,7 +96,10 @@
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/role/update.htm?id=${role.id}">
                                         修改 </a>
+                                    <a href="${dynamicResourceServerUrl}/system/role/authority/index.htm?roleId=${role.id}">
+                                        权限 </a>
                                     <a href="javascript:deleteRole(${role.id})"> 删除 </a>
+
                                 </security:authorize>
                             </td>
                         </tr>

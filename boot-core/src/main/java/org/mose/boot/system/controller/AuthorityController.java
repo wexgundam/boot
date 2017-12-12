@@ -55,7 +55,7 @@ public class AuthorityController {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
-        parameters.put("authorities", authorityService.queryAuthorityList(pagination.getPageNumber(), pagination.getPageRowCount()));
+        parameters.put("authorities", authorityService.queryManyAuthorities(pagination.getPageNumber(), pagination.getPageRowCount()));
 
         ModelAndView modelAndView = viewService.forwardDecorateView(authorityIndexViewName, getAuthorityIndexPageUrl(), parameters);
         return modelAndView;

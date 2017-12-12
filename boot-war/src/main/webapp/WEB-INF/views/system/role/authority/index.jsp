@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户角色管理</title>
+    <title>角色权限管理</title>
     <content-css>
     </content-css>
 </head>
@@ -23,11 +23,11 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="${dynamicResourceServerUrl}/system/user/index.htm">用户管理</a>
+                <a href="${dynamicResourceServerUrl}/system/role/index.htm">角色管理</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>用户角色管理</span>
+                <span>角色权限管理</span>
             </li>
         </ul>
         <div class="page-toolbar">
@@ -56,30 +56,30 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 用户角色管理
-        <small>用户角色浏览与编辑</small>
+    <h1 class="page-title"> 角色权限管理
+        <small>角色权限浏览与编辑</small>
     </h1>
     <!-- END PAGE TITLE-->
 
     <!-- END PAGE HEADER-->
 
-    <!-- Begin 用户角色编辑面板 -->
+    <!-- Begin 角色权限编辑面板 -->
     <div class="row">
         <div class="col-xs-12">
             <a class="btn btn-primary" id="btnRefresh" href="">
                 <i class="fa fa-refresh"></i> 刷新
             </a>
             <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <a class="btn btn-success" id="btnAdd" href="${dynamicResourceServerUrl }/system/user/role/update.htm?userId=${userId}">
+                <a class="btn btn-success" id="btnAdd" href="${dynamicResourceServerUrl }/system/role/authority/update.htm?roleId=${roleId}">
                     <i class=" fa fa-plus"></i> 更新
                 </a>
             </security:authorize>
-            <a class="btn btn default" id="btnAdd" href="${dynamicResourceServerUrl }/system/user/index.htm">
+            <a class="btn btn default" id="btnAdd" href="${dynamicResourceServerUrl }/system/role/index.htm">
                 <i class=" fa fa-undo"></i> 返回
             </a>
         </div>
     </div>
-    <!-- End 用户角色编辑面板 -->
+    <!-- End 角色权限编辑面板 -->
 
     <!-- Begin 表格 -->
     <div class="row" style="margin-top: 20px">
@@ -94,14 +94,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${roles}" var="authority" varStatus="status">
+                    <c:forEach items="${authorities}" var="authority" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${authority.name}</td>
                             <td>${authority.description}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="javascript:deleteUserRole(${authority.id})"> 删除 </a>
+                                    <a href="javascript:deleteRole(${authority.id})"> 删除 </a>
                                 </security:authorize>
                             </td>
                         </tr>
@@ -116,10 +116,10 @@
     <content-script>
         <script type="text/javascript">
             // 删除
-            var deleteUserRole = function (roleId) {
-                bootbox.confirm("你确定要删除该角色吗？", function (result) {
+            var deleteRole = function (authorityId) {
+                bootbox.confirm("你确定要删除该权限吗？", function (result) {
                     if (result) {
-                        window.location = "${dynamicResourceServerUrl}/system/user/role/delete.htm?userId=${userId}&roleId=" + roleId;
+                        window.location = "${dynamicResourceServerUrl}/system/role/authority/delete.htm?roleId=${roleId}&authorityId=" + authorityId;
                     }
                 })
             };

@@ -1,6 +1,7 @@
 package org.mose.boot.system.repository;
 
 import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.RoleAuthority;
 
 import java.util.List;
@@ -30,6 +31,11 @@ public interface IRoleAuthorityRepository {
      * 查询给定权限对应的全部角色权限
      */
     List<RoleAuthority> queryAllByAuthorityId(int authorityId);
+
+    /**
+     * 查询给定觉对应的权限总数
+     */
+    int queryCountByRoleId(int roleId);
 
     /**
      * 插入一条记录
@@ -62,9 +68,19 @@ public interface IRoleAuthorityRepository {
     int deleteOne(int id);
 
     /**
+     * 根据给定的属性删除
+     *
+     * @param roleId
+     * @param authorityId
+     *
+     * @return
+     */
+    int deleteOne(int roleId, int authorityId);
+
+    /**
      * 删除给定角色对应的全部角色权限
      */
-    int deleteAllByRoleId(int userId);
+    int deleteAllByRoleId(int roleId);
 
     /**
      * 删除给定权限对应的全部角色权限
@@ -72,12 +88,17 @@ public interface IRoleAuthorityRepository {
     int deleteAllByAuthorityId(int authorityId);
 
     /**
+     * 分页查询给定角色对应的权限
+     */
+    List<Authority> queryManyAuthoritiesByRoleId(int roleId, int pageNumber, int pageRowCount);
+
+    /**
      * 查询给定角色对应的全部权限
      */
     List<Authority> queryAllAuthoritiesByRoleId(int roleId);
-
-    /**
-     * 查询给定用户对应的全部权限
-     */
-    List<Authority> queryAllAuthoritiesByUserId(int userId);
+//
+//    /**
+//     * 查询给定用户对应的全部权限
+//     */
+//    List<Authority> queryAllAuthoritiesByUserId(int userId);
 }

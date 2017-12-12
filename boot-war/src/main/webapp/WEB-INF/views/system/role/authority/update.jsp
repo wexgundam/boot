@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户角色管理</title>
+    <title>角色权限管理</title>
     <content-css>
     </content-css>
 </head>
@@ -23,11 +23,11 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="${dynamicResourceServerUrl}/system/user/index.htm">用户管理</a>
+                <a href="${dynamicResourceServerUrl}/system/role/index.htm">角色管理</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <span>用户角色管理</span>
+                <span>角色权限管理</span>
             </li>
         </ul>
         <div class="page-toolbar">
@@ -56,8 +56,8 @@
     <!-- END PAGE BAR -->
 
     <!-- BEGIN PAGE TITLE-->
-    <h1 class="page-title"> 用户角色管理
-        <small>用户角色编辑</small>
+    <h1 class="page-title"> 角色权限管理
+        <small>角色权限编辑</small>
     </h1>
     <!-- END PAGE TITLE-->
 
@@ -67,21 +67,21 @@
     <div class="row">
         <div class="col-xs-12">
             <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <form id="userRoleForm" name="userRoleForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/user/role/update.htm" method="post">
+                <form id="roleAuthorityForm" name="roleAuthorityForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/role/authority/update.htm" method="post">
                     <div class="form-body hidden">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">用户Id</label>
+                            <label class="col-md-3 control-label">角色Id</label>
                             <div class="col-md-9">
-                                <input name="userId" type="text" class="form-control input-xlarge" placeholder="输入用户Id" value="${userId}">
-                                <label id="userIdTip"></label>
+                                <input name="roleId" type="text" class="form-control input-xlarge" placeholder="输入角色Id" value="${roleId}">
+                                <label id="roleIdTip"></label>
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">角色Id数组</label>
+                            <label class="col-md-3 control-label">权限Id数组</label>
                             <div class="col-md-9">
-                                <input id="roleIdArrayString" name="roleIdArrayString" type="text" class="form-control input-xlarge" placeholder="输入用户角色数组">
-                                <label id="roleIdArrayStringTip"></label>
+                                <input id="authorityIdArrayString" name="authorityIdArrayString" type="text" class="form-control input-xlarge" placeholder="输入角色权限数组">
+                                <label id="authorityIdArrayStringTip"></label>
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -125,12 +125,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${roles}" var="authority" varStatus="status">
+                    <c:forEach items="${authorities}" var="authority" varStatus="status">
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>
                                 <label class="mt-checkbox mt-checkbox-outline">
-                                    <input name="role" type="checkbox" value="${authority.id}" />
+                                    <input name="authority" type="checkbox" value="${authority.id}" />
                                     <span></span>
                                 </label>
                             </td>
@@ -152,9 +152,9 @@
     <!-- Begin Javascript -->
     <content-script>
         <script type="text/javascript">
-            <c:if test="${! empty userRoles}">
+            <c:if test="${! empty roleAuthorities}">
             $(function () {
-                <c:forEach items="${userRoles}" var="authority">
+                <c:forEach items="${roleAuthorities}" var="authority">
                 $("input[value=${authority.id}]").attr("checked", true);
                 </c:forEach>
             });
@@ -162,17 +162,17 @@
 
             // 删除
             var update = function () {
-                var roleIdArrayString = "";
-                $("input[name=role]:checked").each(function (index) {
+                var authorityIdArrayString = "";
+                $("input[name=authority]:checked").each(function (index) {
                     if (index > 0) {
-                        roleIdArrayString += "@";
+                        authorityIdArrayString += "@";
                     }
-                    roleIdArrayString += $(this).val();
+                    authorityIdArrayString += $(this).val();
                 });
-                if (roleIdArrayString.length > 0) {
-                    $("#roleIdArrayString").attr("value", roleIdArrayString);
+                if (authorityIdArrayString.length > 0) {
+                    $("#authorityIdArrayString").attr("value", authorityIdArrayString);
                 }
-                $("userRoleForm").submit();
+                $("roleAuthorityForm").submit();
             };
         </script>
     </content-script>

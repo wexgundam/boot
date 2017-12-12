@@ -31,6 +31,17 @@ public interface IAuthorityRepository {
     boolean queryExistByName(String name);
 
     /**
+     * 给定查询语句查询
+     *
+     * @param sql
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    List<Authority> queryMany(String sql, Object[] parameters, int pageNumber, int pageRowCount);
+
+    /**
      * 分页查询
      */
     List<Authority> queryMany(int pageNumber, int pageRowCount);
