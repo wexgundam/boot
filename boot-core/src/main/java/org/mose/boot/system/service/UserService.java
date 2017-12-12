@@ -29,16 +29,10 @@ public class UserService {
     @Autowired
     private IUserRepository userRepository;
     /**
-     * 用户角色获取对象
-     */
-    @Autowired
-    private IUserRoleRepository userRoleRepository;
-    /**
      * 角色获取对象
      */
     @Autowired
     private RoleService roleService;
-    public static final String ROLE_ID_ARRAY_STRING_SPLITTER = "@";
 
     /**
      * 根据给定的id查询
@@ -57,11 +51,10 @@ public class UserService {
      * @return
      */
 //    @Cacheable(value = "sysCache", key = "'userList'")
-    public List<User> queryUserList(int pageNumber, int pageRowCount) {
+    public List<User> queryManyUsers(int pageNumber, int pageRowCount) {
         List<User> users = userRepository.queryMany(pageNumber, pageRowCount);
         return users;
     }
-
 
     /**
      * what:    获取用户总数. <br/>
@@ -78,38 +71,6 @@ public class UserService {
     public int queryUserCount() {
         return userRepository.queryCount();
     }
-
-
-    public Object queryRoleListByUserId(int userId) {
-        return roleService.queryRoleListByUserId(userId);
-    }
-
-    ;
-
-    /**
-     * 查询给定用户的角色
-     *
-     * @param userId
-     * @param pageNumber
-     * @param pageRowCount
-     *
-     * @return
-     */
-    public List<Role> queryRoleListByUserId(int userId, int pageNumber, int pageRowCount) {
-        return roleService.queryRoleListByUserId(userId, pageNumber, pageRowCount);
-    }
-
-    /**
-     * 查询给定用户的角色数
-     *
-     * @param userId
-     *
-     * @return
-     */
-    public int queryRoleCountByUserId(int userId) {
-        return roleService.queryRoleCountByUserId(userId);
-    }
-
 
     /**
      * Description:删除记录
@@ -138,26 +99,6 @@ public class UserService {
     }
 
     /**
-     * 更新
-     *
-     * @param userId
-     */
-    @Transactional
-    public int updateUserRoles(int userId, String roleIdArrayString) {
-        deleteUserRoles(userId);
-        if (roleIdArrayString != null) {
-            for (String roleIdString : roleIdArrayString.split(ROLE_ID_ARRAY_STRING_SPLITTER)) {
-                UserRole userRole = new UserRole();
-                userRole.setUserId(userId);
-                userRole.setRoleId(Integer.parseInt(roleIdString));
-                userRoleRepository.insertOne(userRole);
-            }
-        }
-        return ReturnCodeUtil.SUCCESS__UPDATE;
-    }
-
-
-    /**
      * 删除给定id对应的记录
      *
      * @param id
@@ -167,21 +108,6 @@ public class UserService {
     @Transactional
     public int deleteUser(int id) {
         return userRepository.deleteOne(id);
-    }
-
-    /**
-     * 更新
-     *
-     * @param userId
-     */
-    @Transactional
-    public int deleteUserRoles(int userId) {
-        return userRoleRepository.deleteAllByUserId(userId);
-    }
-
-    @Transactional
-    public int deleteUserRole(int userId, int roleId) {
-        return userRoleRepository.deleteUserRole(userId, roleId);
     }
 
     public PasswordEncoder getPasswordEncoder() {

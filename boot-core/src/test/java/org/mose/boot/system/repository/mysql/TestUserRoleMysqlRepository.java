@@ -67,14 +67,17 @@ public class TestUserRoleMysqlRepository {
         assertNotNull(userRoles);
         userRoles = userRoleRepository.queryAllByRoleId(roleId);
         assertNotNull(userRoles);
+        userRoleRepository.queryCountByUserId(1);
         returnCode = userRoleRepository.updateOne(userRole);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
         returnCode = userRoleRepository.deleteOne(userRole);
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
         queryOne = userRoleRepository.queryOne(userRole.getId());
         assertNull(queryOne);
-        userRoleRepository.deleteUserRole(1, 2);
+        userRoleRepository.deleteOne(1, 2);
         userRoleRepository.deleteAllByUserId(userId);
         userRoleRepository.deleteAllByRoleId(roleId);
+        userRoleRepository.queryManyRolesByUserId(1, 1, 20);
+        userRoleRepository.queryAllRolesByUserId(1);
     }
 }

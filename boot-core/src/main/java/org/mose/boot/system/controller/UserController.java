@@ -5,9 +5,9 @@ import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.service.RoleService;
+import org.mose.boot.system.service.UserRoleService;
 import org.mose.boot.system.service.UserService;
 import org.mose.boot.util.code.ReturnCodeUtil;
-import org.mose.boot.util.web.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +31,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
+    private UserRoleService userRoleService;
+    @Autowired
     private RoleService roleService;
     @Autowired
     private ViewService viewService;
@@ -38,24 +40,24 @@ public class UserController {
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexViewName = "/system/user/index";
-    String indexPageUrl = null;
-    String roleIndexViewName = "/system/user/role/index";
-    String roleIndexPageUrl = null;
+    String userRIndexViewName = "/system/user/index";
+    String userIndexPageUrl = null;
+    String userRoleIndexViewName = "/system/user/role/index";
+    String userRoleIndexPageUrl = null;
 
-    private String getIndexPageUrl() {
-        indexPageUrl = indexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + indexViewName + ".htm" : indexPageUrl;
-        return indexPageUrl;
+    private String getUserIndexPageUrl() {
+        userIndexPageUrl = userIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRIndexViewName + ".htm" : userIndexPageUrl;
+        return userIndexPageUrl;
     }
 
-    private String getRoleIndexPageUrl() {
-        roleIndexPageUrl = roleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleIndexViewName + ".htm" : roleIndexPageUrl;
-        return roleIndexPageUrl;
+    private String getUserRoleIndexPageUrl() {
+        userRoleIndexPageUrl = userRoleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRoleIndexViewName + ".htm" : userRoleIndexPageUrl;
+        return userRoleIndexPageUrl;
     }
 
-    private String getRoleIndexPageUrl(int userId) {
+    private String getUserRoleIndexPageUrl(int userId) {
         StringBuilder roleIndexPageUrl = new StringBuilder();
-        roleIndexPageUrl.append(getRoleIndexPageUrl());
+        roleIndexPageUrl.append(getUserRoleIndexPageUrl());
         roleIndexPageUrl.append("?userId=").append(userId);
         return roleIndexPageUrl.substring(0);
     }
@@ -66,15 +68,15 @@ public class UserController {
      * @return
      */
     @RequestMapping("/index")
-    public ModelAndView indexView(Pagination pagination) {
-        pagination.setUrl(getIndexPageUrl());
+    public ModelAndView userIndexView(Pagination pagination) {
+        pagination.setUrl(getUserIndexPageUrl());
         pagination.setRowCount(userService.queryUserCount());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
-        parameters.put("users", userService.queryUserList(pagination.getPageNumber(), pagination.getPageRowCount()));
+        parameters.put("users", userService.queryManyUsers(pagination.getPageNumber(), pagination.getPageRowCount()));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(userRIndexViewName, getUserIndexPageUrl(), parameters);
         return modelAndView;
     }
 
@@ -84,8 +86,8 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addView() {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/add", getIndexPageUrl());
+    public ModelAndView addUserView() {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/add", getUserIndexPageUrl());
         return modelAndView;
     }
 
@@ -100,9 +102,9 @@ public class UserController {
     public ModelAndView addUser(User user) {
         int returnCode = userService.addUser(user);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, getIndexPageUrl());
+            return viewService.forwardFailView(returnCode, getUserIndexPageUrl());
         } else {
-            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
+            return viewService.forwardSuccessView(returnCode, getUserIndexPageUrl(), getUserIndexPageUrl());
         }
     }
 
@@ -114,10 +116,10 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updateView(int id) {
+    public ModelAndView updateUserView(int id) {
         User user = userService.queryUser(id);
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", getIndexPageUrl());
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/update", getUserIndexPageUrl());
         modelAndView.addObject("user", user);
         return modelAndView;
     }
@@ -133,9 +135,9 @@ public class UserController {
     public ModelAndView updateUser(User user) {
         int returnCode = userService.updateUser(user);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, userRIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
+            return viewService.forwardSuccessView(returnCode, getUserIndexPageUrl(), getUserIndexPageUrl());
         }
     }
 
@@ -150,9 +152,9 @@ public class UserController {
     public ModelAndView deleteUser(int id) {
         int returnCode = userService.deleteUser(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, userRIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getIndexPageUrl());
+            return viewService.forwardSuccessView(returnCode, getUserIndexPageUrl(), getUserIndexPageUrl());
         }
     }
 
@@ -163,12 +165,12 @@ public class UserController {
      */
     @RequestMapping("/role/index")
     public ModelAndView userRoleIndexView(int userId, Pagination pagination) {
-        pagination.setUrl(getRoleIndexPageUrl());
-        pagination.setRowCount(userService.queryRoleCountByUserId(userId));
+        pagination.setUrl(getUserRoleIndexPageUrl());
+        pagination.setRowCount(userRoleService.queryRoleCountByUserId(userId));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(roleIndexViewName, getIndexPageUrl());
+        ModelAndView modelAndView = viewService.forwardDecorateView(userRoleIndexViewName, getUserIndexPageUrl());
         modelAndView.addObject("userId", userId);
-        modelAndView.addObject("roles", userService.queryRoleListByUserId(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
+        modelAndView.addObject("roles", userRoleService.queryManyRolesByUserId(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
         modelAndView.addObject("pagination", pagination.createHtml());
         return modelAndView;
     }
@@ -179,11 +181,11 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/role/update", method = RequestMethod.GET)
-    public ModelAndView updateUserRolesView(int userId) {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/role/update", getIndexPageUrl());
+    public ModelAndView updateUserRoleView(int userId) {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/role/update", getUserIndexPageUrl());
         modelAndView.addObject("userId", userId);
-        modelAndView.addObject("roles", roleService.queryRoleList());
-        modelAndView.addObject("userRoles", userService.queryRoleListByUserId(userId));
+        modelAndView.addObject("roles", roleService.queryAllRoles());
+        modelAndView.addObject("userRoles", userRoleService.queryAllRolesByUserId(userId));
         return modelAndView;
     }
 
@@ -193,12 +195,12 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/role/update", method = RequestMethod.POST)
-    public ModelAndView updateUserRoles(int userId, String roleIdArrayString) {
-        int returnCode = userService.updateUserRoles(userId, roleIdArrayString);
+    public ModelAndView updateUserRole(int userId, String roleIdArrayString) {
+        int returnCode = userRoleService.updateUserRoles(userId, roleIdArrayString);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, getIndexPageUrl());
+            return viewService.forwardFailView(returnCode, getUserIndexPageUrl());
         } else {
-            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getRoleIndexPageUrl(userId));
+            return viewService.forwardSuccessView(returnCode, getUserIndexPageUrl(), getUserRoleIndexPageUrl(userId));
         }
     }
 
@@ -208,12 +210,12 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/role/delete")
-    public ModelAndView updateUserRoles(int userId, int roleId) {
-        int returnCode = userService.deleteUserRole(userId, roleId);
+    public ModelAndView deleteUserRole(int userId, int roleId) {
+        int returnCode = userRoleService.deleteUserRole(userId, roleId);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, getIndexPageUrl());
+            return viewService.forwardFailView(returnCode, getUserIndexPageUrl());
         } else {
-            return viewService.forwardSuccessView(returnCode, getIndexPageUrl(), getRoleIndexPageUrl(userId));
+            return viewService.forwardSuccessView(returnCode, getUserIndexPageUrl(), getUserRoleIndexPageUrl(userId));
         }
     }
 
@@ -233,12 +235,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    public RoleService getRoleService() {
-        return roleService;
+    public UserRoleService getUserRoleService() {
+        return userRoleService;
     }
 
-    public void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
+    public void setUserRoleService(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
     }
 
     public ViewService getViewService() {
@@ -247,5 +249,13 @@ public class UserController {
 
     public void setViewService(ViewService viewService) {
         this.viewService = viewService;
+    }
+
+    public RoleService getRoleService() {
+        return roleService;
+    }
+
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
     }
 }

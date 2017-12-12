@@ -35,24 +35,29 @@ public interface IRoleRepository {
     List<Role> queryMany(int pageNumber, int pageRowCount);
 
     /**
+     * 给定查询语句查询
+     *
+     * @param sql
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    List<Role> queryMany(String sql, Object[] parameters, int pageNumber, int pageRowCount);
+
+    /**
+     * 给定查询语句查询
+     *
+     * @param sql
+     *
+     * @return
+     */
+    List<Role> queryAll(String sql, Object[] parameters);
+
+    /**
      * 查询全部用户
      */
     List<Role> queryAll();
-
-    /**
-     * 分页查询给定用户对应的角色
-     */
-    List<Role> queryManyByUserId(int userId, int pageNumber, int pageRowCount);
-
-    /**
-     * 查询给定用户对应的全部角色
-     */
-    List<Role> queryAllByUserId(int userId);
-
-    /**
-     * 查询给定用户对应的角色总数
-     */
-    int queryCountByUserId(int userId);
 
     /**
      * 查询总数

@@ -1,5 +1,6 @@
 package org.mose.boot.system.repository;
 
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.UserRole;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public interface IUserRoleRepository {
     List<UserRole> queryAllByRoleId(int roleId);
 
     /**
+     * 查询给定用户对应的角色总数
+     */
+    int queryCountByUserId(int userId);
+
+    /**
      * 插入一条记录
      *
      * @param userRole
@@ -60,6 +66,17 @@ public interface IUserRoleRepository {
      */
     int deleteOne(int id);
 
+
+    /**
+     * 根据给定的属性删除
+     *
+     * @param userId
+     * @param roleId
+     *
+     * @return
+     */
+    int deleteOne(int userId, int roleId);
+
     /**
      * 删除给定用户对应的全部用户角色
      */
@@ -71,12 +88,12 @@ public interface IUserRoleRepository {
     int deleteAllByRoleId(int roleId);
 
     /**
-     * 删除给定用户的角色
-     *
-     * @param userId
-     * @param roleId
-     *
-     * @return
+     * 分页查询给定用户对应的角色
      */
-    int deleteUserRole(int userId, int roleId);
+    List<Role> queryManyRolesByUserId(int userId, int pageNumber, int pageRowCount);
+
+    /**
+     * 查询给定用户对应的全部角色
+     */
+    List<Role> queryAllRolesByUserId(int userId);
 }

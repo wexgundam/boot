@@ -1,9 +1,12 @@
 package org.mose.boot.system.repository.mysql;
 
 import org.mose.boot.common.dao.stream.AbstractStreamRepository;
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.UserRole;
+import org.mose.boot.system.repository.IRoleRepository;
 import org.mose.boot.system.repository.IUserRoleRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +19,9 @@ import java.util.List;
  */
 @Component
 public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, Integer> implements IUserRoleRepository {
+    @Autowired
+    private IRoleRepository roleRepository;
+
     @Override
     public UserRole queryOne(int id) {
         String sql = "select id, user_id, role_id  from t_system_user_role t where id=?";
@@ -34,6 +40,11 @@ public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, 
         return query().sql(sql).parameters(roleId).queryMany();
     }
 
+    @Override
+    public int queryCountByUserId(int userId) {
+        String sql = "select count(r.id) from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=?";
+        return query().sql(sql).parameters(userId).queryCount();
+    }
 
     @Override
     public int insertOne(UserRole userRole) {
@@ -80,7 +91,7 @@ public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, 
     }
 
     @Override
-    public int deleteUserRole(int userId, int roleId) {
+    public int deleteOne(int userId, int roleId) {
         String sql = "delete from t_system_user_role where user_id=? and role_id=?";
         delete().sql(sql).parameters(userId, roleId).deleteAny();
         return ReturnCodeUtil.SUCCESS__DELETE;
@@ -98,5 +109,17 @@ public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, 
         String sql = "delete from t_system_user_role where role_id=?";
         delete().sql(sql).parameters(roleId).deleteAny();
         return ReturnCodeUtil.SUCCESS__DELETE;
+    }
+
+    @Override
+    public List<Role> queryManyRolesByUserId(int userId, int pageNumber, int pageRowCount) {
+        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+        return roleRepository.queryMany(sql, new Object[]{userId}, pageNumber, pageRowCount);
+    }
+
+    @Override
+    public List<Role> queryAllRolesByUserId(int userId) {
+        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+        return roleRepository.queryAll(sql, new Object[]{userId});
     }
 }

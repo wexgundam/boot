@@ -1,12 +1,14 @@
 package org.mose.boot.common.dao.stream;
 
 import org.mose.boot.common.dao.IPaging;
+import org.mose.boot.system.modal.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 /**
  * Description: 流式编程数据获取对象
@@ -71,6 +73,58 @@ public abstract class AbstractStreamRepository<Entity, Id> {
      */
     protected Query<Entity, Id> query() {
         return new Query<>(jdbcTemplate, namedParameterJdbcTemplate, new BeanPropertyRowMapper<>(getEntityClass()), paging);
+    }
+
+    /**
+     * 给定sql语句与参数查询
+     *
+     * @param sql
+     * @param parameters
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    public List<Entity> queryMany(String sql, Object[] parameters, int pageNumber, int pageRowCount) {
+        return query().sql(sql).parameters(parameters).paging(pageNumber, pageRowCount).queryMany();
+    }
+
+    /**
+     * 给定sql语句与参数查询
+     *
+     * @param sql
+     * @param parameterBean
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     */
+    public List<Entity> queryMany(String sql, Object parameterBean, int pageNumber, int pageRowCount) {
+        return query().sql(sql).parameterBean(parameterBean).paging(pageNumber, pageRowCount).queryMany();
+    }
+
+    /**
+     * 给定sql语句与参数查询
+     *
+     * @param sql
+     * @param parameters
+     *
+     * @return
+     */
+    public List<Entity> queryAll(String sql, Object[] parameters) {
+        return query().sql(sql).parameters(parameters).queryMany();
+    }
+
+    /**
+     * 给定sql语句与参数查询
+     *
+     * @param sql
+     * @param parameterBean
+     *
+     * @return
+     */
+    public List<Entity> queryAll(String sql, Object parameterBean) {
+        return query().sql(sql).parameterBean(parameterBean).queryMany();
     }
 
     /**

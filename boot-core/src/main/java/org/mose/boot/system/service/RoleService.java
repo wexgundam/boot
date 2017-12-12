@@ -35,51 +35,25 @@ public class RoleService {
     }
 
     /**
-     * 获取所有角色列表
-     *
-     * @return
-     */
-    public List<Role> queryRoleList() {
-        List<Role> authorities = roleRepository.queryAll();
-        return authorities;
-    }
-
-    /**
      * 获取所有角色并按照树形组织排序
      *
      * @return
      */
-    public List<Role> queryRoleList(int pageNumber, int pageRowCount) {
+    public List<Role> queryManyRoles(int pageNumber, int pageRowCount) {
         List<Role> authorities = roleRepository.queryMany(pageNumber, pageRowCount);
         return authorities;
     }
 
+
     /**
-     * 查询给定用户的角色
-     *
-     * @param userId
-     * @param pageNumber
-     * @param pageRowCount
+     * 获取所有角色列表
      *
      * @return
      */
-    public List<Role> queryRoleListByUserId(int userId, int pageNumber, int pageRowCount) {
-        List<Role> roles = roleRepository.queryManyByUserId(userId, pageNumber, pageRowCount);
-        return roles;
+    public List<Role> queryAllRoles() {
+        List<Role> authorities = roleRepository.queryAll();
+        return authorities;
     }
-
-    /**
-     * 查询给定用户的角色
-     *
-     * @param userId
-     *
-     * @return
-     */
-    public Object queryRoleListByUserId(int userId) {
-        List<Role> roles = roleRepository.queryAllByUserId(userId);
-        return roles;
-    }
-
 
     /**
      * what:    获取用户总数. <br/>
@@ -95,10 +69,6 @@ public class RoleService {
      */
     public int queryRoleCount() {
         return roleRepository.queryCount();
-    }
-
-    public int queryRoleCountByUserId(int userId) {
-        return roleRepository.queryCountByUserId(userId);
     }
 
     /**

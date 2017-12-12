@@ -35,12 +35,12 @@ public class RoleController {
     /**
      * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
-    String indexViewName = "/system/role/index";
-    String indexPageUrl = null;
+    String roleIndexViewName = "/system/role/index";
+    String roleIndexPageUrl = null;
 
-    private String getIndexPageUrl() {
-        indexPageUrl = indexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + indexViewName + ".htm" : indexPageUrl;
-        return indexPageUrl;
+    private String getRoleIndexPageUrl() {
+        roleIndexPageUrl = roleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleIndexViewName + ".htm" : roleIndexPageUrl;
+        return roleIndexPageUrl;
     }
 
     /**
@@ -49,15 +49,15 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/index")
-    public ModelAndView indexView(Pagination pagination) {
-        pagination.setUrl(getIndexPageUrl());
+    public ModelAndView roleIndexView(Pagination pagination) {
+        pagination.setUrl(getRoleIndexPageUrl());
         pagination.setRowCount(roleService.queryRoleCount());
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("pagination", pagination.createHtml());
-        parameters.put("authorities", roleService.queryRoleList(pagination.getPageNumber(), pagination.getPageRowCount()));
+        parameters.put("authorities", roleService.queryManyRoles(pagination.getPageNumber(), pagination.getPageRowCount()));
 
-        ModelAndView modelAndView = viewService.forwardDecorateView(indexViewName, getIndexPageUrl(), parameters);
+        ModelAndView modelAndView = viewService.forwardDecorateView(roleIndexViewName, getRoleIndexPageUrl(), parameters);
         return modelAndView;
     }
 
@@ -67,8 +67,8 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView addView() {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/add", getIndexPageUrl());
+    public ModelAndView addRoleView() {
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/add", getRoleIndexPageUrl());
         return modelAndView;
     }
 
@@ -83,9 +83,9 @@ public class RoleController {
     public ModelAndView addRole(Role role) {
         int returnCode = roleService.addRole(role);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(indexViewName));
+            return viewService.forwardFailView(returnCode, WebUtil.viewName2Url(roleIndexViewName));
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleIndexPageUrl());
         }
     }
 
@@ -97,10 +97,10 @@ public class RoleController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView updateView(int id) {
+    public ModelAndView updateRoleView(int id) {
         Role role = roleService.queryRole(id);
 
-        ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/update", indexViewName + ".htm");
+        ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/update", getRoleIndexPageUrl());
         modelAndView.addObject("role", role);
         return modelAndView;
     }
@@ -116,9 +116,9 @@ public class RoleController {
     public ModelAndView updateRole(Role role) {
         int returnCode = roleService.updateRole(role);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, roleIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleIndexPageUrl());
         }
     }
 
@@ -133,9 +133,9 @@ public class RoleController {
     public ModelAndView deleteRole(int id) {
         int returnCode = roleService.deleteRole(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
-            return viewService.forwardFailView(returnCode, indexViewName);
+            return viewService.forwardFailView(returnCode, roleIndexViewName);
         } else {
-            return viewService.forwardSuccessView(returnCode, indexViewName + ".htm", indexViewName + ".htm");
+            return viewService.forwardSuccessView(returnCode, getRoleIndexPageUrl(), getRoleIndexPageUrl());
         }
     }
 }

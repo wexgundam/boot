@@ -46,8 +46,6 @@ import static org.junit.Assert.assertNull;
 public class TestRoleMysqlRepository {
     @Autowired
     private IRoleRepository roleRepository;
-    @Autowired
-    private IUserRoleRepository userRoleRepository;
 
     @Test
     public void contextLoads() {
@@ -64,18 +62,17 @@ public class TestRoleMysqlRepository {
         Role queryOne = roleRepository.queryOne(role.getId());
         assertEquals(role, queryOne);
         roleRepository.queryExistByName(role.getName());
+        roleRepository.queryMany(1, 20);
+        roleRepository.queryMany("select id from t_system_role where id=?", new Object[]{1}, 1, 20);
+        roleRepository.queryAll("select id from t_system_role where id=?", new Object[]{1});
         List<Role> roles = roleRepository.queryAll();
         assertNotNull(roles);
         roleRepository.queryCount();
-        roleRepository.queryManyByUserId(1, 1, 20);
-        roleRepository.queryAllByUserId(1);
-        roleRepository.queryCountByUserId(1);
         returnCode = roleRepository.updateOne(role);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
         returnCode = roleRepository.deleteOne(role);
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
         queryOne = roleRepository.queryOne(role.getId());
         assertNull(queryOne);
-        roleRepository.queryAllByUserId(1);
     }
 }
