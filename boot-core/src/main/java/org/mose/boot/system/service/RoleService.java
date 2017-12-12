@@ -2,7 +2,6 @@ package org.mose.boot.system.service;
 
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.repository.IRoleRepository;
-import org.mose.boot.system.repository.IUserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,10 @@ public class RoleService {
      */
     @Autowired
     private IRoleRepository roleRepository;
+    @Autowired
+    private UserRoleService userRoleService;
+    @Autowired
+    private RoleAuthorityService roleAuthorityService;
 
     /**
      * 根据给定的id查询
@@ -106,6 +109,8 @@ public class RoleService {
      */
     @Transactional
     public int deleteRole(int id) {
+        userRoleService.deleteUserRolesByRoleId(id);
+        roleAuthorityService.deleteRoleAuthoritiesByRoleId(id);
         return roleRepository.deleteOne(id);
     }
 
@@ -115,5 +120,21 @@ public class RoleService {
 
     public void setRoleRepository(IRoleRepository roleRepository) {
         this.roleRepository = roleRepository;
+    }
+
+    public UserRoleService getUserRoleService() {
+        return userRoleService;
+    }
+
+    public void setUserRoleService(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
+    }
+
+    public RoleAuthorityService getRoleAuthorityService() {
+        return roleAuthorityService;
+    }
+
+    public void setRoleAuthorityService(RoleAuthorityService roleAuthorityService) {
+        this.roleAuthorityService = roleAuthorityService;
     }
 }

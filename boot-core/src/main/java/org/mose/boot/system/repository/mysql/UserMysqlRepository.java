@@ -92,11 +92,6 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
 
     @Override
     public int deleteOne(int id) {
-        int returnCode = userRoleRepository.deleteAllByUserId(id);
-        if (ReturnCodeUtil.isFail(returnCode)) {
-            return returnCode;
-        }
-
         String sql = "delete from t_system_user where id=?";
         delete().sql(sql).parameters(id).deleteAny();
         return ReturnCodeUtil.SUCCESS__DELETE;

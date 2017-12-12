@@ -2,7 +2,6 @@ package org.mose.boot.system.service;
 
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.UserRole;
-import org.mose.boot.system.repository.IRoleRepository;
 import org.mose.boot.system.repository.IUserRoleRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,21 +62,6 @@ public class UserRoleService {
         return userRoleRepository.queryCountByUserId(userId);
     }
 
-    @Transactional
-    public int deleteUserRole(int userId, int roleId) {
-        return userRoleRepository.deleteOne(userId, roleId);
-    }
-
-    /**
-     * 更新
-     *
-     * @param userId
-     */
-    @Transactional
-    public int deleteUserRoles(int userId) {
-        return userRoleRepository.deleteAllByUserId(userId);
-    }
-
     /**
      * 更新
      *
@@ -85,7 +69,7 @@ public class UserRoleService {
      */
     @Transactional
     public int updateUserRoles(int userId, String roleIdArrayString) {
-        deleteUserRoles(userId);
+        deleteUserRolesByUserId(userId);
         if (roleIdArrayString != null) {
             for (String roleIdString : roleIdArrayString.split(ROLE_ID_ARRAY_STRING_SPLITTER)) {
                 UserRole userRole = new UserRole();
@@ -97,6 +81,27 @@ public class UserRoleService {
         return ReturnCodeUtil.SUCCESS__UPDATE;
     }
 
+    @Transactional
+    public int deleteUserRole(int userId, int roleId) {
+        return userRoleRepository.deleteOne(userId, roleId);
+    }
+
+    /**
+     * 更新
+     *
+     * @param userId
+     */
+    @Transactional
+    public int deleteUserRolesByUserId(int userId) {
+        return userRoleRepository.deleteAllByUserId(userId);
+    }
+
+
+    public int deleteUserRolesByRoleId(int roleId) {
+        return userRoleRepository.deleteAllByRoleId(roleId);
+    }
+
+
     public IUserRoleRepository getUserRoleRepository() {
         return userRoleRepository;
     }
@@ -104,4 +109,5 @@ public class UserRoleService {
     public void setUserRoleRepository(IUserRoleRepository userRoleRepository) {
         this.userRoleRepository = userRoleRepository;
     }
+
 }

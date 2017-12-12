@@ -73,6 +73,25 @@ public class RoleAuthorityService {
     }
 
 
+    /**
+     * 更新
+     *
+     * @param roleId
+     */
+    @Transactional
+    public int updateRoleAuthorities(int roleId, String authorityIdArrayString) {
+        deleteRoleAuthoritiesByRoleId(roleId);
+        if (authorityIdArrayString != null) {
+            for (String authorityIdString : authorityIdArrayString.split(AUTHORITY_ID_ARRAY_STRING_SPLITTER)) {
+                RoleAuthority roleAuthority = new RoleAuthority();
+                roleAuthority.setRoleId(roleId);
+                roleAuthority.setAuthorityId(Integer.parseInt(authorityIdString));
+                roleAuthorityRepository.insertOne(roleAuthority);
+            }
+        }
+        return ReturnCodeUtil.SUCCESS__UPDATE;
+    }
+
     @Transactional
     public int deleteRoleAuthority(int roleId, int authorityId) {
         return roleAuthorityRepository.deleteOne(roleId, authorityId);
@@ -84,27 +103,13 @@ public class RoleAuthorityService {
      * @param roleId
      */
     @Transactional
-    public int deleteRoleAuthorities(int roleId) {
+    public int deleteRoleAuthoritiesByRoleId(int roleId) {
         return roleAuthorityRepository.deleteAllByRoleId(roleId);
     }
 
-    /**
-     * 更新
-     *
-     * @param roleId
-     */
-    @Transactional
-    public int updateRoleAuthorities(int roleId, String authorityIdArrayString) {
-        deleteRoleAuthorities(roleId);
-        if (authorityIdArrayString != null) {
-            for (String authorityIdString : authorityIdArrayString.split(AUTHORITY_ID_ARRAY_STRING_SPLITTER)) {
-                RoleAuthority roleAuthority = new RoleAuthority();
-                roleAuthority.setRoleId(roleId);
-                roleAuthority.setAuthorityId(Integer.parseInt(authorityIdString));
-                roleAuthorityRepository.insertOne(roleAuthority);
-            }
-        }
-        return ReturnCodeUtil.SUCCESS__UPDATE;
+
+    public int deleteRoleAuthoritiesByAuthorityId(int authorityId) {
+        return roleAuthorityRepository.deleteAllByAuthorityId(authorityId);
     }
 
     public IRoleAuthorityRepository getRoleAuthorityRepository() {

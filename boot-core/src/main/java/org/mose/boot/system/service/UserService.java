@@ -1,11 +1,7 @@
 package org.mose.boot.system.service;
 
-import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.User;
-import org.mose.boot.system.modal.UserRole;
 import org.mose.boot.system.repository.IUserRepository;
-import org.mose.boot.system.repository.IUserRoleRepository;
-import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +24,8 @@ public class UserService {
      */
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private UserRoleService userRoleService;
     /**
      * 角色获取对象
      */
@@ -107,6 +105,7 @@ public class UserService {
      */
     @Transactional
     public int deleteUser(int id) {
+        userRoleService.deleteUserRolesByUserId(id);
         return userRepository.deleteOne(id);
     }
 
@@ -132,6 +131,14 @@ public class UserService {
 
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    public UserRoleService getUserRoleService() {
+        return userRoleService;
+    }
+
+    public void setUserRoleService(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
     }
 }
 

@@ -21,6 +21,8 @@ public class AuthorityService {
      */
     @Autowired
     private IAuthorityRepository authorityRepository;
+    @Autowired
+    private RoleAuthorityService roleAuthorityService;
 
     /**
      * 根据给定的id查询
@@ -105,6 +107,7 @@ public class AuthorityService {
      */
     @Transactional
     public int deleteAuthority(int id) {
+        roleAuthorityService.deleteRoleAuthoritiesByAuthorityId(id);
         return authorityRepository.deleteOne(id);
     }
 
@@ -114,5 +117,13 @@ public class AuthorityService {
 
     public void setAuthorityRepository(IAuthorityRepository authorityRepository) {
         this.authorityRepository = authorityRepository;
+    }
+
+    public RoleAuthorityService getRoleAuthorityService() {
+        return roleAuthorityService;
+    }
+
+    public void setRoleAuthorityService(RoleAuthorityService roleAuthorityService) {
+        this.roleAuthorityService = roleAuthorityService;
     }
 }

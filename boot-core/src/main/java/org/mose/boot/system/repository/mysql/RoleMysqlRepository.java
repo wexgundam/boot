@@ -103,11 +103,6 @@ public class RoleMysqlRepository extends AbstractStreamRepository<Role, Integer>
 
     @Override
     public int deleteOne(int id) {
-        int returnCode = roleAuthorityRepository.deleteAllByRoleId(id);
-        if (ReturnCodeUtil.isFail(returnCode)) {
-            return returnCode;
-        }
-
         String sql = "delete from t_system_role where id=?";
         delete().sql(sql).parameters(id).deleteAny();
         return ReturnCodeUtil.SUCCESS__DELETE;
