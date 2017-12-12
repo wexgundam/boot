@@ -29,21 +29,15 @@ public class User implements UserDetails {
     private boolean credentialsNonExpired = true;
     private boolean enabled = true;
 
-    public List<Role> roles;
+    public List<Authority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (roles == null) {
-            return null;
-        } else {
-            List<GrantedAuthority> authorities = new ArrayList<>();
-            for (Role role : roles) {
-                if (role.getAuthorities() != null) {
-                    authorities.addAll(role.getAuthorities());
-                }
-            }
-            return authorities;
-        }
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
@@ -71,7 +65,7 @@ public class User implements UserDetails {
                 ", accountNonLocked=" + accountNonLocked +
                 ", credentialsNonExpired=" + credentialsNonExpired +
                 ", enabled=" + enabled +
-                ", roles=" + roles +
+                ", authorities=" + authorities +
                 '}';
     }
 
@@ -131,15 +125,5 @@ public class User implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-
-    public List<Role> getRoles() {
-        roles = roles == null ? new ArrayList<>() : roles;
-        return roles;
-    }
-
-    public void setRoles(List<Role> newRoles) {
-        roles = newRoles;
     }
 }

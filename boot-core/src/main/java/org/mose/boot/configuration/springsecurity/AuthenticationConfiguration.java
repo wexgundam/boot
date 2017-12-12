@@ -1,5 +1,6 @@
 package org.mose.boot.configuration.springsecurity;
 
+import org.mose.boot.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -64,7 +66,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout.htm").permitAll()
                 //配置未授权处理地址
                 .and().exceptionHandling().accessDeniedPage("/denied.htm")
-                .and().rememberMe().tokenRepository(persistentTokenRepository())
                 //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
                 //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面
@@ -83,12 +84,11 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
      * @Date: 2017/7/21 17:04
      */
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService) throws Exception {
         auth
                 .authenticationEventPublisher(authenticationEventPublisher())//注入事件发布者
-                .jdbcAuthentication()
-                .passwordEncoder(passwordEncoder())//启用密码加密功能
-                .dataSource(dataSource);
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());//启用密码加密功能
     }
 
     /**
@@ -105,20 +105,20 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
      *
-     * @param auth
-     *
      * @return
      */
     @Bean
-    @Autowired
-    public UserDetailsService userDetailsService(AuthenticationManagerBuilder auth) {
-        UserDetailsService userDetailsService = auth.getDefaultUserDetailsService();
-        if (JdbcUserDetailsManager.class.isInstance(userDetailsService)) {
-            JdbcUserDetailsManager jdbcUserDetailsManager = (JdbcUserDetailsManager) userDetailsService;
-            jdbcUserDetailsManager.setEnableGroups(true);//开启分组功能
-            jdbcUserDetailsManager.setEnableAuthorities(false);//关闭用户直接获取权限功能
+    public UserDetailsService userDetailsService() {
+        UserDetailsService userDetailsService = new UserDetailsService() {
+            @Autowired
+            UserService userService;
 
-        }
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                UserDetails userDetails = userService.queryUserWithAuhoritiesByUsername(username);
+                return userDetails;
+            }
+        };
         return userDetailsService;
     }
 
@@ -130,18 +130,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    /**
-     * 可持久化的cookie token服务
-     *
-     * @return
-     */
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource);
-        return tokenRepository;
     }
 
     /**

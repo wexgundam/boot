@@ -72,6 +72,9 @@ public class RoleAuthorityService {
         return roleAuthorityRepository.queryCountByUserId(userId);
     }
 
+    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
+        return roleAuthorityRepository.queryAllAuthoritiesByUserId(userId);
+    }
 
     /**
      * 更新

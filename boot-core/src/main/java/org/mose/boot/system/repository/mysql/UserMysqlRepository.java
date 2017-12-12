@@ -28,6 +28,12 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
     }
 
     @Override
+    public User queryOneByUsername(String username) {
+        String sql = "select id, username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled from t_system_user t where t.username=?";
+        return query().sql(sql).parameters(username).queryOne();
+    }
+
+    @Override
     public boolean queryExistByUsername(String username) {
         String sql = "select count(id) from t_system_user t where t.username=?";
         int count = query().sql(sql).parameters(username).queryCount();

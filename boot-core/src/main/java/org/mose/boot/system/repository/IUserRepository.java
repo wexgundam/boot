@@ -21,6 +21,16 @@ public interface IUserRepository {
      */
     User queryOne(int id);
 
+
+    /**
+     * 根据用户账户名查询
+     *
+     * @param username
+     *
+     * @return
+     */
+    User queryOneByUsername(String username);
+
     /**
      * 查询是否已存在给定用户名的数据
      *
@@ -76,6 +86,4 @@ public interface IUserRepository {
      * @return
      */
     int deleteOne(int id);
-
-
 }
