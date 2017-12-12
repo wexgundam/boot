@@ -111,15 +111,19 @@ public class UserRoleMysqlRepository extends AbstractStreamRepository<UserRole, 
         return ReturnCodeUtil.SUCCESS__DELETE;
     }
 
+    private String getSql4QueryRolesByUserId() {
+        return "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+    }
+
     @Override
     public List<Role> queryManyRolesByUserId(int userId, int pageNumber, int pageRowCount) {
-        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+        String sql = getSql4QueryRolesByUserId();
         return roleRepository.queryMany(sql, new Object[]{userId}, pageNumber, pageRowCount);
     }
 
     @Override
     public List<Role> queryAllRolesByUserId(int userId) {
-        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_user_role ur on ur.role_id=r.id where ur.user_id=? order by r.name";
+        String sql = getSql4QueryRolesByUserId();
         return roleRepository.queryAll(sql, new Object[]{userId});
     }
 }

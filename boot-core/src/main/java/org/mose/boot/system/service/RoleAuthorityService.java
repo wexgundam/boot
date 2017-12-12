@@ -96,6 +96,12 @@ public class RoleAuthorityService {
         return ReturnCodeUtil.SUCCESS__UPDATE;
     }
 
+
+    public Object queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount) {
+        List<Authority> authorities = roleAuthorityRepository.queryManyAuthoritiesByUserId(userId, pageNumber, pageNumber);
+        return authorities;
+    }
+
     public IRoleAuthorityRepository getRoleAuthorityRepository() {
         return roleAuthorityRepository;
     }

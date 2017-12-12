@@ -77,6 +77,7 @@ public class TestRoleAuthorityMysqlRepository {
         roleAuthorityRepository.deleteAllByRoleId(roleId);
         roleAuthorityRepository.queryManyAuthoritiesByRoleId(1, 1, 20);
         roleAuthorityRepository.queryAllAuthoritiesByRoleId(1);
-//        roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
+        roleAuthorityRepository.queryManyAuthoritiesByUserId(1, 1, 20);
+        roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
     }
 }

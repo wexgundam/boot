@@ -113,25 +113,44 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         return ReturnCodeUtil.SUCCESS__DELETE;
     }
 
+    private String getSql4QueryAuthoritiesByRoleId() {
+        return "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
+    }
+
     @Override
     public List<Authority> queryManyAuthoritiesByRoleId(int roleId, int pageNumber, int pageRowCount) {
-        String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
+        String sql = getSql4QueryAuthoritiesByRoleId();
         return authorityRepository.queryMany(sql, new Object[]{roleId}, pageNumber, pageRowCount);
     }
 
     @Override
     public List<Authority> queryAllAuthoritiesByRoleId(int roleId) {
-        String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
+        String sql = getSql4QueryAuthoritiesByRoleId();
         return authorityRepository.queryAll(sql, new Object[]{roleId});
     }
 
-//    @Override
-//    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
-//        StringBuilder sql = new StringBuilder();
-//        sql.append("select nra.id, nra.name, nra.description from");
-//        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
-//        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
-//        sql.append(" where ur.user_id=? order by nra.name");
-//        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
-//    }
+
+    private StringBuilder getSql4QueryAuthoritiesByUserId() {
+        StringBuilder sql = new StringBuilder();
+        sql.append("select distinct(nra.id)");
+        sql.append(" ,(select a.name from t_system_authority a where a.id=nra.id) name");
+        sql.append(" ,(select a.description from t_system_authority a where a.id=nra.id) description");
+        sql.append(" from");
+        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
+        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
+        sql.append(" where ur.user_id=?");
+        return sql;
+    }
+
+    @Override
+    public List<Authority> queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount) {
+        StringBuilder sql = getSql4QueryAuthoritiesByUserId();
+        return authorityRepository.queryMany(sql.substring(0), new Object[]{userId}, pageNumber, pageRowCount);
+    }
+
+    @Override
+    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
+        StringBuilder sql = getSql4QueryAuthoritiesByUserId();
+        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
+    }
 }

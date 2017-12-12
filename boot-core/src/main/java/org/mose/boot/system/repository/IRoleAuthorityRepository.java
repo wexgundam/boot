@@ -96,9 +96,13 @@ public interface IRoleAuthorityRepository {
      * 查询给定角色对应的全部权限
      */
     List<Authority> queryAllAuthoritiesByRoleId(int roleId);
-//
-//    /**
-//     * 查询给定用户对应的全部权限
-//     */
-//    List<Authority> queryAllAuthoritiesByUserId(int userId);
+
+    /**
+     * 查询给定用户对应的全部权限
+     */
+    List<Authority> queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount);
+    /**
+     * 查询给定用户对应的全部权限
+     */
+    List<Authority> queryAllAuthoritiesByUserId(int userId);
 }

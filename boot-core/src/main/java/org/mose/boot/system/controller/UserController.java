@@ -4,6 +4,7 @@ import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
 import org.mose.boot.system.modal.User;
+import org.mose.boot.system.service.RoleAuthorityService;
 import org.mose.boot.system.service.RoleService;
 import org.mose.boot.system.service.UserRoleService;
 import org.mose.boot.system.service.UserService;
@@ -34,6 +35,8 @@ public class UserController {
     private UserRoleService userRoleService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private RoleAuthorityService roleAuthorityService;
     @Autowired
     private ViewService viewService;
 
@@ -219,6 +222,24 @@ public class UserController {
         }
     }
 
+
+    /**
+     * 展示场景index视图
+     *
+     * @return
+     */
+    @RequestMapping("/authority/index")
+    public ModelAndView userAuthorityIndexView(int userId, Pagination pagination) {
+        pagination.setUrl(getUserRoleIndexPageUrl());
+        pagination.setRowCount(userRoleService.queryRoleCountByUserId(userId));
+
+        ModelAndView modelAndView = viewService.forwardDecorateView(userRoleIndexViewName, getUserIndexPageUrl());
+        modelAndView.addObject("userId", userId);
+        modelAndView.addObject("authorities", roleAuthorityService.queryManyAuthoritiesByUserId(userId, pagination.getPageNumber(), pagination.getPageRowCount()));
+        modelAndView.addObject("pagination", pagination.createHtml());
+        return modelAndView;
+    }
+
     public ResourceService getResourceService() {
         return resourceService;
     }
@@ -257,5 +278,13 @@ public class UserController {
 
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    public RoleAuthorityService getRoleAuthorityService() {
+        return roleAuthorityService;
+    }
+
+    public void setRoleAuthorityService(RoleAuthorityService roleAuthorityService) {
+        this.roleAuthorityService = roleAuthorityService;
     }
 }
