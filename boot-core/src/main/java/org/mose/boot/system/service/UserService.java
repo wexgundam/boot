@@ -4,9 +4,6 @@ import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -147,7 +144,7 @@ public class UserService {
         this.userRoleService = userRoleService;
     }
 
-    public UserDetails queryUserWithAuhoritiesByUsername(String username) {
+    public User queryUserWithAuthoritiesByUsername(String username) {
         User user = userRepository.queryOneByUsername(username);
         List<Authority> authorities = roleAuthorityService.queryAllAuthoritiesByUserId(user.getId());
         user.setAuthorities(authorities);

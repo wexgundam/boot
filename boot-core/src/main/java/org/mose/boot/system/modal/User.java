@@ -5,11 +5,6 @@
  */
 package org.mose.boot.system.modal;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -20,7 +15,7 @@ import java.util.List;
  *
  * @author 靳磊 created on 2017/12/6
  */
-public class User implements UserDetails {
+public class User {
     private int id;
     private String username;
     private String password;
@@ -31,8 +26,7 @@ public class User implements UserDetails {
 
     public List<Authority> authorities;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public List<Authority> getAuthorities() {
         return authorities;
     }
 
@@ -77,7 +71,6 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    @Override
     public String getUsername() {
         return username;
     }
@@ -86,7 +79,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }

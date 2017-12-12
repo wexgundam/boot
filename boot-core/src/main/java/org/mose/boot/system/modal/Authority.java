@@ -5,8 +5,6 @@
  */
 package org.mose.boot.system.modal;
 
-import org.springframework.security.core.GrantedAuthority;
-
 /**
  * what:    (这里用一句话描述这个类的作用). <br/>
  * when:    (这里描述这个类的适用时机 – 可选).<br/>
@@ -15,15 +13,10 @@ import org.springframework.security.core.GrantedAuthority;
  *
  * @author 靳磊 created on 2017/12/6
  */
-public class Authority implements GrantedAuthority {
+public class Authority {
     private int id;
     private String name;
     private String description;
-
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 
     @Override
     public boolean equals(Object o) {

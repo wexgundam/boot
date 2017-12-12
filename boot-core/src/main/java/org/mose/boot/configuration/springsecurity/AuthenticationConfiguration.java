@@ -1,5 +1,7 @@
 package org.mose.boot.configuration.springsecurity;
 
+import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.User;
 import org.mose.boot.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +12,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +24,8 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Description:Spring Security的java configuration
@@ -110,12 +116,22 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetailsService userDetailsService = new UserDetailsService() {
+            public static final String SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX = "ROLE_";
             @Autowired
             UserService userService;
 
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                UserDetails userDetails = userService.queryUserWithAuhoritiesByUsername(username);
+                User user = userService.queryUserWithAuthoritiesByUsername(username);
+                List<GrantedAuthority> grantedAuthorities = null;
+                if (user.getAuthorities() != null && !user.getAuthorities().isEmpty()) {
+                    grantedAuthorities = new ArrayList<>();
+                    for (Authority authority : user.getAuthorities()) {
+                        grantedAuthorities.add(new SimpleGrantedAuthority(SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX + authority.getName()));
+                    }
+                }
+                org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(
+                        user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), grantedAuthorities);
                 return userDetails;
             }
         };
