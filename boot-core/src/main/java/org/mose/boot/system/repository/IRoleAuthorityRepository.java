@@ -1,5 +1,6 @@
 package org.mose.boot.system.repository;
 
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.RoleAuthority;
 
 import java.util.List;
@@ -19,7 +20,6 @@ public interface IRoleAuthorityRepository {
      * @return
      */
     RoleAuthority queryOne(int id);
-
 
     /**
      * 查询给定角色对应的全部角色权限
@@ -70,4 +70,14 @@ public interface IRoleAuthorityRepository {
      * 删除给定权限对应的全部角色权限
      */
     int deleteAllByAuthorityId(int authorityId);
+
+    /**
+     * 查询给定角色对应的全部权限
+     */
+    List<Authority> queryAllAuthoritiesByRoleId(int roleId);
+
+    /**
+     * 查询给定用户对应的全部权限
+     */
+    List<Authority> queryAllAuthoritiesByUserId(int userId);
 }

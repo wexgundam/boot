@@ -76,13 +76,12 @@ public class TestAuthorityMysqlRepository {
         authorityRepository.queryExistByName(authority.getName());
         List<Authority> authoritys = authorityRepository.queryAll();
         assertNotNull(authoritys);
+        authorityRepository.queryAll("select id from t_system_authority where id=?", new Object[]{1});
         returnCode = authorityRepository.updateOne(authority);
         assertEquals(ReturnCodeUtil.SUCCESS__UPDATE, returnCode);
         returnCode = authorityRepository.deleteOne(authority);
         assertEquals(ReturnCodeUtil.SUCCESS__DELETE, returnCode);
         queryOne = authorityRepository.queryOne(authority.getId());
         assertNull(queryOne);
-        authorityRepository.queryAllByRoleId(1);
-        authorityRepository.queryAllByUserId(1);
     }
 }

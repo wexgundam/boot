@@ -50,23 +50,6 @@ public class AuthorityMysqlRepository extends AbstractStreamRepository<Authority
     }
 
     @Override
-    public List<Authority> queryAllByRoleId(int roleId) {
-        String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
-        return query().sql(sql).parameters(roleId).queryMany();
-    }
-
-    @Override
-    public List<Authority> queryAllByUserId(int userId) {
-        StringBuilder sql = new StringBuilder();
-        sql.append("select nra.id, nra.name, nra.description from");
-        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
-        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
-        sql.append(" where ur.user_id=? order by nra.name");
-        return query().sql(sql.substring(0)).parameters(userId).queryMany();
-    }
-
-
-    @Override
     public int insertOne(Authority authority) {
         //不允许写入名称一样的权限
         boolean exist = queryExistByName(authority.getName());

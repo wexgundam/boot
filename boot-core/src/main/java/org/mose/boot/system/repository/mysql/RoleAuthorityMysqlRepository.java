@@ -1,9 +1,12 @@
 package org.mose.boot.system.repository.mysql;
 
 import org.mose.boot.common.dao.stream.AbstractStreamRepository;
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.RoleAuthority;
+import org.mose.boot.system.repository.IAuthorityRepository;
 import org.mose.boot.system.repository.IRoleAuthorityRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +19,9 @@ import java.util.List;
  */
 @Component
 public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleAuthority, Integer> implements IRoleAuthorityRepository {
+    @Autowired
+    private IAuthorityRepository authorityRepository;
+
     @Override
     public RoleAuthority queryOne(int id) {
         String sql = "select id, role_id, authority_id  from t_system_role_authority t where id=?";
@@ -92,5 +98,21 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         String sql = "delete from t_system_role_authority where role_id=?";
         delete().sql(sql).parameters(roleId).deleteAny();
         return ReturnCodeUtil.SUCCESS__DELETE;
+    }
+
+    @Override
+    public List<Authority> queryAllAuthoritiesByRoleId(int roleId) {
+        String sql = "select a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id where ra.role_id=? order by a.name";
+        return authorityRepository.queryAll(sql, new Object[]{roleId});
+    }
+
+    @Override
+    public List<Authority> queryAllAuthoritiesByUserId(int userId) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("select nra.id, nra.name, nra.description from");
+        sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
+        sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
+        sql.append(" where ur.user_id=? order by nra.name");
+        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
     }
 }

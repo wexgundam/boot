@@ -1,6 +1,7 @@
 package org.mose.boot.system.repository;
 
 import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.Role;
 
 import java.util.List;
 
@@ -40,21 +41,20 @@ public interface IAuthorityRepository {
     List<Authority> queryAll();
 
     /**
+     * 给定查询语句查询
+     *
+     * @param sql
+     *
+     * @return
+     */
+    List<Authority> queryAll(String sql, Object[] parameters);
+
+    /**
      * 查询总数
      *
      * @return
      */
     int queryCount();
-
-    /**
-     * 查询给定角色的全部权限
-     */
-    List<Authority> queryAllByRoleId(int roleId);
-
-    /**
-     * 查询给定用户的全部权限
-     */
-    List<Authority> queryAllByUserId(int userId);
 
     /**
      * 插入一条记录

@@ -73,5 +73,7 @@ public class TestRoleAuthorityMysqlRepository {
         assertNull(queryOne);
         roleAuthorityRepository.deleteAllByAuthorityId(authorityId);
         roleAuthorityRepository.deleteAllByRoleId(roleId);
+        roleAuthorityRepository.queryAllAuthoritiesByRoleId(1);
+        roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
     }
 }
