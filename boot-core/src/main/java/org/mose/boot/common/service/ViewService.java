@@ -116,7 +116,7 @@ public class ViewService {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("message", message);
         parameters.put("redirectUrl", redirectUrl);
-        ModelAndView modelAndView = forwardDecorateView("/common/result/exception", activeSidebarItemUrl, parameters);
+        ModelAndView modelAndView = forwardDecorateView("/common/result/500", activeSidebarItemUrl, parameters);
         return modelAndView;
     }
 }

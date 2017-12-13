@@ -29,6 +29,7 @@ public class PerformanceAspect {
         long consume = System.currentTimeMillis() - l;
         if (consume > checkPoint) {
             //记录系统操作较慢的service处理过程
+            logger.info("Performance ##############################");
             logger.info("实体类:" + joinPoint.getTarget());
             logger.info("方法名:" + joinPoint.getSignature().getName());
             // 得到被拦截方法参数，并打印

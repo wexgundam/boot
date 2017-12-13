@@ -19,4 +19,9 @@ public class ResultPageController {
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/404";
     }
+
+    @RequestMapping("/500.htm")
+    public String errorPage500(HttpServletRequest request, HttpServletResponse response) {
+        return "/common/result/500";
+    }
 }

@@ -113,6 +113,11 @@
         </encoder>
     </appender>
 
+    <!-- root 默认日志配置 -->
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+
     <logger name="exceptionLogger" level="ERROR">
         <appender-ref ref="exceptionLoggerAppender"/>
     </logger>
@@ -136,10 +141,8 @@
     <logger name="securityLogger" level="INFO">
         <appender-ref ref="securityLoggerAppender"/>
     </logger>
-
-    <!-- root 默认日志配置 -->
-    <root level="INFO">
-        <appender-ref ref="stdout"/>
-    </root>
     <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework" level="ERROR">
+        <appender-ref ref="exceptionLoggerAppender"/>
+    </logger>
 </configuration>
