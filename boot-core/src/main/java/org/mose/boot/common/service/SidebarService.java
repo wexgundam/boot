@@ -1,6 +1,9 @@
 package org.mose.boot.common.service;
 
 import org.mose.boot.common.vo.SidebarItem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -15,13 +18,27 @@ import java.util.List;
  */
 @Service
 public class SidebarService {
+    @Autowired
+    ISidebarItemService sidebarItemService;
+
+    public Object createHtml() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return createHtml(userDetails.getUsername());
+    }
+
+    private Object createHtml(String username) {
+        List<SidebarItem> sidebarItems = sidebarItemService.getSidebarItems(username);
+        return createHtml(sidebarItems);
+    }
+
     /**
      * 给定侧边栏集合，生成基于Metronic的侧边栏Html
      *
      * @param sidebarItems
+     *
      * @return
      */
-    public String createHtml(List<SidebarItem> sidebarItems) {
+    private String createHtml(List<SidebarItem> sidebarItems) {
         StringBuffer stringBuffer = new StringBuffer();
         Collections.sort(sidebarItems, Comparator.comparingInt(SidebarItem::getOrder));
         for (SidebarItem sidebarItem : sidebarItems) {
@@ -34,6 +51,7 @@ public class SidebarService {
      * 构建侧边栏中的Heading控件
      *
      * @param sidebarItem
+     *
      * @return
      */
     private String createHeadingHtml(SidebarItem sidebarItem) {
@@ -54,6 +72,7 @@ public class SidebarService {
      * 构建侧边栏菜单项
      *
      * @param sidebarItem
+     *
      * @return
      */
     private String createNodeHtml(SidebarItem sidebarItem) {
@@ -68,6 +87,7 @@ public class SidebarService {
      * 构建菜单栏叶子菜单项
      *
      * @param sidebarItem
+     *
      * @return
      */
     private String createLeafNodeHtml(SidebarItem sidebarItem) {
@@ -85,6 +105,7 @@ public class SidebarService {
      * 构建菜单栏分支菜单项
      *
      * @param sidebarItem
+     *
      * @return
      */
     private String createBranchNodeHtml(SidebarItem sidebarItem) {

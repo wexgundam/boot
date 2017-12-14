@@ -14,6 +14,23 @@
 
     <!-- 异常日志 -->
     <appender name="exceptionLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 以下级别日志全部决绝 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>DENY</onMatch>
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>DENY</onMatch>
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>DENY</onMatch>
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>DENY</onMatch>
+        </filter>
         <file>${rootPath}/exception.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -141,8 +158,7 @@
     <logger name="securityLogger" level="INFO">
         <appender-ref ref="securityLoggerAppender"/>
     </logger>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.springframework" level="ERROR">
+    <logger name="org.springframework" level="INFO">
         <appender-ref ref="exceptionLoggerAppender"/>
     </logger>
 </configuration>

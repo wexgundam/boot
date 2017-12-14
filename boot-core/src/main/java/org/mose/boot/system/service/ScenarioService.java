@@ -2,10 +2,8 @@ package org.mose.boot.system.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.mose.boot.common.vo.SidebarItem;
-import org.mose.boot.common.service.ResourceService;
-import org.mose.boot.system.repository.IScenarioRepository;
 import org.mose.boot.system.modal.Scenario;
+import org.mose.boot.system.repository.IScenarioRepository;
 import org.mose.boot.util.ztree.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,11 +30,6 @@ public class ScenarioService {
      */
     @Autowired
     private IScenarioRepository scenarioRepository;
-    /**
-     * 系统资源配置
-     */
-    @Autowired
-    ResourceService resourceService;
 
     /**
      * 获取所有场景并按照Tree组织排序
@@ -119,84 +112,6 @@ public class ScenarioService {
     }
 
     /**
-     * Description:删除记录
-     *
-     * @param scenario
-     *
-     * @return
-     *
-     * @Author: 靳磊
-     * @Date: 2017/10/18 13:19
-     */
-    @Transactional
-    public int addScenario(Scenario scenario) {
-        return scenarioRepository.insertOne(scenario);
-    }
-
-    /**
-     * 更新
-     *
-     * @param scenario
-     */
-    @Transactional
-    public int updateScenario(Scenario scenario) {
-        return scenarioRepository.updateOne(scenario);
-    }
-
-    /**
-     * 删除给定id对应的记录
-     *
-     * @param id
-     *
-     * @return
-     */
-    @Transactional
-    public int deleteScenario(int id) {
-        return scenarioRepository.deleteOne(id);
-    }
-
-    /**
-     * 获取全部场景，并生成侧边菜单模型
-     *
-     * @return
-     */
-//    @Cacheable(value = "sysCache", key = "'sidebarItems'")
-    public List<SidebarItem> createSidebarItems() {
-        List<SidebarItem> sidebarItems = new ArrayList<>();
-        for (Scenario scenario : queryAllScenariosTree()) {
-            sidebarItems.add(createSidebarItem(null, scenario));
-        }
-        return sidebarItems;
-    }
-
-    /**
-     * 根据给定场景生成侧边菜单项
-     *
-     * @param parentSidebarItem
-     * @param scenario
-     *
-     * @return
-     */
-    private SidebarItem createSidebarItem(SidebarItem parentSidebarItem, Scenario scenario) {
-        SidebarItem sidebarItem = new SidebarItem();
-        sidebarItem.setId(scenario.getId());
-        sidebarItem.setName(scenario.getName());
-        sidebarItem.setUrl(resourceService.getDynamicResourceServerUrl() + (scenario.getUrl() == null ? "/index.htm" : scenario.getUrl()));
-        sidebarItem.setUrlTarget(scenario.getUrlTarget());
-        sidebarItem.setIcon(scenario.getIcon());
-        sidebarItem.setOrder(scenario.getOrderIndex());
-        sidebarItem.setParent(scenario.getParent() == null ? null : parentSidebarItem);
-        if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
-            List<SidebarItem> children = new ArrayList<>();
-            for (Scenario child : scenario.getChildren()) {
-                children.add(createSidebarItem(sidebarItem, child));
-            }
-            sidebarItem.setChildren(children);
-        }
-        return sidebarItem;
-    }
-
-    /**
      * Description: 获得所有场景基于ZTree的Json结构
      *
      * @return
@@ -245,5 +160,42 @@ public class ScenarioService {
             treeNode.setChildren(children);
         }
         return treeNode;
+    }
+
+    /**
+     * Description:删除记录
+     *
+     * @param scenario
+     *
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:19
+     */
+    @Transactional
+    public int addScenario(Scenario scenario) {
+        return scenarioRepository.insertOne(scenario);
+    }
+
+    /**
+     * 更新
+     *
+     * @param scenario
+     */
+    @Transactional
+    public int updateScenario(Scenario scenario) {
+        return scenarioRepository.updateOne(scenario);
+    }
+
+    /**
+     * 删除给定id对应的记录
+     *
+     * @param id
+     *
+     * @return
+     */
+    @Transactional
+    public int deleteScenario(int id) {
+        return scenarioRepository.deleteOne(id);
     }
 }
