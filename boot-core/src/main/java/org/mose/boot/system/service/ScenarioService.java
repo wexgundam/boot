@@ -39,44 +39,12 @@ public class ScenarioService {
     ResourceService resourceService;
 
     /**
-     * 获取所有场景并按照树形组织排序
-     *
-     * @return
-     */
-//    @Cacheable(value = "sysCache", key = "'scenarioList'")
-    public List<Scenario> getScenarioList() {
-        List<Scenario> scenarios = new ArrayList<>();
-        for (Scenario scenario : getScenarioTree()) {
-            scenarios.addAll(toList(scenario));
-        }
-        return scenarios;
-    }
-
-    /**
-     * 递归方法，遍历scenario的scenario，将其均加入到list，最后返回所有list形式的集合
-     *
-     * @param scenario
-     *
-     * @return
-     */
-    private List<Scenario> toList(Scenario scenario) {
-        List<Scenario> scenarios = new ArrayList<>();
-        scenarios.add(scenario);
-        if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
-            for (Scenario child : scenario.getChildren()) {
-                scenarios.addAll(toList(child));
-            }
-        }
-        return scenarios;
-    }
-
-    /**
-     * 获取所有场景并按照树形组织排序
+     * 获取所有场景并按照Tree组织排序
      *
      * @return
      */
 //    @Cacheable(value = "sysCache", key = "'scenarioTree'")
-    public List<Scenario> getScenarioTree() {
+    public List<Scenario> queryAllScenariosTree() {
         List<Scenario> scenarios = new ArrayList<>();
         List<Scenario> allScenarios = scenarioRepository.queryAll();
         for (Scenario scenario : allScenarios) {
@@ -107,6 +75,86 @@ public class ScenarioService {
         scenario.setChildren(children.isEmpty() ? null : children);
     }
 
+
+    /**
+     * 获取所有场景并按照List组织排序
+     *
+     * @return
+     */
+    public List<Scenario> queryAllScenariosList() {
+        List<Scenario> scenarios = new ArrayList<>();
+        for (Scenario scenario : queryAllScenariosTree()) {
+            scenarios.addAll(toList(scenario));
+        }
+        return scenarios;
+    }
+
+    /**
+     * 递归方法，遍历scenario的scenario，将其均加入到list，最后返回所有list形式的集合
+     *
+     * @param scenario
+     *
+     * @return
+     */
+    private List<Scenario> toList(Scenario scenario) {
+        List<Scenario> scenarios = new ArrayList<>();
+        scenarios.add(scenario);
+        if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
+            for (Scenario child : scenario.getChildren()) {
+                scenarios.addAll(toList(child));
+            }
+        }
+        return scenarios;
+    }
+
+    /**
+     * 根据给定的id查询
+     *
+     * @param id
+     *
+     * @return
+     */
+    public Scenario queryScenario(int id) {
+        return scenarioRepository.queryOne(id);
+    }
+
+    /**
+     * Description:删除记录
+     *
+     * @param scenario
+     *
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:19
+     */
+    @Transactional
+    public int addScenario(Scenario scenario) {
+        return scenarioRepository.insertOne(scenario);
+    }
+
+    /**
+     * 更新
+     *
+     * @param scenario
+     */
+    @Transactional
+    public int updateScenario(Scenario scenario) {
+        return scenarioRepository.updateOne(scenario);
+    }
+
+    /**
+     * 删除给定id对应的记录
+     *
+     * @param id
+     *
+     * @return
+     */
+    @Transactional
+    public int deleteScenario(int id) {
+        return scenarioRepository.deleteOne(id);
+    }
+
     /**
      * 获取全部场景，并生成侧边菜单模型
      *
@@ -115,7 +163,7 @@ public class ScenarioService {
 //    @Cacheable(value = "sysCache", key = "'sidebarItems'")
     public List<SidebarItem> createSidebarItems() {
         List<SidebarItem> sidebarItems = new ArrayList<>();
-        for (Scenario scenario : getScenarioTree()) {
+        for (Scenario scenario : queryAllScenariosTree()) {
             sidebarItems.add(createSidebarItem(null, scenario));
         }
         return sidebarItems;
@@ -148,22 +196,6 @@ public class ScenarioService {
         return sidebarItem;
     }
 
-
-    /**
-     * Description:删除记录
-     *
-     * @param scenario
-     *
-     * @return
-     *
-     * @Author: 靳磊
-     * @Date: 2017/10/18 13:19
-     */
-    @Transactional
-    public int addScenario(Scenario scenario) {
-        return scenarioRepository.insertOne(scenario);
-    }
-
     /**
      * Description: 获得所有场景基于ZTree的Json结构
      *
@@ -172,8 +204,8 @@ public class ScenarioService {
      * @Author: 靳磊
      * @Date: 2017/10/18 13:20
      */
-    public String getScenarioZTreeJson() {
-        List<Scenario> scenarioTree = getScenarioTree();
+    public String createScenarioZTreeJson() {
+        List<Scenario> scenarioTree = queryAllScenariosTree();
         List<TreeNode> treeNodes = new ArrayList<>();
         for (Scenario scenario : scenarioTree) {
             TreeNode treeNode = createTreeNode(scenario);
@@ -213,38 +245,5 @@ public class ScenarioService {
             treeNode.setChildren(children);
         }
         return treeNode;
-    }
-
-    /**
-     * 删除给定id对应的记录
-     *
-     * @param id
-     *
-     * @return
-     */
-    @Transactional
-    public int deleteScenario(int id) {
-        return scenarioRepository.deleteOne(id);
-    }
-
-    /**
-     * 根据给定的id查询
-     *
-     * @param id
-     *
-     * @return
-     */
-    public Scenario getScenario(int id) {
-        return scenarioRepository.queryOne(id);
-    }
-
-    /**
-     * 更新
-     *
-     * @param scenario
-     */
-    @Transactional
-    public int updateScenario(Scenario scenario) {
-        return scenarioRepository.updateOne(scenario);
     }
 }

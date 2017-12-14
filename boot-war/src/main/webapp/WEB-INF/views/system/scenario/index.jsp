@@ -80,7 +80,7 @@
                             <i class="fa fa-refresh"></i> 刷新
                         </a>
                         <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                            <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/scenario/add.htm">
+                            <a class="btn btn-success" id="btnAdd" href="${dynamicResourceServerUrl }/system/scenario/add.htm">
                                 <i class=" fa fa-plus"></i> 新建
                             </a>
                         </security:authorize>
@@ -97,13 +97,13 @@
             <table id="treeTable" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th width=180>场景名称</th>
-                        <th width=120>场景代码</th>
+                        <th width=150>场景名称</th>
+                        <th width=80>场景代码</th>
                         <th>场景链接</th>
-                        <th width=100>链接目标</th>
-                        <th width=80>图标</th>
-                        <th style="text-align: center;" width=80>排序</th>
-                        <th width="241">操作</th>
+                        <th width=80>链接目标</th>
+                        <th width=50>图标</th>
+                        <th class="text-center" width=50>排序</th>
+                        <th width="200">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,14 +119,13 @@
                                     <i class="fa ${scenario.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${scenario.orderIndex}</td>
+                            <td class="text-center">${scenario.orderIndex}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="${dynamicServer }/system/scenario/update.htm?id=${scenario.id}">
-                                        修改</li>
+                                    <a href="${dynamicResourceServerUrl }/system/scenario/update.htm?id=${scenario.id}">
+                                        修改
                                     </a>
                                     <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
-                                    <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
                                 </security:authorize>
                             </td>
                         </tr>
@@ -136,62 +135,6 @@
         </div>
     </div>
     <!-- End 场景树形表格 -->
-
-    <!-- Begin 分页表格 -->
-    <div></div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="alert alert-info">分页表格</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th width=180>场景名称</th>
-                        <th width=120>场景代码</th>
-                        <th>场景链接</th>
-                        <th width=100>链接目标</th>
-                        <th width=80>图标</th>
-                        <th style="text-align: center;" width=80>排序</th>
-                        <th width="241">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${scenarios}" var="scenario" varStatus="st">
-                        <tr id="${scenario.id}" pId="${scenario.parentId}">
-                            <td>${scenario.name}</td>
-                            <td></td>
-                            <td style="word-break: break-all;"></td>
-                            <td></td>
-                            <td>
-                                <div>
-                                    <i class="fa ${scenario.icon}"></i>
-                                </div>
-                            </td>
-                            <td style="text-align: center;">${scenario.orderIndex}</td>
-                            <td>
-                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
-                                    <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
-                                        修改</i>
-                                    </a>
-                                    <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
-                                    <a href="${dynamicServer }/sys/resource/functionIndex.htm?parentId=${resource.id }">功能设置 </a>
-                                </security:authorize>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Begin 分页控件 -->
-    ${pagination}
-    <!-- End 分页控件 -->
-
-    <!-- End 分页表格 -->
 
     <!-- Begin Javascript -->
     <content-script>

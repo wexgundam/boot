@@ -74,7 +74,9 @@ public class Scenario {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", parent=" + getParent() +
+                ", parent=" + parent +
+                ", parentId=" + parentId +
+                ", parentName='" + parentName + '\'' +
                 ", url='" + url + '\'' +
                 ", urlTarget='" + urlTarget + '\'' +
                 ", icon='" + icon + '\'' +
@@ -107,7 +109,7 @@ public class Scenario {
             parentId = parent.getId();
             parentName = parent.getName();
         }
-        this.parent = parent;
+        this.parent = getParent();
     }
 
     public Integer getParentId() {

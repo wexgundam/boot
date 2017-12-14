@@ -25,6 +25,17 @@ public interface IScenarioRepository {
     List<Scenario> queryAll();
 
     /**
+     * Description:查询给定id的场景的直接孩子总数
+     *
+     * @param id
+     * @return
+     *
+     * @Author: 靳磊
+     * @Date: 2017/10/18 13:26
+     */
+    int queryChildrenCount(int id);
+
+    /**
      * 插入一条记录
      *
      * @param scenario
@@ -52,15 +63,4 @@ public interface IScenarioRepository {
      * @return
      */
     int deleteOne(int id);
-
-    /**
-     * Description:查询给定id的场景的直接孩子总数
-     *
-     * @param id
-     * @return
-     *
-     * @Author: 靳磊
-     * @Date: 2017/10/18 13:26
-     */
-    int queryChildrenCount(int id);
 }
