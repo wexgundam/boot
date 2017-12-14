@@ -46,19 +46,6 @@ public class ScenarioService {
         return toTree(allScenarios);
     }
 
-    public List<Scenario> queryAllScenariosTreeByUsername(String username) {
-        User user = userService.queryUserWithAuthoritiesByUsername(username);
-        List<Scenario> scenarios = new ArrayList<>();
-        List<Scenario> allScenarios = scenarioRepository.queryAll();
-        for (Scenario scenario : allScenarios) {
-
-//            user.getAuthorities().contains(scenario.getCode());
-            scenarios.add(scenario);
-//        }
-        }
-        return toTree(scenarios);
-    }
-
     private List<Scenario> toTree(List<Scenario> scenarios) {
         List<Scenario> scenarioTree = new ArrayList<>();
         for (Scenario scenario : scenarios) {
@@ -89,6 +76,46 @@ public class ScenarioService {
         scenario.setChildren(children.isEmpty() ? null : children);
     }
 
+    public List<Scenario> queryAllScenariosTreeByUsername(String username) {
+        User user = userService.queryUserWithAuthoritiesByUsername(username);
+        List<String> authorityNames = new ArrayList<>();
+        for (Authority authority : user.getAuthorities()) {
+            authorityNames.add(authority.getName());
+        }
+
+        List<Scenario> allScenarios = scenarioRepository.queryAll();
+        return toTree(allScenarios, authorityNames);
+    }
+
+    private List<Scenario> toTree(List<Scenario> scenarios, List<String> authorityNames) {
+        List<Scenario> scenarioTree = new ArrayList<>();
+        for (Scenario scenario : scenarios) {
+            if (scenario.getParent() == null && authorityNames.contains(scenario.getAuthorityName())) {
+                findChildren(scenarios, scenario, authorityNames);
+                scenarioTree.add(scenario);
+            }
+        }
+        Collections.sort(scenarioTree, Comparator.comparingInt(Scenario::getOrderIndex));
+        return scenarioTree;
+    }
+
+    /**
+     * 获取给定场景的子场景
+     *
+     * @param scenarios
+     * @param scenario
+     */
+    private void findChildren(List<Scenario> scenarios, Scenario scenario, List<String> authorityNames) {
+        List<Scenario> children = new ArrayList<>();
+        for (Scenario child : scenarios) {
+            if (scenario.equals(child.getParent()) && authorityNames.contains(child.getAuthorityName())) {
+                findChildren(scenarios, child);
+                children.add(child);
+            }
+        }
+        Collections.sort(children, Comparator.comparingInt(Scenario::getOrderIndex));
+        scenario.setChildren(children.isEmpty() ? null : children);
+    }
 
     /**
      * 获取所有场景并按照List组织排序

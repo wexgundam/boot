@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景名称</label>
                         <div class="col-md-9">
-                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称" value="${scenario.name}">
+                            <input name="name" type="text" class="form-control input-inline input-xlarge" placeholder="输入场景名称" value="${scenario.name}">
                             <label id="nameTip"></label>
                             <span class="help-block"></span>
                         </div>
@@ -82,7 +82,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">链接地址</label>
                         <div class="col-md-9">
-                            <input name="url" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址" value="${scenario.url}">
+                            <input name="url" type="text" class="form-control input-inline input-xlarge" placeholder="输入场景链接地址" value="${scenario.url}">
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">图标</label>
                         <div class="col-md-9">
-                            <div class="input-group input-xlarge">
+                            <div class="input-group input-inline input-xlarge">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="${scenario.icon}"></i>
@@ -155,6 +155,13 @@
                                      </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">访问权限名称</label>
+                        <div class="col-md-9">
+                            <input name="authorityName" type="text" class="form-control input-inline input-xlarge" placeholder="输入访问权限名称" value="${scenario.authorityName}">
+                            <label id="authorityNameTip"></label>
                         </div>
                     </div>
                     <div class="form-group">

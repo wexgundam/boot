@@ -77,7 +77,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping("/index.htm")
     public ModelAndView userIndexView(Pagination pagination) {
         pagination.setUrl(getUserIndexPageUrl());
         pagination.setRowCount(userService.queryUserCount());
@@ -95,7 +95,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
     public ModelAndView addUserView() {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/add", getUserIndexPageUrl());
         return modelAndView;
@@ -108,7 +108,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.POST)
     public ModelAndView addUser(User user) {
         int returnCode = userService.addUser(user);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -125,7 +125,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.GET)
     public ModelAndView updateUserView(int id) {
         User user = userService.queryUser(id);
 
@@ -141,7 +141,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.POST)
     public ModelAndView updateUser(User user) {
         int returnCode = userService.updateUser(user);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -158,7 +158,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete.htm")
     public ModelAndView deleteUser(int id) {
         int returnCode = userService.deleteUser(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -173,7 +173,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping("/role/index")
+    @RequestMapping("/role/index.htm")
     public ModelAndView userRoleIndexView(int userId, Pagination pagination) {
         pagination.setUrl(getUserRoleIndexPageUrl());
         pagination.setRowCount(userRoleService.queryRoleCountByUserId(userId));
@@ -190,7 +190,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/role/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/role/update.htm", method = RequestMethod.GET)
     public ModelAndView updateUserRoleView(int userId) {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/user/role/update", getUserIndexPageUrl());
         modelAndView.addObject("userId", userId);
@@ -204,7 +204,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/role/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/role/update.htm", method = RequestMethod.POST)
     public ModelAndView updateUserRole(int userId, String roleIdArrayString) {
         int returnCode = userRoleService.updateUserRoles(userId, roleIdArrayString);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -219,7 +219,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/role/delete")
+    @RequestMapping(value = "/role/delete.htm")
     public ModelAndView deleteUserRole(int userId, int roleId) {
         int returnCode = userRoleService.deleteUserRole(userId, roleId);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -235,7 +235,7 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping("/authority/index")
+    @RequestMapping("/authority/index.htm")
     public ModelAndView userAuthorityIndexView(int userId, Pagination pagination) {
         pagination.setUrl(getUserAuthorityIndexPageUrl());
         pagination.setRowCount(roleAuthorityService.queryAuthorityCountByUserId(userId));

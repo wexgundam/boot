@@ -46,6 +46,10 @@ public class Scenario {
      */
     private String icon;
     /**
+     * 访问场景的权限名称
+     */
+    private String authorityName;
+    /**
      * 在父场景中的顺序
      */
     private int orderIndex = 0;
@@ -80,6 +84,7 @@ public class Scenario {
                 ", url='" + url + '\'' +
                 ", urlTarget='" + urlTarget + '\'' +
                 ", icon='" + icon + '\'' +
+                ", authorityName='" + authorityName + '\'' +
                 ", orderIndex=" + orderIndex +
                 ", children=" + children +
                 '}';
@@ -190,5 +195,13 @@ public class Scenario {
 
     public void setUrlTarget(String urlTarget) {
         this.urlTarget = urlTarget;
+    }
+
+    public String getAuthorityName() {
+        return authorityName;
+    }
+
+    public void setAuthorityName(String authorityName) {
+        this.authorityName = authorityName;
     }
 }

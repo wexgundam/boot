@@ -6,6 +6,7 @@ import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.system.service.ScenarioService;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,8 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping("/index")
+    @PreAuthorize("hasRole('ScenarioScenario')")
+    @RequestMapping("/index.htm")
     public ModelAndView scenarioIndexView() {
         ModelAndView modelAndView = viewService.forwardDecorateView(scenarioIndexViewName, getScenarioIndexPageUrl());
         modelAndView.addObject("scenarios", scenarioService.queryAllScenariosList());
@@ -55,7 +57,7 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
     public ModelAndView addScenarioView() {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/scenario/add", getScenarioIndexPageUrl());
         String scenarioZTreeJson = scenarioService.createScenarioZTreeJson();
@@ -70,7 +72,7 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.POST)
     public ModelAndView addScenario(Scenario scenario) {
         int returnCode = scenarioService.addScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -87,7 +89,7 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.GET)
     public ModelAndView updateScenarioView(int id) {
         Scenario scenario = scenarioService.queryScenario(id);
         String scenarioZTreeJson = scenarioService.createScenarioZTreeJson();
@@ -105,7 +107,7 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.POST)
     public ModelAndView updateScenario(Scenario scenario) {
         int returnCode = scenarioService.updateScenario(scenario);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -122,7 +124,7 @@ public class ScenarioController {
      *
      * @return
      */
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete.htm")
     public ModelAndView deleteScenario(int id) {
         int returnCode = scenarioService.deleteScenario(id);
         if (ReturnCodeUtil.isFail(returnCode)) {

@@ -53,10 +53,4 @@ public class SecurityController {
     public String lockPage() {
         return "/lock";
     }
-
-    @RequestMapping(value = "/denied.htm")
-    public ModelAndView accessDenied(HttpServletRequest request) {
-        ModelAndView modelAndView = viewService.forwardDecorateView("/common/result/denied", getIndexPageUrl());
-        return modelAndView;
-    }
 }

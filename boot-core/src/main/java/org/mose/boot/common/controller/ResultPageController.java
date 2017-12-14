@@ -24,4 +24,9 @@ public class ResultPageController {
     public String errorPage500(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/500";
     }
+
+    @RequestMapping(value = "/denied.htm")
+    public String accessDenied(HttpServletRequest request) {
+        return "/common/result/denied";
+    }
 }

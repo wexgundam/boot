@@ -98,7 +98,7 @@
                 <thead>
                     <tr>
                         <th width=150>场景名称</th>
-                        <th width=80>场景代码</th>
+                        <th width=100>访问权限名</th>
                         <th>场景链接</th>
                         <th width=80>链接目标</th>
                         <th width=50>图标</th>
@@ -110,7 +110,7 @@
                     <c:forEach items="${scenarios}" var="scenario" varStatus="st">
                         <tr id="${scenario.id}" pId="${scenario.parentId}">
                             <td>${scenario.name}</td>
-                            <td></td>
+                            <td>${scenario.authorityName}</td>
                             <!-- style="word-break: break-all;" 在恰当的断字点进行换行 -->
                             <td style="word-break: break-all;">${scenario.url}</td>
                             <td>${scenario.urlTarget}</td>

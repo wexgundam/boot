@@ -48,7 +48,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping("/index.htm")
     public ModelAndView authorityIndexView(Pagination pagination) {
         pagination.setUrl(getAuthorityIndexPageUrl());
         pagination.setRowCount(authorityService.queryAuthorityCount());
@@ -66,7 +66,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
     public ModelAndView addAuthorityView() {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/authority/add", getAuthorityIndexPageUrl());
         return modelAndView;
@@ -79,7 +79,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.POST)
     public ModelAndView addAuthority(Authority authority) {
         int returnCode = authorityService.addAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -96,7 +96,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.GET)
     public ModelAndView updateAuthorityView(int id) {
         Authority authority = authorityService.queryAuthority(id);
 
@@ -112,7 +112,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.POST)
     public ModelAndView updateAuthority(Authority authority) {
         int returnCode = authorityService.updateAuthority(authority);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -129,7 +129,7 @@ public class AuthorityController {
      *
      * @return
      */
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete.htm")
     public ModelAndView deleteAuthority(int id) {
         int returnCode = authorityService.deleteAuthority(id);
         if (ReturnCodeUtil.isFail(returnCode)) {

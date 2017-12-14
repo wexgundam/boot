@@ -70,7 +70,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping("/index.htm")
     public ModelAndView roleIndexView(Pagination pagination) {
         pagination.setUrl(getRoleIndexPageUrl());
         pagination.setRowCount(roleService.queryRoleCount());
@@ -88,7 +88,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
     public ModelAndView addRoleView() {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/add", getRoleIndexPageUrl());
         return modelAndView;
@@ -101,7 +101,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add.htm", method = RequestMethod.POST)
     public ModelAndView addRole(Role role) {
         int returnCode = roleService.addRole(role);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -118,7 +118,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.GET)
     public ModelAndView updateRoleView(int id) {
         Role role = roleService.queryRole(id);
 
@@ -134,7 +134,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update.htm", method = RequestMethod.POST)
     public ModelAndView updateRole(Role role) {
         int returnCode = roleService.updateRole(role);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -151,7 +151,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/delete")
+    @RequestMapping(value = "/delete.htm")
     public ModelAndView deleteRole(int id) {
         int returnCode = roleService.deleteRole(id);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -167,7 +167,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping("/authority/index")
+    @RequestMapping("/authority/index.htm")
     public ModelAndView roleAuthorityIndexView(int roleId, Pagination pagination) {
         pagination.setUrl(getRoleAuthorityIndexPageUrl());
         pagination.setRowCount(roleAuthorityService.queryAuthorityCountByRoleId(roleId));
@@ -184,7 +184,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/authority/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/authority/update.htm", method = RequestMethod.GET)
     public ModelAndView updateRoleAuthorityView(int roleId) {
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/authority/update", getRoleIndexPageUrl());
         modelAndView.addObject("roleId", roleId);
@@ -198,7 +198,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/authority/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/authority/update.htm", method = RequestMethod.POST)
     public ModelAndView updateRoleAuthority(int roleId, String authorityIdArrayString) {
         int returnCode = roleAuthorityService.updateRoleAuthorities(roleId, authorityIdArrayString);
         if (ReturnCodeUtil.isFail(returnCode)) {
@@ -213,7 +213,7 @@ public class RoleController {
      *
      * @return
      */
-    @RequestMapping(value = "/authority/delete")
+    @RequestMapping(value = "/authority/delete.htm")
     public ModelAndView deleteRoleAuthority(int roleId, int authorityId) {
         int returnCode = roleAuthorityService.deleteRoleAuthority(roleId, authorityId);
         if (ReturnCodeUtil.isFail(returnCode)) {

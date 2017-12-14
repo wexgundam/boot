@@ -7,6 +7,7 @@ import org.mose.boot.util.web.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +41,23 @@ public class ControllerExceptionAspect {
             return null;
         } else {
             ModelAndView modelAndView = viewService.forwardExceptionView(ex.getMessage(), null, null);
+            return modelAndView;
+        }
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ModelAndView accessDeniedException(HttpServletRequest request, HttpServletResponse response, Exception ex) {
+        logger.error("Access Denied Exception ##############################", ex);
+
+        //判断是否是Ajax请求
+        boolean isAjaxRequest = StringUtil.checkAjaxRequest(request);// this.isAjaxRequest(request);
+        //获取异常的详细信息
+        if (isAjaxRequest) {
+            String msg = "{\"flag\":false,\"msg\":" + ex.getMessage() + "}";
+            WebUtil.out(response, JsonUtil.toStr(msg));
+            return null;
+        } else {
+            ModelAndView modelAndView = viewService.forwardDecorateView("/common/result/denied", null);
             return modelAndView;
         }
     }

@@ -73,16 +73,14 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景名称</label>
                         <div class="col-md-9">
-                            <input name="name" type="text" class="form-control input-xlarge" placeholder="输入场景名称">
+                            <input name="name" type="text" class="form-control input-inline input-xlarge" placeholder="输入场景名称">
                             <label id="nameTip"></label>
-                            <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">链接地址</label>
                         <div class="col-md-9">
-                            <input name="url" type="text" class="form-control input-xlarge" placeholder="输入场景链接地址">
-                            <span class="help-block"></span>
+                            <input name="url" type="text" class="form-control input-inline input-xlarge" placeholder="输入场景链接地址">
                         </div>
                     </div>
                     <div class="form-group">
@@ -105,7 +103,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">图标</label>
                         <div class="col-md-9">
-                            <div class="input-group input-xlarge">
+                            <div class="input-group input-inline input-xlarge">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon-tag"></i>
@@ -154,6 +152,13 @@
                                      </span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">访问权限名称</label>
+                        <div class="col-md-9">
+                            <input name="authorityName" type="text" class="form-control input-inline input-xlarge" placeholder="输入访问权限名称">
+                            <label id="authorityNameTip"></label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -237,6 +242,10 @@
                         name: {
                             required: true,
                             maxlength: 40
+                        },
+                        authorityName: {
+                            required: true,
+                            maxlength: 20
                         },
                         orderIndex: {
                             required: true,
