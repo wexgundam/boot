@@ -2,7 +2,9 @@ package org.mose.boot.system.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.Scenario;
+import org.mose.boot.system.modal.User;
 import org.mose.boot.system.repository.IScenarioRepository;
 import org.mose.boot.util.ztree.TreeNode;
 import org.slf4j.Logger;
@@ -25,6 +27,8 @@ import java.util.List;
 @Service
 public class ScenarioService {
     private Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
+    @Autowired
+    private UserService userService;
     /**
      * 场景数据获取对象
      */
@@ -38,16 +42,33 @@ public class ScenarioService {
      */
 //    @Cacheable(value = "sysCache", key = "'scenarioTree'")
     public List<Scenario> queryAllScenariosTree() {
+        List<Scenario> allScenarios = scenarioRepository.queryAll();
+        return toTree(allScenarios);
+    }
+
+    public List<Scenario> queryAllScenariosTreeByUsername(String username) {
+        User user = userService.queryUserWithAuthoritiesByUsername(username);
         List<Scenario> scenarios = new ArrayList<>();
         List<Scenario> allScenarios = scenarioRepository.queryAll();
         for (Scenario scenario : allScenarios) {
+
+//            user.getAuthorities().contains(scenario.getCode());
+            scenarios.add(scenario);
+//        }
+        }
+        return toTree(scenarios);
+    }
+
+    private List<Scenario> toTree(List<Scenario> scenarios) {
+        List<Scenario> scenarioTree = new ArrayList<>();
+        for (Scenario scenario : scenarios) {
             if (scenario.getParent() == null) {
-                findChildren(allScenarios, scenario);
-                scenarios.add(scenario);
+                findChildren(scenarios, scenario);
+                scenarioTree.add(scenario);
             }
         }
-        Collections.sort(scenarios, Comparator.comparingInt(Scenario::getOrderIndex));
-        return scenarios;
+        Collections.sort(scenarioTree, Comparator.comparingInt(Scenario::getOrderIndex));
+        return scenarioTree;
     }
 
     /**

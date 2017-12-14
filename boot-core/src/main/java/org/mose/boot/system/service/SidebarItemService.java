@@ -41,7 +41,7 @@ public class SidebarItemService implements ISidebarItemService {
     @Override
     public List<SidebarItem> getSidebarItems(String username) {
         List<SidebarItem> sidebarItems = new ArrayList<>();
-        for (Scenario scenario : scenarioService.queryAllScenariosTree()) {
+        for (Scenario scenario : scenarioService.queryAllScenariosTreeByUsername(username)) {
             sidebarItems.add(createSidebarItem(null, scenario));
         }
         return sidebarItems;
