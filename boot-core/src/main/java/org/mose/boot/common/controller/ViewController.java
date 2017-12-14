@@ -39,7 +39,7 @@ public class ViewController {
     @RequestMapping("/view.htm")
     public ModelAndView decoratePage(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarHtml", sidebarService.creatHtml(scenarioService.createSidebarItems()));
+        modelAndView.addObject("sidebarHtml", sidebarService.createHtml(scenarioService.createSidebarItems()));
         modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);
         modelAndView.setViewName(targetViewName);
         return modelAndView;

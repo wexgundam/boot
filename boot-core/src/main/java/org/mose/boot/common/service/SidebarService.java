@@ -21,7 +21,7 @@ public class SidebarService {
      * @param sidebarItems
      * @return
      */
-    public String creatHtml(List<SidebarItem> sidebarItems) {
+    public String createHtml(List<SidebarItem> sidebarItems) {
         StringBuffer stringBuffer = new StringBuffer();
         Collections.sort(sidebarItems, Comparator.comparingInt(SidebarItem::getOrder));
         for (SidebarItem sidebarItem : sidebarItems) {
