@@ -160,7 +160,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">场景排序</label>
                         <div class="col-md-9">
-                            <input name="displayOrder" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="${scenario.displayOrder}">
+                            <input name="orderIndex" type="text" class="form-control input-inline input-xlarge" placeholder="在父场景中的排序" value="${scenario.orderIndex}">
                             <label id="displayOrderTip"></label>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                             required: true,
                             maxlength: 40
                         },
-                        displayOrder: {
+                        orderIndex: {
                             required: true,
                             number: true,
                             maxlength: 10

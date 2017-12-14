@@ -48,7 +48,7 @@ public class Scenario {
     /**
      * 在父场景中的顺序
      */
-    private int displayOrder = 0;
+    private int orderIndex = 0;
 
     /**
      * 包含的子场景
@@ -78,7 +78,7 @@ public class Scenario {
                 ", url='" + url + '\'' +
                 ", urlTarget='" + urlTarget + '\'' +
                 ", icon='" + icon + '\'' +
-                ", displayOrder=" + displayOrder +
+                ", orderIndex=" + orderIndex +
                 ", children=" + children +
                 '}';
     }
@@ -158,12 +158,12 @@ public class Scenario {
         this.icon = icon;
     }
 
-    public int getDisplayOrder() {
-        return displayOrder;
+    public int getOrderIndex() {
+        return orderIndex;
     }
 
-    public void setDisplayOrder(int displayOrder) {
-        this.displayOrder = displayOrder;
+    public void setOrderIndex(int orderIndex) {
+        this.orderIndex = orderIndex;
     }
 
     public String getUrl() {

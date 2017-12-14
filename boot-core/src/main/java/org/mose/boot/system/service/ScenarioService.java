@@ -85,7 +85,7 @@ public class ScenarioService {
                 scenarios.add(scenario);
             }
         }
-        Collections.sort(scenarios, Comparator.comparingInt(Scenario::getDisplayOrder));
+        Collections.sort(scenarios, Comparator.comparingInt(Scenario::getOrderIndex));
         return scenarios;
     }
 
@@ -103,7 +103,7 @@ public class ScenarioService {
                 children.add(child);
             }
         }
-        Collections.sort(children, Comparator.comparingInt(Scenario::getDisplayOrder));
+        Collections.sort(children, Comparator.comparingInt(Scenario::getOrderIndex));
         scenario.setChildren(children.isEmpty() ? null : children);
     }
 
@@ -136,7 +136,7 @@ public class ScenarioService {
         sidebarItem.setUrl(resourceService.getDynamicResourceServerUrl() + (scenario.getUrl() == null ? "/index.htm" : scenario.getUrl()));
         sidebarItem.setUrlTarget(scenario.getUrlTarget());
         sidebarItem.setIcon(scenario.getIcon());
-        sidebarItem.setOrder(scenario.getDisplayOrder());
+        sidebarItem.setOrder(scenario.getOrderIndex());
         sidebarItem.setParent(scenario.getParent() == null ? null : parentSidebarItem);
         if (scenario.getChildren() != null && !scenario.getChildren().isEmpty()) {
             List<SidebarItem> children = new ArrayList<>();

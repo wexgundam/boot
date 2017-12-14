@@ -119,7 +119,7 @@
                                     <i class="fa ${scenario.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${scenario.displayOrder}</td>
+                            <td style="text-align: center;">${scenario.orderIndex}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="${dynamicServer }/system/scenario/update.htm?id=${scenario.id}">
@@ -170,7 +170,7 @@
                                     <i class="fa ${scenario.icon}"></i>
                                 </div>
                             </td>
-                            <td style="text-align: center;">${scenario.displayOrder}</td>
+                            <td style="text-align: center;">${scenario.orderIndex}</td>
                             <td>
                                 <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
                                     <a href="toUpdate.htm?id=${resource.id}&backUrl=${backUrl}">
