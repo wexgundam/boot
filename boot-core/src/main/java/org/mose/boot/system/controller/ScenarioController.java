@@ -44,7 +44,6 @@ public class ScenarioController {
      *
      * @return
      */
-    @PreAuthorize("hasRole('ScenarioScenario')")
     @RequestMapping("/index.htm")
     public ModelAndView scenarioIndexView() {
         ModelAndView modelAndView = viewService.forwardDecorateView(scenarioIndexViewName, getScenarioIndexPageUrl());

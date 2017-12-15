@@ -71,7 +71,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().logoutUrl("/logout.htm").permitAll()
                 //配置未授权处理地址
-                .and().exceptionHandling().accessDeniedPage("/denied.htm")
+                .and().exceptionHandling().accessDeniedPage("/common/result/denied.htm")
                 //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
                 //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面

@@ -23,14 +23,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @ControllerAdvice
 public class ControllerExceptionAspect {
-    private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
+    private static Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
+    private static Logger securityLogger = LoggerFactory.getLogger("securityLogger");
 
     @Autowired
     private ViewService viewService;
 
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(HttpServletRequest request, HttpServletResponse response, Exception ex) {
-        logger.error("Controller Exception ##############################", ex);
+        exceptionLogger.error("Controller Exception ##############################", ex);
 
         //判断是否是Ajax请求
         boolean isAjaxRequest = StringUtil.checkAjaxRequest(request);// this.isAjaxRequest(request);
@@ -47,8 +48,7 @@ public class ControllerExceptionAspect {
 
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView accessDeniedException(HttpServletRequest request, HttpServletResponse response, Exception ex) {
-        logger.error("Access Denied Exception ##############################", ex);
-
+        securityLogger.error("Access Denied Exception ##############################", ex);
         //判断是否是Ajax请求
         boolean isAjaxRequest = StringUtil.checkAjaxRequest(request);// this.isAjaxRequest(request);
         //获取异常的详细信息
