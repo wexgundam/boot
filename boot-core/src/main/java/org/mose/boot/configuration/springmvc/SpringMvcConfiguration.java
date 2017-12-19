@@ -4,6 +4,7 @@ import org.mose.boot.common.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -46,5 +47,11 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     @Autowired
     public void configureViewResolver(InternalResourceViewResolver viewResolver) {
         viewResolver.getAttributesMap().putAll(resourceService.toMap());
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        super.addInterceptors(registry);
+        registry.addInterceptor(new OperationInterceptor());
     }
 }

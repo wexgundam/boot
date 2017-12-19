@@ -223,7 +223,7 @@ public class StringUtil {
      *
      * @return "Key=Value&Key=Value"格式的字符串
      */
-    public static String getOperaParams(HttpServletRequest request) {
+    public static String getOperationParameters(HttpServletRequest request) {
         String parameters = "";// 定义所有参数值
         Map<String, String[]> map = request.getParameterMap();
         // /取得所有参数值，用&号组装起来

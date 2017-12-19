@@ -6,7 +6,7 @@
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
-                %yellow(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) - %cyan(%m)[%magenta(%class)]%n%ex{short}
+                %yellow(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) - %cyan(%m)[%magenta(%class)]%n%ex{full}
             </pattern>
             <charset>GBK</charset>
         </encoder>
@@ -41,7 +41,7 @@
             <ImmediateFlush>true</ImmediateFlush>
             <charset>utf-8</charset>
             <Pattern>
-                %d{yyyy-MM-dd HH:mm:ss} %-5level - %m[%class]%n%ex{short}
+                %d{yyyy-MM-dd HH:mm:ss} %-5level - %m[%class]%n%ex{full}
             </Pattern>
         </encoder>
     </appender>
@@ -129,6 +129,20 @@
             <Pattern>${encoderPattern}</Pattern>
         </encoder>
     </appender>
+    <!-- 操作日志 -->
+    <appender name="operationLoggerAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${rootPath}/operation.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${rootPath}/%d{yyyyMMdd}/operation-%d{yyyyMMdd}.log</FileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <ImmediateFlush>true</ImmediateFlush>
+            <charset>utf-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level - %m%n</Pattern>
+        </encoder>
+    </appender>
 
     <!-- root 默认日志配置 -->
     <root level="INFO">
@@ -157,6 +171,9 @@
     </logger>
     <logger name="securityLogger" level="INFO">
         <appender-ref ref="securityLoggerAppender"/>
+    </logger>
+    <logger name="operationLogger" additivity="false" level="INFO">
+        <appender-ref ref="operationLoggerAppender"/>
     </logger>
     <logger name="org.springframework" level="INFO">
         <appender-ref ref="exceptionLoggerAppender"/>
