@@ -82,5 +82,6 @@ public class TestRoleAuthorityMysqlRepository {
         System.out.println(authorities.size());
         roleAuthorityRepository.queryAllAuthoritiesByUserId(1);
         roleAuthorityRepository.queryCountByUserId(3);
+        roleAuthorityRepository.queryAllRolesByAuthorityId(1);
     }
 }

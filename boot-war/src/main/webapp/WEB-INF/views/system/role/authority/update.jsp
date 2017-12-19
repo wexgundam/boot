@@ -66,43 +66,43 @@
     <!-- Begin 角色编辑面板 -->
     <div class="row">
         <div class="col-xs-12">
-            <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                <form id="roleAuthorityForm" name="roleAuthorityForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/role/authority/update.htm" method="post">
-                    <div class="form-body hidden">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">角色Id</label>
-                            <div class="col-md-9">
-                                <input name="roleId" type="text" class="form-control input-xlarge" placeholder="输入角色Id" value="${roleId}">
-                                <label id="roleIdTip"></label>
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">权限Id数组</label>
-                            <div class="col-md-9">
-                                <input id="authorityIdArrayString" name="authorityIdArrayString" type="text" class="form-control input-xlarge" placeholder="输入角色权限数组">
-                                <label id="authorityIdArrayStringTip"></label>
-                                <span class="help-block"></span>
-                            </div>
+            <form id="roleAuthorityForm" name="roleAuthorityForm" class="form-horizontal" role="form" action="${dynamicResourceServerUrl}/system/role/authority/update.htm" method="post">
+                <div class="form-body hidden">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">角色Id</label>
+                        <div class="col-md-9">
+                            <input name="roleId" type="text" class="form-control input-xlarge" placeholder="输入角色Id" value="${roleId}">
+                            <label id="roleIdTip"></label>
+                            <span class="help-block"></span>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a class="btn btn-primary" href="">
-                                    <i class="fa fa-refresh"></i> 刷新
-                                </a>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">权限Id数组</label>
+                        <div class="col-md-9">
+                            <input id="authorityIdArrayString" name="authorityIdArrayString" type="text" class="form-control input-xlarge" placeholder="输入角色权限数组">
+                            <label id="authorityIdArrayStringTip"></label>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="">
+                                <i class="fa fa-refresh"></i> 刷新
+                            </a>
+                            <security:authorize access="hasRole('SystemRoleAuthorize') and fullyAuthenticated">
                                 <button type="submit" class="btn green" onclick="update()">
                                     <i class=" fa fa-plus"></i> 保存
                                 </button>
-                                <a class="btn default" onclick="history.back(-1);">
-                                    <i class="fa fa-undo"></i> 返回
-                                </a>
-                            </div>
+                            </security:authorize>
+                            <a class="btn default" onclick="history.back(-1);">
+                                <i class="fa fa-undo"></i> 返回
+                            </a>
                         </div>
                     </div>
-                </form>
-            </security:authorize>
+                </div>
+            </form>
         </div>
     </div>
     <!-- End 角色编辑面板 -->

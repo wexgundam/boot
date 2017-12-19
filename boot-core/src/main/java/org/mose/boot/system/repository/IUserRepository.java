@@ -51,6 +51,15 @@ public interface IUserRepository {
     List<User> queryAll();
 
     /**
+     * 查询具有给定角色id的所有用户
+     *
+     * @param roleId
+     *
+     * @return
+     */
+    List<User> queryAllByRoleId(int roleId);
+
+    /**
      * 查询用户总数
      *
      * @return

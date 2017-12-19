@@ -123,7 +123,7 @@ public class ScenarioService {
      *
      * @return
      */
-    @PreAuthorize("hasRole('ScenarioScenario')")
+    @PreAuthorize("hasRole('SystemScenario')")
     public List<Scenario> queryAllScenariosList() {
         List<Scenario> scenarios = new ArrayList<>();
         for (Scenario scenario : queryAllScenariosTree()) {

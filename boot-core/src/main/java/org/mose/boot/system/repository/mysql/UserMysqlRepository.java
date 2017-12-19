@@ -53,6 +53,12 @@ public class UserMysqlRepository extends AbstractStreamRepository<User, Integer>
     }
 
     @Override
+    public List<User> queryAllByRoleId(int roleId) {
+        String sql = "select t.id, t.username, t.password, t.account_non_expired, t.account_non_locked, t.credentials_non_expired, t.enabled from t_system_user t left outer join t_system_user_role ur on ur.user_id=t.id where ur.role_id=? order by t.username";
+        return query().sql(sql).parameters(roleId).queryMany();
+    }
+
+    @Override
     public int queryCount() {
         String sql = "select count(id) from t_system_user";
         return query().sql(sql).queryCount();

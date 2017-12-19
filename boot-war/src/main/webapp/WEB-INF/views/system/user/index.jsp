@@ -65,7 +65,7 @@
             <a class="btn btn-primary" id="btnRefresh" href="">
                 <i class="fa fa-refresh"></i> 刷新
             </a>
-            <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+            <security:authorize access="hasRole('SystemUserCreate') and fullyAuthenticated">
                 <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/user/add.htm">
                     <i class=" fa fa-plus"></i> 新建
                 </a>
@@ -99,14 +99,20 @@
                             <td>${user.credentialsNonExpired}</td>
                             <td>${user.enabled}</td>
                             <td>
-                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
+                                <security:authorize access="hasRole('SystemUserUpdate') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/user/update.htm?id=${user.id}"> 修改 </a>
-                                    <a href="javascript:deleteUser(${user.id})"> 删除 </a>
-                                    <a href="${dynamicResourceServerUrl}/system/user/role/index.htm?userId=${user.id}">
-                                        角色 </a>
-                                    <a href="${dynamicResourceServerUrl}/system/user/authority/index.htm?userId=${user.id}">
-                                        权限 </a>
                                 </security:authorize>
+                                <security:authorize access="hasRole('SystemUserDelete') and fullyAuthenticated">
+                                    <a href="javascript:deleteUser(${user.id})"> 删除 </a>
+                                </security:authorize>
+                                <security:authorize access="hasRole('SystemUserAuthorize') and fullyAuthenticated">
+                                    <a href="${dynamicResourceServerUrl}/system/user/role/index.htm?userId=${user.id}">
+                                        角色
+                                    </a>
+                                </security:authorize>
+                                <a href="${dynamicResourceServerUrl}/system/user/authority/index.htm?userId=${user.id}">
+                                    权限
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

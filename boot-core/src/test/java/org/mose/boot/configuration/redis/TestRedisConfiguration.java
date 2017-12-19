@@ -2,7 +2,7 @@ package org.mose.boot.configuration.redis;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mose.boot.common.service.SpringSessionRedisService;
+import org.mose.boot.common.service.SpringSessionRedisSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
@@ -32,18 +32,18 @@ public class TestRedisConfiguration {
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
     @Autowired
-    SpringSessionRedisService springSessionRedisService;
+    SpringSessionRedisSessionService springSessionRedisSessionService;
 
     @Test
     public void testQueryAll() {
-        Set<String> allKeys = springSessionRedisService.getAllKeys();
+        Set<String> allKeys = springSessionRedisSessionService.getAllKeys();
         for (String key : allKeys) {
-            Collection<? extends Session> sessions = springSessionRedisService.getSessionsByKey(key);
+            Collection<? extends Session> sessions = springSessionRedisSessionService.getSessionsByKey(key);
             for (Session session : sessions) {
                 SecurityContext securityContext = session.getAttribute("SPRING_SECURITY_CONTEXT");
             }
         }
-        System.out.println(springSessionRedisService.getSessionsByPrincple("admin").size());
+        System.out.println(springSessionRedisSessionService.getSessionsByUsername("admin").size());
         System.out.println(redisTemplate.opsForValue().get("test"));
     }
 }

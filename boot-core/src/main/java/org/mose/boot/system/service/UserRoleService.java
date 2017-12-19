@@ -1,5 +1,6 @@
 package org.mose.boot.system.service;
 
+import org.mose.boot.common.service.ISessionService;
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.UserRole;
 import org.mose.boot.system.repository.IUserRoleRepository;
@@ -24,6 +25,8 @@ public class UserRoleService {
      */
     @Autowired
     private IUserRoleRepository userRoleRepository;
+    @Autowired
+    private ISessionService sessionService;
 
     /**
      * 查询给定用户的角色
@@ -78,11 +81,13 @@ public class UserRoleService {
                 userRoleRepository.insertOne(userRole);
             }
         }
+        sessionService.deleteAllSessionsByUserId(userId);
         return ReturnCodeUtil.SUCCESS__UPDATE;
     }
 
     @Transactional
     public int deleteUserRole(int userId, int roleId) {
+        sessionService.deleteAllSessionsByUserId(userId);
         return userRoleRepository.deleteOne(userId, roleId);
     }
 
@@ -93,11 +98,13 @@ public class UserRoleService {
      */
     @Transactional
     public int deleteUserRolesByUserId(int userId) {
+        sessionService.deleteAllSessionsByUserId(userId);
         return userRoleRepository.deleteAllByUserId(userId);
     }
 
-
+    @Transactional
     public int deleteUserRolesByRoleId(int roleId) {
+        sessionService.deleteAllSessionsByRoleId(roleId);
         return userRoleRepository.deleteAllByRoleId(roleId);
     }
 

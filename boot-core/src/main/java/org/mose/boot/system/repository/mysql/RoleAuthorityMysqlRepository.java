@@ -6,6 +6,7 @@ import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.RoleAuthority;
 import org.mose.boot.system.repository.IAuthorityRepository;
 import org.mose.boot.system.repository.IRoleAuthorityRepository;
+import org.mose.boot.system.repository.IRoleRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,8 @@ import java.util.List;
  */
 @Component
 public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleAuthority, Integer> implements IRoleAuthorityRepository {
+    @Autowired
+    private IRoleRepository roleRepository;
     @Autowired
     private IAuthorityRepository authorityRepository;
 
@@ -120,7 +123,7 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
     @Override
     public List<Authority> queryManyAuthoritiesByRoleId(int roleId, int pageNumber, int pageRowCount) {
         String sql = getSql4QueryAuthoritiesByRoleId();
-        return authorityRepository.queryMany(sql, new Object[]{roleId}, pageNumber, pageRowCount);
+        return authorityRepository.queryMany(sql, pageNumber, pageRowCount, roleId);
     }
 
     @Override
@@ -138,20 +141,20 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         sql.append(" from");
         sql.append(" (select ra.role_id, a.id, a.name, a.description from t_system_authority a left outer join t_system_role_authority ra on ra.authority_id=a.id) nra");
         sql.append(" left outer join t_system_user_role ur on nra.role_id=ur.role_id");
-        sql.append(" where ur.user_id=?");
+        sql.append(" where ur.user_id=? order by name");
         return sql;
     }
 
     @Override
     public List<Authority> queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount) {
         StringBuilder sql = getSql4QueryAuthoritiesByUserId();
-        return authorityRepository.queryMany(sql.substring(0), new Object[]{userId}, pageNumber, pageRowCount);
+        return authorityRepository.queryMany(sql.substring(0), pageNumber, pageRowCount, userId);
     }
 
     @Override
     public List<Authority> queryAllAuthoritiesByUserId(int userId) {
         StringBuilder sql = getSql4QueryAuthoritiesByUserId();
-        return authorityRepository.queryAll(sql.substring(0), new Object[]{userId});
+        return authorityRepository.queryAll(sql.substring(0), userId);
     }
 
     @Override
@@ -161,6 +164,12 @@ public class RoleAuthorityMysqlRepository extends AbstractStreamRepository<RoleA
         sql.append(getSql4QueryAuthoritiesByUserId());
         sql.append(") a");
         return query().sql(sql.substring(0)).parameters(userId).queryCount();
+    }
+
+    @Override
+    public List<Role> queryAllRolesByAuthorityId(int authorityId) {
+        String sql = "select r.id, r.name, r.description from t_system_role r left outer join t_system_role_authority ra on ra.role_id=r.id where ra.authority_id=? order by r.name";
+        return roleRepository.queryAll(sql, authorityId);
     }
 
     public IAuthorityRepository getAuthorityRepository() {

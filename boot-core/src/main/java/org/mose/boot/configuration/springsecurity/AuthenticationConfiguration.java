@@ -39,8 +39,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
     @Autowired
-    SessionRegistry sessionRegistry;
-    @Autowired
     AuthenticationSuccessHandler authenticationSuccessHandler;
 
     /**
@@ -66,7 +64,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
-                .antMatchers("/**").hasRole("USER")
+                .antMatchers("/**").hasRole("User")
                 .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().logoutUrl("/logout.htm").permitAll()
@@ -75,8 +73,8 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 //Spring Security的默认启用防止固化session攻击
                 .and().sessionManagement().sessionFixation().migrateSession()
                 //设置session最大并发数为1，当建立新session时，原session将expired，并且跳转到登录界面
-                .maximumSessions(1).expiredUrl("/login.htm").sessionRegistry(sessionRegistry).and()
-                .and().csrf().disable();
+                .maximumSessions(1).expiredUrl("/login.htm")
+                .and().and().csrf().disable();
     }
 
     /**
@@ -123,9 +121,8 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 User user = userService.queryUserWithAuthoritiesByUsername(username);
-                List<GrantedAuthority> grantedAuthorities = null;
+                List<GrantedAuthority> grantedAuthorities =  new ArrayList<>();
                 if (user.getAuthorities() != null && !user.getAuthorities().isEmpty()) {
-                    grantedAuthorities = new ArrayList<>();
                     for (Authority authority : user.getAuthorities()) {
                         grantedAuthorities.add(new SimpleGrantedAuthority(SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX + authority.getName()));
                     }
@@ -146,15 +143,5 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    /**
-     * 建立SessionRegistry bean
-     *
-     * @return
-     */
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
     }
 }

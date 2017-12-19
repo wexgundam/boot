@@ -85,7 +85,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
      *
      * @return
      */
-    public List<Entity> queryMany(String sql, Object[] parameters, int pageNumber, int pageRowCount) {
+    public List<Entity> queryMany(String sql, int pageNumber, int pageRowCount, Object... parameters) {
         return query().sql(sql).parameters(parameters).paging(pageNumber, pageRowCount).queryMany();
     }
 
@@ -111,7 +111,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
      *
      * @return
      */
-    public List<Entity> queryAll(String sql, Object[] parameters) {
+    public List<Entity> queryAll(String sql, Object... parameters) {
         return query().sql(sql).parameters(parameters).queryMany();
     }
 

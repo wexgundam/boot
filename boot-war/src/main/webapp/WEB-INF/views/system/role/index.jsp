@@ -65,7 +65,7 @@
             <a class="btn btn-primary" id="btnRefresh" href="">
                 <i class="fa fa-refresh"></i> 刷新
             </a>
-            <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+            <security:authorize access="hasRole('SystemRoleCreate') and fullyAuthenticated">
                 <a class="btn btn-success" id="btnAdd" href="${dynamicServer }/system/role/add.htm">
                     <i class=" fa fa-plus"></i> 新建
                 </a>
@@ -93,13 +93,14 @@
                             <td>${role.name}</td>
                             <td>${role.description}</td>
                             <td>
-                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
+                                <security:authorize access="hasRole('SystemRoleUpdate') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/role/update.htm?id=${role.id}">
                                         修改 </a>
                                     <a href="${dynamicResourceServerUrl}/system/role/authority/index.htm?roleId=${role.id}">
                                         权限 </a>
+                                </security:authorize>
+                                <security:authorize access="hasRole('SystemRoleUpdate') and fullyAuthenticated">
                                     <a href="javascript:deleteRole(${role.id})"> 删除 </a>
-
                                 </security:authorize>
                             </td>
                         </tr>

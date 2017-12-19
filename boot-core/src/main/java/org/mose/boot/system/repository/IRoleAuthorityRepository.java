@@ -101,6 +101,7 @@ public interface IRoleAuthorityRepository {
      * 查询给定用户对应的全部权限
      */
     List<Authority> queryManyAuthoritiesByUserId(int userId, int pageNumber, int pageRowCount);
+
     /**
      * 查询给定用户对应的全部权限
      */
@@ -108,8 +109,19 @@ public interface IRoleAuthorityRepository {
 
     /**
      * 查询给定用户的权限总数
+     *
      * @param userId
+     *
      * @return
      */
     int queryCountByUserId(int userId);
+
+    /**
+     * 查询给定权限关联的角色
+     *
+     * @param authorityId
+     *
+     * @return
+     */
+    List<Role> queryAllRolesByAuthorityId(int authorityId);
 }

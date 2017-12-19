@@ -1,6 +1,8 @@
 package org.mose.boot.system.service;
 
+import org.mose.boot.common.service.ISessionService;
 import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.RoleAuthority;
 import org.mose.boot.system.repository.IRoleAuthorityRepository;
 import org.mose.boot.util.code.ReturnCodeUtil;
@@ -24,6 +26,8 @@ public class RoleAuthorityService {
      */
     @Autowired
     private IRoleAuthorityRepository roleAuthorityRepository;
+    @Autowired
+    private ISessionService sessionService;
 
     /**
      * 查询给定用户的角色
@@ -76,6 +80,11 @@ public class RoleAuthorityService {
         return roleAuthorityRepository.queryAllAuthoritiesByUserId(userId);
     }
 
+
+    public List<Role> queryAllRolesByAuthorityId(int authorityId) {
+        return roleAuthorityRepository.queryAllRolesByAuthorityId(authorityId);
+    }
+
     /**
      * 更新
      *
@@ -84,7 +93,7 @@ public class RoleAuthorityService {
     @Transactional
     public int updateRoleAuthorities(int roleId, String authorityIdArrayString) {
         deleteRoleAuthoritiesByRoleId(roleId);
-        if (authorityIdArrayString != null) {
+        if (authorityIdArrayString != null && authorityIdArrayString.contains(AUTHORITY_ID_ARRAY_STRING_SPLITTER)) {
             for (String authorityIdString : authorityIdArrayString.split(AUTHORITY_ID_ARRAY_STRING_SPLITTER)) {
                 RoleAuthority roleAuthority = new RoleAuthority();
                 roleAuthority.setRoleId(roleId);
@@ -92,11 +101,13 @@ public class RoleAuthorityService {
                 roleAuthorityRepository.insertOne(roleAuthority);
             }
         }
+        sessionService.deleteAllSessionsByRoleId(roleId);
         return ReturnCodeUtil.SUCCESS__UPDATE;
     }
 
     @Transactional
     public int deleteRoleAuthority(int roleId, int authorityId) {
+        sessionService.deleteAllSessionsByRoleId(roleId);
         return roleAuthorityRepository.deleteOne(roleId, authorityId);
     }
 
@@ -107,11 +118,13 @@ public class RoleAuthorityService {
      */
     @Transactional
     public int deleteRoleAuthoritiesByRoleId(int roleId) {
+        sessionService.deleteAllSessionsByRoleId(roleId);
         return roleAuthorityRepository.deleteAllByRoleId(roleId);
     }
 
-
+    @Transactional
     public int deleteRoleAuthoritiesByAuthorityId(int authorityId) {
+        sessionService.deleteAllSessionsByAuthorityId(authorityId);
         return roleAuthorityRepository.deleteAllByAuthorityId(authorityId);
     }
 

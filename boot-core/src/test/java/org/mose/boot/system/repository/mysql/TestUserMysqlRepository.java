@@ -68,5 +68,6 @@ public class TestUserMysqlRepository {
         queryOne = userRepository.queryOne(user.getId());
         assertNull(queryOne);
         userRepository.queryMany(1, 20);
+        userRepository.queryAllByRoleId(1);
     }
 }

@@ -79,7 +79,7 @@
                         <a class="btn btn-primary" id="btnRefresh" href="">
                             <i class="fa fa-refresh"></i> 刷新
                         </a>
-                        <security:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
+                        <security:authorize access="hasRole('SystemScenarioCreate') and fullyAuthenticated">
                             <a class="btn btn-success" id="btnAdd" href="${dynamicResourceServerUrl }/system/scenario/add.htm">
                                 <i class=" fa fa-plus"></i> 新建
                             </a>
@@ -121,10 +121,12 @@
                             </td>
                             <td class="text-center">${scenario.orderIndex}</td>
                             <td>
-                                <security:authorize access="hasRole('ADMIN') and fullyAuthenticated">
+                                <security:authorize access="hasRole('SystemScenarioUpdate') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl }/system/scenario/update.htm?id=${scenario.id}">
                                         修改
                                     </a>
+                                </security:authorize>
+                                <security:authorize access="hasRole('SystemScenarioDelete') and fullyAuthenticated">
                                     <a href="javascript:deleteScenario(${scenario.id });"> 删除 </a>
                                 </security:authorize>
                             </td>

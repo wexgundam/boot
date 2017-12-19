@@ -52,7 +52,7 @@ public interface IRoleRepository {
      *
      * @return
      */
-    List<Role> queryAll(String sql, Object[] parameters);
+    List<Role> queryAll(String sql, Object... parameters);
 
     /**
      * 查询全部用户

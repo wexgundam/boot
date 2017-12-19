@@ -57,6 +57,12 @@ public class UserService {
         return users;
     }
 
+
+    public List<User> queryAllUsersByRoleId(int roleId) {
+        List<User> users = userRepository.queryAllByRoleId(roleId);
+        return users;
+    }
+
     /**
      * what:    获取用户总数. <br/>
      * when:    (这里描述这个方法适用时机 – 可选).<br/>

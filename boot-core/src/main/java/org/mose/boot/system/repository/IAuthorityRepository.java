@@ -39,7 +39,7 @@ public interface IAuthorityRepository {
      *
      * @return
      */
-    List<Authority> queryMany(String sql, Object[] parameters, int pageNumber, int pageRowCount);
+    List<Authority> queryMany(String sql, int pageNumber, int pageRowCount, Object... parameters);
 
     /**
      * 分页查询
@@ -58,7 +58,7 @@ public interface IAuthorityRepository {
      *
      * @return
      */
-    List<Authority> queryAll(String sql, Object[] parameters);
+    List<Authority> queryAll(String sql, Object... parameters);
 
     /**
      * 查询总数

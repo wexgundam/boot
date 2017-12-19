@@ -1,8 +1,15 @@
 package org.mose.boot.common.service;
 
+import org.mose.boot.system.modal.Authority;
+import org.mose.boot.system.modal.Role;
+import org.mose.boot.system.modal.User;
+import org.mose.boot.system.service.RoleAuthorityService;
+import org.mose.boot.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.session.data.redis.RedisOperationsSessionRepository;
@@ -20,12 +27,17 @@ import java.util.Set;
  * @Date: 2017/9/30 15:03
  */
 @Service
-public class SpringSessionRedisService {
+public class SpringSessionRedisSessionService implements ISessionService {
+    private static final String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
     @Autowired
     @Qualifier("sessionRedisTemplate")
     RedisTemplate sessionRedisTemplate;
     @Autowired
     private RedisOperationsSessionRepository sessionRepository;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RoleAuthorityService roleAuthorityService;
 
     /**
      * Description:获得待查询的用户的redis key
@@ -83,7 +95,7 @@ public class SpringSessionRedisService {
      * @Author: 靳磊
      * @Date: 2017/9/30 15:09
      */
-    public Collection<? extends Session> getSessionsByPrincple(String principle) {
+    public Collection<? extends Session> getSessionsByUsername(String principle) {
         return sessionRepository.findByIndexNameAndIndexValue(FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME, principle).values();
     }
 
@@ -101,5 +113,35 @@ public class SpringSessionRedisService {
             sessions.add(sessionRepository.getSession((String) sessionId));
         }
         return sessions;
+    }
+
+    @Override
+    public void deleteAllSessionsByRoleId(int roleId) {
+        List<User> users = userService.queryAllUsersByRoleId(roleId);
+        for (User user : users) {
+            List<Authority> authorities = roleAuthorityService.queryAllAuthoritiesByUserId(user.getId());
+            user.setAuthorities(authorities);
+            for (Session session : getSessionsByUsername(user.getUsername())) {
+                sessionRepository.delete(session.getId());
+            }
+        }
+    }
+
+    @Override
+    public void deleteAllSessionsByAuthorityId(int authorityId) {
+        List<Role> roles = roleAuthorityService.queryAllRolesByAuthorityId(authorityId);
+        for (Role role : roles) {
+            deleteAllSessionsByRoleId(role.getId());
+        }
+    }
+
+    @Override
+    public void deleteAllSessionsByUserId(int userId) {
+        User user = userService.queryUser(userId);
+        if (user != null) {
+            for (Session session : getSessionsByUsername(user.getUsername())) {
+                sessionRepository.delete(session.getId());
+            }
+        }
     }
 }
