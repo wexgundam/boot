@@ -4,6 +4,8 @@ import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +53,6 @@ public class UserService {
      *
      * @return
      */
-//    @Cacheable(value = "sysCache", key = "'userList'")
     public List<User> queryManyUsers(int pageNumber, int pageRowCount) {
         List<User> users = userRepository.queryMany(pageNumber, pageRowCount);
         return users;

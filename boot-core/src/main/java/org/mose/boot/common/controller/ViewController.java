@@ -2,6 +2,8 @@ package org.mose.boot.common.controller;
 
 import org.mose.boot.common.service.SidebarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,8 +35,9 @@ public class ViewController {
      */
     @RequestMapping("/view.htm")
     public ModelAndView decoratePage(@RequestParam String targetViewName, @RequestParam String activeSidebarItemUrl) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("sidebarHtml", sidebarService.createHtml());
+        modelAndView.addObject("sidebarHtml", sidebarService.createHtml(userDetails.getUsername()));
         modelAndView.addObject("activeSidebarItemUrl", activeSidebarItemUrl);
         modelAndView.setViewName(targetViewName);
         return modelAndView;

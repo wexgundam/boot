@@ -4,6 +4,7 @@ import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
@@ -119,9 +120,10 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
             UserService userService;
 
             @Override
+            @CacheEvict(value = "sidebarCache")
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 User user = userService.queryUserWithAuthoritiesByUsername(username);
-                List<GrantedAuthority> grantedAuthorities =  new ArrayList<>();
+                List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
                 if (user.getAuthorities() != null && !user.getAuthorities().isEmpty()) {
                     for (Authority authority : user.getAuthorities()) {
                         grantedAuthorities.add(new SimpleGrantedAuthority(SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX + authority.getName()));

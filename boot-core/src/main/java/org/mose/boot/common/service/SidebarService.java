@@ -2,6 +2,7 @@ package org.mose.boot.common.service;
 
 import org.mose.boot.common.vo.SidebarItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,8 @@ public class SidebarService {
     @Autowired
     ISidebarItemService sidebarItemService;
 
-    public Object createHtml() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return createHtml(userDetails.getUsername());
-    }
-
-    private Object createHtml(String username) {
+    @Cacheable(value = "sidebarCache")
+    public Object createHtml(String username) {
         List<SidebarItem> sidebarItems = sidebarItemService.getSidebarItems(username);
         return createHtml(sidebarItems);
     }
