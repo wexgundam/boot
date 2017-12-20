@@ -1,5 +1,6 @@
-package org.mose.boot.common.service;
+package org.mose.boot.system.service;
 
+import org.mose.boot.common.service.ISessionService;
 import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.Role;
 import org.mose.boot.system.modal.User;
@@ -27,8 +28,7 @@ import java.util.Set;
  * @Date: 2017/9/30 15:03
  */
 @Service
-public class SpringSessionRedisSessionService implements ISessionService {
-    private static final String SPRING_SECURITY_CONTEXT = "SPRING_SECURITY_CONTEXT";
+public class SpringSessionService implements ISessionService {
     @Autowired
     @Qualifier("sessionRedisTemplate")
     RedisTemplate sessionRedisTemplate;

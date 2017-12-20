@@ -224,14 +224,17 @@ public class StringUtil {
      * @return "Key=Value&Key=Value"格式的字符串
      */
     public static String getOperationParameters(HttpServletRequest request) {
-        String parameters = "";// 定义所有参数值
+        StringBuilder parameters = new StringBuilder();// 定义所有参数值
         Map<String, String[]> map = request.getParameterMap();
         // /取得所有参数值，用&号组装起来
         Object[] obj = null;
         obj = map.keySet().toArray();
         for (int i = 0; i < obj.length; i++) {
-            parameters += obj[i].toString() + "=" + request.getParameter(obj[i].toString()) + "&";
+            if (i > 0) {
+                parameters.append("&");
+            }
+            parameters.append(obj[i].toString()).append("=").append(request.getParameter(obj[i].toString()));
         }
-        return parameters;
+        return parameters.substring(0);
     }
 }

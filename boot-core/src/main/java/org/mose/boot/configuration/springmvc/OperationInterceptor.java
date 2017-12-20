@@ -5,14 +5,11 @@
  */
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.system.modal.User;
 import org.mose.boot.util.date.DateUtil;
 import org.mose.boot.util.string.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

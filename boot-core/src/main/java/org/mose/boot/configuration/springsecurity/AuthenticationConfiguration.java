@@ -1,10 +1,6 @@
 package org.mose.boot.configuration.springsecurity;
 
-import org.mose.boot.system.modal.Authority;
-import org.mose.boot.system.modal.User;
-import org.mose.boot.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
@@ -13,20 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Description:Spring Security的java configuration
@@ -37,8 +21,6 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
-    @Autowired
-    DataSource dataSource;
     @Autowired
     AuthenticationSuccessHandler authenticationSuccessHandler;
 
@@ -105,36 +87,6 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationEventPublisher authenticationEventPublisher() {
         return new DefaultAuthenticationEventPublisher();
-    }
-
-    /**
-     * 获取默认创建的UserDetailsService，开启分组功能，关闭用户直接授权功能，并发布为Spring Bean
-     *
-     * @return
-     */
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetailsService userDetailsService = new UserDetailsService() {
-            public static final String SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX = "ROLE_";
-            @Autowired
-            UserService userService;
-
-            @Override
-            @CacheEvict(value = "sidebarCache")
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                User user = userService.queryUserWithAuthoritiesByUsername(username);
-                List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-                if (user.getAuthorities() != null && !user.getAuthorities().isEmpty()) {
-                    for (Authority authority : user.getAuthorities()) {
-                        grantedAuthorities.add(new SimpleGrantedAuthority(SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX + authority.getName()));
-                    }
-                }
-                org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(
-                        user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), grantedAuthorities);
-                return userDetails;
-            }
-        };
-        return userDetailsService;
     }
 
     /**
