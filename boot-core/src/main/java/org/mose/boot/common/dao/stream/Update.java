@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.util.Assert;
 
 /**
- * Description: 更新流式处理器
+ * what:    更新流式处理器
  * <p>
  * 采用流式编程方法，向Update对象注入参数，最后调用更新方法获取结果
  * <p>
@@ -41,7 +41,7 @@ public class Update<Entity, Id> {
     protected Object parameterBean;
 
     /**
-     * 构造函数，传入的参数均不可修改
+     * what:    构造函数，传入的参数均不可修改
      *
      * @param jdbcTemplate
      * @param namedParameterJdbcTemplate
@@ -52,7 +52,7 @@ public class Update<Entity, Id> {
     }
 
     /**
-     * 注入更新语句
+     * what:    注入更新语句
      *
      * @param sql
      * @return
@@ -63,7 +63,7 @@ public class Update<Entity, Id> {
     }
 
     /**
-     * 注入更新参数数组，同时将参数bean设为null
+     * what:    注入更新参数数组，同时将参数bean设为null
      *
      * @param parameters
      * @return
@@ -75,7 +75,7 @@ public class Update<Entity, Id> {
     }
 
     /**
-     * 注入更新参数bean，同时将参数数组设为null
+     * what:    注入更新参数bean，同时将参数数组设为null
      *
      * @param parameterBean
      * @return
@@ -87,7 +87,7 @@ public class Update<Entity, Id> {
     }
 
     /**
-     * 更新数据
+     * what:    更新数据
      *
      * @return 更新的行数
      */

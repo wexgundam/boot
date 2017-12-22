@@ -12,16 +12,29 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Description: 基于Metronic侧边栏服务
+ * what:    基于Metronic侧边栏服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/21 15:22
  */
 @Service
 public class SidebarService {
+    /**
+     * 侧边栏条目服务
+     */
     @Autowired
     ISidebarItemService sidebarItemService;
 
+    /**
+     * what:    获取给定用户名对应的侧边栏HTML. <br/>
+     * warning: 获取操作首先检查是否已缓存，如果没有缓存或缓存失效则重新获取.<br/>
+     *
+     * @param username
+     *
+     * @return
+     *
+     * @author 靳磊 created on 2017/12/22
+     */
     @Cacheable(value = "sidebarCache")
     public Object createHtml(String username) {
         List<SidebarItem> sidebarItems = sidebarItemService.getSidebarItems(username);
@@ -29,7 +42,7 @@ public class SidebarService {
     }
 
     /**
-     * 给定侧边栏集合，生成基于Metronic的侧边栏Html
+     * what:    给定侧边栏集合，生成基于Metronic的侧边栏Html
      *
      * @param sidebarItems
      *
@@ -45,7 +58,7 @@ public class SidebarService {
     }
 
     /**
-     * 构建侧边栏中的Heading控件
+     * what:    构建侧边栏中的Heading控件
      *
      * @param sidebarItem
      *
@@ -66,7 +79,7 @@ public class SidebarService {
     }
 
     /**
-     * 构建侧边栏菜单项
+     * what:    构建侧边栏菜单项
      *
      * @param sidebarItem
      *
@@ -81,7 +94,7 @@ public class SidebarService {
     }
 
     /**
-     * 构建菜单栏叶子菜单项
+     * what:    构建菜单栏叶子菜单项
      *
      * @param sidebarItem
      *
@@ -99,7 +112,7 @@ public class SidebarService {
     }
 
     /**
-     * 构建菜单栏分支菜单项
+     * what:    构建菜单栏分支菜单项
      *
      * @param sidebarItem
      *

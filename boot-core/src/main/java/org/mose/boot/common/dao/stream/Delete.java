@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.util.Assert;
 
 /**
- * Description: 删除流式处理器
+ * what:   删除流式处理器
  * <p>
  * 采用流式编程方法，向Delete对象注入参数，最后调用删除方法获取结果
  * <p>
@@ -41,7 +41,7 @@ public class Delete<Entity, Id> {
     protected Object parameterBean;
 
     /**
-     * 构造函数，传入的参数均不可修改
+     * what:   构造函数，传入的参数均不可修改
      *
      * @param jdbcTemplate
      * @param namedParameterJdbcTemplate
@@ -52,9 +52,10 @@ public class Delete<Entity, Id> {
     }
 
     /**
-     * 注入删除语句
+     * what:   注入删除语句
      *
      * @param sql
+     *
      * @return
      */
     public Delete<Entity, Id> sql(String sql) {
@@ -63,9 +64,10 @@ public class Delete<Entity, Id> {
     }
 
     /**
-     * 注入删除参数数组，同时将参数bean设为null
+     * what:   注入删除参数数组，同时将参数bean设为null
      *
      * @param parameters
+     *
      * @return
      */
     public Delete<Entity, Id> parameters(Object... parameters) {
@@ -75,9 +77,10 @@ public class Delete<Entity, Id> {
     }
 
     /**
-     * 注入删除参数bean，同时将参数数组设为null
+     * what:   注入删除参数bean，同时将参数数组设为null
      *
      * @param parameterBean
+     *
      * @return
      */
     public Delete<Entity, Id> parameterBean(Object parameterBean) {
@@ -88,7 +91,7 @@ public class Delete<Entity, Id> {
 
 
     /**
-     * 删除数据
+     * what:   删除数据
      *
      * @return 删除的行数
      */

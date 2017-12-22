@@ -3,7 +3,7 @@ package org.mose.boot.common.vo;
 import java.util.List;
 
 /**
- * Description:侧边菜单项
+ *  what:    侧边菜单项
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22

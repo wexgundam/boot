@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description:各种资源服务地址等配置
+ * what:    各种资源服务地址等配置
+ * how:     通过spring boot的配置文件获取各类资源服务器的地址
  *
  * @Author: 靳磊
  * @Date: 2017/8/2:23
@@ -55,7 +56,7 @@ public class ResourceService {
     private String resourceVersion;
 
     /**
-     * 将以上配置参数转为map
+     * what:    将以上配置参数转为map
      *
      * @return
      */

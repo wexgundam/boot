@@ -3,7 +3,7 @@ package org.mose.boot.common.dao;
 import org.springframework.util.Assert;
 
 /**
- * Description:
+ * what:    Mysql的分页处理器
  *
  * @Author: 靳磊
  * @Date: 2017/8/12:21

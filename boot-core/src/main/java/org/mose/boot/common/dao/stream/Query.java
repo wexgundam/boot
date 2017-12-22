@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 /**
- * Description: 查询流式处理器
+ * what:   查询流式处理器
  * <p>
  * 采用流式编程方法，向Query对象注入参数，最后调用查询方法获取结果
  * <p>
@@ -55,7 +55,7 @@ public class Query<Entity, Id> {
     protected RowMapper<Entity> rowMapper = null;
 
     /**
-     * 构造函数，传入的参数除rowMapper外均不可修改
+     * what:   构造函数，传入的参数除rowMapper外均不可修改
      * <p>
      * 默认基于泛型Entity对应具体类型的BeanPropertyRowMapper，将查询结果映射为实体Entity
      *
@@ -73,7 +73,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 注入查询语句
+     * what:   注入查询语句
      *
      * @param sql
      *
@@ -85,7 +85,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 注入查询参数数组，同时将参数bean设为null
+     * what:   注入查询参数数组，同时将参数bean设为null
      *
      * @param parameters
      *
@@ -98,7 +98,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 注入查询参数bean，同时将参数数组设为null
+     * what:   注入查询参数bean，同时将参数数组设为null
      *
      * @param parameterBean
      *
@@ -111,7 +111,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 注入将查询结果映射为实体Entity的RowMapper
+     * what:   注入将查询结果映射为实体Entity的RowMapper
      *
      * @param rowMapper
      *
@@ -122,13 +122,23 @@ public class Query<Entity, Id> {
         return this;
     }
 
+    /**
+     * what:    分页. <br/>
+     *
+     * @param pageNumber
+     * @param pageRowCount
+     *
+     * @return
+     *
+     * @author 靳磊 created on 2017/12/22
+     */
     public Query<Entity, Id> paging(int pageNumber, int pageRowCount) {
         this.sql = this.paging.paging(sql, pageNumber, pageRowCount);
         return this;
     }
 
     /**
-     * 查询单个对象
+     * what:    查询单个对象
      *
      * @return 返回查询到的Entity，如果没有对应记录则返回null
      */
@@ -151,7 +161,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 查询实体集合
+     * what:    查询实体集合
      *
      * @return
      */
@@ -169,7 +179,7 @@ public class Query<Entity, Id> {
     }
 
     /**
-     * 查询行数
+     * what:    查询行数
      *
      * @return
      */
@@ -184,6 +194,4 @@ public class Query<Entity, Id> {
         }
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
-
-
 }

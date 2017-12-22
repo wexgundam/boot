@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Description: 视图控制器，组织生成视图公用页面组件
+ * what:    视图控制器. <br/>
+ * when:    当页面含有公共元素被渲染时.<br/>
+ * how:     发送请求和参宿到视图控制器.<br/>
  *
- * @Author: 靳磊
- * @Date: 2017/8/18 14:46
+ * @author 靳磊 created on 2017/12/22
  */
 @Controller
 @RequestMapping("/common")
@@ -26,9 +27,9 @@ public class ViewController {
 
 
     /**
-     * 附加视图公共数据，并最终转发到目标视图
+     * what:    附加视图公共数据，并最终转发到目标视图
      *
-     * @param targetViewName
+     * @param targetViewName       最终要渲染的目标视图名
      * @param activeSidebarItemUrl 激活的SidebarItem Url
      *
      * @return

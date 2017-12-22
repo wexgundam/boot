@@ -14,6 +14,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+/**
+ * what:    上传文件、图片服务. <br/>
+ *
+ * @author 靳磊 created on 2017/12/22
+ */
 @Controller
 public class UploadService {
     private Logger logger = LoggerFactory.getLogger("exceptionLogger");

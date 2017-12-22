@@ -11,7 +11,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
- * Description: 流式编程数据获取对象
+ * what:   流式编程数据获取对象
  * <p>
  * 根据DDD领域驱动设计建议以及Spring注解使用Repository作为数据获取对象，即DAO
  * <p>
@@ -44,7 +44,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     protected IPaging paging;
 
     /**
-     * 获取实体类的Class
+     * what:   获取实体类的Class
      *
      * @return
      */
@@ -53,7 +53,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 获取实体类的id的Class
+     * what:   获取实体类的id的Class
      *
      * @return
      */
@@ -63,7 +63,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 返回一个Query对象用于处理查询操作
+     * what:   返回一个Query对象用于处理查询操作
      * <p>
      * Query默认基于泛型Entity对应具体类型的BeanPropertyRowMapper，将查询结果映射为实体Entity
      * <p>
@@ -76,7 +76,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 给定sql语句与参数查询
+     * what:   给定sql语句与参数查询
      *
      * @param sql
      * @param parameters
@@ -90,7 +90,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 给定sql语句与参数查询
+     * what:   给定sql语句与参数查询
      *
      * @param sql
      * @param parameterBean
@@ -104,7 +104,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 给定sql语句与参数查询
+     * what:   给定sql语句与参数查询
      *
      * @param sql
      * @param parameters
@@ -116,7 +116,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 给定sql语句与参数查询
+     * what:   给定sql语句与参数查询
      *
      * @param sql
      * @param parameterBean
@@ -128,7 +128,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 返回一个Insert对象用于处理插入操作
+     * what:   返回一个Insert对象用于处理插入操作
      *
      * @return
      */
@@ -137,7 +137,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 返回一个Update对象用于处理更新操作
+     * what:   返回一个Update对象用于处理更新操作
      *
      * @return
      */
@@ -146,7 +146,7 @@ public abstract class AbstractStreamRepository<Entity, Id> {
     }
 
     /**
-     * 返回一个Delete对象用于处理删除操作
+     * what:   返回一个Delete对象用于处理删除操作
      *
      * @return
      */

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 视图服务
+ * what:    视图服务
  * <p>
  * 提供装饰视图侧边菜单、修改请求路由等功能
  *
@@ -18,11 +18,11 @@ import java.util.Map;
 @Service
 public class ViewService {
     /**
-     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
+     * what:    转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
      *
      * @param targetViewName       目标视图名
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
-     * @param parameters            参数
+     * @param parameters           参数
      */
     public ModelAndView forwardDecorateView(String targetViewName, String activeSidebarItemUrl,
                                             Map<String, Object> parameters) {
@@ -33,7 +33,7 @@ public class ViewService {
     }
 
     /**
-     * 转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
+     * what:    转发到装饰页面，在装饰页面系统会附加视图公共数据，之后再转发到目标页面，通过Sitemesh完成拼装
      *
      * @param targetViewName       目标视图名
      * @param activeSidebarItemUrl 需要激活的SidebarItem Url
@@ -43,7 +43,7 @@ public class ViewService {
     }
 
     /**
-     * 获得转发视图控制器的地址
+     * what:    获得转发视图控制器的地址
      *
      * @param targetViewName       跳转目标视图名
      * @param activeSidebarItemUrl 激活的SidebarItem Url
@@ -57,7 +57,7 @@ public class ViewService {
     }
 
     /**
-     * 跳转到错误页面
+     * what:    跳转到错误页面
      *
      * @param message              失败描述信息
      * @param activeSidebarItemUrl
@@ -70,7 +70,7 @@ public class ViewService {
     }
 
     /**
-     * 跳转到错误页面
+     * what:    跳转到错误页面
      *
      * @param returnCode           返回编码
      * @param activeSidebarItemUrl
@@ -80,7 +80,7 @@ public class ViewService {
     }
 
     /**
-     * 跳转到成功页面
+     * what:    跳转到成功页面
      *
      * @param message              成功描述信息
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
@@ -95,7 +95,7 @@ public class ViewService {
     }
 
     /**
-     * 跳转到成功页面
+     * what:    跳转到成功页面
      *
      * @param returnCode           返回编码
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址
@@ -106,7 +106,7 @@ public class ViewService {
     }
 
     /**
-     * 跳转到异常页面
+     * what:    跳转到异常页面
      *
      * @param message              描述信息
      * @param activeSidebarItemUrl 激活的侧边栏菜单链接地址

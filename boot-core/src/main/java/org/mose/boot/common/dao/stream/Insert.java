@@ -10,7 +10,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.util.Assert;
 
 /**
- * Description: 插入流式处理器
+ * what:   插入流式处理器
  * <p>
  * 采用流式编程方法，向Insert对象注入参数，最后调用插入方法插入数据
  *
@@ -47,7 +47,7 @@ public class Insert<Entity, Id> {
     protected String idColumnName;
 
     /**
-     * 构造函数，传入的参数均不可修改
+     * what:   构造函数，传入的参数均不可修改
      *
      * @param jdbcTemplate
      * @param namedParameterJdbcTemplate
@@ -58,9 +58,10 @@ public class Insert<Entity, Id> {
     }
 
     /**
-     * 插入语句
+     * what:   插入语句
      *
      * @param sql
+     *
      * @return
      */
     public Insert<Entity, Id> sql(String sql) {
@@ -69,9 +70,10 @@ public class Insert<Entity, Id> {
     }
 
     /**
-     * 带插入数据库的实体
+     * what:   带插入数据库的实体
      *
      * @param entity
+     *
      * @return
      */
     public Insert<Entity, Id> entity(Entity entity) {
@@ -80,9 +82,10 @@ public class Insert<Entity, Id> {
     }
 
     /**
-     * 主键对应的列名称，用于获取数据库自动生成的主键值
+     * what:   主键对应的列名称，用于获取数据库自动生成的主键值
      *
      * @param idColumnName
+     *
      * @return
      */
     public Insert<Entity, Id> idColumnName(String idColumnName) {
@@ -91,7 +94,7 @@ public class Insert<Entity, Id> {
     }
 
     /**
-     * 插入一条记录
+     * what:   插入一条记录
      *
      * @return 插入数据为true，否则为false
      */
@@ -104,7 +107,7 @@ public class Insert<Entity, Id> {
     }
 
     /**
-     * 如果主键是由数据库自动生成的，数据插入后，获取并返回idColumnName对应的值
+     * what:   如果主键是由数据库自动生成的，数据插入后，获取并返回idColumnName对应的值
      *
      * @return idColumnName对应的值
      */

@@ -14,9 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * what:    图片、文件上传控制器. <br/>
+ * when:    需要向服务器上传图片或文件时.<br/>
+ *
+ * @author 靳磊 created on 2017/12/22
+ */
 @Controller
 @RequestMapping("/common/upload")
 public class UploadController {
+    /**
+     * 上传服务
+     */
     @Autowired
     private UploadService uploadService;
 
@@ -26,7 +35,7 @@ public class UploadController {
      *
      * @return uploadImg
      *
-     * @author 杨超凡 created on 2017年11月2日
+     * @author 靳磊 created on 2017年11月2日
      */
     @GetMapping("/image.htm")
     private String uploadImage() {
@@ -41,7 +50,7 @@ public class UploadController {
      *
      * @throws IllegalStateException IllegalStateException
      * @throws IOException           IOException
-     * @author 杨超凡 created on 2017年11月2日
+     * @author 靳磊 created on 2017年11月2日
      */
     @PostMapping("/image.htm")
     public void uploadImage(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String context) {
@@ -61,7 +70,7 @@ public class UploadController {
      *
      * @return uploadImg
      *
-     * @author 杨超凡 created on 2017年11月2日
+     * @author 靳磊 created on 2017年11月2日
      */
     @GetMapping("/file.htm")
     private String uploadFile() {
@@ -76,7 +85,7 @@ public class UploadController {
      *
      * @throws IllegalStateException IllegalStateException
      * @throws IOException           IOException
-     * @author 杨超凡 created on 2017年11月2日
+     * @author 靳磊 created on 2017年11月2日
      */
     @PostMapping("/file.htm")
     public void uploadFile(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String context) {

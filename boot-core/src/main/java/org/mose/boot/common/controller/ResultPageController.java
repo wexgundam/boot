@@ -7,24 +7,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Description: 错误页面控制器
+ * what:    错误页面控制器. <br/>
+ * when:    其他控制器或者容器发送错误时，将错误信息提交到该控制，由该控制器服务错误页面与消息的渲染.<br/>
+ * how:     向/common/result/xxx.htm发起请求.<br/>
  *
- * @Author: 靳磊
- * @Date: 2017/8/30 8:53
+ * @author 靳磊 created on 2017/12/22
  */
 @Controller
 @RequestMapping("/common/result")
 public class ResultPageController {
+    /**
+     * what:    404错误渲染页面. <br/>
+     *
+     * @param request
+     * @param response
+     *
+     * @return
+     *
+     * @author 靳磊 created on 2017/12/22
+     */
     @RequestMapping("/404.htm")
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/404";
     }
 
+    /**
+     * what:    500错误渲染页面
+     *
+     * @param request
+     * @param response
+     *
+     * @return
+     */
     @RequestMapping("/500.htm")
     public String errorPage500(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/500";
     }
 
+    /**
+     * what:    访问未授权服务被拒绝后的
+     *
+     * @param request
+     *
+     * @return
+     */
     @RequestMapping(value = "/denied.htm")
     public String accessDenied(HttpServletRequest request) {
         return "/common/result/denied";

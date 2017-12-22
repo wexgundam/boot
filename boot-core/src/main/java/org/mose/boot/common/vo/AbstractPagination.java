@@ -1,12 +1,10 @@
-package org.mose.boot.common.dao;
+package org.mose.boot.common.vo;
 
 /**
- * Description: 分页模型
- *
- * 根据给定参数生成基于metronic的分页控件
- *
+ * what:     视图分页模型
+ * how:    根据给定参数生成基于metronic的分页控件
+ * <p>
  * 控件包含：第一页、上一页、可选择分页、下一页和最后一页
- *
  * 当maxPageNumberCount为偶数时，系统约定左右侧页码均富余时，左侧比右侧多显示一个页码
  * 例如2,3,4,5,6,7,8 可选择页为6个，其中6为当前页，则6左侧（2,3,4）较右侧（7,8）多页一个可选择页码
  *
@@ -41,7 +39,7 @@ public abstract class AbstractPagination {
     public abstract String createHtml();
 
     /**
-     * 获得总页数，最小为1
+     * what:    获得总页数，最小为1
      *
      * @return
      */
@@ -50,7 +48,7 @@ public abstract class AbstractPagination {
     }
 
     /**
-     * 可选择页码，前一页页码
+     * what:    可选择页码，前一页页码
      */
     protected int getPreviousPageNumber() {
         int previousPageNumber = Math.max(1, (pageNumber - 1));
@@ -58,7 +56,7 @@ public abstract class AbstractPagination {
     }
 
     /**
-     * 可选择页码，开始页码
+     * what:    可选择页码，开始页码
      */
     protected int getBeginPageNumber(int pageCount) {
         int averagePageNumberCount = maxPageNumberCount / 2;//基于当前页，可选择页平均数量
@@ -80,14 +78,14 @@ public abstract class AbstractPagination {
     }
 
     /**
-     * 可选择页码，后一页页码
+     * what:    可选择页码，后一页页码
      */
     protected int getNextPageNumber(int pageCount) {
         return Math.min(pageCount, (pageNumber + 1));
     }
 
     /**
-     * 可选择页码，结束页码
+     * what:    可选择页码，结束页码
      */
     protected int getEndPageNumber(int pageCount) {
         int averagePageNumberCount = maxPageNumberCount / 2;//基于当前页，可选择页平均数量

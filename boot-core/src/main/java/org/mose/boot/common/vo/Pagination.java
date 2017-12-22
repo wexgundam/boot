@@ -1,17 +1,15 @@
 package org.mose.boot.common.vo;
 
 
-import org.mose.boot.common.dao.AbstractPagination;
-
 /**
- * Description: 基于Metronic的分页模型
+ * what:    基于Metronic的分页模型
  *
  * @Author: 靳磊
  * @Date: 2017/8/20:22
  */
 public class Pagination extends AbstractPagination {
     /**
-     * 根据给定的参数生成分页Html
+     *  what:    根据给定的参数生成分页Html
      */
     @Override
     public String createHtml() {
