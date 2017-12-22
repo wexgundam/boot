@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Description: 基于Spring Security的Http Session timeout设置方式
- *
+ * what:    基于Spring Security的Http Session timeout设置方式
+ * <p>
  * 继承SavedRequestAwareAuthenticationSuccessHandler，认证成功后可以重定向到认证前用户请求的地址
  *
  * @Author: 靳磊
@@ -26,6 +26,16 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
      */
     private int timeout = 60 * 30;
 
+    /**
+     * what:    处理认证成功事件
+     *
+     * @param request
+     * @param response
+     * @param authentication
+     *
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {

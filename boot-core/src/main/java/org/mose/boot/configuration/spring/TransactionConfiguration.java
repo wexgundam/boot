@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.SpringTransactionAnnotationPar
 import org.springframework.transaction.interceptor.*;
 
 /**
- * Description: 事务配置
- *
+ * what:    事务配置
+ * <p>
  * spring boot 1.5.4自动依赖的aspectj 1.8.10冲突，如果部署报错请检查Maven依赖
  *
  * @Author: 靳磊
@@ -27,11 +27,14 @@ import org.springframework.transaction.interceptor.*;
 public class TransactionConfiguration {
     private static final String AOP_POINTCUT_EXPRESSION = "execution (* org.mose.springboot.*..service.*.*(..))";
 
+    /**
+     * spring事务管理器
+     */
     @Autowired
     private PlatformTransactionManager transactionManager;
 
     /**
-     * 事务处理通知
+     * what:    事务处理谏言
      *
      * @return
      */
@@ -54,7 +57,7 @@ public class TransactionConfiguration {
     }
 
     /**
-     * 织入
+     * what:    织入
      *
      * @return
      */

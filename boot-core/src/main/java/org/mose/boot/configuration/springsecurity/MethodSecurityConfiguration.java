@@ -7,7 +7,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
 /**
- * @Description:
+ * what:    方法级安全java配置
+ * warning: 暂时无效
+ *
  * @Author: 靳磊
  * @Date: 2017/7/25:22
  */

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Description:监听Controller抛出的所有Exception，Controller无须配置@Exception处理方法
+ * what:    监听Controller抛出的所有Exception，Controller无须配置@Exception处理方法
  *
  * @Author: 靳磊
  * @Date: 2017/6/22:20
@@ -26,9 +26,21 @@ public class ControllerExceptionAspect {
     private static Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
     private static Logger securityLogger = LoggerFactory.getLogger("securityLogger");
 
+    /**
+     * 视图服务
+     */
     @Autowired
     private ViewService viewService;
 
+    /**
+     * what:  处理控制器抛出的异常
+     *
+     * @param request
+     * @param response
+     * @param ex
+     *
+     * @return
+     */
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(HttpServletRequest request, HttpServletResponse response, Exception ex) {
         exceptionLogger.error("Controller Exception ##############################", ex);
@@ -46,6 +58,15 @@ public class ControllerExceptionAspect {
         }
     }
 
+    /**
+     * what:    处理访问未授权而抛出的拒绝访问异常
+     *
+     * @param request
+     * @param response
+     * @param ex
+     *
+     * @return
+     */
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView accessDeniedException(HttpServletRequest request, HttpServletResponse response, Exception ex) {
         securityLogger.error("Access Denied Exception ##############################", ex);

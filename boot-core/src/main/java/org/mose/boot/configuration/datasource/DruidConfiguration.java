@@ -24,16 +24,20 @@ import org.springframework.context.annotation.Scope;
 import javax.sql.DataSource;
 
 /**
- * 配置Druid
+ * what:    配置Druid
  * <p>
  * 提供两种配置方式
- * <p>
  * 1. 基于servlet3的配置方式，已注释
- * <p>
  * 2. 基于spirng提供的注册器的配置方式
  */
 @Configuration
 public class DruidConfiguration {
+    /**
+     * what:    Mysql的分页处理器
+     * when:    当系统激活"mysql"时有效
+     *
+     * @return
+     */
     @Bean
     @Scope("prototype")
     @Profile("mysql")
@@ -41,6 +45,12 @@ public class DruidConfiguration {
         return new MysqlPaging();
     }
 
+    /**
+     * what:    Oracle'的分页处理器
+     * when:    当系统激活"oracle"时有效
+     *
+     * @return
+     */
     @Bean
     @Scope("prototype")
     @Profile("oracle")
@@ -49,7 +59,8 @@ public class DruidConfiguration {
     }
 
     /**
-     * 声明name为“dataSource”的bean，对应druid sql监控才能显示
+     * what:    声明name为“dataSource”的bean，对应druid sql监控才能显示
+     * warning: 该datasource为主datasource
      *
      * @return
      */
@@ -63,7 +74,7 @@ public class DruidConfiguration {
     }
 
     /**
-     * 参数说明
+     * what:    druid参数说明
      * <p>
      * dataSourceLogEnabled     * 所有DataSource相关的日志
      * connectionLogEnabled     * 所有连接相关的日志
@@ -101,7 +112,7 @@ public class DruidConfiguration {
     }
 
     /**
-     * 注册一个Druid内置的StatViewServlet，用于展示Druid的统计信息。
+     * what:    注册一个Druid内置的StatViewServlet，用于展示Druid的统计信息。
      *
      * @return
      */
@@ -125,7 +136,7 @@ public class DruidConfiguration {
     }
 
     /**
-     * 注册一个：filterRegistrationBean,添加请求过滤规则
+     * what:    注册一个：filterRegistrationBean,添加请求过滤规则
      *
      * @return
      */
@@ -143,10 +154,7 @@ public class DruidConfiguration {
     }
 
     /**
-     * 监听Spring
-     * 1.定义拦截器
-     * 2.定义切入点
-     * 3.定义通知类
+     * what:    监听Spring
      *
      * @return
      */
@@ -156,7 +164,7 @@ public class DruidConfiguration {
     }
 
     /**
-     * 监控Spring bean
+     * what:    监控Spring bean
      *
      * @return
      */
@@ -168,6 +176,11 @@ public class DruidConfiguration {
         return druidStatPointcut;
     }
 
+    /**
+     * what:    建立基于AOP的监听
+     *
+     * @return
+     */
     @Bean
     public Advisor druidStatAdvisor(JdkRegexpMethodPointcut druidStatPointcut, DruidStatInterceptor druidStatInterceptor) {
         return new DefaultPointcutAdvisor(druidStatPointcut, druidStatInterceptor);

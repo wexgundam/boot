@@ -16,16 +16,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    操作拦截器，记录操作日志. <br/>
  *
  * @author 靳磊 created on 2017/12/19
  */
 public class OperationInterceptor extends HandlerInterceptorAdapter {
     private Logger logger = LoggerFactory.getLogger("operationLogger");
 
+    /**
+     * what:    拦截请求，记录操作日志
+     *
+     * @param request
+     * @param response
+     * @param handler
+     *
+     * @return
+     *
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

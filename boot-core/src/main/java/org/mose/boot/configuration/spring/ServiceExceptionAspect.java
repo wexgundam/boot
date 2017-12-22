@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * service层异常拦截记录，用于捕捉Service层的所有异常信息，并记录日志
+ * what:    service层异常拦截记录，用于捕捉Service层的所有异常信息，并记录日志
  *
- * @author 孔垂云
+ * @author 靳磊
  */
 
 @Aspect
@@ -18,6 +18,12 @@ import org.springframework.stereotype.Component;
 public class ServiceExceptionAspect {
     private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
+    /**
+     * what:    监听所有服务的方法，处理异常
+     *
+     * @param joinPoint
+     * @param e
+     */
     @AfterThrowing(value = "execution (* org.mose.boot.*..service.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         Object target = joinPoint.getTarget();  // 拦截的实体类

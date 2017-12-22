@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * Description:Spring Security的java configuration
+ * what:    Spring Security的java configuration
  *
  * @Author: 靳磊
  * @Date: 2017/7/19 13:47
@@ -25,7 +25,8 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     AuthenticationSuccessHandler authenticationSuccessHandler;
 
     /**
-     * Description：配置Spring Security
+     * what:    配置Spring Security
+     * <p>
      * 1.允许任何人访问登录地址（"/loging.html"）
      * 2.用户认证处理地址("/login")
      * 3.允许任何人访问静态资源目录（"/assets/**"）
@@ -61,7 +62,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Description:配置认证细节
+     * what:    配置认证细节
      *
      * @param auth
      *
@@ -79,7 +80,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Description:认证事件发布器
+     * what:    认证事件发布器
      *
      * @Author: 靳磊
      * @Date: 2017/8/1 16:55
@@ -90,7 +91,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 密码加密算法
+     * what:    密码加密算法
      *
      * @return
      */

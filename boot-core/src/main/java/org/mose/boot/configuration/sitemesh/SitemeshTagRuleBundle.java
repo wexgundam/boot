@@ -7,9 +7,16 @@ import org.sitemesh.content.tagrules.html.ExportTagToContentRule;
 import org.sitemesh.tagprocessor.State;
 
 /**
- *
+ * what:    Sitemesh标签定义规则
  */
 public class SitemeshTagRuleBundle implements TagRuleBundle {
+    /**
+     * what:    添加自定义标签处理器
+     *
+     * @param defaultState
+     * @param contentProperty
+     * @param siteMeshContext
+     */
     @Override
     public void install(State defaultState, ContentProperty contentProperty, SiteMeshContext siteMeshContext) {
         defaultState.addRule("content-css", new ExportTagToContentRule(siteMeshContext, contentProperty.getChild("content-css"), false));

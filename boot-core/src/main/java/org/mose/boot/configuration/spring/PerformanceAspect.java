@@ -9,9 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * 用于监控系统性能，service层性能有问题的记录下来
+ * what:    用于监控系统性能，service层性能有问题的记录下来
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-06-13
  */
 @Aspect
@@ -19,13 +19,15 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "custom.performance")
 public class PerformanceAspect {
     private static Logger logger = LoggerFactory.getLogger("performanceLogger");
+    /**
+     * 检查性能检查点，单位为毫秒
+     */
     private int checkPoint;
 
     @Around("execution (* org.mose.boot.*..service.*.*(..))")
     public Object performanceIterceptor(ProceedingJoinPoint joinPoint) throws Throwable {
-        Object result = null;
         long l = System.currentTimeMillis();
-        result = joinPoint.proceed();
+        Object result = joinPoint.proceed();
         long consume = System.currentTimeMillis() - l;
         if (consume > checkPoint) {
             //记录系统操作较慢的service处理过程

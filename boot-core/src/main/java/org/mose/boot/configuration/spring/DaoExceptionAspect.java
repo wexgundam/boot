@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * dao层异常拦截记录，用于捕捉Dao层的所有异常信息，并记录日志
+ * what:    dao层异常拦截记录，用于捕捉Dao层的所有异常信息，并记录日志
  *
  * @author 孔垂云
  * @date 2017-06-13
@@ -17,6 +17,12 @@ import org.slf4j.LoggerFactory;
 public class DaoExceptionAspect {
     private static Logger logger = LoggerFactory.getLogger("exceptionLogger");
 
+    /**
+     * what:    监听所有数据获取服务的方法，处理异常
+     *
+     * @param joinPoint
+     * @param e
+     */
     @AfterThrowing(value = "execution (* org.mose.boot.*..repository.*.*(..))", throwing = "e")
     public void loggingException(JoinPoint joinPoint, Exception e) {
         // 拦截的实体类

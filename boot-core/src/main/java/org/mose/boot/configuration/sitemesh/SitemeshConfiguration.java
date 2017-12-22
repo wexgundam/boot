@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import javax.servlet.DispatcherType;
 
 /**
- * sitemesh映射
+ * what:    sitemesh映射
  */
 @Configuration
 public class SitemeshConfiguration {
     /**
-     * 设置sitemesh映射
+     * what:    设置sitemesh映射
      *
      * @return
      */

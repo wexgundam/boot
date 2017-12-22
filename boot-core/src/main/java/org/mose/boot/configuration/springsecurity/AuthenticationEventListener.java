@@ -7,14 +7,19 @@ import org.springframework.security.authentication.event.AbstractAuthenticationE
 import org.springframework.stereotype.Component;
 
 /**
- * 接收Spring Security发布的AbstractAuthenticationEvent
- *
- * Created by Administrator on 2017/8/1.
+ * what:    接收Spring Security发布的AbstractAuthenticationEvent
+ * <p>
+ * Created by 靳磊 on 2017/8/1.
  */
 @Component
 public class AuthenticationEventListener implements ApplicationListener<AbstractAuthenticationEvent> {
     private static Logger logger = LoggerFactory.getLogger("securityLogger");
 
+    /**
+     * 处理认证事件
+     *
+     * @param event
+     */
     @Override
     public void onApplicationEvent(AbstractAuthenticationEvent event) {
         logger.info("Receive event of type:" + event.getClass().getName() + ":" + event.toString());
