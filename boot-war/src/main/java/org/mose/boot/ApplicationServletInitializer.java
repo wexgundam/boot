@@ -10,14 +10,30 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 /**
- * 以war包形式部署到web容器的启动类
+ * what:    以war包形式部署到web容器的启动类
+ * when:    当以war形式使用spring boot时，通过该类替换web.xml
+ * warning: 只能在servlet3.1以上环境使用
  */
 public class ApplicationServletInitializer extends SpringBootServletInitializer {
+    /**
+     * 配置spring boot application initializer
+     *
+     * @param builder
+     *
+     * @return
+     */
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(ApplicationInitializer.class);
     }
 
+    /**
+     * 容器启动后增加配置
+     *
+     * @param servletContext
+     *
+     * @throws ServletException
+     */
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
