@@ -49,7 +49,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/**").hasRole("User")
-                .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login")
+                .and().formLogin().loginPage("/login.htm").permitAll().loginProcessingUrl("/login.htm")
                 .successHandler(authenticationSuccessHandler)
                 .and().logout().logoutUrl("/logout.htm").permitAll()
                 //配置未授权处理地址

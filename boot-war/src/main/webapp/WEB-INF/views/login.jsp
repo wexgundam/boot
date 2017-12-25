@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN LOGIN -->
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
-        <c:url value="/login" var="loginProcessingUrl" />
+        <c:url value="/login.htm" var="loginProcessingUrl" />
         <form class="login-form" action="${loginProcessingUrl}" method="post">
             <h3 class="form-title">Login to your account</h3>
             <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
