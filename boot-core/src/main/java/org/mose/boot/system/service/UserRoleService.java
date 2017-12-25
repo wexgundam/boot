@@ -12,24 +12,30 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Description: 用户角色服务
+ * what:    用户角色服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
  */
 @Service
 public class UserRoleService {
+    /**
+     * 用户角色数组分割符
+     */
     public static final String ROLE_ID_ARRAY_STRING_SPLITTER = "@";
     /**
      * 角色数据获取对象
      */
     @Autowired
     private IUserRoleRepository userRoleRepository;
+    /**
+     * session服务
+     */
     @Autowired
     private ISessionService sessionService;
 
     /**
-     * 查询给定用户的角色
+     * what:    查询给定用户的角色
      *
      * @param userId
      * @param pageNumber
@@ -43,7 +49,7 @@ public class UserRoleService {
     }
 
     /**
-     * 查询给定用户的角色
+     * what:    查询给定用户的角色
      *
      * @param userId
      *
@@ -55,7 +61,7 @@ public class UserRoleService {
     }
 
     /**
-     * 查询给定用户的角色总数
+     * what:    查询给定用户的角色总数
      *
      * @param userId
      *
@@ -66,7 +72,7 @@ public class UserRoleService {
     }
 
     /**
-     * 更新
+     * what:    根据给定的角色列表更新用户的角色
      *
      * @param userId
      */
@@ -85,6 +91,14 @@ public class UserRoleService {
         return ReturnCodeUtil.SUCCESS__UPDATE;
     }
 
+    /**
+     * what:    删除给定用户的角色
+     *
+     * @param userId
+     * @param roleId
+     *
+     * @return
+     */
     @Transactional
     public int deleteUserRole(int userId, int roleId) {
         sessionService.deleteAllSessionsByUserId(userId);
@@ -92,7 +106,7 @@ public class UserRoleService {
     }
 
     /**
-     * 更新
+     * what:    根据用户id删除用户角色
      *
      * @param userId
      */
@@ -102,6 +116,13 @@ public class UserRoleService {
         return userRoleRepository.deleteAllByUserId(userId);
     }
 
+    /**
+     * what:    根据角色id删除用户角色
+     *
+     * @param roleId
+     *
+     * @return
+     */
     @Transactional
     public int deleteUserRolesByRoleId(int roleId) {
         sessionService.deleteAllSessionsByRoleId(roleId);

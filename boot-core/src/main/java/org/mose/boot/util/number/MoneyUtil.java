@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 /**
  * 涉及金额计算及展示的方法
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017年2月21日
  */
 public class MoneyUtil {
@@ -17,7 +17,7 @@ public class MoneyUtil {
      *
      * @param val
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String formatMoney(BigDecimal val) {
@@ -32,7 +32,7 @@ public class MoneyUtil {
      *
      * @param amount 金额
      * @return String
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal moneyDToS(BigDecimal amount) {
@@ -45,7 +45,7 @@ public class MoneyUtil {
      *
      * @param amount
      * @return BigDecimal
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal moneySToD(BigDecimal amount) {

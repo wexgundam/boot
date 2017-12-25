@@ -6,7 +6,7 @@ import java.io.ByteArrayInputStream;
 /**
  * 说明：验证码的图像生成工具
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class ImgFontByte {

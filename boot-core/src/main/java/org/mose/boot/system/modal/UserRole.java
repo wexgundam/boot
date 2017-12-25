@@ -6,16 +6,25 @@
 package org.mose.boot.system.modal;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    用户角色. <br/>
+ * <p>
+ * 为了便于管理用户的权限，通过角色对权限进行了分组
+ * 再通过为用户赋予角色快速、批量设置权限
  *
  * @author 靳磊 created on 2017/12/6
  */
 public class UserRole {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 用户id
+     */
     private int userId;
+    /**
+     * 角色id
+     */
     private int roleId;
 
     @Override

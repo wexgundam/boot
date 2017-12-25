@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * 功能描述:随机数生成工具
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-06-13
  */
 public class RandomCodeUtil {

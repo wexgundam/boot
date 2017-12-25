@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 页面返回url工具 由于所有页面都是直接跳转，必须得把当前页面的查询条件一起带到下个页面，所以必须把返回的url进行页面间参数传递
  * <p>
- * Author  孔垂云
+ * Author  靳磊
  * Date  2017/6/11.
  */
 public class BackUrlUtil {

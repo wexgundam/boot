@@ -17,23 +17,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 权限控制器
+ * what:    权限控制器. <br/>
  *
- * @Author: 靳磊
- * @Date: 2017/8/18 14:52
+ * @author 靳磊 created on 2017/12/25
  */
 @Controller
 @RequestMapping("/system/authority")
 public class AuthorityController {
+    /**
+     * 资源地址服务
+     */
     @Autowired
     private ResourceService resourceService;
+    /**
+     * 权限管理服务
+     */
     @Autowired
     private AuthorityService authorityService;
+    /**
+     * 视图服务
+     */
     @Autowired
     private ViewService viewService;
 
     /**
-     * 该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
+     * what:    该控制器管理的主viewName，其下包含的所有view的激活侧边栏都为该ViewName
      */
     String authorityIndexViewName = "/system/authority/index";
     String authorityIndexPageUrl = null;
@@ -44,7 +52,7 @@ public class AuthorityController {
     }
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -62,7 +70,7 @@ public class AuthorityController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -73,7 +81,7 @@ public class AuthorityController {
     }
 
     /**
-     * 执行新增操作
+     * what:    执行新增操作
      *
      * @param authority
      *
@@ -90,7 +98,7 @@ public class AuthorityController {
     }
 
     /**
-     * 请求更新界面
+     * what:    请求更新界面
      *
      * @param id
      *
@@ -106,7 +114,7 @@ public class AuthorityController {
     }
 
     /**
-     * 请求更新操作
+     * what:    请求更新操作
      *
      * @param authority
      *
@@ -123,7 +131,7 @@ public class AuthorityController {
     }
 
     /**
-     * 执行删除操作
+     * what:    执行删除操作
      *
      * @param id
      *

@@ -21,14 +21,20 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Description: 场景服务
+ * what:    场景服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
  */
 @Service
 public class ScenarioService {
+    /**
+     * 异常日志
+     */
     private Logger exceptionLogger = LoggerFactory.getLogger("exceptionLogger");
+    /**
+     * 用户服务
+     */
     @Autowired
     private UserService userService;
     /**
@@ -38,16 +44,22 @@ public class ScenarioService {
     private IScenarioRepository scenarioRepository;
 
     /**
-     * 获取所有场景并按照Tree组织排序
+     * what:    获取所有场景并按照Tree组织排序
      *
      * @return
      */
-//    @Cacheable(value = "sysCache", key = "'scenarioTree'")
     public List<Scenario> queryAllScenariosTree() {
         List<Scenario> allScenarios = scenarioRepository.queryAll();
         return toTree(allScenarios);
     }
 
+    /**
+     * what:    将场景List转成Tree
+     *
+     * @param scenarios
+     *
+     * @return
+     */
     private List<Scenario> toTree(List<Scenario> scenarios) {
         List<Scenario> scenarioTree = new ArrayList<>();
         for (Scenario scenario : scenarios) {
@@ -61,7 +73,8 @@ public class ScenarioService {
     }
 
     /**
-     * 获取给定场景的子场景
+     * what:    获取给定场景的子场景
+     * how:     通过递归算法
      *
      * @param scenarios
      * @param scenario
@@ -78,6 +91,13 @@ public class ScenarioService {
         scenario.setChildren(children.isEmpty() ? null : children);
     }
 
+    /**
+     * what:    根据给定的用户名查询用户可访问的场景，并生成Tree
+     *
+     * @param username
+     *
+     * @return
+     */
     public List<Scenario> queryAllScenariosTreeByUsername(String username) {
         User user = userService.queryUserWithAuthoritiesByUsername(username);
         List<String> authorityNames = new ArrayList<>();
@@ -89,6 +109,14 @@ public class ScenarioService {
         return toTree(allScenarios, authorityNames);
     }
 
+    /**
+     * what:    遍历场景列表，获取符合给定权限的场景，并转成Tree
+     *
+     * @param scenarios
+     * @param authorityNames
+     *
+     * @return
+     */
     private List<Scenario> toTree(List<Scenario> scenarios, List<String> authorityNames) {
         List<Scenario> scenarioTree = new ArrayList<>();
         for (Scenario scenario : scenarios) {
@@ -102,7 +130,7 @@ public class ScenarioService {
     }
 
     /**
-     * 获取给定场景的子场景
+     * what:    获取符合权限的场景的子场景
      *
      * @param scenarios
      * @param scenario
@@ -120,7 +148,8 @@ public class ScenarioService {
     }
 
     /**
-     * 获取所有场景并按照List组织排序
+     * what:    获取所有场景并按照List组织排序
+     * warning: 访问该方法需要具备要求的权限
      *
      * @return
      */
@@ -134,7 +163,7 @@ public class ScenarioService {
     }
 
     /**
-     * 递归方法，遍历scenario的scenario，将其均加入到list，最后返回所有list形式的集合
+     * what:    递归方法，遍历scenario的scenario，将其均加入到list，最后返回所有list形式的集合
      *
      * @param scenario
      *
@@ -152,7 +181,7 @@ public class ScenarioService {
     }
 
     /**
-     * 根据给定的id查询
+     * what:    根据给定的id查询
      *
      * @param id
      *
@@ -163,7 +192,7 @@ public class ScenarioService {
     }
 
     /**
-     * Description: 获得所有场景基于ZTree的Json结构
+     * what:    获得所有场景基于ZTree的Json结构
      *
      * @return
      *
@@ -187,7 +216,7 @@ public class ScenarioService {
     }
 
     /**
-     * Description: 获得给定场景对应的TreeNode
+     * what:    获得给定场景对应的TreeNode
      *
      * @param scenario
      *
@@ -214,7 +243,7 @@ public class ScenarioService {
     }
 
     /**
-     * Description:删除记录
+     * what:    删除记录
      *
      * @param scenario
      *
@@ -229,7 +258,7 @@ public class ScenarioService {
     }
 
     /**
-     * 更新
+     * what:    更新
      *
      * @param scenario
      */
@@ -239,7 +268,7 @@ public class ScenarioService {
     }
 
     /**
-     * 删除给定id对应的记录
+     * what:    删除给定id对应的记录
      *
      * @param id
      *

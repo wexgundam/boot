@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 系统用户Session信息 该类可以根据实际信息进行修改
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class UserSession implements Serializable {

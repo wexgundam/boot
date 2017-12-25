@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * what:    dao层异常拦截记录，用于捕捉Dao层的所有异常信息，并记录日志
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-06-13
  */
 

@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * 文件处理工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017年2月7日
  */
 public class FileUtil {
@@ -13,7 +13,7 @@ public class FileUtil {
      * 以行为单位读取文件，常用于读面向行的格式化文件
      *
      * @param filePath 文件名，路径加文件名
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017年2月7日
      */
     public static String readFile(String filePath) {
@@ -48,7 +48,7 @@ public class FileUtil {
      *
      * @param filePath    文件全路径
      * @param fileContent 文件内容
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017年2月7日
      */
     public static int writeFile(String filePath, String fileContent) {

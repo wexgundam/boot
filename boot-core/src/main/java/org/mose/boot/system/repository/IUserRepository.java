@@ -6,14 +6,14 @@ import org.mose.boot.util.page.PageNavigate;
 import java.util.List;
 
 /**
- * Description: 用户数据获取对象
+ * what:    用户数据获取对象
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */
 public interface IUserRepository {
     /**
-     * 根据id查询
+     * what:    根据id查询
      *
      * @param id
      *
@@ -23,7 +23,7 @@ public interface IUserRepository {
 
 
     /**
-     * 根据用户账户名查询
+     * what:    根据用户账户名查询
      *
      * @param username
      *
@@ -32,7 +32,7 @@ public interface IUserRepository {
     User queryOneByUsername(String username);
 
     /**
-     * 查询是否已存在给定用户名的数据
+     * what:    查询是否已存在给定用户名的数据
      *
      * @param username
      *
@@ -41,17 +41,17 @@ public interface IUserRepository {
     boolean queryExistByUsername(String username);
 
     /**
-     * 分页查询用户
+     * what:    分页查询用户
      */
     List<User> queryMany(int pageNumber, int pageRowCount);
 
     /**
-     * 查询全部用户
+     * what:    查询全部用户
      */
     List<User> queryAll();
 
     /**
-     * 查询具有给定角色id的所有用户
+     * what:    查询具有给定角色id的所有用户
      *
      * @param roleId
      *
@@ -60,35 +60,35 @@ public interface IUserRepository {
     List<User> queryAllByRoleId(int roleId);
 
     /**
-     * 查询用户总数
+     * what:    查询用户总数
      *
      * @return
      */
     int queryCount();
 
     /**
-     * 插入一条记录
+     * what:    插入一条记录
      *
      * @param user
      */
     int insertOne(User user);
 
     /**
-     * 更新一条记录
+     * what:    更新一条记录
      *
      * @param user
      */
     int updateOne(User user);
 
     /**
-     * 删除一条记录
+     * what:    删除一条记录
      *
      * @param user
      */
     int deleteOne(User user);
 
     /**
-     * 根据Id删除记录
+     * what:    根据Id删除记录
      *
      * @param id
      *

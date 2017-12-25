@@ -13,13 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Description: 用户服务
+ * what:    用户服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
  */
 @Service
 public class UserService {
+    /**
+     * spring security提供的密码加密解密服务
+     */
     @Autowired
     private PasswordEncoder passwordEncoder;
     /**
@@ -27,6 +30,9 @@ public class UserService {
      */
     @Autowired
     private IUserRepository userRepository;
+    /**
+     * 用户角色服务
+     */
     @Autowired
     private UserRoleService userRoleService;
     /**
@@ -34,6 +40,9 @@ public class UserService {
      */
     @Autowired
     private RoleService roleService;
+    /**
+     * 角色权限服务
+     */
     @Autowired
     private RoleAuthorityService roleAuthorityService;
 
@@ -49,7 +58,21 @@ public class UserService {
     }
 
     /**
-     * 获取所有场景并按照树形组织排序
+     * what:    根据给定的用户名获取用户并且附带用户的权限
+     *
+     * @param username
+     *
+     * @return
+     */
+    public User queryUserWithAuthoritiesByUsername(String username) {
+        User user = userRepository.queryOneByUsername(username);
+        List<Authority> authorities = roleAuthorityService.queryAllAuthoritiesByUserId(user.getId());
+        user.setAuthorities(authorities);
+        return user;
+    }
+
+    /**
+     * what:    获取用户
      *
      * @return
      */
@@ -58,7 +81,13 @@ public class UserService {
         return users;
     }
 
-
+    /**
+     * what:    获取给定角色对应的用户
+     *
+     * @param roleId
+     *
+     * @return
+     */
     public List<User> queryAllUsersByRoleId(int roleId) {
         List<User> users = userRepository.queryAllByRoleId(roleId);
         return users;
@@ -66,9 +95,6 @@ public class UserService {
 
     /**
      * what:    获取用户总数. <br/>
-     * when:    (这里描述这个方法适用时机 – 可选).<br/>
-     * how:     (这里描述这个方法的执行流程或使用方法 – 可选).<br/>
-     * warning: (这里描述这个方法的注意事项 – 可选).<br/>
      *
      * @param
      *
@@ -81,7 +107,7 @@ public class UserService {
     }
 
     /**
-     * Description:删除记录
+     * what:    删除记录
      *
      * @param user
      *
@@ -97,7 +123,7 @@ public class UserService {
     }
 
     /**
-     * 更新
+     * what:    更新
      *
      * @param user
      */
@@ -107,7 +133,7 @@ public class UserService {
     }
 
     /**
-     * 删除给定id对应的记录
+     * what:    删除给定id对应的记录
      *
      * @param id
      *
@@ -118,6 +144,7 @@ public class UserService {
         userRoleService.deleteUserRolesByUserId(id);
         return userRepository.deleteOne(id);
     }
+
 
     public PasswordEncoder getPasswordEncoder() {
         return passwordEncoder;
@@ -151,11 +178,6 @@ public class UserService {
         this.userRoleService = userRoleService;
     }
 
-    public User queryUserWithAuthoritiesByUsername(String username) {
-        User user = userRepository.queryOneByUsername(username);
-        List<Authority> authorities = roleAuthorityService.queryAllAuthoritiesByUserId(user.getId());
-        user.setAuthorities(authorities);
-        return user;
-    }
+
 }
 

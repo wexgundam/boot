@@ -2,7 +2,7 @@ package org.mose.boot.util.model;
 
 /**
  * 下拉框的实体类
- * Author  孔垂云
+ * Author  靳磊
  * Date  2017/6/11.
  */
 public class ComboboxVO {

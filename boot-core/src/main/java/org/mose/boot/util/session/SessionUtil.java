@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * session工具类，用于获取用户session
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class SessionUtil {
@@ -15,7 +15,7 @@ public class SessionUtil {
      * @param request
      * @return UserSession
      * @version 1.0.0
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static UserSession getUserSession(HttpServletRequest request) {

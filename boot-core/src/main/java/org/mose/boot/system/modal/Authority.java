@@ -6,16 +6,26 @@
 package org.mose.boot.system.modal;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    权限. <br/>
+ * how:     命名方式：场景全域名+权限名.<br/>
+ * <p>
+ * 描述各场景下各种资源的各种权限
+ * 场景全域：某场景的全索引域。例如系统管理下的用户管理，其全域名为：系统管理/用户管理
  *
  * @author 靳磊 created on 2017/12/6
  */
 public class Authority {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 描述
+     */
     private String description;
 
     @Override

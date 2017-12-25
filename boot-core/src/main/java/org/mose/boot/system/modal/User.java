@@ -8,20 +8,41 @@ package org.mose.boot.system.modal;
 import java.util.List;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    用户. <br/>
+ * <p>
+ * 用户可以锁定、认证是否过期、账户是否过期、是否可用等信息。
+ * 用户包含权限，权限决定了用户可以访问的场景和执行的操作
  *
  * @author 靳磊 created on 2017/12/6
  */
 public class User {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 登录密码
+     */
     private String password;
+    /**
+     * 账户是否已过期
+     */
     private boolean accountNonExpired = true;
+    /**
+     * 账户是否锁定
+     */
     private boolean accountNonLocked = true;
+    /**
+     * 认证是否已过期
+     */
     private boolean credentialsNonExpired = true;
+    /**
+     * 是否可用
+     */
     private boolean enabled = true;
 
     public List<Authority> authorities;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Description: 场景控制器
+ * what:    场景控制器
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:52
@@ -21,10 +21,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/system/scenario")
 public class ScenarioController {
+    /**
+     * 资源地址服务
+     */
     @Autowired
     private ResourceService resourceService;
+    /**
+     * 场景服务
+     */
     @Autowired
     private ScenarioService scenarioService;
+    /**
+     * 视图服务
+     */
     @Autowired
     private ViewService viewService;
 
@@ -34,13 +43,18 @@ public class ScenarioController {
     String scenarioIndexViewName = "/system/scenario/index";
     String scenarioIndexPageUrl = null;
 
+    /**
+     * what:    获得场景主视图地址
+     *
+     * @return
+     */
     private String getScenarioIndexPageUrl() {
         scenarioIndexPageUrl = scenarioIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + scenarioIndexViewName + ".htm" : scenarioIndexPageUrl;
         return scenarioIndexPageUrl;
     }
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -52,7 +66,7 @@ public class ScenarioController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -65,7 +79,7 @@ public class ScenarioController {
     }
 
     /**
-     * 执行新增操作
+     * what:    执行新增操作
      *
      * @param scenario
      *
@@ -82,7 +96,7 @@ public class ScenarioController {
     }
 
     /**
-     * 请求更新界面
+     * what:    请求更新界面
      *
      * @param id
      *
@@ -100,7 +114,7 @@ public class ScenarioController {
     }
 
     /**
-     * 请求更新操作
+     * what:    请求更新操作
      *
      * @param scenario
      *
@@ -117,7 +131,7 @@ public class ScenarioController {
     }
 
     /**
-     * 执行删除操作
+     * what:    执行删除操作
      *
      * @param id
      *

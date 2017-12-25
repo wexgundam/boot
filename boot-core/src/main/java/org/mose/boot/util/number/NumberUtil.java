@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 /**
  * 数字格式化工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class NumberUtil {
@@ -17,7 +17,7 @@ public class NumberUtil {
      * @param val   字符串数字
      * @param point 小数位
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String formatDouble(String val, int point) {
@@ -34,7 +34,7 @@ public class NumberUtil {
      * @param val   数字
      * @param point 小数位
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static double formatDouble(double val, int point) {
@@ -51,7 +51,7 @@ public class NumberUtil {
      *
      * @param str
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int hexTrans(String str) {
@@ -63,7 +63,7 @@ public class NumberUtil {
      *
      * @param integer
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isInteger(String integer) {
@@ -78,7 +78,7 @@ public class NumberUtil {
      *
      * @param integer
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isInteger2(String integer) {
@@ -93,7 +93,7 @@ public class NumberUtil {
      *
      * @param decimal
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isDecimal(String decimal) {
@@ -107,7 +107,7 @@ public class NumberUtil {
      *
      * @param decimal
      * @return
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isDecimal2(String decimal) {

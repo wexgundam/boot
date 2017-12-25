@@ -16,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    侧边栏菜单项服务. <br/>
+ * <p>
+ * 根据场景生成侧边栏菜单项
  *
  * @author 靳磊 created on 2017/12/14
  */
@@ -30,11 +29,14 @@ public class SidebarItemService implements ISidebarItemService {
      */
     @Autowired
     ResourceService resourceService;
+    /**
+     * 场景服务
+     */
     @Autowired
     ScenarioService scenarioService;
 
     /**
-     * 获取全部场景，并生成侧边菜单模型
+     * what:    获取全部场景，并生成侧边菜单模型
      *
      * @return
      */
@@ -48,7 +50,7 @@ public class SidebarItemService implements ISidebarItemService {
     }
 
     /**
-     * 根据给定场景生成侧边菜单项
+     * what:    根据给定场景生成侧边菜单项
      *
      * @param parentSidebarItem
      * @param scenario

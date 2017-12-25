@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Description: 权限服务
+ * what:    权限服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
@@ -21,11 +21,14 @@ public class AuthorityService {
      */
     @Autowired
     private IAuthorityRepository authorityRepository;
+    /**
+     * 角色全向获取对象
+     */
     @Autowired
     private RoleAuthorityService roleAuthorityService;
 
     /**
-     * 根据给定的id查询
+     * what:    根据给定的id查询
      *
      * @param id
      *
@@ -36,7 +39,7 @@ public class AuthorityService {
     }
 
     /**
-     * 获取所有场景并按照树形组织排序
+     * what:    获取所有场景并按照树形组织排序
      *
      * @return
      */
@@ -47,7 +50,7 @@ public class AuthorityService {
 
 
     /**
-     * 获取所有角色列表
+     * what:    获取所有角色列表
      *
      * @return
      */
@@ -58,9 +61,6 @@ public class AuthorityService {
 
     /**
      * what:    获取用户总数. <br/>
-     * when:    (这里描述这个方法适用时机 – 可选).<br/>
-     * how:     (这里描述这个方法的执行流程或使用方法 – 可选).<br/>
-     * warning: (这里描述这个方法的注意事项 – 可选).<br/>
      *
      * @param
      *
@@ -73,7 +73,7 @@ public class AuthorityService {
     }
 
     /**
-     * Description:删除记录
+     * what:    删除记录
      *
      * @param authority
      *
@@ -89,7 +89,7 @@ public class AuthorityService {
 
 
     /**
-     * 更新
+     * what:    更新
      *
      * @param authority
      */
@@ -99,7 +99,7 @@ public class AuthorityService {
     }
 
     /**
-     * 删除给定id对应的记录
+     * what:    删除给定id对应的记录
      *
      * @param id
      *

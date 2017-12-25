@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 日期格式处理
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class DateUtil {
@@ -33,7 +33,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String dateToString(Date date, String formatStr) {
@@ -49,7 +49,7 @@ public class DateUtil {
      *
      * @return Date 返回转换后的时间
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static Date stringToDate(String dateStr, String formatStr) {
@@ -68,7 +68,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getSystemTime() {
@@ -83,7 +83,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getSystemDate() {
@@ -99,7 +99,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getShortSystemTime() {
@@ -115,7 +115,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getShortSystemDate() {
@@ -134,7 +134,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getOperaDate(String date, int dayNum, String formatStr) {
@@ -159,7 +159,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getOperaDate(String date, int dayNum) {
@@ -175,7 +175,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getOperaMonth(String date, int monthNum, String formatStr) {
@@ -200,7 +200,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getOperaMonth(String date, int monthNum) {
@@ -216,7 +216,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getDateDifference(String date1, String date2, String formatStr) {
@@ -237,7 +237,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getDateDifference(String date1, String date2) {
@@ -252,7 +252,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getHourDifference(Date date1, Date date2) {
@@ -269,7 +269,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getMonthDifference(String date1, String date2, String formatStr) {
@@ -295,7 +295,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getMonthDifference(String date1, String date2) {
@@ -318,7 +318,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getLastDayOfMonth() {
@@ -336,7 +336,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getFirstDayOfMonth() {
@@ -353,7 +353,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getFirstDayOfLastMonth() {
@@ -371,7 +371,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getLastDayOfNextMonth() {
@@ -393,7 +393,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getLastDayOfMonth(String date) {
@@ -422,7 +422,7 @@ public class DateUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static List<String> getDayList(String starDate, String endDate) {

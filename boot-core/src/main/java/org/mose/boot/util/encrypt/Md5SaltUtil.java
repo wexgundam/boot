@@ -9,7 +9,7 @@ import java.security.MessageDigest;
 /**
  * MD5加Salt加密用户密码
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017年2月7日
  */
 public class Md5SaltUtil {
@@ -34,7 +34,7 @@ public class Md5SaltUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public String encode(String rawPass) {

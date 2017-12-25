@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Ftp工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 
@@ -36,7 +36,7 @@ public class FtpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static FTPClient connectFtp(String ftp, int port, String username, String userpass, String path) {
@@ -61,7 +61,7 @@ public class FtpUtil {
      *
      * @param ftpClient
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static void disconnect(FTPClient ftpClient) {
@@ -82,7 +82,7 @@ public class FtpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static List<String> listFtpFile(FTPClient ftpClient) {
@@ -111,7 +111,7 @@ public class FtpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static List<String> readFileContent(FTPClient ftpClient, String filename) {

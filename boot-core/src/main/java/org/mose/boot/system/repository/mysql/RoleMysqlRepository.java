@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Description:
- *
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */

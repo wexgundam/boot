@@ -5,7 +5,7 @@ import org.mose.boot.util.global.GlobalConst;
 /**
  * 类说明：页码显示效果类 。1：TextModel “第一页 上一页 下一页 最后一页”；2：NumModel “第一页 2 3 4 最后一页”；
  *
- * @author 作者: 孔垂云
+ * @author 作者: 靳磊
  * @version 创建时间：2016-01-10
  */
 public class PageNavigate {

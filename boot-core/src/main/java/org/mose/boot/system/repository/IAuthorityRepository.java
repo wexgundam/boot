@@ -6,14 +6,14 @@ import org.mose.boot.system.modal.Role;
 import java.util.List;
 
 /**
- * Description: 权限数据获取对象
+ * what:    权限数据获取对象
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22
  */
 public interface IAuthorityRepository {
     /**
-     * 根据id查询
+     * what:    根据id查询
      *
      * @param id
      *
@@ -22,7 +22,7 @@ public interface IAuthorityRepository {
     Authority queryOne(int id);
 
     /**
-     * 根据权限名称查询数据是否已存在
+     * what:    根据权限名称查询数据是否已存在
      *
      * @param name
      *
@@ -31,7 +31,7 @@ public interface IAuthorityRepository {
     boolean queryExistByName(String name);
 
     /**
-     * 给定查询语句查询
+     * what:    给定查询语句查询
      *
      * @param sql
      * @param pageNumber
@@ -42,17 +42,17 @@ public interface IAuthorityRepository {
     List<Authority> queryMany(String sql, int pageNumber, int pageRowCount, Object... parameters);
 
     /**
-     * 分页查询
+     * what:    分页查询
      */
     List<Authority> queryMany(int pageNumber, int pageRowCount);
 
     /**
-     * 查询全部用户
+     * what:    查询全部用户
      */
     List<Authority> queryAll();
 
     /**
-     * 给定查询语句查询
+     * what:    给定查询语句查询
      *
      * @param sql
      *
@@ -61,35 +61,35 @@ public interface IAuthorityRepository {
     List<Authority> queryAll(String sql, Object... parameters);
 
     /**
-     * 查询总数
+     * what:    查询总数
      *
      * @return
      */
     int queryCount();
 
     /**
-     * 插入一条记录
+     * what:    插入一条记录
      *
      * @param authority
      */
     int insertOne(Authority authority);
 
     /**
-     * 更新一条记录
+     * what:    更新一条记录
      *
      * @param authority
      */
     int updateOne(Authority authority);
 
     /**
-     * 删除一条记录
+     * what:    删除一条记录
      *
      * @param authority
      */
     int deleteOne(Authority authority);
 
     /**
-     * 根据Id删除记录
+     * what:    根据Id删除记录
      *
      * @param id
      *

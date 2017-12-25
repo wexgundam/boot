@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * 验证码工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class VerifyCodeUtil {

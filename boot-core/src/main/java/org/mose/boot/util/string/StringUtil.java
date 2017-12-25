@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 /**
  * 用户字符串操作，这里面包括字符串的decode、encode、substrac等等操作
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class StringUtil {
@@ -28,7 +28,7 @@ public class StringUtil {
      *
      * @return string
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String decodeUrl(String url) {
@@ -49,7 +49,7 @@ public class StringUtil {
      *
      * @return string
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String encodeUrl(String url) {
@@ -71,7 +71,7 @@ public class StringUtil {
      *
      * @return string
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String subTract(String str) {
@@ -88,7 +88,7 @@ public class StringUtil {
      *
      * @return boolean
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isNullOrEmpty(String str) {
@@ -106,7 +106,7 @@ public class StringUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isNotNullOrEmpty(String str) {
@@ -124,7 +124,7 @@ public class StringUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean checkAjaxRequest(HttpServletRequest request) {
@@ -143,7 +143,7 @@ public class StringUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getIp(HttpServletRequest request) {
@@ -165,7 +165,7 @@ public class StringUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String filterEmoji(String source) {
@@ -183,7 +183,7 @@ public class StringUtil {
      *
      * @return url地址
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getUrlPath(HttpServletRequest request) {
@@ -206,7 +206,7 @@ public class StringUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static boolean isMobile(String mobile) {

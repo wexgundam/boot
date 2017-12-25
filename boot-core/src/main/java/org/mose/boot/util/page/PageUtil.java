@@ -5,7 +5,7 @@ import org.mose.boot.util.global.GlobalConst;
 /**
  * 分页工具类，用于生成分页语句
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class PageUtil {

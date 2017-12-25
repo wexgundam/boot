@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 /**
  * JSON工具类，进行对象转string和string转对象
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class JsonUtil {

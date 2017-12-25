@@ -10,16 +10,25 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    角色. <br/>
+ * when:    角色是对权限的分组.<br/>
+ * <p>
+ * 角色是对权限的分组，可以将权限划分为若干组，每一组用角色表示
  *
  * @author 靳磊 created on 2017/12/6
  */
 public class Role {
+    /**
+     * 主键
+     */
     private int id;
+    /**
+     * 名称
+     */
     private String name;
+    /**
+     * 描述
+     */
     private String description;
 
     private List<Authority> authorities;

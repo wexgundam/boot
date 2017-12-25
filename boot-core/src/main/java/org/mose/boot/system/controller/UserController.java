@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 用户控制器
+ * what:    用户控制器
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:52
@@ -27,16 +27,34 @@ import java.util.Map;
 @Controller
 @RequestMapping("/system/user")
 public class UserController {
+    /**
+     * 资源地址服务
+     */
     @Autowired
     private ResourceService resourceService;
+    /**
+     * 用户服务
+     */
     @Autowired
     private UserService userService;
+    /**
+     * 用户权限服务
+     */
     @Autowired
     private UserRoleService userRoleService;
+    /**
+     * 角色服务
+     */
     @Autowired
     private RoleService roleService;
+    /**
+     * 角色权限服务
+     */
     @Autowired
     private RoleAuthorityService roleAuthorityService;
+    /**
+     * 视图服务
+     */
     @Autowired
     private ViewService viewService;
 
@@ -45,26 +63,54 @@ public class UserController {
      */
     String userRIndexViewName = "/system/user/index";
     String userIndexPageUrl = null;
+    /**
+     * 用户角色服务主viewName，其下包含的所有view的激活侧边栏都为该viewName
+     */
     String userRoleIndexViewName = "/system/user/role/index";
     String userRoleIndexPageUrl = null;
+    /**
+     * 用户权限服务主viewName，其下包含的所有view的激活侧边栏都为该viewName
+     */
     String userAuthorityIndexViewName = "/system/user/authority/index";
     String userAuthorityIndexPageUrl = null;
 
+    /**
+     * what:    用户主视图地址
+     *
+     * @return
+     */
     private String getUserIndexPageUrl() {
         userIndexPageUrl = userIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRIndexViewName + ".htm" : userIndexPageUrl;
         return userIndexPageUrl;
     }
 
+    /**
+     * what:    用户角色主视图地址
+     *
+     * @return
+     */
     private String getUserRoleIndexPageUrl() {
         userRoleIndexPageUrl = userRoleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userRoleIndexViewName + ".htm" : userRoleIndexPageUrl;
         return userRoleIndexPageUrl;
     }
 
+    /**
+     * what:    用户权限主视图地址
+     *
+     * @return
+     */
     private String getUserAuthorityIndexPageUrl() {
         userAuthorityIndexPageUrl = userAuthorityIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + userAuthorityIndexViewName + ".htm" : userAuthorityIndexPageUrl;
         return userAuthorityIndexPageUrl;
     }
 
+    /**
+     * what:    给定用户id对应的主视图地址
+     *
+     * @param userId
+     *
+     * @return
+     */
     private String getUserRoleIndexPageUrl(int userId) {
         StringBuilder roleIndexPageUrl = new StringBuilder();
         roleIndexPageUrl.append(getUserRoleIndexPageUrl());
@@ -73,7 +119,7 @@ public class UserController {
     }
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -91,7 +137,7 @@ public class UserController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -102,7 +148,7 @@ public class UserController {
     }
 
     /**
-     * 执行新增操作
+     * what:    执行新增操作
      *
      * @param user
      *
@@ -119,7 +165,7 @@ public class UserController {
     }
 
     /**
-     * 请求更新界面
+     * what:    请求更新界面
      *
      * @param id
      *
@@ -135,7 +181,7 @@ public class UserController {
     }
 
     /**
-     * 请求更新操作
+     * what:    请求更新操作
      *
      * @param user
      *
@@ -152,7 +198,7 @@ public class UserController {
     }
 
     /**
-     * 执行删除操作
+     * what:    执行删除操作
      *
      * @param id
      *
@@ -169,7 +215,7 @@ public class UserController {
     }
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -186,7 +232,7 @@ public class UserController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -200,7 +246,7 @@ public class UserController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -215,7 +261,7 @@ public class UserController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -231,7 +277,7 @@ public class UserController {
 
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */

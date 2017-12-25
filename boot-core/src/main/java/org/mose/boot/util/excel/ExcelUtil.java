@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * excel工具，读取2007文件格式
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class ExcelUtil {
@@ -47,7 +47,7 @@ public class ExcelUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public String[] readExcelTitle(String fileName, int titleIndex) {
@@ -94,7 +94,7 @@ public class ExcelUtil {
      *
      * @return List 包含单元格数据内容的Map对象
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public List<String[]> readExcelContent(String fileName, int dataIndex) {
@@ -228,7 +228,7 @@ public class ExcelUtil {
      * @param fileName 要生成文件名，可以为中文
      * @param response 页面传过来的response
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public void writeExcel(String[][] data, String fileName, HttpServletResponse response) {
@@ -307,7 +307,7 @@ public class ExcelUtil {
      * @param data     二维数组
      * @param fileName 写入的文件名
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public void writeExcel(String[][] data, String fileName) {

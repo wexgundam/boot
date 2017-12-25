@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 类说明：分页方法封装
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class Page<T> {

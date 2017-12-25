@@ -19,16 +19,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * what:    (这里用一句话描述这个类的作用). <br/>
- * when:    (这里描述这个类的适用时机 – 可选).<br/>
- * how:     (这里描述这个类的使用方法 – 可选).<br/>
- * warning: (这里描述这个类的注意事项 – 可选).<br/>
+ * what:    spring security用户认证、授权服务. <br/>
+ * <p>
+ * 符合spring security的要求，实现了要求的接口和服务
  *
  * @author 靳磊 created on 2017/12/20
  */
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+    /**
+     * spring security用户权限的前缀
+     */
     public static final String SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX = "ROLE_";
+    /**
+     * 用户服务
+     */
     @Autowired
     UserService userService;
 
@@ -39,6 +44,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         if (user.getAuthorities() != null && !user.getAuthorities().isEmpty()) {
             for (Authority authority : user.getAuthorities()) {
+                //给自定义权限增加spring security要求的前缀
                 grantedAuthorities.add(new SimpleGrantedAuthority(SPRING_SECURITY_GRANTED_AUTHORITY_PREFIX + authority.getName()));
             }
         }

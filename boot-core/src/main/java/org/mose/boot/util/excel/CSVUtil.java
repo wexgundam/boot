@@ -12,7 +12,7 @@ import java.io.OutputStreamWriter;
 /**
  * 导出CSV文件
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class CSVUtil {
@@ -27,7 +27,7 @@ public class CSVUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static File createCSVFile(String outPutPath, String fileName, String[][] data) {

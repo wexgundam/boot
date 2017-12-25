@@ -3,7 +3,10 @@ package org.mose.boot.system.modal;
 import java.util.List;
 
 /**
- * Description:场景
+ * what:    场景
+ * warning: 每个模块都有访问权限authorityName，只有具备该权限名称所描述的权限的用户才能访问该场景
+ * <p>
+ * 描述系统的模块、结构与功能布局。大场景可已拆分成小场景，直到最小场景。
  *
  * @Author: 靳磊
  * @Date: 2017/8/14:22

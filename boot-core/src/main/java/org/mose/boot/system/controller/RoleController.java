@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description: 角色控制器
+ * what:    角色控制器
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:52
@@ -28,14 +28,29 @@ import java.util.Map;
 @Controller
 @RequestMapping("/system/role")
 public class RoleController {
+    /**
+     * 资源地址服务
+     */
     @Autowired
     private ResourceService resourceService;
+    /**
+     * 角色服务
+     */
     @Autowired
     private RoleService roleService;
+    /**
+     * 角色权限服务
+     */
     @Autowired
     private RoleAuthorityService roleAuthorityService;
+    /**
+     * 权限服务
+     */
     @Autowired
     private AuthorityService authorityService;
+    /**
+     * 视图服务
+     */
     @Autowired
     private ViewService viewService;
 
@@ -44,19 +59,39 @@ public class RoleController {
      */
     String roleIndexViewName = "/system/role/index";
     String roleIndexPageUrl = null;
+    /**
+     * 角色权限服务的主viewName，其下包含的所有view的激活侧边栏都为该viewName
+     */
     String roleAuthorityIndexViewName = "/system/role/authority/index";
     String roleAuthorityIndexPageUrl = null;
 
+    /**
+     * what:    获取角色主视图地址
+     *
+     * @return
+     */
     private String getRoleIndexPageUrl() {
         roleIndexPageUrl = roleIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleIndexViewName + ".htm" : roleIndexPageUrl;
         return roleIndexPageUrl;
     }
 
+    /**
+     * what:    获取角色权限主视图地址
+     *
+     * @return
+     */
     private String getRoleAuthorityIndexPageUrl() {
         roleAuthorityIndexPageUrl = roleAuthorityIndexPageUrl == null ? resourceService.getDynamicResourceServerUrl() + roleAuthorityIndexViewName + ".htm" : roleAuthorityIndexPageUrl;
         return roleAuthorityIndexPageUrl;
     }
 
+    /**
+     * what:    根据给定的角色id获取角色权限主视图地址
+     *
+     * @param roleId
+     *
+     * @return
+     */
     private String getRoleAuthorityIndexPageUrl(int roleId) {
         StringBuilder roleIndexPageUrl = new StringBuilder();
         roleIndexPageUrl.append(getRoleAuthorityIndexPageUrl());
@@ -66,7 +101,7 @@ public class RoleController {
 
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -84,7 +119,7 @@ public class RoleController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -95,7 +130,7 @@ public class RoleController {
     }
 
     /**
-     * 执行新增操作
+     * what:    执行新增操作
      *
      * @param role
      *
@@ -112,7 +147,7 @@ public class RoleController {
     }
 
     /**
-     * 请求更新界面
+     * what:    请求更新界面
      *
      * @param id
      *
@@ -128,7 +163,7 @@ public class RoleController {
     }
 
     /**
-     * 请求更新操作
+     * what:    请求更新操作
      *
      * @param role
      *
@@ -145,7 +180,7 @@ public class RoleController {
     }
 
     /**
-     * 执行删除操作
+     * what:    执行删除操作
      *
      * @param id
      *
@@ -163,7 +198,7 @@ public class RoleController {
 
 
     /**
-     * 展示场景index视图
+     * what:    展示场景index视图
      *
      * @return
      */
@@ -180,7 +215,7 @@ public class RoleController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -194,7 +229,7 @@ public class RoleController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */
@@ -209,7 +244,7 @@ public class RoleController {
     }
 
     /**
-     * 请求新增页面
+     * what:    请求新增页面
      *
      * @return
      */

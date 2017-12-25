@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * 金钱工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017年2月16日
  */
 public class BigDecimalUtil {
@@ -18,7 +18,7 @@ public class BigDecimalUtil {
      * @param v1 被加数
      * @param v2 加数
      * @return 两个参数的和
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal add(BigDecimal v1, BigDecimal v2) {
@@ -31,7 +31,7 @@ public class BigDecimalUtil {
      * @param v1 被减数
      * @param v2 减数
      * @return 两个参数的差
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal sub(BigDecimal v1, BigDecimal v2) {
@@ -44,7 +44,7 @@ public class BigDecimalUtil {
      * @param v1 被乘数
      * @param v2 乘数
      * @return 两个参数的积
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
 
@@ -58,7 +58,7 @@ public class BigDecimalUtil {
      * @param v1 被除数
      * @param v2 除数
      * @return 两个参数的商
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal div(BigDecimal v1, BigDecimal v2) {
@@ -73,7 +73,7 @@ public class BigDecimalUtil {
      * @param v2    除数
      * @param scale 表示表示需要精确到小数点以后几位。
      * @return 两个参数的商
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static BigDecimal div(BigDecimal v1, BigDecimal v2, int scale) {
@@ -86,7 +86,7 @@ public class BigDecimalUtil {
      * @param v     需要四舍五入的数字
      * @param scale 小数点后保留几位
      * @return 四舍五入后的结果
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static double round(BigDecimal v, int scale) {

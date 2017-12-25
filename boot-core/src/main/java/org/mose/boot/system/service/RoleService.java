@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Description: 角色服务
+ * what:    角色服务
  *
  * @Author: 靳磊
  * @Date: 2017/8/18 14:43
@@ -21,13 +21,19 @@ public class RoleService {
      */
     @Autowired
     private IRoleRepository roleRepository;
+    /**
+     * 用户角色服务
+     */
     @Autowired
     private UserRoleService userRoleService;
+    /**
+     * 角色权限服务
+     */
     @Autowired
     private RoleAuthorityService roleAuthorityService;
 
     /**
-     * 根据给定的id查询
+     * what:    根据给定的id查询
      *
      * @param id
      *
@@ -38,7 +44,7 @@ public class RoleService {
     }
 
     /**
-     * 获取所有角色并按照树形组织排序
+     * what:    获取所有角色并按照树形组织排序
      *
      * @return
      */
@@ -49,7 +55,7 @@ public class RoleService {
 
 
     /**
-     * 获取所有角色列表
+     * what:    获取所有角色列表
      *
      * @return
      */
@@ -60,9 +66,6 @@ public class RoleService {
 
     /**
      * what:    获取用户总数. <br/>
-     * when:    (这里描述这个方法适用时机 – 可选).<br/>
-     * how:     (这里描述这个方法的执行流程或使用方法 – 可选).<br/>
-     * warning: (这里描述这个方法的注意事项 – 可选).<br/>
      *
      * @param
      *
@@ -75,7 +78,7 @@ public class RoleService {
     }
 
     /**
-     * Description:删除记录
+     * what:    删除记录
      *
      * @param role
      *
@@ -91,7 +94,7 @@ public class RoleService {
 
 
     /**
-     * 更新
+     * what:    更新
      *
      * @param role
      */
@@ -101,7 +104,7 @@ public class RoleService {
     }
 
     /**
-     * 删除给定id对应的记录
+     * what:    删除给定id对应的记录
      *
      * @param id
      *

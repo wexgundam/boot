@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * http工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class HttpUtil {
@@ -40,7 +40,7 @@ public class HttpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String httpJsonPost(String url, String json) {
@@ -79,7 +79,7 @@ public class HttpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String httpParamsPost(String url, HashMap<String, String> hashMap) {
@@ -123,7 +123,7 @@ public class HttpUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String httpPGet(String url) {

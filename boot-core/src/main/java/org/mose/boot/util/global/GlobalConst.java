@@ -3,7 +3,7 @@ package org.mose.boot.util.global;
 /**
  * 全局参数
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class GlobalConst {

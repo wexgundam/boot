@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 系统获取IP工具类
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public final class IPUtil {
@@ -27,7 +27,7 @@ public final class IPUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getIp() {

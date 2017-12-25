@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 字符串操作，用于保存和Web输入输出有关的方法
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class WebUtil {
@@ -23,7 +23,7 @@ public class WebUtil {
      * @param response
      * @param str
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static void out(HttpServletResponse response, String str) {
@@ -41,7 +41,7 @@ public class WebUtil {
      * @param response 响应
      * @param obj      需要转换为String的对象
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static void outJson(HttpServletResponse response, Object obj) {
@@ -60,7 +60,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getSafeStr(Object obj) {
@@ -75,7 +75,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static String getSafeStr(Object obj, String strDefault) {
@@ -89,7 +89,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getSafeInt(Object obj) {
@@ -104,7 +104,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static int getSafeInt(Object obj, int nDefualt) {
@@ -118,7 +118,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static double getSafeDouble(Object obj) {
@@ -133,7 +133,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static double getSafeDouble(Object obj, double nDefualt) {
@@ -147,7 +147,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static float getSafeFloat(Object obj) {
@@ -161,7 +161,7 @@ public class WebUtil {
      *
      * @return
      *
-     * @author 孔垂云
+     * @author 靳磊
      * @date 2017-05-23
      */
     public static float getSafeFloat(Object obj, float nDefualt) {

@@ -3,7 +3,7 @@ package org.mose.boot.util.page;
 /**
  * 开始页，结束页封装
  *
- * @author 孔垂云
+ * @author 靳磊
  * @date 2017-05-23
  */
 public class PageIndex {
