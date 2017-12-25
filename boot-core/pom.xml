@@ -83,13 +83,6 @@
         </dependency>
         <!-- End spring session -->
 
-        <!-- Begin sitemesh -->
-        <dependency>
-            <groupId>org.sitemesh</groupId>
-            <artifactId>sitemesh</artifactId>
-        </dependency>
-        <!-- End sitemesh -->
-
         <!-- Begin commons fileupload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
