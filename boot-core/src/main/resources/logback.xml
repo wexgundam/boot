@@ -6,7 +6,7 @@
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
-                %yellow(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) - %cyan(%m)[%magenta(%class)]%n%ex{full}
+                %yellow(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) - %cyan(%m)[%magenta(%class)]%n%ex{2}
             </pattern>
             <charset>GBK</charset>
         </encoder>

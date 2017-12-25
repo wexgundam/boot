@@ -7,6 +7,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.Thymeleaf;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+
+import java.util.Map;
 
 /**
  * what:    SpringMvc 配置
@@ -44,6 +48,15 @@ public class SpringMvcConfiguration extends WebMvcConfigurerAdapter {
     public void configureViewResolver(InternalResourceViewResolver viewResolver) {
         viewResolver.getAttributesMap().putAll(resourceService.toMap());
     }
+
+    @Autowired
+    public void configureViewResolver(ThymeleafViewResolver viewResolver) {
+        Map<? extends String, ?> resources = resourceService.toMap();
+        for (String key : resources.keySet()) {
+            viewResolver.addStaticVariable(key, resources.get(key));
+        }
+    }
+
 
     /**
      * what:    添加拦截器
