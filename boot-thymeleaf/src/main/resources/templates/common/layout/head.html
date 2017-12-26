@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="styles(pageTitle)" th:remove="tag">
+<head th:fragment="head(title, links)" th:remove="tag">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description" />
     <meta content="" name="author" />
 
-    <title th:text="${pageTitle}+' - '+${webTitle}"></title>
+    <title th:text="${title}+' - '+${webTitle}">Head</title>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="../../../public/assets/metronic_v4.7.5/google/google.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/google/google.css'}" />
@@ -31,11 +31,14 @@
 
     <link rel="shortcut icon" href="../../../public/assets/common/images/web-site-icon.ico" th:href="@{${staticResourceServerUrl}+'/assets/common/images/web-site-icon.ico'}" />
 
-    <!-- BEGIN CUSTOM STYLES -->
+    <!-- BEGIN CUSTOM COMMON STYLES -->
     <link href="../../../public/assets/common/common.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/common/common.css'}" />
-    <!-- END CUSTOM STYLES -->
-</head>
+    <!-- END CUSTOM COMMON STYLES -->
 
+    <!-- BEGIN CUSTOM PAGE STYLES -->
+    <th:block th:replace="${links}"></th:block>
+    <!-- END CUSTOM PAGE STYLES -->
+</head>
 <body>
 </body>
 </html>

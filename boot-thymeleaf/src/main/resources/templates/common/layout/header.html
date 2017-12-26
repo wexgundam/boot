@@ -1,5 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description" />
+    <meta content="" name="author" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/google/google.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/google/google.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/font-awesome/css/font-awesome.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/simple-line-icons/simple-line-icons.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap/css/bootstrap.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css'}" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/css/components.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/css/plugins.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/css/plugins.min.css'}" />
+    <!-- END THEME GLOBAL STYLES -->
+
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/layout.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/themes/darkblue.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/custom.min.css'}" />
+    <!-- END THEME LAYOUT STYLES -->
+
+    <link rel="shortcut icon" href="../../../public/assets/common/images/web-site-icon.ico" th:href="@{${staticResourceServerUrl}+'/assets/common/images/web-site-icon.ico'}" />
+
+    <!-- BEGIN CUSTOM STYLES -->
+    <link href="../../../public/assets/common/common.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/common/common.css'}" />
+    <!-- END CUSTOM STYLES -->
+</head>
 <body>
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top" th:fragment="header">
@@ -8,7 +40,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout/img/logo.png" alt="logo" class="logo-default" />
+                    <img src="../../../public/assets/metronic_v4.7.5/layouts/layout/img/logo.png" alt="logo" class="logo-default" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/img/logo.png'}" />
                 </a>
                 <!-- sidebar的收缩与展开，正常屏幕时显示并有效 -->
                 <div class="menu-toggler sidebar-toggler">
@@ -150,7 +182,7 @@
                                     <li>
                                         <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../../../public/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg'}" class="img-circle" alt=""> </span>
                                             <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">Just Now </span>
@@ -161,7 +193,7 @@
                                     <li>
                                         <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../../../public/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg'}" class="img-circle" alt=""> </span>
                                             <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">16 mins </span>
@@ -172,7 +204,7 @@
                                     <li>
                                         <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../../../public/assets/metronic_v4.7.5/layouts/layout3/img/avatar1.jpg" class="img-circle" alt="" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout3/img/avatar1.jpg'}"> </span>
                                             <span class="subject">
                                                         <span class="from"> Bob Nilson </span>
                                                         <span class="time">2 hrs </span>
@@ -183,7 +215,7 @@
                                     <li>
                                         <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../../../public/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg" class="img-circle" alt="" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout3/img/avatar2.jpg'}"> </span>
                                             <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">40 mins </span>
@@ -194,7 +226,7 @@
                                     <li>
                                         <a href="#">
                                                     <span class="photo">
-                                                        <img src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                        <img src="../../../public/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg" class="img-circle" alt="" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout3/img/avatar3.jpg'}"> </span>
                                             <span class="subject">
                                                         <span class="from"> Richard Doe </span>
                                                         <span class="time">46 mins </span>
@@ -323,7 +355,7 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="${staticResourceServerUrl}/assets/metronic_v4.7.5/layouts/layout/img/avatar3_small.jpg" />
+                            <img alt="" class="img-circle" src="../../../public/assets/metronic_v4.7.5/layouts/layout/img/avatar3_small.jpg" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/img/avatar3_small.jpg'}"/>
                             <span class="username username-hide-on-mobile">
                             <security:authentication property="principal.username" />
                         </span>
@@ -377,5 +409,38 @@
         <!-- END HEADER INNER -->
     </div>
     <!-- END HEADER -->
+
+    <!--[if lt IE 9]>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/respond.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/respond.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/excanvas.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/excanvas.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/ie8.fix.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/ie8.fix.min.js'}"></script>
+    <![endif]-->
+
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap/js/bootstrap.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/js.cookie.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/js.cookie.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery.blockui.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery.blockui.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js'}"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../../../public/assets/metronic_v4.7.5/global/scripts/app.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/scripts/app.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/jquery.validate.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/scripts/app.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/localization/messages_zh.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootbox/bootbox.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootbox/bootbox.min.js'}"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/layout/scripts/layout.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/scripts/layout.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/layout/scripts/demo.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/scripts/demo.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/global/scripts/quick-sidebar.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/global/scripts/quick-nav.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/global/scripts/quick-nav.min.js'}"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+    <!-- BEGIN COMMON -->
+    <script src="../../../public/assets/common/js/common.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/common/js/common.js'}"></script>
+    <!-- END COMMON -->
 </body>
 </html>
