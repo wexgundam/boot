@@ -9,8 +9,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>boot-core</module>
-        <module>boot-war</module>
+        <module>boot-jsp</module>
         <module>boot-demo</module>
+        <module>boot-thymeleaf</module>
     </modules>
 
     <properties>

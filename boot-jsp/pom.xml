@@ -6,10 +6,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>boot-war</artifactId>
+    <artifactId>boot-jsp</artifactId>
     <packaging>war</packaging>
-    <name>org.mose.boot-war</name>
-    <url>org.mose.boot-war</url>
+    <name>org.mose.boot-jsp</name>
+    <url>org.mose.boot-jsp</url>
 
     <dependencies>
         <dependency>
@@ -158,7 +158,7 @@
     </dependencies>
 
     <build>
-        <finalName>org.mose.boot-war</finalName>
+        <finalName>org.mose.boot-jsp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
