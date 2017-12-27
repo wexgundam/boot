@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description" />
+    <meta content="" name="author" />
+
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE" th:text="${webTitle}">首页</title>
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/google/google.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/google/google.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/font-awesome/css/font-awesome.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/simple-line-icons/simple-line-icons.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap/css/bootstrap.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css'}" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/css/components.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/global/css/plugins.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/css/plugins.min.css'}" />
+    <!-- END THEME GLOBAL STYLES -->
+
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/layout.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/themes/darkblue.min.css'}" />
+    <link href="../../../public/assets/metronic_v4.7.5/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/css/custom.min.css'}" />
+    <!-- END THEME LAYOUT STYLES -->
+
+    <link rel="shortcut icon" href="../../../public/assets/common/images/web-site-icon.ico" th:href="@{${staticResourceServerUrl}+'/assets/common/images/web-site-icon.ico'}" />
+
+    <!-- BEGIN CUSTOM STYLES -->
+    <link href="../../../public/assets/common/common.css" rel="stylesheet" type="text/css" th:href="@{${staticResourceServerUrl}+'/assets/common/common.css'}" />
+    <!-- END CUSTOM STYLES -->
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+        <!-- BEGIN HEADER -->
+        <th:block th:replace="~{common/layout/header::header}"></th:block>
+        <div class="page-header navbar navbar-fixed-top" th:remove="all"></div>
+        <!-- END HEADER -->
+
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"></div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <th:block th:replace="~{common/layout/sidebar::sidebar}"></th:block>
+            <div class="page-sidebar-wrapper" th:remove="all"></div>
+            <!-- END SIDEBAR -->
+
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <th:block layout:fragment="content"></th:block>
+                <div class="page-content" th:remove="all"></div>
+                <!-- END CONTENT -->
+
+                <!-- BEGIN QUICK SIDEBAR -->
+                <th:block th:replace="~{common/layout/quick-sidebar::quick-sidebar}"></th:block>
+                <a href="javascript:;" class="page-quick-sidebar-toggler" th:remove="all">
+                    <i class="icon-login"></i>
+                </a>
+                <div class="page-quick-sidebar-wrapper" data-close-on-body-click="false" th:remove="all"></div>
+                <!-- END QUICK SIDEBAR -->
+            </div>
+            <!-- END CONTAINER -->
+
+            <!-- BEGIN FOOTER -->
+            <th:block th:replace="~{/common/layout/footer::footer}"></th:block>
+            <div class="page-footer" th:remove="all"></div>
+            <!-- END FOOTER -->
+        </div>
+
+        <!-- BEGIN QUICK NAV -->
+        <th:block th:replace="~{/common/layout/quick-nav::quick-nav}"></th:block>
+        <nav class="quick-nav" th:remove="all"></nav>
+        <div class="quick-nav-overlay" th:remove="all"></div>
+        <!-- END QUICK NAV -->
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/respond.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/respond.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/excanvas.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/excanvas.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/ie8.fix.min.js" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/ie8.fix.min.js'}"></script>
+    <![endif]-->
+
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap/js/bootstrap.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/js.cookie.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/js.cookie.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery.blockui.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery.blockui.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js'}"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../../../public/assets/metronic_v4.7.5/global/scripts/app.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/scripts/app.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/jquery.validate.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/jquery.validate.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/jquery-validation/js/localization/messages_zh.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/global/plugins/bootbox/bootbox.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/global/plugins/bootbox/bootbox.min.js'}"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/layout/scripts/layout.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/scripts/layout.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/layout/scripts/demo.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/layout/scripts/demo.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/global/scripts/quick-sidebar.min.js'}"></script>
+    <script src="../../../public/assets/metronic_v4.7.5/layouts/global/scripts/quick-nav.min.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/metronic_v4.7.5/layouts/global/scripts/quick-nav.min.js'}"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+
+    <!-- BEGIN COMMON SCRIPTS-->
+    <script src="../../../public/assets/common/js/common.js" type="text/javascript" th:src="@{${staticResourceServerUrl}+'/assets/common/js/common.js'}"></script>
+    <!-- END COMMON SCRIPTS-->
+
+    <!-- BEGIN CUSTOM PAGE SCRIPTS-->
+    <th:block layout:fragment="script" th:remove="tag"></th:block>
+    <!-- END CUSTOM PAGE SCRIPTS-->
+
+    <!-- BEGIN SIDEBAR SCRIPT-->
+    <th:block th:replace="~{/common/layout/sidebar::#script}"></th:block>
+    <!-- END SIDEBAR SCRIPT-->
+</body>
+</html>

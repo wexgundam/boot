@@ -9,6 +9,8 @@ import org.mose.boot.util.date.DateUtil;
 import org.mose.boot.util.string.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.support.NullValue;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -36,14 +38,14 @@ public class OperationInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication == null ? "null" : authentication.getName();
         String ip = StringUtil.getIp(request);
         String method = request.getMethod();
         String path = request.getServletPath();
         String parameters = StringUtil.getOperationParameters(request);
         int status = response.getStatus();
         //记操作日志
-        StringBuilder log = new StringBuilder();
         logger.info("Operation ##############################");
         logger.info("[      date] " + DateUtil.getSystemTime());
         logger.info("[  username] " + username);
