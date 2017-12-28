@@ -84,9 +84,9 @@
                             <div class="alert alert-success">
                                 <h3>
                                     <i class="fa fa-check-circle"></i><strong>操作成功!</strong>
-                                    <small>${message}</small>
+                                    <small th:text="${message}">${message}</small>
                                 </h3>
-                                <a href="${redirectUrl}">如果你的浏览器没有自动跳转，请点击此链接</a>
+                                <a th:href="${redirectUrl}">如果你的浏览器没有自动跳转，请点击此链接</a>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{common/layout/layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="~{common/layout/layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:remove="all">
         <meta charset="utf-8" />
@@ -78,10 +78,6 @@
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>系统配置</span>
-                                <i class="fa fa-circle"></i>
-                            </li>
-                            <li>
                                 <span>场景管理</span>
                             </li>
                         </ul>
@@ -127,11 +123,9 @@
                                         <a class="btn btn-primary" id="btnRefresh" href="">
                                             <i class="fa fa-refresh"></i> 刷新
                                         </a>
-                                        <security:authorize access="hasRole('SystemScenarioCreate') and fullyAuthenticated">
-                                            <a class="btn btn-success" id="btnAdd" href="/system/scenario/add.htm" th:href="@{${dynamicResourceServerUrl }+'/system/scenario/add.htm'}">
-                                                <i class=" fa fa-plus"></i> 新建
-                                            </a>
-                                        </security:authorize>
+                                        <a sec:authorize="hasRole('SystemScenarioCreate')" class="btn btn-success" id="btnAdd" href="/system/scenario/add.htm" th:href="@{${dynamicResourceServerUrl }+'/system/scenario/add.htm'}">
+                                            <i class=" fa fa-plus"></i> 新建
+                                        </a>
                                     </td>
                                 </tr>
                             </table>
@@ -155,33 +149,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${scenarios}" var="scenario" varStatus="st">
-                                        <tr id="${scenario.id}" pId="${scenario.parentId}">
-                                            <td>${scenario.name}</td>
-                                            <td>${scenario.authorityName}</td>
-                                            <!-- style="word-break: break-all;" 在恰当的断字点进行换行 -->
-                                            <td style="word-break: break-all;">${scenario.url}</td>
-                                            <td>${scenario.urlTarget}</td>
-                                            <td>
-                                                <div>
-                                                    <i class="fa ${scenario.icon}"></i>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">${scenario.orderIndex}</td>
-                                            <td>
-                                                <security:authorize access="hasRole('SystemScenarioUpdate') and fullyAuthenticated">
-                                                    <a href="${dynamicResourceServerUrl }/system/scenario/update.htm?id=${scenario.id}" th:href="@{${dynamicResourceServerUrl }+'/system/scenario/update.htm?id='+${scenario.id}}">
-                                                        修改
-                                                    </a>
-                                                </security:authorize>
-                                                <security:authorize access="hasRole('SystemScenarioDelete') and fullyAuthenticated">
-                                                    <a href="javascript:deleteScenario(${scenario.id });" th:href="'javascript:deleteScenario('+${scenario.id }');'">
-                                                        删除
-                                                    </a>
-                                                </security:authorize>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
+                                    <tr th:each="scenario : ${scenarios}" th:id="${scenario.id}" th:pId="${scenario.parentId}">
+                                        <td th:text="${scenario.name}">${scenario.name}</td>
+                                        <td th:text="${scenario.authorityName}">${scenario.authorityName}</td>
+                                        <!-- style="word-break: break-all;" 在恰当的断字点进行换行 -->
+                                        <td style="word-break: break-all;" th:text="${scenario.url}">
+                                            ${scenario.url}
+                                        </td>
+                                        <td th:text="${scenario.urlTarget}">${scenario.urlTarget}</td>
+                                        <td>
+                                            <div>
+                                                <i class="fa ${scenario.icon}" th:classappend="${scenario.icon}"></i>
+                                            </div>
+                                        </td>
+                                        <td class="text-center" th:text="${scenario.orderIndex}">
+                                            ${scenario.orderIndex}
+                                        </td>
+                                        <td>
+                                            <a sec:authorize="hasRole('SystemScenarioUpdate')" href="${dynamicResourceServerUrl }/system/scenario/update.htm?id=${scenario.id}" th:href="@{${dynamicResourceServerUrl }+'/system/scenario/update.htm?id='+${scenario.id}}">
+                                                修改
+                                            </a>
+                                            <a sec:authorize="hasRole('SystemScenarioDelete')" href="javascript:deleteScenario(${scenario.id });" th:href="@{'javascript:deleteScenario('+${scenario.id }+');'}">
+                                                删除
+                                            </a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -230,20 +222,11 @@
         <script src="../../../public/assets/treetable/jquery.treeTable.min.js" th:src="@{${staticResourceServerUrl}+'/assets/treetable/jquery.treeTable.min.js'}" type="text/javascript"></script>
         <script type="text/javascript">
             $(function () {
-//                $("#btnSearch").bind('click', searchModule);
-//                $("#btnAdd").bind('click', addUser);
-//                $("#btnClear").bind('click', clearCache);
-
                 $("#treeTable").treeTable({
                     expandLevel: 3
                 });
-            })
+            });
 
-            //            // 查询方法
-            //            var searchModule = function () {
-            //                var url = "index.htm?";
-            //                window.location = encodeURI(url);
-            //            }
             // 删除
             var deleteScenario = function (id) {
                 bootbox.confirm("你确定要删除该场景吗？", function (result) {
@@ -252,14 +235,6 @@
                     }
                 })
             }
-            //            //新增
-            //            var addUser = function (id) {
-            //                window.location = 'toAdd.htm?backUrl=${backUrl }';
-            //            }
-            //            //清空缓存
-            //            var clearCache = function () {
-            //                window.location = 'clearCache.htm?backUrl=${backUrl }';
-            //            }
         </script>
     </th:block>
     <!-- END CUSTOM PAGE SCRIPTS-->

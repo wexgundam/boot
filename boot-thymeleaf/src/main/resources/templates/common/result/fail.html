@@ -84,8 +84,9 @@
                             <div class="alert alert-danger">
                                 <h3>
                                     <i class="fa fa-exclamation-circle"></i><strong>操作失败!</strong>
+                                    <small th:text="${message}">${message}</small>
                                 </h3>
-                                ${message} <a href="javascript:;" onclick="history.go(-1);">返回</a>
+                                <a href="javascript:;" onclick="history.go(-1);">返回</a>
                             </div>
                         </div>
                     </div>

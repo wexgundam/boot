@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{common/layout/layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="~{common/layout/layout}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:remove="all">
         <meta charset="utf-8" />
@@ -65,14 +65,8 @@
                         <div>
                             <a href="/test.htm" target="_self">Test</a>
                         </div>
-                        <sec:authorize url="/admin">
-                            <h1>通过Url控制访问：</h1>
-                            <c:out value="/admin" />
-                        </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_ADMIN') and fullyAuthenticated">
-                            <h1>通过Spring EL控制访问：</h1>
-                            <c:out value="hasRole('ROLE_ADMIN') and fullyAuthenticated" />
-                        </sec:authorize>
+                        <h1 sec:authorize-url="/admin">通过Url控制访问：/admin</h1>
+                        <h1 sec:authorize="hasRole('System')">通过Spring EL控制访问：hasRole('System')</h1>
                         <div>
                             <a href="/user/annotation" target="_blank">Annotation Protected</a>
                         </div>
