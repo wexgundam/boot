@@ -47,7 +47,7 @@ public class WebUtil {
     public static void outJson(HttpServletResponse response, Object obj) {
         try {
             response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().println(JsonUtil.toStr(obj));
+            response.getWriter().println(JsonUtil.toString(obj));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

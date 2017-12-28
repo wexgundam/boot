@@ -91,7 +91,7 @@
                             <a class="btn btn-primary" href="">
                                 <i class="fa fa-refresh"></i> 刷新
                             </a>
-                            <security:authorize access="hasRole('SystemUserAuthorize') and fullyAuthenticated">
+                            <security:authorize access="hasRole('SystemUserRole') and fullyAuthenticated">
                                 <button type="submit" class="btn green" onclick="update()">
                                     <i class=" fa fa-plus"></i> 保存
                                 </button>

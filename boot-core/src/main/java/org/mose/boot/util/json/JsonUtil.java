@@ -21,7 +21,7 @@ public class JsonUtil {
      *
      * @return 返回生成的json值
      */
-    public static String toStr(Object obj) {
+    public static String toString(Object obj) {
         String json_str = "";
         try {
             json_str = objectMapper.writer().writeValueAsString(obj);
@@ -85,7 +85,7 @@ public class JsonUtil {
      * @return 生成的json串
      */
     public static String createExtjsPageJson(long rows, Object obj) {
-        String json = "{\"total\":\"" + rows + "\",\"root\":" + toStr(obj) + "}";
+        String json = "{\"total\":\"" + rows + "\",\"root\":" + toString(obj) + "}";
         return json;
     }
 

@@ -50,7 +50,7 @@ public class ControllerExceptionAspect {
         //获取异常的详细信息
         if (isAjaxRequest) {
             String msg = "{\"flag\":false,\"msg\":" + ex.getMessage() + "}";
-            WebUtil.out(response, JsonUtil.toStr(msg));
+            WebUtil.out(response, JsonUtil.toString(msg));
             return null;
         } else {
             ModelAndView modelAndView = viewService.forwardExceptionView(ex.getMessage(), null, null);
@@ -75,7 +75,7 @@ public class ControllerExceptionAspect {
         //获取异常的详细信息
         if (isAjaxRequest) {
             String msg = "{\"flag\":false,\"msg\":" + ex.getMessage() + "}";
-            WebUtil.out(response, JsonUtil.toStr(msg));
+            WebUtil.out(response, JsonUtil.toString(msg));
             return null;
         } else {
             ModelAndView modelAndView = viewService.forwardDecorateView("/common/result/denied", null);

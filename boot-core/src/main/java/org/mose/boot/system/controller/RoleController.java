@@ -3,12 +3,13 @@ package org.mose.boot.system.controller;
 import org.mose.boot.common.service.ResourceService;
 import org.mose.boot.common.service.ViewService;
 import org.mose.boot.common.vo.Pagination;
+import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.Role;
-import org.mose.boot.system.modal.RoleAuthority;
 import org.mose.boot.system.service.AuthorityService;
 import org.mose.boot.system.service.RoleAuthorityService;
 import org.mose.boot.system.service.RoleService;
 import org.mose.boot.util.code.ReturnCodeUtil;
+import org.mose.boot.util.json.JsonUtil;
 import org.mose.boot.util.web.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -221,10 +223,12 @@ public class RoleController {
      */
     @RequestMapping(value = "/authority/update.htm", method = RequestMethod.GET)
     public ModelAndView updateRoleAuthorityView(int roleId) {
+        List<Authority> roleAuthorities = roleAuthorityService.queryAllAuthoritiesByRoleId(roleId);
         ModelAndView modelAndView = viewService.forwardDecorateView("/system/role/authority/update", getRoleIndexPageUrl());
         modelAndView.addObject("roleId", roleId);
         modelAndView.addObject("authorities", authorityService.queryAllAuthorities());
-        modelAndView.addObject("roleAuthorities", roleAuthorityService.queryAllAuthoritiesByRoleId(roleId));
+        modelAndView.addObject("roleAuthorities", roleAuthorities);
+        modelAndView.addObject("roleAuthoritiesJson", JsonUtil.toString(roleAuthorities));
         return modelAndView;
     }
 

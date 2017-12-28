@@ -69,7 +69,7 @@
             <a class="btn btn-primary" id="btnRefresh" href="">
                 <i class="fa fa-refresh"></i> 刷新
             </a>
-            <security:authorize access="hasRole('SystemUserAuthorize') and fullyAuthenticated">
+            <security:authorize access="hasRole('SystemUserRole') and fullyAuthenticated">
                 <a class="btn btn-success" id="btnAdd" href="${dynamicResourceServerUrl }/system/user/role/update.htm?userId=${userId}">
                     <i class=" fa fa-plus"></i> 更新
                 </a>

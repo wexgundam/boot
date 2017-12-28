@@ -1,16 +1,14 @@
 package org.mose.boot.system.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mose.boot.system.modal.Authority;
 import org.mose.boot.system.modal.Scenario;
 import org.mose.boot.system.modal.User;
 import org.mose.boot.system.repository.IScenarioRepository;
+import org.mose.boot.util.json.JsonUtil;
 import org.mose.boot.util.ztree.TreeNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -206,13 +204,8 @@ public class ScenarioService {
             TreeNode treeNode = createTreeNode(scenario);
             treeNodes.add(treeNode);
         }
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(treeNodes);
-        } catch (JsonProcessingException e) {
-            exceptionLogger.error(e.getMessage(), e);
-        }
-        return null;
+        String json = JsonUtil.toString(treeNodes);
+        return json;
     }
 
     /**

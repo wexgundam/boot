@@ -105,7 +105,7 @@
                                 <security:authorize access="hasRole('SystemUserDelete') and fullyAuthenticated">
                                     <a href="javascript:deleteUser(${user.id})"> 删除 </a>
                                 </security:authorize>
-                                <security:authorize access="hasRole('SystemUserAuthorize') and fullyAuthenticated">
+                                <security:authorize access="hasRole('SystemUserRole') and fullyAuthenticated">
                                     <a href="${dynamicResourceServerUrl}/system/user/role/index.htm?userId=${user.id}">
                                         角色
                                     </a>
