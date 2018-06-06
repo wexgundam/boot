@@ -1,9 +1,9 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.common.service.ViewService;
-import org.mose.boot.util.json.JsonUtil;
-import org.mose.boot.util.string.StringUtil;
-import org.mose.boot.util.web.WebUtil;
+import org.mose.common.service.ViewService;
+import org.mose.util.json.JsonUtil;
+import org.mose.util.string.StringUtil;
+import org.mose.util.web.WebUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,6 +12,8 @@
         <module>boot-jsp</module>
         <module>boot-demo</module>
         <module>boot-thymeleaf</module>
+        <module>boot-war</module>
+        <module>boot-common</module>
     </modules>
 
     <properties>
@@ -20,6 +22,7 @@
         <common.sitemesh.version>3.0.1</common.sitemesh.version>
         <common.druid.version>1.0.25</common.druid.version>
         <common.net.version>3.6</common.net.version>
+        <common.oracle.version>11.2.0.1.0</common.oracle.version>
         <common.mysql.version>5.1.44</common.mysql.version>
         <common.httpclient.version>4.5.2</common.httpclient.version>
         <common.ehcache.version>2.10.2</common.ehcache.version>
@@ -29,6 +32,8 @@
         <common.cache.version>1.0.0</common.cache.version>
         <common.ehcache.version>3.4.0</common.ehcache.version>
         <common.junit.version>4.12</common.junit.version>
+        <common.jstl.version>1.2</common.jstl.version>
+        <common.servlet-api.version>3.1.0</common.servlet-api.version>
 
         <common.thymeleaf.version>3.0.9.RELEASE</common.thymeleaf.version>
         <common.thymeleaf-layout-dialect.version>2.2.2</common.thymeleaf-layout-dialect.version>
@@ -65,6 +70,17 @@
                 <version>${common.mysql.version}</version>
             </dependency>
             <!-- End Database -->
+
+            <dependency>
+                <groupId>jstl</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${common.jstl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${common.servlet-api.version}</version>
+            </dependency>
 
             <!-- Begin redis -->
             <dependency>
@@ -174,6 +190,12 @@
                 <version>${common.thymeleaf-spring5.version}</version>
             </dependency>
             <!-- End Thymeleaf -->
+
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>${common.oracle.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

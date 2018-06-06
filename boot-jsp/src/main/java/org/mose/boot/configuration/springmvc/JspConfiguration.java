@@ -1,6 +1,6 @@
 package org.mose.boot.configuration.springmvc;
 
-import org.mose.boot.common.service.ResourceService;
+import org.mose.common.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
