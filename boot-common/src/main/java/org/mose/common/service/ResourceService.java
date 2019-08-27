@@ -1,6 +1,5 @@
 package org.mose.common.service;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -14,7 +13,6 @@ import java.util.Map;
  * @Date: 2017/8/2:23
  */
 @Component
-@ConfigurationProperties("custom.resource")
 public class ResourceService {
     /**
      * 静态资源服务器地址

@@ -12,7 +12,7 @@
     <artifactId>boot-war</artifactId>
     <packaging>war</packaging>
 
-    <name>boot-war</name>
+    <name>org.mose.boot-war</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -114,7 +114,7 @@
     </dependencies>
 
     <build>
-        <finalName>boot-war</finalName>
+        <finalName>org.mose.boot-war</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

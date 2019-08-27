@@ -1,5 +1,8 @@
 package org.mose.common.controller;
 
+import org.mose.common.service.ViewService;
+import org.mose.system.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author 靳磊 created on 2017/12/22
  */
 @Controller
-@RequestMapping("/common/result")
+@RequestMapping("/")
 public class ResultPageController {
     /**
      * what:    404错误渲染页面. <br/>
@@ -26,7 +29,7 @@ public class ResultPageController {
      *
      * @author 靳磊 created on 2017/12/22
      */
-    @RequestMapping("/404.htm")
+    @RequestMapping("/common/result/404.htm")
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/404";
     }
@@ -39,7 +42,7 @@ public class ResultPageController {
      *
      * @return
      */
-    @RequestMapping("/500.htm")
+    @RequestMapping("/common/result/500.htm")
     public String errorPage500(HttpServletRequest request, HttpServletResponse response) {
         return "/common/result/500";
     }
@@ -51,7 +54,7 @@ public class ResultPageController {
      *
      * @return
      */
-    @RequestMapping(value = "/denied.htm")
+    @RequestMapping(value = "/common/result/denied.htm")
     public String accessDenied(HttpServletRequest request) {
         return "/common/result/denied";
     }

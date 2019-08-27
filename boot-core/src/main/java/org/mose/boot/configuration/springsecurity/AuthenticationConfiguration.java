@@ -1,6 +1,8 @@
 package org.mose.boot.configuration.springsecurity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationEventPublisher;
@@ -11,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.servlet.DispatcherType;
+import javax.swing.*;
 
 /**
  * what:    Spring Security的java configuration
@@ -98,5 +103,24 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * what:    增加filter，用于处理Error信息.<br/>
+     *          原因是Spring Security在处理Error信息时将信息转发到tomcat，绕过Spring，<br/>
+     *          增加该FIlter后能够拦截error信息 <br/>
+     * when:    (这里描述这个类的适用时机 – 可选).<br/>
+     * how:     (这里描述这个类的使用方法 – 可选).<br/>
+     * warning: (这里描述这个类的注意事项 – 可选).<br/>
+     *
+     * @author 靳磊 created on 2019/8/27
+     */
+    @Bean
+    public FilterRegistrationBean errorFilter() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        filterRegistrationBean.setFilter(new ErrorPageFilter());
+        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
+        return filterRegistrationBean;
     }
 }
