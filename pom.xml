@@ -23,7 +23,7 @@
         <common.druid.version>1.0.25</common.druid.version>
         <common.net.version>3.6</common.net.version>
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
-        <common.mysql.version>5.1.44</common.mysql.version>
+        <common.mysql.version>8.0.16</common.mysql.version>
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
         <common.httpclient.version>4.5.2</common.httpclient.version>
         <common.ehcache.version>2.10.2</common.ehcache.version>
