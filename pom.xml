@@ -25,7 +25,7 @@
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
         <common.mysql.version>5.1.44</common.mysql.version>
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
-        <common.httpclient.version>4.5.2</common.httpclient.version>
+        <common.httpclient.version>4.5.13</common.httpclient.version>
         <common.ehcache.version>2.10.2</common.ehcache.version>
         <commone.janino.version>3.0.7</commone.janino.version>
         <common.poi.version>3.14</common.poi.version>
