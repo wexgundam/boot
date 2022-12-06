@@ -21,7 +21,7 @@
         <common.fileupload.version>1.3.1</common.fileupload.version>
         <common.sitemesh.version>3.0.1</common.sitemesh.version>
         <common.druid.version>1.0.25</common.druid.version>
-        <common.net.version>3.6</common.net.version>
+        <common.net.version>3.9.0</common.net.version>
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
         <common.mysql.version>5.1.44</common.mysql.version>
         <common.oracle.version>11.2.0.1.0</common.oracle.version>
